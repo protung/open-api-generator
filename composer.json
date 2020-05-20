@@ -1,0 +1,77 @@
+{
+    "name": "speicher210/open-api-generator",
+    "type": "project",
+    "description": "Open Api specification generator.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dragos Protung",
+            "email": "dragos@protung.de"
+        },
+        {
+            "name": "Cezary Stepkowski",
+            "email": "cezary.stepkowski@maklaro.de"
+        }
+    ],
+    "require": {
+        "php": "~7.4",
+        "beberlei/assert": "^3.2",
+        "cebe/php-openapi": "^1.4",
+        "doctrine/orm": "^2.7",
+        "jms/serializer": "^3.6",
+        "symfony/form": "^5.0",
+        "symfony/routing": "^5.0",
+        "symfony/serializer": "^5.0",
+        "symfony/validator": "^5.0"
+    },
+    "replace": {
+        "paragonie/random_compat": ">2.0",
+        "symfony/polyfill-php56": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*"
+    },
+    "require-dev": {
+        "doctrine/coding-standard": "^7.0.2",
+        "ergebnis/composer-normalize": "^2.5",
+        "phpstan/phpstan": "^0.12.23",
+        "phpunit/phpunit": "^9.1.4",
+        "roave/security-advisories": "dev-master",
+        "vimeo/psalm": "^3.11.2"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Speicher210\\OpenApiGenerator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Speicher210\\OpenApiGenerator\\Tests\\": "tests/"
+        }
+    },
+    "prefer-stable": true,
+    "scripts": {
+        "analyse": [
+            "phpstan analyse",
+            "psalm --show-info=false"
+        ],
+        "check": [
+            "composer validate",
+            "composer normalize --dry-run",
+            "@cs-check",
+            "@analyse",
+            "@test"
+        ],
+        "cs-check": "phpcs -p",
+        "cs-fix": "phpcbf -p",
+        "test": "phpunit --testdox --color=always"
+    }
+}
