@@ -20,7 +20,6 @@
         "jms/serializer": "^3.6",
         "symfony/form": "^5.0",
         "symfony/routing": "^5.0",
-        "symfony/serializer": "^5.0",
         "symfony/validator": "^5.0"
     },
     "require-dev": {

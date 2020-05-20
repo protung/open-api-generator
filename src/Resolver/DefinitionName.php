@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Resolver;
 
-use Speicher210\OpenApiGenerator\Model\Definition;
 use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
-use Metadata\Driver\AdvancedFileLocatorInterface;
-use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
-use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
+use Metadata\Driver\AdvancedDriverInterface;
+use Speicher210\OpenApiGenerator\Model\Definition;
 
 final class DefinitionName
 {
@@ -18,9 +16,7 @@ final class DefinitionName
 
     private const DEFAULT_PREFIXES_TO_IGNORE = ['App', 'Entity', 'Model'];
 
-    private AdvancedFileLocatorInterface $fileLocator;
-
-    private NameConverterInterface $nameConverter;
+    private AdvancedDriverInterface $jmsDriver;
 
     /** @var array<string,string> */
     private array $classToDefinitionMap = [];
@@ -31,12 +27,10 @@ final class DefinitionName
     private array $prefixesToIgnore;
 
     public function __construct(
-        AdvancedFileLocatorInterface $fileLocator,
-        ?NameConverterInterface $nameConverter = null,
+        AdvancedDriverInterface $jmsDriver,
         array $prefixesToIgnore = self::DEFAULT_PREFIXES_TO_IGNORE
     ) {
-        $this->fileLocator = $fileLocator;
-        $this->nameConverter = $nameConverter ?? new CamelCaseToSnakeCaseNameConverter(null, false);
+        $this->jmsDriver = $jmsDriver;
         $this->prefixesToIgnore = $prefixesToIgnore;
     }
 
@@ -80,12 +74,12 @@ final class DefinitionName
             )
         );
 
-        return $this->nameConverter->denormalize(\str_replace('-', '_', $groupString));
+        return \implode('', \array_map('ucfirst', \explode('-', $groupString)));
     }
 
     private function buildMapBetweenClassesAndDescriptionNames(): void
     {
-        foreach ($this->fileLocator->findAllClasses('yml') as $class) {
+        foreach ($this->jmsDriver->getAllClassNames() as $class) {
             $classInfo = new \ReflectionClass($class);
             $shortName = $classInfo->getShortName();
             $prefixes = \array_filter(
