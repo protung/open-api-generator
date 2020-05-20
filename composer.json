@@ -17,7 +17,6 @@
         "php": "~7.4",
         "beberlei/assert": "^3.2",
         "cebe/php-openapi": "^1.4",
-        "doctrine/orm": "^2.7",
         "jms/serializer": "^3.6",
         "symfony/form": "^5.0",
         "symfony/routing": "^5.0",
