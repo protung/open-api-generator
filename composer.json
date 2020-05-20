@@ -23,15 +23,6 @@
         "symfony/serializer": "^5.0",
         "symfony/validator": "^5.0"
     },
-    "replace": {
-        "paragonie/random_compat": ">2.0",
-        "symfony/polyfill-php56": "*",
-        "symfony/polyfill-php70": "*",
-        "symfony/polyfill-php71": "*",
-        "symfony/polyfill-php72": "*",
-        "symfony/polyfill-php73": "*",
-        "symfony/polyfill-php74": "*"
-    },
     "require-dev": {
         "doctrine/coding-standard": "^7.0.2",
         "ergebnis/composer-normalize": "^2.5",
@@ -72,5 +63,10 @@
         "cs-check": "phpcs -p",
         "cs-fix": "phpcbf -p",
         "test": "phpunit --testdox --color=always"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
