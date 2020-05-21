@@ -45,7 +45,7 @@ final class JMSModel
     /**
      * @param string[]|null $serializationGroups
      */
-    public function describe(string $className, ?array $serializationGroups): Reference
+    public function describe(string $className, ?array $serializationGroups): Schema
     {
         if ($serializationGroups === null || $serializationGroups === []) {
             $serializationGroups = self::DEFAULT_SERIALIZATION_GROUPS;
@@ -54,7 +54,8 @@ final class JMSModel
         $definition = new Definition($className, $serializationGroups);
 
         if ($this->modelRegistry->hasModelWithDefinition($definition)) {
-            return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
+            return $this->modelRegistry->getModelWithDefinition($definition)->schema();
+//            return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
         }
 
         $metadata = $this->getClassMetadata($className);
@@ -68,7 +69,8 @@ final class JMSModel
             if ($this->hasAllPropertiesOnDefaultSerializationGroups($metadataProperties) === true) {
                 $definition = new Definition($className, self::DEFAULT_SERIALIZATION_GROUPS);
                 if ($this->modelRegistry->hasModelWithDefinition($definition)) {
-                    return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
+                    return $this->modelRegistry->getModelWithDefinition($definition)->schema();
+//                    return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
                 }
             }
         }
@@ -76,6 +78,8 @@ final class JMSModel
         $definitionSchema = $this->createSchema($className, $serializationGroups);
 
         $this->modelRegistry->addModel(new Model($definition, $definitionSchema));
+
+        return $definitionSchema;
 
         return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
     }

@@ -51,14 +51,14 @@ final class Generator
         $paths = $this->routeProcessor->processRoutes($config['paths']);
         \ksort($paths);
         $openApi->paths = new Paths($paths);
-
-        $definitions = $this->definitionsProcessor->process();
-        \ksort($definitions);
+//
+//        $definitions = $this->definitionsProcessor->process();
+//        \ksort($definitions);
 
         $openApi->components = new Components(
             [
                 'securitySchemes' => $this->securityDefinitionsProcessor->process($config['securityDefinitions']),
-                'schemas' => $definitions,
+//                'schemas' => $definitions,
             ]
         );
 

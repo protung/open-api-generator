@@ -9,7 +9,7 @@ final class ModelRegistry
     /** @var Model[] */
     private array $models = [];
 
-    public function hasModelWithDefinition(Definition $definition): bool
+    public function hasModelWithDefinition(Definition $definition) : bool
     {
         foreach ($this->models as $model) {
             $modelDefinition = $model->definition();
@@ -21,7 +21,21 @@ final class ModelRegistry
         return false;
     }
 
-    public function addModel(Model $model): void
+    public function getModelWithDefinition(Definition $definition) : Model
+    {
+        foreach ($this->models as $model) {
+            $modelDefinition = $model->definition();
+            if ($definition->hash() === $modelDefinition->hash()) {
+                return $model;
+            }
+        }
+
+        throw new \RuntimeException(
+            \sprintf('Model with definition name "%s" does not exist.', $model->definition()->hash())
+        );
+    }
+
+    public function addModel(Model $model) : void
     {
         if ($this->hasModelWithDefinition($model->definition())) {
             throw new \RuntimeException(
@@ -34,7 +48,7 @@ final class ModelRegistry
     /**
      * @return Model[]
      */
-    public function models(): array
+    public function models() : array
     {
         return $this->models;
     }
