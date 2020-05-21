@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Describer;
 
-use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
-use Speicher210\OpenApiGenerator\Model\ErrorResponseOutput;
-use Speicher210\OpenApiGenerator\Model\FormDefinition;
-use Speicher210\OpenApiGenerator\Model\ObjectOutput;
-use Speicher210\OpenApiGenerator\Model\PaginatedOutput;
-use Speicher210\OpenApiGenerator\Model\PaginatedOutputResource;
-use Speicher210\OpenApiGenerator\Model\SimpleOutput;
 use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
 use cebe\openapi\SpecObjectInterface;
+use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
+use Speicher210\OpenApiGenerator\Model\FormDefinition;
+use Speicher210\OpenApiGenerator\Model\Path\Output\CollectionOutput;
+use Speicher210\OpenApiGenerator\Model\Path\Output\ErrorResponse;
+use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
+use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
+use Speicher210\OpenApiGenerator\Model\Path\Output\ScalarOutput;
+use Speicher210\OpenApiGenerator\Model\Path\Output\SimpleOutput;
 use Symfony\Component\Form\FormInterface;
 
 final class Output
@@ -28,7 +29,7 @@ final class Output
     public function __construct(JMSModel $jmsModelDescriber, FormFactory $formFactory)
     {
         $this->jmsModelDescriber = $jmsModelDescriber;
-        $this->formFactory = $formFactory;
+        $this->formFactory       = $formFactory;
     }
 
     /**
@@ -36,8 +37,18 @@ final class Output
      *
      * @return Reference|Schema
      */
-    public function describe(object $output, ?array $serializationGroups): SpecObjectInterface
+    public function describe(object $output, ?array $serializationGroups) : SpecObjectInterface
     {
+        if ($output instanceof CollectionOutput) {
+            $schema = $this->describe($output->output(), $serializationGroups);
+
+            return new Schema(['type' => Type::ARRAY, 'items' => $schema]);
+        }
+
+        if ($output instanceof ScalarOutput) {
+            return $this->describeScalarOutput($output);
+        }
+
         if ($output instanceof SimpleOutput) {
             return $this->describeSimpleOutput($output);
         }
@@ -50,8 +61,8 @@ final class Output
             return $this->describePaginatedOutput($output, $serializationGroups);
         }
 
-        if ($output instanceof ErrorResponseOutput) {
-            return $this->describeErrorResponseOutput($output);
+        if ($output instanceof ErrorResponse) {
+            return $this->describe($output->output(), $serializationGroups);
         }
 
         if ($output instanceof FormDefinition) {
@@ -63,7 +74,7 @@ final class Output
         );
     }
 
-    private function describeFormDefinition(FormDefinition $output): Schema
+    private function describeFormDefinition(FormDefinition $output) : Schema
     {
         $form = $this->formFactory->create($output);
 
@@ -91,7 +102,7 @@ final class Output
     /**
      * @return mixed[]
      */
-    private function describeFormProperties(FormInterface $form): array
+    private function describeFormProperties(FormInterface $form) : array
     {
         $properties = [];
         foreach ($form as $child) {
@@ -118,19 +129,19 @@ final class Output
     /**
      * @param string[]|null $serializationGroups
      */
-    private function describePaginatedOutput(PaginatedOutput $output, ?array $serializationGroups): Schema
+    private function describePaginatedOutput(PaginatedOutput $output, ?array $serializationGroups) : Schema
     {
-        $properties['page'] = new Schema(['type' => Type::INTEGER]);
-        $properties['limit'] = new Schema(['type' => Type::INTEGER]);
-        $properties['pages'] = new Schema(['type' => Type::INTEGER]);
-        $properties['total'] = new Schema(['type' => Type::INTEGER]);
-        $properties['_links'] = $this->createLinksSchema();
+        $properties['page']      = new Schema(['type' => Type::INTEGER]);
+        $properties['limit']     = new Schema(['type' => Type::INTEGER]);
+        $properties['pages']     = new Schema(['type' => Type::INTEGER]);
+        $properties['total']     = new Schema(['type' => Type::INTEGER]);
+        $properties['_links']    = $this->createLinksSchema();
         $properties['_embedded'] = $this->createEmbeddedSchema($output, $serializationGroups);
 
         return new Schema(['properties' => $properties]);
     }
 
-    private function createLinksSchema(): Schema
+    private function createLinksSchema() : Schema
     {
         return new Schema(
             [
@@ -152,7 +163,7 @@ final class Output
     /**
      * @param string[]|null $serializationGroups
      */
-    private function createEmbeddedSchema(PaginatedOutput $output, ?array $serializationGroups): Schema
+    private function createEmbeddedSchema(PaginatedOutput $output, ?array $serializationGroups) : Schema
     {
         $resourcesSchema = new Schema(['type' => Type::ARRAY]);
 
@@ -185,29 +196,18 @@ final class Output
         );
     }
 
-    private function describeSimpleOutput(SimpleOutput $output): Schema
+    private function describeSimpleOutput(SimpleOutput $output) : Schema
     {
-        $fields = $output->fields();
-        if ($output->asObject()) {
-            $properties = [];
-            foreach ($output->fields() as $field => $type) {
-                $properties[$field] = ['type' => $type];
-            }
-            $schema = new Schema(['type' => Type::OBJECT, 'properties' => $properties]);
-        } else {
-            if (\count($fields) !== 1) {
-                // @todo for more than 1 value use oneOf functionality.
-                throw new \RuntimeException('Passing more than one value is not supported.');
-            }
-
-            $schema = new Schema(['type' => \reset($fields)]);
+        $properties = [];
+        foreach ($output->fields() as $field) {
+            $properties[$field->name()] = ['type' => $field->type()];
         }
+        return new Schema(['type' => Type::OBJECT, 'properties' => $properties, 'example' => $output->example()]);
+    }
 
-        if ($output->asCollection()) {
-            return new Schema(['type' => Type::ARRAY, 'items' => $schema]);
-        }
-
-        return $schema;
+    private function describeScalarOutput(ScalarOutput $output) : Schema
+    {
+        return new Schema(['type' => $output->type(), 'example' => $output->example()]);
     }
 
     /**
@@ -215,25 +215,8 @@ final class Output
      *
      * @return Reference|Schema
      */
-    private function describeObjectOutput(ObjectOutput $output, ?array $serializationGroups): SpecObjectInterface
+    private function describeObjectOutput(ObjectOutput $output, ?array $serializationGroups) : SpecObjectInterface
     {
-        $schema = $this->jmsModelDescriber->describe($output->className(), $serializationGroups);
-
-        if ($output->asCollection()) {
-            return new Schema(['type' => Type::ARRAY, 'items' => $schema]);
-        }
-
-        return $schema;
-    }
-
-    private function describeErrorResponseOutput(ErrorResponseOutput $output): Schema
-    {
-        return new Schema(
-            [
-                'type' => Type::OBJECT,
-                'properties' => $output->asModel(),
-                'example' => $output->asExample(),
-            ]
-        );
+        return $this->jmsModelDescriber->describe($output->className(), $serializationGroups);
     }
 }

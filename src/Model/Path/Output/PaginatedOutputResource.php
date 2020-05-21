@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model;
+namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
 use Assert\Assertion;
 

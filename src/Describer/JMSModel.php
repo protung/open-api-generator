@@ -18,7 +18,7 @@ use JMS\Serializer\Metadata\PropertyMetadata;
 use JMS\Serializer\SerializationContext;
 use Metadata\MetadataFactoryInterface;
 
-final class JMSModel
+final class JMSModel implements Describer
 {
     private const DEFAULT_SERIALIZATION_GROUPS = [GroupsExclusionStrategy::DEFAULT_GROUP];
 
