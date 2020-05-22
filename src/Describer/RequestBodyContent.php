@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Describer;
 
-use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Schema;
+use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Symfony\Component\Form\FormInterface;
+use function array_filter;
+use function array_intersect;
+use function array_merge;
 
 final class RequestBodyContent
 {
@@ -32,7 +35,7 @@ final class RequestBodyContent
      *
      * @return array<string,MediaType>
      */
-    public function describe(FormInterface $form, string $httpMethod): array
+    public function describe(FormInterface $form, string $httpMethod) : array
     {
         $jsonSchema = $this->formDescriber->addDeepSchema($form, new NameResolver\FormName(), $httpMethod);
 
@@ -41,7 +44,7 @@ final class RequestBodyContent
         $content = [];
 
         if ($this->schemaHasFileProperties($jsonSchema)) {
-            if ($httpMethod === 'PATCH' || !$this->schemaContainsRequiredFileProperties($jsonSchema)) {
+            if ($httpMethod === 'PATCH' || ! $this->schemaContainsRequiredFileProperties($jsonSchema)) {
                 $content[self::CONTENT_TYPE_APPLICATION_JSON] = new MediaType(
                     ['schema' => $this->schemaWithoutFileProperties($jsonSchema)]
                 );
@@ -49,6 +52,7 @@ final class RequestBodyContent
                     ['schema' => $this->schemaWithoutFileProperties($formDataSchema)]
                 );
             }
+
             $content[self::CONTENT_TYPE_MULTIPART_FORM_DATA] = new MediaType(['schema' => $formDataSchema]);
         } else {
             $content[self::CONTENT_TYPE_APPLICATION_JSON] = new MediaType(['schema' => $jsonSchema]);
@@ -58,7 +62,7 @@ final class RequestBodyContent
         return $content;
     }
 
-    private function schemaWithoutFileProperties(Schema $schema): Schema
+    private function schemaWithoutFileProperties(Schema $schema) : Schema
     {
         $schemaWithoutProperties = clone $schema;
         $this->removeFilePropertiesFromSchema($schemaWithoutProperties);
@@ -66,31 +70,35 @@ final class RequestBodyContent
         return $schemaWithoutProperties;
     }
 
-    private function removeFilePropertiesFromSchema(Schema $schema): void
+    private function removeFilePropertiesFromSchema(Schema $schema) : void
     {
-        if ($schema->properties !== null && $schema->properties !== []) {
-            $properties = $schema->properties;
-            $properties = \array_filter(
-                $properties,
-                static function (Schema $property): bool {
-                    if ($property->format === 'binary') {
-                        return false;
-                    }
+        if ($schema->properties === null || $schema->properties === []) {
+            return;
+        }
 
-                    return $property->type !== 'array' || $property->items === null || $property->items->format !== 'binary';
+        $properties         = $schema->properties;
+        $properties         = array_filter(
+            $properties,
+            static function (Schema $property) : bool {
+                if ($property->format === 'binary') {
+                    return false;
                 }
-            );
-            $schema->properties = $properties;
 
-            foreach ($schema->properties as $name => $property) {
-                if ($property->type === 'array') {
-                    $this->removeFilePropertiesFromSchema($property);
-                }
+                return $property->type !== 'array' || $property->items === null || $property->items->format !== 'binary';
             }
+        );
+        $schema->properties = $properties;
+
+        foreach ($schema->properties as $name => $property) {
+            if ($property->type !== 'array') {
+                continue;
+            }
+
+            $this->removeFilePropertiesFromSchema($property);
         }
     }
 
-    private function schemaContainsRequiredFileProperties(Schema $schema): bool
+    private function schemaContainsRequiredFileProperties(Schema $schema) : bool
     {
         if ($schema->required === null || $schema->required === []) {
             return false;
@@ -101,10 +109,10 @@ final class RequestBodyContent
             return false;
         }
 
-        return \array_intersect($fileProperties, $schema->required) !== [];
+        return array_intersect($fileProperties, $schema->required) !== [];
     }
 
-    private function schemaHasFileProperties(Schema $schema): bool
+    private function schemaHasFileProperties(Schema $schema) : bool
     {
         if ($schema->format === 'binary') {
             return true;
@@ -128,7 +136,7 @@ final class RequestBodyContent
     /**
      * @return string[]
      */
-    private function getFilePropertiesFromSchema(Schema $schema): array
+    private function getFilePropertiesFromSchema(Schema $schema) : array
     {
         $fileProperties = [];
         if ($schema->properties !== null && $schema->properties !== []) {
@@ -137,9 +145,11 @@ final class RequestBodyContent
                 if ($property->format === 'binary') {
                     $fileProperties[] = $name;
                 }
+
                 $childFileProperties[] = $this->getFilePropertiesFromSchema($property);
             }
-            \array_merge($fileProperties, ...$childFileProperties);
+
+            $fileProperties = array_merge($fileProperties, ...$childFileProperties);
         }
 
         return $fileProperties;

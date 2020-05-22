@@ -8,17 +8,26 @@ use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
 use cebe\openapi\SpecObjectInterface;
+use InvalidArgumentException;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
-use Speicher210\OpenApiGenerator\Model\FormDefinition;
+use Speicher210\OpenApiGenerator\Model\Definition;
+use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\CollectionOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\ErrorResponse;
+use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\ScalarOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\SimpleOutput;
 use Symfony\Component\Form\FormInterface;
+use function array_fill_keys;
+use function array_map;
+use function count;
+use function get_class;
+use function reset;
+use function sprintf;
 
-final class Output
+final class OutputDescriber
 {
     public const RESPONSE_CONTENT_TYPE_APPLICATION_JSON = 'application/json';
 
@@ -33,14 +42,12 @@ final class Output
     }
 
     /**
-     * @param string[]|null $serializationGroups
-     *
      * @return Reference|Schema
      */
-    public function describe(object $output, ?array $serializationGroups) : SpecObjectInterface
+    public function describe(Output $output) : SpecObjectInterface
     {
         if ($output instanceof CollectionOutput) {
-            $schema = $this->describe($output->output(), $serializationGroups);
+            $schema = $this->describe($output->output());
 
             return new Schema(['type' => Type::ARRAY, 'items' => $schema]);
         }
@@ -49,34 +56,31 @@ final class Output
             return $this->describeScalarOutput($output);
         }
 
+        // This handles ErrorResponse as well (ErrorResponse extends SimpleOutput)
         if ($output instanceof SimpleOutput) {
             return $this->describeSimpleOutput($output);
         }
 
         if ($output instanceof ObjectOutput) {
-            return $this->describeObjectOutput($output, $serializationGroups);
+            return $this->describeObjectOutput($output);
         }
 
         if ($output instanceof PaginatedOutput) {
-            return $this->describePaginatedOutput($output, $serializationGroups);
+            return $this->describePaginatedOutput($output);
         }
 
-        if ($output instanceof ErrorResponse) {
-            return $this->describe($output->output(), $serializationGroups);
+        if ($output instanceof FormErrorOutput) {
+            return $this->describeFormErrorOutput($output);
         }
 
-        if ($output instanceof FormDefinition) {
-            return $this->describeFormDefinition($output);
-        }
-
-        throw new \InvalidArgumentException(
-            \sprintf('Can not handle object to describe of type "%s"', \get_class($output))
+        throw new InvalidArgumentException(
+            sprintf('Can not handle object to describe of type "%s"', get_class($output))
         );
     }
 
-    private function describeFormDefinition(FormDefinition $output) : Schema
+    private function describeFormErrorOutput(FormErrorOutput $output) : Schema
     {
-        $form = $this->formFactory->create($output);
+        $form = $this->formFactory->create($output->formDefinition());
 
         return new Schema(
             [
@@ -113,7 +117,7 @@ final class Output
                 ],
             ];
 
-            if (\count($child) <= 0) {
+            if (count($child) <= 0) {
                 continue;
             }
 
@@ -126,26 +130,27 @@ final class Output
         return $properties;
     }
 
-    /**
-     * @param string[]|null $serializationGroups
-     */
-    private function describePaginatedOutput(PaginatedOutput $output, ?array $serializationGroups) : Schema
+    private function describePaginatedOutput(PaginatedOutput $output) : Schema
     {
-        $properties['page']      = new Schema(['type' => Type::INTEGER]);
-        $properties['limit']     = new Schema(['type' => Type::INTEGER]);
-        $properties['pages']     = new Schema(['type' => Type::INTEGER]);
-        $properties['total']     = new Schema(['type' => Type::INTEGER]);
-        $properties['_links']    = $this->createLinksSchema();
-        $properties['_embedded'] = $this->createEmbeddedSchema($output, $serializationGroups);
-
-        return new Schema(['properties' => $properties]);
+        return new Schema(
+            [
+                'properties' => [
+                    'page' => new Schema(['type' => Type::INTEGER]),
+                    'limit' => new Schema(['type' => Type::INTEGER]),
+                    'pages' => new Schema(['type' => Type::INTEGER]),
+                    'total' => new Schema(['type' => Type::INTEGER]),
+                    '_links' => $this->createLinksSchema(),
+                    '_embedded' => $this->createEmbeddedSchema($output),
+                ],
+            ]
+        );
     }
 
     private function createLinksSchema() : Schema
     {
         return new Schema(
             [
-                'properties' => \array_fill_keys(
+                'properties' => array_fill_keys(
                     ['self', 'first', 'last', 'previous', 'next'],
                     // @todo oneOf schema|null where applicable (last, etc)
                     new Schema(
@@ -160,32 +165,21 @@ final class Output
         );
     }
 
-    /**
-     * @param string[]|null $serializationGroups
-     */
-    private function createEmbeddedSchema(PaginatedOutput $output, ?array $serializationGroups) : Schema
+    private function createEmbeddedSchema(PaginatedOutput $output) : Schema
     {
         $resourcesSchema = new Schema(['type' => Type::ARRAY]);
 
-        $resources = \array_values(
-            \array_map(
-                function (PaginatedOutputResource $resource) use ($serializationGroups) {
-                    if ($resource->isScalarType()) {
-                        $resourceSchema = new Schema(['type' => $resource->type()]);
-                    } else {
-                        $resourceSchema = $this->jmsModelDescriber->describe($resource->type(), $serializationGroups);
-                    }
-
-                    return $resourceSchema;
-                },
-                $output->resources()
-            )
+        $resources = array_map(
+            function (Output $resource) {
+                return $this->describe($resource);
+            },
+            $output->embedded()
         );
 
-        if (\count($resources) > 1) {
+        if (count($resources) > 1) {
             $resourcesSchema->items = new Schema(['oneOf' => $resources]);
         } else {
-            $resourcesSchema->items = \reset($resources);
+            $resourcesSchema->items = reset($resources);
         }
 
         return new Schema(
@@ -202,6 +196,7 @@ final class Output
         foreach ($output->fields() as $field) {
             $properties[$field->name()] = ['type' => $field->type()];
         }
+
         return new Schema(['type' => Type::OBJECT, 'properties' => $properties, 'example' => $output->example()]);
     }
 
@@ -211,12 +206,10 @@ final class Output
     }
 
     /**
-     * @param string[]|null $serializationGroups
-     *
      * @return Reference|Schema
      */
-    private function describeObjectOutput(ObjectOutput $output, ?array $serializationGroups) : SpecObjectInterface
+    private function describeObjectOutput(ObjectOutput $output) : SpecObjectInterface
     {
-        return $this->jmsModelDescriber->describe($output->className(), $serializationGroups);
+        return $this->jmsModelDescriber->describe(new Definition($output->className(), $output->serializationGroups()));
     }
 }

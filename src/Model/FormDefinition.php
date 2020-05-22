@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model;
 
-use Assert\Assertion;
+use Speicher210\OpenApiGenerator\Assert\Assert;
 use Symfony\Component\Form\FormTypeInterface;
+use function count;
 
 final class FormDefinition
 {
@@ -19,7 +20,7 @@ final class FormDefinition
      */
     public function __construct(string $formClass, array $validationGroups = [])
     {
-        Assertion::implementsInterface($formClass, FormTypeInterface::class);
+        Assert::subclassOf($formClass, FormTypeInterface::class);
 
         $this->formClass        = $formClass;
         $this->validationGroups = $validationGroups;
@@ -40,6 +41,6 @@ final class FormDefinition
 
     public function hasValidationGroups() : bool
     {
-        return \count($this->validationGroups) > 0;
+        return count($this->validationGroups) > 0;
     }
 }

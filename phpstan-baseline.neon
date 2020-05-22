@@ -1,0 +1,14 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property cebe\\\\openapi\\\\spec\\\\Schema\\:\\:\\$exclusiveMinimum \\(float\\|int\\) does not accept true\\.$#"
+			count: 1
+			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+		-
+			message: "#^Property cebe\\\\openapi\\\\spec\\\\Schema\\:\\:\\$exclusiveMaximum \\(float\\|int\\) does not accept true\\.$#"
+			count: 1
+			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+		-
+			message: "#^Variable property access on cebe\\\\openapi\\\\spec\\\\PathItem\\.$#"
+			count: 1
+			path: src/Processor/PathsProcessor.php

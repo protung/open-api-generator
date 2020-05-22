@@ -17,7 +17,7 @@ final class FormFactory
         $this->formFactory = $formFactory;
     }
 
-    public function create(FormDefinition $formDefinition): FormInterface
+    public function create(FormDefinition $formDefinition) : FormInterface
     {
         return $this->formFactory->create(
             $formDefinition->formClass(),

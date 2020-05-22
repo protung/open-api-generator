@@ -4,90 +4,70 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Describer;
 
-use Speicher210\OpenApiGenerator\Model\Definition;
-use Speicher210\OpenApiGenerator\Model\Model;
-use Speicher210\OpenApiGenerator\Model\ModelRegistry;
-use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
-use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use cebe\openapi\SpecObjectInterface;
+use InvalidArgumentException;
 use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
 use JMS\Serializer\Exclusion\VersionExclusionStrategy;
 use JMS\Serializer\Metadata\ClassMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use JMS\Serializer\SerializationContext;
+use LogicException;
 use Metadata\MetadataFactoryInterface;
+use Speicher210\OpenApiGenerator\Model\Definition;
+use Speicher210\OpenApiGenerator\Model\ModelRegistry;
+use function array_filter;
+use function array_key_exists;
+use function array_keys;
+use function count;
+use function get_class;
+use function in_array;
+use function is_array;
+use function sprintf;
 
-final class JMSModel implements Describer
+final class JMSModel implements ObjectDescriber
 {
-    private const DEFAULT_SERIALIZATION_GROUPS = [GroupsExclusionStrategy::DEFAULT_GROUP];
-
     private MetadataFactoryInterface $metadataFactory;
 
     private VersionExclusionStrategy $versionExclusionStrategy;
 
     private ModelRegistry $modelRegistry;
 
-    private DefinitionName $definitionNameResolver;
-
     public function __construct(
         MetadataFactoryInterface $metadataFactory,
         ModelRegistry $modelRegistry,
-        DefinitionName $definitionNameResolver,
         string $apiVersion
     ) {
-        $this->metadataFactory = $metadataFactory;
-        $this->modelRegistry = $modelRegistry;
-        $this->definitionNameResolver = $definitionNameResolver;
+        $this->metadataFactory          = $metadataFactory;
+        $this->modelRegistry            = $modelRegistry;
         $this->versionExclusionStrategy = new VersionExclusionStrategy($apiVersion);
     }
 
     /**
-     * @param string[]|null $serializationGroups
+     * {@inheritDoc}
      */
-    public function describe(string $className, ?array $serializationGroups): Schema
+    public function describe(Definition $definition) : SpecObjectInterface
     {
-        if ($serializationGroups === null || $serializationGroups === []) {
-            $serializationGroups = self::DEFAULT_SERIALIZATION_GROUPS;
+        if ($this->modelRegistry->schemaExistsForDefinition($definition)) {
+            return $this->modelRegistry->getSchema($definition);
         }
 
-        $definition = new Definition($className, $serializationGroups);
-
-        if ($this->modelRegistry->hasModelWithDefinition($definition)) {
-            return $this->modelRegistry->getModelWithDefinition($definition)->schema();
-//            return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
-        }
-
-        $metadata = $this->getClassMetadata($className);
-
-        $metadataProperties = $this->getPropertiesInSerializationGroups(
-            $metadata->propertyMetadata,
-            $serializationGroups
+        $this->modelRegistry->addSchema(
+            $definition,
+            $this->createSchema(
+                $definition->className(),
+                $definition->serializationGroups()
+            )
         );
 
-        if ($this->hasCustomSerializationGroups($serializationGroups)) {
-            if ($this->hasAllPropertiesOnDefaultSerializationGroups($metadataProperties) === true) {
-                $definition = new Definition($className, self::DEFAULT_SERIALIZATION_GROUPS);
-                if ($this->modelRegistry->hasModelWithDefinition($definition)) {
-                    return $this->modelRegistry->getModelWithDefinition($definition)->schema();
-//                    return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
-                }
-            }
-        }
-
-        $definitionSchema = $this->createSchema($className, $serializationGroups);
-
-        $this->modelRegistry->addModel(new Model($definition, $definitionSchema));
-
-        return $definitionSchema;
-
-        return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
+        return $this->modelRegistry->getSchema($definition);
     }
 
     /**
      * @param string[] $serializationGroups
      */
-    private function createSchema(string $className, array $serializationGroups): Schema
+    private function createSchema(string $className, array $serializationGroups) : Schema
     {
         $metadata = $this->getClassMetadata($className);
 
@@ -105,10 +85,11 @@ final class JMSModel implements Describer
             }
 
             if ($item->inline === true) {
-                if ($item->type === null || !\array_key_exists('name', $item->type)) {
+                if ($item->type === null || ! array_key_exists('name', $item->type)) {
                     // @todo check types from other sources (doctrine, annotations) ?
-                    throw new \LogicException('Inline schema without type defined is not supported.');
+                    throw new LogicException('Inline schema without type defined is not supported.');
                 }
+
                 $inlineModel = $this->createSchema($item->type['name'], $serializationGroups);
                 foreach ($inlineModel->properties as $name => $property) {
                     $properties[$name] = $property;
@@ -129,40 +110,42 @@ final class JMSModel implements Describer
             $type = $this->getNestedTypeInArray($item);
             if ($type !== null) {
                 $property->type = Type::ARRAY;
-                if (!isset($serializationGroups[$name]) || !\is_array($serializationGroups()[$name])) {
+                if (! isset($serializationGroups[$name]) || ! is_array($serializationGroups()[$name])) {
                     $groups = $serializationGroups;
                 } else {
                     $groups = $serializationGroups[$name];
                 }
-                $property->items = $this->describe($type, $groups);
+
+                $property->items = $this->describe(new Definition($type, $groups));
             } else {
                 $type = $item->type['name'];
 
-                if (\in_array($type, [Type::BOOLEAN, Type::STRING, Type::ARRAY], true)) {
+                if (in_array($type, [Type::BOOLEAN, Type::STRING, Type::ARRAY], true)) {
                     $property->type = $type;
                     // Check if field is not a discriminator.
                     if ($name === $metadata->discriminatorFieldName) {
                         if ($metadata->discriminatorValue !== null) {
                             $property->enum = [$metadata->discriminatorValue];
-                        } elseif (\count($metadata->discriminatorMap) > 0) {
-                            $property->enum = \array_keys($metadata->discriminatorMap);
+                        } elseif (count($metadata->discriminatorMap) > 0) {
+                            $property->enum = array_keys($metadata->discriminatorMap);
                         }
                     }
-                } elseif (\in_array($type, ['int', 'integer'], true)) {
+                } elseif (in_array($type, ['int', 'integer'], true)) {
                     $property->type = Type::INTEGER;
-                } elseif (\in_array($type, ['double', 'float'], true)) {
-                    $property->type = Type::NUMBER;
+                } elseif (in_array($type, ['double', 'float'], true)) {
+                    $property->type   = Type::NUMBER;
                     $property->format = $type;
-                } elseif (\in_array($type, ['DateTime', 'DateTimeImmutable'], true)) {
-                    $property->type = Type::STRING;
+                } elseif (in_array($type, ['DateTime', 'DateTimeImmutable'], true)) {
+                    $property->type   = Type::STRING;
                     $property->format = 'date-time';
                 } else {
-                    if (!isset($serializationGroups[$name]) || !\is_array($serializationGroups()[$name])) {
+                    if (! isset($serializationGroups[$name]) || ! is_array($serializationGroups()[$name])) {
                         $groups = $serializationGroups;
                     } else {
                         $groups = $serializationGroups[$name];
                     }
-                    $property = $this->describe($type, $groups);
+
+                    $property = $this->describe(new Definition($type, $groups));
                 }
             }
 
@@ -170,7 +153,7 @@ final class JMSModel implements Describer
         }
 
         if ($this->shouldAddDiscriminatorProperty($metadata)) {
-            if (\array_key_exists($metadata->discriminatorFieldName, $properties)) {
+            if (array_key_exists($metadata->discriminatorFieldName, $properties)) {
                 $property = $properties[$metadata->discriminatorFieldName];
             } else {
                 $property = new Schema(['type' => Type::STRING]);
@@ -178,8 +161,8 @@ final class JMSModel implements Describer
 
             if ($metadata->discriminatorValue !== null) {
                 $property->enum = [$metadata->discriminatorValue];
-            } elseif (\count($metadata->discriminatorMap) > 0) {
-                $property->enum = \array_keys($metadata->discriminatorMap);
+            } elseif (count($metadata->discriminatorMap) > 0) {
+                $property->enum = array_keys($metadata->discriminatorMap);
             }
 
             $properties[$metadata->discriminatorFieldName] = $property;
@@ -193,7 +176,7 @@ final class JMSModel implements Describer
         );
     }
 
-    private function getNestedTypeInArray(PropertyMetadata $item): ?string
+    private function getNestedTypeInArray(PropertyMetadata $item) : ?string
     {
         if ($item->type['name'] !== 'array' && $item->type['name'] !== 'ArrayCollection') {
             return null;
@@ -215,7 +198,7 @@ final class JMSModel implements Describer
     /**
      * @todo determine if it is base class and use oneOf functionality if it is so.
      */
-    private function shouldAddDiscriminatorProperty(ClassMetadata $metadata): bool
+    private function shouldAddDiscriminatorProperty(ClassMetadata $metadata) : bool
     {
         if ($metadata->discriminatorDisabled) {
             return false;
@@ -226,29 +209,7 @@ final class JMSModel implements Describer
         }
 
         // Check if discriminator was already added as a property.
-        return !\array_key_exists($metadata->discriminatorFieldName, $metadata->propertyMetadata);
-    }
-
-    /**
-     * @param string[] $groups
-     */
-    private function hasCustomSerializationGroups(array $groups): bool
-    {
-        return $groups !== self::DEFAULT_SERIALIZATION_GROUPS;
-    }
-
-    /**
-     * @param PropertyMetadata[] $metadataProperties
-     */
-    private function hasAllPropertiesOnDefaultSerializationGroups(array $metadataProperties): bool
-    {
-        foreach ($metadataProperties as $item) {
-            if ($item->groups !== null && $item->groups !== [] && $item->groups !== self::DEFAULT_SERIALIZATION_GROUPS) {
-                return false;
-            }
-        }
-
-        return true;
+        return ! array_key_exists($metadata->discriminatorFieldName, $metadata->propertyMetadata);
     }
 
     /**
@@ -257,28 +218,29 @@ final class JMSModel implements Describer
      *
      * @return PropertyMetadata[]
      */
-    private function getPropertiesInSerializationGroups(array $metadataProperties, array $serializationGroups): array
+    private function getPropertiesInSerializationGroups(array $metadataProperties, array $serializationGroups) : array
     {
         $groupsExclusion = new GroupsExclusionStrategy($serializationGroups);
-        $context = SerializationContext::create();
+        $context         = SerializationContext::create();
 
-        return \array_filter(
+        return array_filter(
             $metadataProperties,
-            static function (PropertyMetadata $item) use ($groupsExclusion, $context) {
-                return !$groupsExclusion->shouldSkipProperty($item, $context);
+            static function (PropertyMetadata $item) use ($groupsExclusion, $context) : bool {
+                return ! $groupsExclusion->shouldSkipProperty($item, $context);
             }
         );
     }
 
-    private function getClassMetadata(string $className): ClassMetadata
+    private function getClassMetadata(string $className) : ClassMetadata
     {
         $metadata = $this->metadataFactory->getMetadataForClass($className);
         if ($metadata === null) {
-            throw new \InvalidArgumentException(\sprintf('No metadata found for class %s.', $className));
+            throw new InvalidArgumentException(sprintf('No metadata found for class %s.', $className));
         }
-        if (!$metadata instanceof ClassMetadata) {
-            throw new \InvalidArgumentException(
-                \sprintf('Expected "%s" class. Got "%s".', ClassMetadata::class, \get_class($metadata))
+
+        if (! $metadata instanceof ClassMetadata) {
+            throw new InvalidArgumentException(
+                sprintf('Expected "%s" class. Got "%s".', ClassMetadata::class, get_class($metadata))
             );
         }
 

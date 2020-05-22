@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
-use Assert\Assertion;
+use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Type;
 
@@ -17,7 +17,7 @@ final class ScalarOutput implements Output
 
     public function __construct(string $type)
     {
-        Assertion::inArray($type, Type::SCALAR_TYPES);
+        Assert::inArray($type, Type::SCALAR_TYPES);
 
         $this->type    = $type;
         $this->example = Type::example($type);
@@ -36,7 +36,7 @@ final class ScalarOutput implements Output
     }
 
     /**
-     * @return bool|float|int|mixed|string|null
+     * {@inheritDoc}
      */
     public function example()
     {

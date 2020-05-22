@@ -14,27 +14,38 @@
         }
     ],
     "require": {
-        "php": "~7.4",
-        "beberlei/assert": "^3.2",
+        "php": "^7.4",
         "cebe/php-openapi": "^1.4",
         "jms/serializer": "^3.6",
         "symfony/form": "^5.0",
         "symfony/routing": "^5.0",
-        "symfony/validator": "^5.0"
+        "symfony/validator": "^5.0",
+        "webmozart/assert": "^1.8"
     },
     "require-dev": {
         "doctrine/coding-standard": "^7.0.2",
         "ergebnis/composer-normalize": "^2.5",
-        "phpstan/phpstan": "^0.12.23",
+        "phpstan/phpstan": "^0.12.25",
+        "phpstan/phpstan-deprecation-rules": "^0.12",
+        "phpstan/phpstan-phpunit": "^0.12",
+        "phpstan/phpstan-strict-rules": "^0.12",
+        "phpstan/phpstan-webmozart-assert": "^0.12",
         "phpunit/phpunit": "^9.1.4",
+        "psalm/plugin-phpunit": "^0.10",
         "roave/security-advisories": "dev-master",
-        "vimeo/psalm": "^3.11.2"
+        "thecodingmachine/phpstan-strict-rules": "^0.12.0",
+        "vimeo/psalm": "^3.11.4"
     },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
         "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -49,9 +60,10 @@
     "prefer-stable": true,
     "scripts": {
         "analyse": [
-            "phpstan analyse",
-            "psalm --show-info=false"
+            "@analyse-phpstan"
         ],
+        "analyse-phpstan": "phpstan analyse",
+        "analyse-psalm": "psalm --show-info=false",
         "check": [
             "composer validate",
             "composer normalize --dry-run",
@@ -62,10 +74,5 @@
         "cs-check": "phpcs -p",
         "cs-fix": "phpcbf -p",
         "test": "phpunit --testdox --color=always"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
     }
 }

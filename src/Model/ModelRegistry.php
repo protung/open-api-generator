@@ -4,12 +4,25 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model;
 
+use cebe\openapi\spec\Reference;
+use cebe\openapi\spec\Schema;
+use RuntimeException;
+use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
+use function sprintf;
+
 final class ModelRegistry
 {
     /** @var Model[] */
     private array $models = [];
 
-    public function hasModelWithDefinition(Definition $definition) : bool
+    private DefinitionName $definitionNameResolver;
+
+    public function __construct(DefinitionName $definitionNameResolver)
+    {
+        $this->definitionNameResolver = $definitionNameResolver;
+    }
+
+    public function schemaExistsForDefinition(Definition $definition) : bool
     {
         foreach ($this->models as $model) {
             $modelDefinition = $model->definition();
@@ -21,7 +34,7 @@ final class ModelRegistry
         return false;
     }
 
-    public function getModelWithDefinition(Definition $definition) : Model
+    private function getModelWithDefinition(Definition $definition) : Model
     {
         foreach ($this->models as $model) {
             $modelDefinition = $model->definition();
@@ -30,19 +43,33 @@ final class ModelRegistry
             }
         }
 
-        throw new \RuntimeException(
-            \sprintf('Model with definition name "%s" does not exist.', $model->definition()->hash())
+        throw new RuntimeException(
+            sprintf('Model with definition name "%s" does not exist.', $definition->hash())
         );
     }
 
-    public function addModel(Model $model) : void
+    public function getSchema(Definition $definition) : Schema
     {
-        if ($this->hasModelWithDefinition($model->definition())) {
-            throw new \RuntimeException(
-                \sprintf('Model with definition name "%s" already exists.', $model->definition()->hash())
+        return $this->getModelWithDefinition($definition)->schema();
+    }
+
+    public function getReference(Definition $definition) : Reference
+    {
+        // todo refactor this. this method is called just so an exception is thrown if there is no model yet for the definition
+        $this->getModelWithDefinition($definition);
+
+        return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
+    }
+
+    public function addSchema(Definition $definition, Schema $schema) : void
+    {
+        if ($this->schemaExistsForDefinition($definition)) {
+            throw new RuntimeException(
+                sprintf('Model with definition name "%s" already exists.', $definition->hash())
             );
         }
-        $this->models[] = $model;
+
+        $this->models[] = new Model($definition, $schema);
     }
 
     /**

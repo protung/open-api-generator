@@ -4,43 +4,25 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
-use Assert\Assertion;
+use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
-use Symfony\Component\Form\FormTypeInterface;
 
 final class FormErrorOutput implements Output
 {
-    private string $formClass;
+    private FormDefinition $formDefinition;
 
-    /** @var string[] */
-    private array $validationGroups;
-
-    /**
-     * @param class-string $formType
-     */
-    public function __construct(string $formClass, array $validationGroups = [])
+    public function __construct(FormDefinition $formDefinition)
     {
-        Assertion::implementsInterface($formClass, FormTypeInterface::class);
-
-        $this->formClass = $formClass;
-        $this->validationGroups = $validationGroups;
+        $this->formDefinition = $formDefinition;
     }
 
-    public function formClass() : string
+    public function formDefinition() : FormDefinition
     {
-        return $this->formClass;
+        return $this->formDefinition;
     }
 
-    /**
-     * @return string[]
-     */
-    public function validationGroups() : array
+    public function example() : void
     {
-        return $this->validationGroups;
-    }
-
-    public function example()
-    {
-        // TODO: Implement example() method.
+        // TODO implement
     }
 }

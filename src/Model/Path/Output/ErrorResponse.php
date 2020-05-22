@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
+use Speicher210\OpenApiGenerator\Model\Path\IOField;
+
 final class ErrorResponse extends SimpleOutput
 {
     private int $errorCode;
@@ -13,8 +15,8 @@ final class ErrorResponse extends SimpleOutput
     public function __construct(int $errorCode, string $message)
     {
         parent::__construct(
-            Field::integerField('code'),
-            Field::stringField('message')
+            IOField::integerField('code'),
+            IOField::stringField('message')
         );
 
         $this->errorCode = $errorCode;

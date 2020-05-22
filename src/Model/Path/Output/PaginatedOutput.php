@@ -4,29 +4,39 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
-final class PaginatedOutput
+use Speicher210\OpenApiGenerator\Assert\Assert;
+use Speicher210\OpenApiGenerator\Model\Path\Output;
+
+final class PaginatedOutput implements Output
 {
     private string $resourcesKey;
 
-    /** @var PaginatedOutputResource[] */
-    private array $resources;
+    /** @var Output[] */
+    private array $embedded;
 
-    public function __construct(string $resourcesKey, PaginatedOutputResource ...$resources)
+    public function __construct(string $resourcesKey, Output ...$embedded)
     {
+        Assert::minCount($embedded, 1);
+
         $this->resourcesKey = $resourcesKey;
-        $this->resources = $resources;
+        $this->embedded     = $embedded;
     }
 
-    public function resourcesKey(): string
+    public function resourcesKey() : string
     {
         return $this->resourcesKey;
     }
 
     /**
-     * @return PaginatedOutputResource[]
+     * @return Output[]
      */
-    public function resources(): array
+    public function embedded() : array
     {
-        return $this->resources;
+        return $this->embedded;
+    }
+
+    public function example() : void
+    {
+        // TODO: Implement example() method.
     }
 }

@@ -15,15 +15,15 @@ final class Model
     public function __construct(Definition $definition, Schema $schema)
     {
         $this->definition = $definition;
-        $this->schema = $schema;
+        $this->schema     = $schema;
     }
 
-    public function definition(): Definition
+    public function definition() : Definition
     {
         return $this->definition;
     }
 
-    public function schema(): Schema
+    public function schema() : Schema
     {
         return $this->schema;
     }

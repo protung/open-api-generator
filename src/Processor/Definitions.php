@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Processor;
 
+use cebe\openapi\spec\Schema;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
-use cebe\openapi\spec\Schema;
 
 final class Definitions
 {
@@ -16,14 +16,14 @@ final class Definitions
 
     public function __construct(ModelRegistry $modelRegistry, DefinitionName $definitionNameResolver)
     {
-        $this->modelRegistry = $modelRegistry;
+        $this->modelRegistry          = $modelRegistry;
         $this->definitionNameResolver = $definitionNameResolver;
     }
 
     /**
      * @return array<string,Schema>
      */
-    public function process(): array
+    public function process() : array
     {
         $definitions = [];
         foreach ($this->modelRegistry->models() as $model) {

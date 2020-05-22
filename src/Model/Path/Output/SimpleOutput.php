@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
+use Speicher210\OpenApiGenerator\Model\Path\IOField;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Type;
 
@@ -12,22 +13,25 @@ use Speicher210\OpenApiGenerator\Model\Type;
  */
 class SimpleOutput implements Output
 {
-    /** @var Field[] */
+    /** @var IOField[] */
     private array $fields;
 
-    public function __construct(Field ...$fields)
+    public function __construct(IOField ...$fields)
     {
         $this->fields = $fields;
     }
 
     /**
-     * @return Field[]
+     * @return IOField[]
      */
     public function fields() : array
     {
         return $this->fields;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function example() : array
     {
         $example = [];

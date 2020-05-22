@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor\Path;
+namespace Speicher210\OpenApiGenerator\Processor\Path\Symfony;
 
-use Speicher210\OpenApiGenerator\Model\FormDefinition;
+use Speicher210\OpenApiGenerator\Model\Path\Input;
+use Speicher210\OpenApiGenerator\Model\Response;
+use Speicher210\OpenApiGenerator\Model\Security\Reference;
+use Speicher210\OpenApiGenerator\Processor\Path\Path;
 
 final class SymfonyRoutePath implements Path
 {
@@ -16,16 +19,19 @@ final class SymfonyRoutePath implements Path
 
     private ?string $description;
 
+    /** @var Input[] */
     private array $input;
 
+    /** @var Response[] */
     private array $responses;
 
-    private array $security;
+    private Reference $security;
 
     private bool $deprecated;
 
     /**
-     * @param string[] $security
+     * @param Input[]    $input
+     * @param Response[] $responses
      */
     public function __construct(
         string $routeName,
@@ -34,17 +40,17 @@ final class SymfonyRoutePath implements Path
         ?string $description,
         array $input,
         array $responses,
-        array $security,
+        ?Reference $security = null,
         bool $deprecated = false
     ) {
-        $this->routeName  = $routeName;
-        $this->tag        = $tag;
-        $this->summary    = $summary;
+        $this->routeName   = $routeName;
+        $this->tag         = $tag;
+        $this->summary     = $summary;
         $this->description = $description;
-        $this->input      = $input;
-        $this->responses  = $responses;
-        $this->security   = $security;
-        $this->deprecated = $deprecated;
+        $this->input       = $input;
+        $this->responses   = $responses;
+        $this->security    = $security ?? Reference::none();
+        $this->deprecated  = $deprecated;
     }
 
     public function routeName() : string
@@ -68,19 +74,22 @@ final class SymfonyRoutePath implements Path
     }
 
     /**
-     * @return FormDefinition[]
+     * @return Input[]
      */
     public function input() : array
     {
         return $this->input;
     }
 
+    /**
+     * @return Response[]
+     */
     public function responses() : array
     {
         return $this->responses;
     }
 
-    public function security() : array
+    public function security() : Reference
     {
         return $this->security;
     }

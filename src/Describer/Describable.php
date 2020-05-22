@@ -6,5 +6,4 @@ namespace Speicher210\OpenApiGenerator\Describer;
 
 interface Describable
 {
-
 }

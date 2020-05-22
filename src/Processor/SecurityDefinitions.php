@@ -5,50 +5,34 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Processor;
 
 use cebe\openapi\spec\SecurityScheme;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Speicher210\OpenApiGenerator\Model\Security\Definition;
+use function array_filter;
 
 final class SecurityDefinitions
 {
-    private OptionsResolver $optionResolver;
-
-    public function __construct()
-    {
-        $this->optionResolver = new OptionsResolver();
-        $this->configureOptions();
-    }
-
     /**
-     * @param mixed[] $config
+     * @param Definition[] $securityDefinitions
      *
-     * @return mixed[]
+     * @return array<string,SecurityScheme>
      */
-    public function process(array $config): array
+    public function process(array $securityDefinitions) : array
     {
         $definitions = [];
-        foreach ($config as $name => $securityDefinition) {
-            $definitions[$name] = new SecurityScheme($this->optionResolver->resolve($securityDefinition));
+        foreach ($securityDefinitions as $securityDefinition) {
+            $definitions[$securityDefinition->key()] = new SecurityScheme(
+                array_filter(
+                    [
+                        'type' => $securityDefinition->type(),
+                        'description' => $securityDefinition->description(),
+                        'name' => $securityDefinition->name(),
+                        'in' => $securityDefinition->in(),
+                        'scheme' => $securityDefinition->scheme(),
+                        'bearerFormat' => $securityDefinition->bearerFormat(),
+                    ]
+                )
+            );
         }
 
         return $definitions;
-    }
-
-    private function configureOptions(): void
-    {
-        $this->optionResolver->setRequired('type');
-        $this->optionResolver->setAllowedTypes('type', 'string');
-        $this->optionResolver->setAllowedValues('type', ['http', 'apiKey', 'oauth2', 'openIdConnect']);
-
-        $this->optionResolver->setDefined('in');
-        $this->optionResolver->setAllowedTypes('in', ['null', 'string']);
-        $this->optionResolver->setAllowedValues('in', [null, 'header', 'query']);
-
-        $this->optionResolver->setDefined('name');
-        $this->optionResolver->setAllowedTypes('name', ['null', 'string']);
-
-        $this->optionResolver->setDefault('description', '');
-        $this->optionResolver->setAllowedTypes('description', 'string');
-
-        $this->optionResolver->setDefined('scheme');
-        $this->optionResolver->setDefined('bearerFormat');
     }
 }

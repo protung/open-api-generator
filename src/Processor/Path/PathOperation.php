@@ -36,5 +36,4 @@ final class PathOperation
     {
         return $this->operation;
     }
-
 }

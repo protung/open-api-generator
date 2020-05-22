@@ -19,7 +19,7 @@ final class PrefixedFlatArray implements FlatNameResolver
         $this->prefix = $prefix;
     }
 
-    public function getPropertyName(FormInterface $form): string
+    public function getPropertyName(FormInterface $form) : string
     {
         $names = $this->namesFromForm($form);
 

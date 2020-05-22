@@ -20,6 +20,9 @@ final class CollectionOutput implements Output
         return $this->output;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function example() : array
     {
         return [$this->output->example()];

@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Describer;
 
-use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use cebe\openapi\spec\Parameter;
+use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Symfony\Component\Form\FormInterface;
+use function array_filter;
+use function array_merge;
+use function implode;
+use function nl2br;
+use function sprintf;
+use const PHP_EOL;
 
 final class Query
 {
@@ -22,12 +28,15 @@ final class Query
     /**
      * @return Parameter[]
      */
-    public function describe(FormInterface $form): array
+    public function describe(FormInterface $form) : array
     {
         return $this->processParametersFromForm($form, new NameResolver\FlatArray());
     }
 
-    private function processParametersFromForm(FormInterface $form, NameResolver $nameResolver): array
+    /**
+     * @return Parameter[]
+     */
+    private function processParametersFromForm(FormInterface $form, NameResolver $nameResolver) : array
     {
         $parameters = [];
         if ($form->count() === 0) {
@@ -41,31 +50,32 @@ final class Query
             $childParameters[] = $this->processParametersFromForm($child, $nameResolver);
         }
 
-        return \array_merge($parameters, ...$childParameters);
+        return array_merge($parameters, ...$childParameters);
     }
 
-    private function createParameter(FormInterface $form, NameResolver $nameResolver): Parameter
+    private function createParameter(FormInterface $form, NameResolver $nameResolver) : Parameter
     {
         $formConfig = $form->getConfig();
 
         $name = $nameResolver->getPropertyName($form);
 
-        $parameter = new Parameter(['name' => $name, 'in' => self::PARAMETER_LOCATION_QUERY]);
+        $parameter   = new Parameter(['name' => $name, 'in' => self::PARAMETER_LOCATION_QUERY]);
         $description = $form->getConfig()->getOption('label');
         if ($description !== null) {
             $parameter->description = $description;
         }
+
         $parameter->schema = $this->formDescriber->createSchema($form, new NameResolver\FlatArray(), 'GET');
 
         $parameter->required = $formConfig->getRequired();
 
         if ($formConfig->getRequired() === true) {
             $parentForm = $form->getParent();
-            if ($parentForm !== null && !$parentForm->isRoot() && $parentForm->isRequired() === false) {
-                $parameter->required = false;
+            if ($parentForm !== null && ! $parentForm->isRoot() && $parentForm->isRequired() === false) {
+                $parameter->required    = false;
                 $parameter->description = $this->updateDescription(
                     $parameter->description,
-                    \sprintf('Field required for %s', $nameResolver->getPropertyName($parentForm))
+                    sprintf('Field required for %s', $nameResolver->getPropertyName($parentForm))
                 );
             }
         }
@@ -73,8 +83,8 @@ final class Query
         return $parameter;
     }
 
-    private function updateDescription(?string $originalDescription, string $newText): string
+    private function updateDescription(?string $originalDescription, string $newText) : string
     {
-        return \nl2br(\implode(\PHP_EOL, \array_filter([$originalDescription, $newText])), false);
+        return nl2br(implode(PHP_EOL, array_filter([$originalDescription, $newText])), false);
     }
 }
