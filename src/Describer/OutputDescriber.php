@@ -13,7 +13,6 @@ use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\CollectionOutput;
-use Speicher210\OpenApiGenerator\Model\Path\Output\ErrorResponse;
 use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
@@ -195,6 +194,12 @@ final class OutputDescriber
         $properties = [];
         foreach ($output->fields() as $field) {
             $properties[$field->name()] = ['type' => $field->type()];
+
+            if ($field->possibleValues() === null) {
+                continue;
+            }
+
+            $properties[$field->name()]['enum'] = $field->possibleValues();
         }
 
         return new Schema(['type' => Type::OBJECT, 'properties' => $properties, 'example' => $output->example()]);

@@ -1,0 +1,4 @@
+Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSInnerChildObject:
+  exclusion_policy: ALL
+  properties:
+    stringProperty: ~

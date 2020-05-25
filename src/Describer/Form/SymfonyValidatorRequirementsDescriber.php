@@ -89,8 +89,6 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                 case $constraint instanceof Unique:
                     $schema->uniqueItems = true;
                     break;
-                default:
-//                    dump(get_class($constraint));
             }
         }
     }

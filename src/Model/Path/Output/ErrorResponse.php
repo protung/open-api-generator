@@ -30,7 +30,7 @@ final class ErrorResponse extends SimpleOutput
 
     public static function for402() : self
     {
-        return new self(402, 'Subscription feature required');
+        return new self(402, 'Payment Required');
     }
 
     public static function for403() : self

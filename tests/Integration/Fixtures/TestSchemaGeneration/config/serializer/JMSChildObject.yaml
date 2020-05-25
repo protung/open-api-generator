@@ -1,0 +1,6 @@
+Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSChildObject:
+  exclusion_policy: ALL
+  properties:
+    stringProperty: ~
+    innerChildProperty: ~
+#    recursiveProperty: ~

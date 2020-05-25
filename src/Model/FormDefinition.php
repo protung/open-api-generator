@@ -6,7 +6,6 @@ namespace Speicher210\OpenApiGenerator\Model;
 
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Symfony\Component\Form\FormTypeInterface;
-use function count;
 
 final class FormDefinition
 {
@@ -37,10 +36,5 @@ final class FormDefinition
     public function validationGroups() : array
     {
         return $this->validationGroups;
-    }
-
-    public function hasValidationGroups() : bool
-    {
-        return count($this->validationGroups) > 0;
     }
 }

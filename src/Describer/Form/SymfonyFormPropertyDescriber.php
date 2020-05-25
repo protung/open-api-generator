@@ -16,10 +16,6 @@ final class SymfonyFormPropertyDescriber implements PropertyDescriber
 {
     public function describe(Schema $schema, string $blockPrefix, FormInterface $form) : void
     {
-        if ($blockPrefix === 'form') {
-            return;
-        }
-
         $formConfig = $form->getConfig();
 
         switch ($blockPrefix) {

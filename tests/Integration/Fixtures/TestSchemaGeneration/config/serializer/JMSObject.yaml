@@ -1,0 +1,18 @@
+Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSObject:
+  exclusion_policy: ALL
+  properties:
+    stringProperty: ~
+    stringPropertyWithCustomGroup:
+      groups: ['Test']
+    nullableStringProperty: ~
+    intProperty: ~
+    floatProperty: ~
+    boolProperty: ~
+    arrayProperty:
+      type: array
+    childObjectProperty: ~
+  virtual_properties:
+    getVirtualProperty:
+      type: int
+    getVirtualPropertyWithCustomName:
+      serialized_name: propertyWithCustomName

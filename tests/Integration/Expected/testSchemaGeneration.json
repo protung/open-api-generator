@@ -1,0 +1,1908 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Open API Generator",
+        "description": "To specify the API version use header: `X-Accept-Version: 1.1.0`",
+        "version": "0.0.1"
+    },
+    "paths": {
+        "\/api\/test\/custom-path-params\/{enum}\/{pattern}": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test custom path params",
+                "parameters": [
+                    {
+                        "name": "enum",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "de",
+                                "en"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "pattern",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ]
+            }
+        },
+        "\/api\/test\/error-responses": {
+            "put": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test custom error responses",
+                "parameters": [],
+                "responses": {
+                    "400": {
+                        "description": "Custom message 400",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 400,
+                                        "message": "something custom"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returned if user is not authenticated",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 401,
+                                        "message": "Unauthorized"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "Custom message 402",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 402,
+                                        "message": "Payment Required"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Custom message 403",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 403,
+                                        "message": "Forbidden"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Custom message 404<br>\nAnother custom message 404",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 404,
+                                        "message": "Not Found"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Returned if response content type expected is not supported",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 406,
+                                        "message": "Not Acceptable"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "Returned if request payload format is not supported",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 415,
+                                        "message": "Unsupported Media Type"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "418": {
+                        "description": "Teapot without output"
+                    },
+                    "428": {
+                        "description": "Custom precondition",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "precondition": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "precondition": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ]
+            }
+        },
+        "\/api\/test\/item\/{id}": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test get one item.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned on success",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "virtualProperty": {
+                                            "type": "integer"
+                                        },
+                                        "propertyWithCustomName": {
+                                            "type": "string"
+                                        },
+                                        "stringProperty": {
+                                            "type": "string"
+                                        },
+                                        "nullableStringProperty": {
+                                            "type": "string"
+                                        },
+                                        "intProperty": {
+                                            "type": "integer"
+                                        },
+                                        "floatProperty": {
+                                            "type": "number",
+                                            "format": "float"
+                                        },
+                                        "boolProperty": {
+                                            "type": "boolean"
+                                        },
+                                        "arrayProperty": {
+                                            "type": "array"
+                                        },
+                                        "childObjectProperty": {
+                                            "type": "object",
+                                            "properties": {
+                                                "stringProperty": {
+                                                    "type": "string"
+                                                },
+                                                "innerChildProperty": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returned if user is not authenticated",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 401,
+                                        "message": "Unauthorized"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ]
+            }
+        },
+        "\/api\/test\/multiple\/methods": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test multiple methods",
+                "parameters": [],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test multiple methods",
+                "parameters": [],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ]
+            }
+        },
+        "\/api\/test\/paginated-response": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test paginated response",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Returned on success",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "page": {
+                                            "type": "integer"
+                                        },
+                                        "limit": {
+                                            "type": "integer"
+                                        },
+                                        "pages": {
+                                            "type": "integer"
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        },
+                                        "_links": {
+                                            "type": "object",
+                                            "properties": {
+                                                "self": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "first": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "last": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "previous": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "next": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "_embedded": {
+                                            "type": "object",
+                                            "properties": {
+                                                "multiple_types": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "oneOf": [
+                                                            {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "virtualProperty": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "propertyWithCustomName": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "stringProperty": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "nullableStringProperty": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "intProperty": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "floatProperty": {
+                                                                        "type": "number",
+                                                                        "format": "float"
+                                                                    },
+                                                                    "boolProperty": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "arrayProperty": {
+                                                                        "type": "array"
+                                                                    },
+                                                                    "childObjectProperty": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "stringProperty": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "innerChildProperty": {
+                                                                                "type": "object",
+                                                                                "properties": {
+                                                                                    "stringProperty": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "virtualProperty": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "propertyWithCustomName": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "stringProperty": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "stringPropertyWithCustomGroup": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "nullableStringProperty": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "intProperty": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "floatProperty": {
+                                                                        "type": "number",
+                                                                        "format": "float"
+                                                                    },
+                                                                    "boolProperty": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "arrayProperty": {
+                                                                        "type": "array"
+                                                                    },
+                                                                    "childObjectProperty": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "stringProperty": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "innerChildProperty": {
+                                                                                "type": "object",
+                                                                                "properties": {
+                                                                                    "stringProperty": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Returned on success",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "page": {
+                                            "type": "integer"
+                                        },
+                                        "limit": {
+                                            "type": "integer"
+                                        },
+                                        "pages": {
+                                            "type": "integer"
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        },
+                                        "_links": {
+                                            "type": "object",
+                                            "properties": {
+                                                "self": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "first": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "last": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "previous": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "next": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "_embedded": {
+                                            "type": "object",
+                                            "properties": {
+                                                "one_type": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "someField": {
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "example": {
+                                                            "someField": {}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ]
+            }
+        },
+        "\/api\/test\/responses": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test custom responses",
+                "description": "There are a lot of possible responses but no security",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Returned on success",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "string"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Returned on success",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "integer",
+                                    "example": 123
+                                }
+                            }
+                        }
+                    },
+                    "202": {
+                        "description": "Returned when successfully accepted data"
+                    },
+                    "203": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "number",
+                                    "example": 3.14
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "boolean",
+                                    "example": true
+                                }
+                            }
+                        }
+                    },
+                    "205": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "myInt": {
+                                            "type": "integer"
+                                        },
+                                        "myString": {
+                                            "type": "string"
+                                        },
+                                        "myChoice": {
+                                            "enum": [
+                                                1,
+                                                2,
+                                                3
+                                            ],
+                                            "type": "number"
+                                        }
+                                    },
+                                    "example": {
+                                        "myInt": 123,
+                                        "myString": "string",
+                                        "myChoice": 1
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "206": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "example": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "207": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "virtualProperty": {
+                                            "type": "integer"
+                                        },
+                                        "propertyWithCustomName": {
+                                            "type": "string"
+                                        },
+                                        "stringProperty": {
+                                            "type": "string"
+                                        },
+                                        "nullableStringProperty": {
+                                            "type": "string"
+                                        },
+                                        "intProperty": {
+                                            "type": "integer"
+                                        },
+                                        "floatProperty": {
+                                            "type": "number",
+                                            "format": "float"
+                                        },
+                                        "boolProperty": {
+                                            "type": "boolean"
+                                        },
+                                        "arrayProperty": {
+                                            "type": "array"
+                                        },
+                                        "childObjectProperty": {
+                                            "type": "object",
+                                            "properties": {
+                                                "stringProperty": {
+                                                    "type": "string"
+                                                },
+                                                "innerChildProperty": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "208": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "virtualProperty": {
+                                                "type": "integer"
+                                            },
+                                            "propertyWithCustomName": {
+                                                "type": "string"
+                                            },
+                                            "stringProperty": {
+                                                "type": "string"
+                                            },
+                                            "nullableStringProperty": {
+                                                "type": "string"
+                                            },
+                                            "intProperty": {
+                                                "type": "integer"
+                                            },
+                                            "floatProperty": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "boolProperty": {
+                                                "type": "boolean"
+                                            },
+                                            "arrayProperty": {
+                                                "type": "array"
+                                            },
+                                            "childObjectProperty": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "stringProperty": {
+                                                        "type": "string"
+                                                    },
+                                                    "innerChildProperty": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": true,
+                "security": []
+            }
+        },
+        "\/api\/test\/with-file-upload": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test post with file upload",
+                "parameters": [],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "errors": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "children": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "paramFile": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramFileOptional": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramExtra": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramFile": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "paramFileOptional": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "paramExtra": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "paramFile",
+                                    "paramExtra"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "\/api\/test\/with-file-upload-optional": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test post with file upload optional",
+                "parameters": [],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "errors": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "children": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "paramFileOptional": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramExtra": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramExtra": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "paramExtra"
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramExtra": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "paramExtra"
+                                ]
+                            }
+                        },
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramFileOptional": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "paramExtra": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "paramExtra"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "\/api\/test\/with-form": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test post with form",
+                "parameters": [],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "errors": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "children": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "paramNoType": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramInt": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramText": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramNumber": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramInRange": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramDate": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramDateTime": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "date": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                },
+                                                                                "children": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "year": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "month": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "day": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "time": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                },
+                                                                                "children": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "hour": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "minute": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramEmail": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramChoice": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramChoiceWithLoader": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramPassword": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramCollection": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramCustom": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "paramInt": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "paramText": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "paramInnerCustom": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                },
+                                                                                "children": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "paramText": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramExtended": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNoType": {
+                                        "type": "string"
+                                    },
+                                    "paramInt": {
+                                        "type": "integer",
+                                        "minimum": 7,
+                                        "exclusiveMinimum": true,
+                                        "maximum": 13,
+                                        "exclusiveMaximum": true
+                                    },
+                                    "paramText": {
+                                        "type": "string",
+                                        "minLength": 4,
+                                        "maxLength": 6
+                                    },
+                                    "paramNumber": {
+                                        "type": "number",
+                                        "minimum": 3.14,
+                                        "maximum": 9.9
+                                    },
+                                    "paramInRange": {
+                                        "type": "string",
+                                        "minimum": -20,
+                                        "maximum": -4
+                                    },
+                                    "paramDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "paramDateTime": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "paramEmail": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "uniqueItems": true
+                                    },
+                                    "paramChoice": {
+                                        "type": "string",
+                                        "enum": [
+                                            "a",
+                                            "b"
+                                        ]
+                                    },
+                                    "paramChoiceWithLoader": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3"
+                                        ]
+                                    },
+                                    "paramPassword": {
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "paramCollection": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "minItems": 3,
+                                        "maxItems": 44
+                                    },
+                                    "paramCustom": {
+                                        "type": "object",
+                                        "properties": {
+                                            "paramInt": {
+                                                "type": "integer"
+                                            },
+                                            "paramText": {
+                                                "type": "string"
+                                            },
+                                            "paramInnerCustom": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "paramText": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "paramText"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "paramInt",
+                                            "paramText",
+                                            "paramInnerCustom"
+                                        ]
+                                    },
+                                    "paramExtended": {
+                                        "type": "string",
+                                        "format": "email"
+                                    }
+                                },
+                                "required": [
+                                    "paramNoType",
+                                    "paramInt",
+                                    "paramText",
+                                    "paramNumber",
+                                    "paramInRange",
+                                    "paramDate",
+                                    "paramDateTime",
+                                    "paramEmail",
+                                    "paramChoice",
+                                    "paramChoiceWithLoader",
+                                    "paramPassword",
+                                    "paramCollection",
+                                    "paramCustom",
+                                    "paramExtended"
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNoType": {
+                                        "type": "string"
+                                    },
+                                    "paramInt": {
+                                        "type": "integer",
+                                        "minimum": 7,
+                                        "exclusiveMinimum": true,
+                                        "maximum": 13,
+                                        "exclusiveMaximum": true
+                                    },
+                                    "paramText": {
+                                        "type": "string",
+                                        "minLength": 4,
+                                        "maxLength": 6
+                                    },
+                                    "paramNumber": {
+                                        "type": "number",
+                                        "minimum": 3.14,
+                                        "maximum": 9.9
+                                    },
+                                    "paramInRange": {
+                                        "type": "string",
+                                        "minimum": -20,
+                                        "maximum": -4
+                                    },
+                                    "paramDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "paramDateTime": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "paramEmail": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "uniqueItems": true
+                                    },
+                                    "paramChoice": {
+                                        "type": "string",
+                                        "enum": [
+                                            "a",
+                                            "b"
+                                        ]
+                                    },
+                                    "paramChoiceWithLoader": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3"
+                                        ]
+                                    },
+                                    "paramPassword": {
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "paramCollection[]": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "minItems": 3,
+                                        "maxItems": 44
+                                    },
+                                    "paramCustom[paramInt]": {
+                                        "type": "integer"
+                                    },
+                                    "paramCustom[paramText]": {
+                                        "type": "string"
+                                    },
+                                    "paramCustom[paramInnerCustom][paramText]": {
+                                        "type": "string"
+                                    },
+                                    "paramExtended": {
+                                        "type": "string",
+                                        "format": "email"
+                                    }
+                                },
+                                "required": [
+                                    "paramNoType",
+                                    "paramInt",
+                                    "paramText",
+                                    "paramNumber",
+                                    "paramInRange",
+                                    "paramDate",
+                                    "paramDateTime",
+                                    "paramEmail",
+                                    "paramChoice",
+                                    "paramChoiceWithLoader",
+                                    "paramPassword",
+                                    "paramCollection[]",
+                                    "paramCustom[paramInt]",
+                                    "paramCustom[paramText]",
+                                    "paramCustom[paramInnerCustom][paramText]",
+                                    "paramExtended"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "ApiKey": {
+                "type": "apiKey",
+                "description": "Value for the X-API-KEY header",
+                "name": "X-API-KEY",
+                "in": "header"
+            }
+        }
+    }
+}

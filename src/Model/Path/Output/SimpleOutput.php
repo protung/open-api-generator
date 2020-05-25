@@ -7,6 +7,7 @@ namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Type;
+use function reset;
 
 /**
  * @todo rename class, give it a better name
@@ -37,7 +38,12 @@ class SimpleOutput implements Output
         $example = [];
 
         foreach ($this->fields as $field) {
-            $example[$field->name()] = Type::example($field->type());
+            $possibleValues = $field->possibleValues();
+            if ($possibleValues !== null && $possibleValues !== []) {
+                $example[$field->name()] = reset($possibleValues);
+            } else {
+                $example[$field->name()] = Type::example($field->type());
+            }
         }
 
         return $example;

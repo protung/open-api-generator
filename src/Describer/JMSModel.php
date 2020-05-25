@@ -44,9 +44,6 @@ final class JMSModel implements ObjectDescriber
         $this->versionExclusionStrategy = new VersionExclusionStrategy($apiVersion);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function describe(Definition $definition) : SpecObjectInterface
     {
         if ($this->modelRegistry->schemaExistsForDefinition($definition)) {
@@ -78,19 +75,22 @@ final class JMSModel implements ObjectDescriber
 
         $properties = [];
 
-        foreach ($metadataProperties as $item) {
+        foreach ($metadataProperties as $metadataProperty) {
             // filter properties for not current version
-            if ($this->versionExclusionStrategy->shouldSkipProperty($item, SerializationContext::create())) {
+            if ($this->versionExclusionStrategy->shouldSkipProperty(
+                $metadataProperty,
+                SerializationContext::create()
+            )) {
                 continue;
             }
 
-            if ($item->inline === true) {
-                if ($item->type === null || ! array_key_exists('name', $item->type)) {
+            if ($metadataProperty->inline === true) {
+                if ($metadataProperty->type === null || ! array_key_exists('name', $metadataProperty->type)) {
                     // @todo check types from other sources (doctrine, annotations) ?
                     throw new LogicException('Inline schema without type defined is not supported.');
                 }
 
-                $inlineModel = $this->createSchema($item->type['name'], $serializationGroups);
+                $inlineModel = $this->createSchema($metadataProperty->type['name'], $serializationGroups);
                 foreach ($inlineModel->properties as $name => $property) {
                     $properties[$name] = $property;
                 }
@@ -98,16 +98,16 @@ final class JMSModel implements ObjectDescriber
                 continue;
             }
 
-            $name = $item->serializedName;
+            $name = $metadataProperty->serializedName;
 
             $property = new Schema([]);
 
-            if ($item->type === null) {
+            if ($metadataProperty->type === null) {
                 // @todo check types from other sources (doctrine, annotations) ?
-                $item->type['name'] = 'string';
+                $metadataProperty->type['name'] = 'string';
             }
 
-            $type = $this->getNestedTypeInArray($item);
+            $type = $this->getNestedTypeInArray($metadataProperty);
             if ($type !== null) {
                 $property->type = Type::ARRAY;
                 if (! isset($serializationGroups[$name]) || ! is_array($serializationGroups()[$name])) {
@@ -118,9 +118,9 @@ final class JMSModel implements ObjectDescriber
 
                 $property->items = $this->describe(new Definition($type, $groups));
             } else {
-                $type = $item->type['name'];
+                $type = $metadataProperty->type['name'];
 
-                if (in_array($type, [Type::BOOLEAN, Type::STRING, Type::ARRAY], true)) {
+                if ($type === Type::STRING) {
                     $property->type = $type;
                     // Check if field is not a discriminator.
                     if ($name === $metadata->discriminatorFieldName) {
@@ -130,6 +130,10 @@ final class JMSModel implements ObjectDescriber
                             $property->enum = array_keys($metadata->discriminatorMap);
                         }
                     }
+                } elseif ($type === Type::ARRAY) {
+                    $property->type = Type::ARRAY;
+                } elseif (in_array($type, ['bool', Type::BOOLEAN], true)) {
+                    $property->type = Type::BOOLEAN;
                 } elseif (in_array($type, ['int', 'integer'], true)) {
                     $property->type = Type::INTEGER;
                 } elseif (in_array($type, ['double', 'float'], true)) {

@@ -69,7 +69,7 @@ final class DefinitionName
 
         if (! array_key_exists($class, $this->classToDefinitionMap)) {
             // @todo build name for class not in a map.
-            throw new RuntimeException('Cannot determine definition name for class "%s".');
+            throw new RuntimeException(sprintf('Cannot determine definition name for class "%s".', $class));
         }
 
         return $this->classToDefinitionMap[$class];

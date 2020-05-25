@@ -1,5 +1,5 @@
 .idea/
-build-output
+.build-output
 composer.lock
 vendor
 phpunit.xml

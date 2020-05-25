@@ -19,6 +19,7 @@ use Speicher210\OpenApiGenerator\Processor\Path\PathOperation;
 use Speicher210\OpenApiGenerator\Processor\Path\PathProcessor as PathProcessorInterface;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 use Symfony\Component\Routing\RouteCollection;
+use function array_filter;
 use function explode;
 use function sprintf;
 use function strpos;
@@ -67,15 +68,18 @@ final class PathProcessor implements PathProcessorInterface
         $operations = [];
         foreach ($route->getMethods() as $method) {
             $operation = new Operation(
-                [
-                    'summary' => $path->summary(),
-                    'description' => $path->description(),
-                    'tags' => [$path->tag()],
-                    'deprecated' => $path->isDeprecated(),
-                    'security' => $path->security()->references(),
-                    'parameters' => [],
-                    'responses' => new Responses([]),
-                ]
+                array_filter(
+                    [
+                        'summary' => $path->summary(),
+                        'description' => $path->description(),
+                        'tags' => [$path->tag()],
+                        'deprecated' => $path->isDeprecated(),
+                        'security' => $path->security()->references(),
+                        'parameters' => [],
+                        'responses' => new Responses([]),
+                    ],
+                    static fn($value) => $value !== null
+                )
             );
 
             $this->processInputs(
@@ -86,8 +90,10 @@ final class PathProcessor implements PathProcessorInterface
             );
             $this->processResponses(
                 $operation,
-                \Speicher210\OpenApiGenerator\Model\Response::for500(),
-                ...$path->responses()
+                ...[
+                    ...$path->responses(),
+                    \Speicher210\OpenApiGenerator\Model\Response::for500(),
+                ],
             );
 
             $operations[] = new PathOperation(
