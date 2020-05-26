@@ -26,6 +26,14 @@ return [
     ],
     'paths' => [
         new Path\Symfony\SymfonyRoutePath(
+            'api_test_headers',
+            'Test',
+            'Test headers.',
+            null,
+            [Input\HeaderInput::withName('X-API-VERSION')],
+            [],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
             'api_test_get_one_item',
             'Test',
             'Test get one item.',

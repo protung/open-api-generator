@@ -18,6 +18,11 @@ abstract class BaseInput implements Input
         $this->location = $location;
     }
 
+    public function location() : string
+    {
+        return $this->location;
+    }
+
     public function inHeaders() : bool
     {
         return $this->location === Input::LOCATION_HEADERS;

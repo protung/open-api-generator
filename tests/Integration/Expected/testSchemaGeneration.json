@@ -281,6 +281,50 @@
                 ]
             }
         },
+        "\/api\/test\/headers": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test headers.",
+                "parameters": [
+                    {
+                        "name": "X-API-VERSION",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "code": 500,
+                                        "message": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
         "\/api\/test\/item\/{id}": {
             "get": {
                 "tags": [

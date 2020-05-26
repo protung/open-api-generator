@@ -6,7 +6,7 @@ namespace Speicher210\OpenApiGenerator\Model\Path;
 
 interface Input
 {
-    public const LOCATION_HEADERS = 'headers';
+    public const LOCATION_HEADERS = 'header';
     public const LOCATION_PATH    = 'path';
     public const LOCATION_QUERY   = 'query';
     public const LOCATION_BODY    = 'body';
@@ -17,6 +17,8 @@ interface Input
         self::LOCATION_QUERY,
         self::LOCATION_BODY,
     ];
+
+    public function location() : string;
 
     public function inHeaders() : bool;
 

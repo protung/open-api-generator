@@ -10,7 +10,7 @@ use Speicher210\OpenApiGenerator\Model\Type;
 /**
  * @todo rename class, give it a better name
  */
-final class SimpleInput extends BaseInput
+class SimpleInput extends BaseInput
 {
     /** @var IOField[] */
     private array $fields;

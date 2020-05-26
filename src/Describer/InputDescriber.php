@@ -53,10 +53,10 @@ final class InputDescriber
                     ]
                 );
             }
-        } elseif ($input instanceof Input\SimpleInput && $input->inPath()) {
+        } elseif ($input instanceof Input\SimpleInput) {
             foreach ($input->fields() as $field) {
-                $parameter           = new Parameter(['name' => $field->name(), 'in' => 'path']);
-                $parameter->required = true;
+                $parameter           = new Parameter(['name' => $field->name(), 'in' => $input->location()]);
+                $parameter->required = $input->inPath();
 
                 $parameterSchema = new Schema(
                     [
