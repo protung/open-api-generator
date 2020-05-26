@@ -152,7 +152,7 @@ final class PathProcessor implements PathProcessorInterface
             }
 
             $operation->responses->addResponse(
-                $response->statusCode(),
+                (string) $response->statusCode(),
                 new Response($responseData)
             );
         }

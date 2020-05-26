@@ -3,4 +3,6 @@ Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Mod
   properties:
     stringProperty: ~
     innerChildProperty: ~
+    stringPropertyWithCustomGroup:
+      groups: ['Test']
 #    recursiveProperty: ~

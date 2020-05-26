@@ -641,6 +641,9 @@
                                                                             "stringProperty": {
                                                                                 "type": "string"
                                                                             },
+                                                                            "stringPropertyWithCustomGroup": {
+                                                                                "type": "string"
+                                                                            },
                                                                             "innerChildProperty": {
                                                                                 "type": "object",
                                                                                 "properties": {

@@ -15,6 +15,7 @@ use JMS\Serializer\Metadata\PropertyMetadata;
 use JMS\Serializer\SerializationContext;
 use LogicException;
 use Metadata\MetadataFactoryInterface;
+use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 use function array_filter;
@@ -23,7 +24,6 @@ use function array_keys;
 use function count;
 use function get_class;
 use function in_array;
-use function is_array;
 use function sprintf;
 
 final class JMSModel implements ObjectDescriber
@@ -66,10 +66,12 @@ final class JMSModel implements ObjectDescriber
      */
     private function createSchema(string $className, array $serializationGroups) : Schema
     {
-        $metadata = $this->getClassMetadata($className);
+        $metadata         = $this->getClassMetadata($className);
+        $propertyMetadata = $metadata->propertyMetadata;
+        Assert::allIsInstanceOf($propertyMetadata, PropertyMetadata::class);
 
         $metadataProperties = $this->getPropertiesInSerializationGroups(
-            $metadata->propertyMetadata,
+            $propertyMetadata,
             $serializationGroups
         );
 
@@ -109,14 +111,8 @@ final class JMSModel implements ObjectDescriber
 
             $type = $this->getNestedTypeInArray($metadataProperty);
             if ($type !== null) {
-                $property->type = Type::ARRAY;
-                if (! isset($serializationGroups[$name]) || ! is_array($serializationGroups()[$name])) {
-                    $groups = $serializationGroups;
-                } else {
-                    $groups = $serializationGroups[$name];
-                }
-
-                $property->items = $this->describe(new Definition($type, $groups));
+                $property->type  = Type::ARRAY;
+                $property->items = $this->describe(new Definition($type, $serializationGroups));
             } else {
                 $type = $metadataProperty->type['name'];
 
@@ -143,13 +139,7 @@ final class JMSModel implements ObjectDescriber
                     $property->type   = Type::STRING;
                     $property->format = 'date-time';
                 } else {
-                    if (! isset($serializationGroups[$name]) || ! is_array($serializationGroups()[$name])) {
-                        $groups = $serializationGroups;
-                    } else {
-                        $groups = $serializationGroups[$name];
-                    }
-
-                    $property = $this->describe(new Definition($type, $groups));
+                    $property = $this->describe(new Definition($type, $serializationGroups));
                 }
             }
 

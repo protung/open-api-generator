@@ -8,6 +8,8 @@ final class JMSChildObject
 {
     public string $stringProperty = 'test';
 
+    public string $stringPropertyWithCustomGroup = 'stringPropertyWithCustomGroup';
+
     public ?JMSInnerChildObject $innerChildProperty = null;
 
     public ?JMSChildObject $recursiveProperty = null;

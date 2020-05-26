@@ -21,7 +21,7 @@ final class CollectionOutput implements Output
     }
 
     /**
-     * {@inheritDoc}
+     * @return array<mixed>
      */
     public function example() : array
     {

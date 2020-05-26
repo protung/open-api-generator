@@ -31,7 +31,7 @@ class SimpleOutput implements Output
     }
 
     /**
-     * {@inheritDoc}
+     * @return array<string,mixed>
      */
     public function example() : array
     {
