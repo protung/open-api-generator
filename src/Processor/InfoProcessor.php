@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Processor;
 
 use cebe\openapi\spec\Info as InfoSpec;
-use Speicher210\OpenApiGenerator\Model\Info\Info;
+use cebe\openapi\spec\OpenApi;
+use Speicher210\OpenApiGenerator\Model\Specification;
 
-final class InfoProcessor
+final class InfoProcessor implements Processor
 {
     private string $apiVersion;
 
@@ -16,13 +17,13 @@ final class InfoProcessor
         $this->apiVersion = $apiVersion;
     }
 
-    public function process(Info $info) : InfoSpec
+    public function process(OpenApi $openApi, Specification $specification) : void
     {
-        return new InfoSpec(
+        $openApi->info = new InfoSpec(
             [
-                'title' => $info->title(),
-                'description' => $info->description(),
-                'version' => $info->apiVersion() ?? $this->apiVersion,
+                'title' => $specification->info()->title(),
+                'description' => $specification->info()->description(),
+                'version' => $specification->info()->apiVersion() ?? $this->apiVersion,
             ]
         );
     }

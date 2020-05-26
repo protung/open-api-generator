@@ -1,5 +1,5 @@
 {
-    "openapi": "3.0.2",
+    "openapi": "3.0.3",
     "info": {
         "title": "Open API Generator",
         "description": "To specify the API version use header: `X-Accept-Version: 1.1.0`",
@@ -32,6 +32,14 @@
                         "schema": {
                             "type": "string",
                             "pattern": "[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"
+                        }
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -81,7 +89,16 @@
                     "Test"
                 ],
                 "summary": "Test custom error responses",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "400": {
                         "description": "Custom message 400",
@@ -367,6 +384,14 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -416,6 +441,14 @@
                         "name": "id",
                         "in": "path",
                         "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -553,7 +586,16 @@
                     "Test"
                 ],
                 "summary": "Test multiple methods",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "500": {
                         "description": "Returned on server error",
@@ -598,7 +640,16 @@
                     "Test"
                 ],
                 "summary": "Test multiple methods",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "500": {
                         "description": "Returned on server error",
@@ -645,7 +696,16 @@
                     "Test"
                 ],
                 "summary": "Test paginated response",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Returned on success",
@@ -964,7 +1024,16 @@
                 ],
                 "summary": "Test custom responses",
                 "description": "There are a lot of possible responses but no security",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Returned on success",
@@ -1214,7 +1283,16 @@
                     "Test"
                 ],
                 "summary": "Test post with file upload",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "400": {
                         "description": "Returned when there is a validation error",
@@ -1355,7 +1433,16 @@
                     "Test"
                 ],
                 "summary": "Test post with file upload optional",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "400": {
                         "description": "Returned when there is a validation error",
@@ -1506,7 +1593,16 @@
                     "Test"
                 ],
                 "summary": "Test post with form",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "400": {
                         "description": "Returned when there is a validation error",

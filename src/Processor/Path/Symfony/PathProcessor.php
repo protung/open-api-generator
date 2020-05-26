@@ -91,10 +91,7 @@ final class PathProcessor implements PathProcessorInterface
             );
             $this->processResponses(
                 $operation,
-                ...[
-                    ...$path->responses(),
-                    \Speicher210\OpenApiGenerator\Model\Response::for500(),
-                ],
+                ...$path->responses(),
             );
 
             $operations[] = new PathOperation(

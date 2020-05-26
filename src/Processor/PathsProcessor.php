@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Processor;
 
+use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\PathItem;
+use cebe\openapi\spec\Paths;
 use Speicher210\OpenApiGenerator\Model\Path\Path;
+use Speicher210\OpenApiGenerator\Model\Specification;
 use Speicher210\OpenApiGenerator\Processor\Path\PathProcessor;
+use function ksort;
 
-final class PathsProcessor
+final class PathsProcessor implements Processor
 {
     private PathProcessor $pathProcessor;
 
@@ -17,13 +21,12 @@ final class PathsProcessor
         $this->pathProcessor = $pathProcessor;
     }
 
-    /**
-     * @return array<string,PathItem>
-     */
-    public function process(Path ...$paths) : array
+    public function process(OpenApi $openApi, Specification $specification) : void
     {
         $openApiPaths = [];
-        foreach ($paths as $pathDefinition) {
+        foreach ($specification->paths() as $pathDefinition) {
+            $this->addAlwaysAdded($pathDefinition, $specification);
+
             foreach ($this->pathProcessor->process($pathDefinition) as $pathOperation) {
                 $path                = $pathOperation->path();
                 $openApiPaths[$path] = $openApiPaths[$path] ?? new PathItem([]);
@@ -32,6 +35,19 @@ final class PathsProcessor
             }
         }
 
-        return $openApiPaths;
+        ksort($openApiPaths);
+
+        $openApi->paths = new Paths($openApiPaths);
+    }
+
+    private function addAlwaysAdded(Path $pathDefinition, Specification $specification) : void
+    {
+        foreach ($specification->alwaysAddedInputs() as $alwaysAddedInput) {
+            $pathDefinition->addInput($alwaysAddedInput);
+        }
+
+        foreach ($specification->alwaysAddedResponses() as $alwaysAddedResponse) {
+            $pathDefinition->addResponse($alwaysAddedResponse);
+        }
     }
 }

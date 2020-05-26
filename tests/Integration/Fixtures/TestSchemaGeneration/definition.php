@@ -191,5 +191,11 @@ return new Model\Specification(
             ],
             Model\Security\Reference::fromString('ApiKey')
         ),
+    ],
+    [
+        Input\HeaderInput::withName('X-ALWAYS'),
+    ],
+    [
+        Response::for500(),
     ]
 );

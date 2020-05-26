@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Processor;
 
-use cebe\openapi\spec\Schema;
+use cebe\openapi\spec\Components;
+use cebe\openapi\spec\OpenApi;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
+use Speicher210\OpenApiGenerator\Model\Specification;
 use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
+use function ksort;
 
-final class Definitions
+final class Definitions implements Processor
 {
     private ModelRegistry $modelRegistry;
 
@@ -20,16 +23,19 @@ final class Definitions
         $this->definitionNameResolver = $definitionNameResolver;
     }
 
-    /**
-     * @return array<string,Schema>
-     */
-    public function process() : array
+    public function process(OpenApi $openApi, Specification $specification) : void
     {
         $definitions = [];
         foreach ($this->modelRegistry->models() as $model) {
             $definitions[$this->definitionNameResolver->getName($model->definition())] = $model->schema();
         }
 
-        return $definitions;
+        ksort($definitions);
+
+        if ($openApi->components === null) {
+            $openApi->components = new Components([]);
+        }
+
+//        $openApi->components->schemas = $definitions;
     }
 }

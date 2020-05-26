@@ -81,12 +81,22 @@ final class SymfonyRoutePath implements Path
         return $this->input;
     }
 
+    public function addInput(Input $input) : void
+    {
+        $this->input[] = $input;
+    }
+
     /**
      * @return Response[]
      */
     public function responses() : array
     {
         return $this->responses;
+    }
+
+    public function addResponse(Response $response) : void
+    {
+        $this->responses[] = $response;
     }
 
     public function security() : Reference

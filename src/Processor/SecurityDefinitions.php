@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Processor;
 
+use cebe\openapi\spec\Components;
+use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\SecurityScheme;
-use Speicher210\OpenApiGenerator\Model\Security\Definition;
+use Speicher210\OpenApiGenerator\Model\Specification;
 use function array_filter;
 
-final class SecurityDefinitions
+final class SecurityDefinitions implements Processor
 {
-    /**
-     * @param Definition[] $securityDefinitions
-     *
-     * @return array<string,SecurityScheme>
-     */
-    public function process(array $securityDefinitions) : array
+    public function process(OpenApi $openApi, Specification $specification) : void
     {
         $definitions = [];
-        foreach ($securityDefinitions as $securityDefinition) {
+        foreach ($specification->securityDefinitions() as $securityDefinition) {
             $definitions[$securityDefinition->key()] = new SecurityScheme(
                 array_filter(
                     [
@@ -33,6 +30,10 @@ final class SecurityDefinitions
             );
         }
 
-        return $definitions;
+        if ($openApi->components === null) {
+            $openApi->components = new Components([]);
+        }
+
+        $openApi->components->securitySchemes = $definitions;
     }
 }

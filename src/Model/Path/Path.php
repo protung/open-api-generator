@@ -20,10 +20,14 @@ interface Path
      */
     public function input() : array;
 
+    public function addInput(Input $input) : void;
+
     /**
      * @return Response[]
      */
     public function responses() : array;
+
+    public function addResponse(Response $response) : void;
 
     public function security() : Reference;
 
