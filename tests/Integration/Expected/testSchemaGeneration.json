@@ -372,7 +372,10 @@
                                             "type": "boolean"
                                         },
                                         "arrayProperty": {
-                                            "type": "array"
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
                                         },
                                         "childObjectProperty": {
                                             "type": "object",
@@ -628,7 +631,10 @@
                                                                         "type": "boolean"
                                                                     },
                                                                     "arrayProperty": {
-                                                                        "type": "array"
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string"
+                                                                        }
                                                                     },
                                                                     "childObjectProperty": {
                                                                         "type": "object",
@@ -677,7 +683,10 @@
                                                                         "type": "boolean"
                                                                     },
                                                                     "arrayProperty": {
-                                                                        "type": "array"
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string"
+                                                                        }
                                                                     },
                                                                     "childObjectProperty": {
                                                                         "type": "object",
@@ -959,7 +968,10 @@
                                             "type": "boolean"
                                         },
                                         "arrayProperty": {
-                                            "type": "array"
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
                                         },
                                         "childObjectProperty": {
                                             "type": "object",
@@ -1014,7 +1026,10 @@
                                                 "type": "boolean"
                                             },
                                             "arrayProperty": {
-                                                "type": "array"
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
                                             },
                                             "childObjectProperty": {
                                                 "type": "object",

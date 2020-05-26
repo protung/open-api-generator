@@ -127,7 +127,8 @@ final class JMSModel implements ObjectDescriber
                         }
                     }
                 } elseif ($type === Type::ARRAY) {
-                    $property->type = Type::ARRAY;
+                    $property->type  = Type::ARRAY;
+                    $property->items = new Schema(['type' => Type::STRING]);
                 } elseif (in_array($type, ['bool', Type::BOOLEAN], true)) {
                     $property->type = Type::BOOLEAN;
                 } elseif (in_array($type, ['int', 'integer'], true)) {
