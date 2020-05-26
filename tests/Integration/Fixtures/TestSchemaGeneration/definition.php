@@ -16,15 +16,15 @@ use Speicher210\OpenApiGenerator\Model\Type;
 use Speicher210\OpenApiGenerator\Processor\Path;
 use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration;
 
-return [
-    'info' => new Info(
+return new Model\Specification(
+    new Info(
         'Open API Generator',
         'To specify the API version use header: `X-Accept-Version: 1.1.0`',
     ),
-    'securityDefinitions' => [
+    [
         Model\Security\Definition::apiKey('ApiKey', 'X-API-KEY', 'Value for the X-API-KEY header'),
     ],
-    'paths' => [
+    [
         new Path\Symfony\SymfonyRoutePath(
             'api_test_headers',
             'Test',
@@ -191,5 +191,5 @@ return [
             ],
             Model\Security\Reference::fromString('ApiKey')
         ),
-    ],
-];
+    ]
+);

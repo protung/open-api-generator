@@ -7,6 +7,7 @@ namespace Speicher210\OpenApiGenerator;
 use cebe\openapi\spec\Components;
 use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\Paths;
+use Speicher210\OpenApiGenerator\Model\Specification;
 use Speicher210\OpenApiGenerator\Processor\Definitions;
 use Speicher210\OpenApiGenerator\Processor\InfoProcessor;
 use Speicher210\OpenApiGenerator\Processor\PathsProcessor;
@@ -37,19 +38,16 @@ final class Generator
         $this->definitionsProcessor         = $definitionsProcessor;
     }
 
-    /**
-     * @param mixed[] $config
-     */
-    public function generate(array $config) : OpenApi
+    public function generate(Specification $specification) : OpenApi
     {
         $openApi = new OpenApi(
             [
                 'openapi' => self::OPEN_API_VERSION,
-                'info' => $this->infoProcessor->process($config['info']),
+                'info' => $this->infoProcessor->process($specification->info()),
             ]
         );
 
-        $paths = $this->pathsProcessor->process(...$config['paths']);
+        $paths = $this->pathsProcessor->process(...$specification->paths());
         ksort($paths);
         $openApi->paths = new Paths($paths);
 
@@ -58,8 +56,8 @@ final class Generator
 
         $openApi->components = new Components(
             [
-                'securitySchemes' => $this->securityDefinitionsProcessor->process($config['securityDefinitions']),
-            //                'schemas' => $definitions,
+                'securitySchemes' => $this->securityDefinitionsProcessor->process($specification->securityDefinitions()),
+                //                'schemas' => $definitions,
             ]
         );
 
