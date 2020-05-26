@@ -30,6 +30,8 @@ final class OutputDescriber
 {
     public const RESPONSE_CONTENT_TYPE_APPLICATION_JSON = 'application/json';
 
+    public const RESPONSE_CONTENT_TYPE_APPLICATION_PROBLEM_JSON = 'application/problem+json';
+
     private JMSModel $jmsModelDescriber;
 
     private FormFactory $formFactory;

@@ -14,6 +14,7 @@ use Speicher210\OpenApiGenerator\Describer\InputDescriber;
 use Speicher210\OpenApiGenerator\Describer\OutputDescriber;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
+use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorResponse;
 use Speicher210\OpenApiGenerator\Processor\Path\Path;
 use Speicher210\OpenApiGenerator\Processor\Path\PathOperation;
 use Speicher210\OpenApiGenerator\Processor\Path\PathProcessor as PathProcessorInterface;
@@ -144,8 +145,13 @@ final class PathProcessor implements PathProcessorInterface
 
             $output = $response->output();
             if ($output !== null) {
+                $contentType = OutputDescriber::RESPONSE_CONTENT_TYPE_APPLICATION_JSON;
+                if ($output instanceof RFC7807ErrorResponse) {
+                    $contentType = OutputDescriber::RESPONSE_CONTENT_TYPE_APPLICATION_PROBLEM_JSON;
+                }
+
                 $responseData['content'] = [
-                    OutputDescriber::RESPONSE_CONTENT_TYPE_APPLICATION_JSON => [
+                    $contentType => [
                         'schema' => $this->outputDescriber->describe($output),
                     ],
                 ];

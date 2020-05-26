@@ -1,7 +1,6 @@
 - [ ] phpstan and psalm
-- [ ] processing of header parameters (like x-api-version)
+- [ ] always existing inputs and outputs
 - [ ] find a way to provide description and example for properties
-- [ ] problem+json in errors
 - [ ] read requirements also from asserts
 - [ ] handle nullability for model output
 - [ ] handle JMS property recursion

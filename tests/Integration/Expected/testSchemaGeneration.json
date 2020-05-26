@@ -39,7 +39,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -86,7 +86,7 @@
                     "400": {
                         "description": "Custom message 400",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -116,7 +116,7 @@
                     "401": {
                         "description": "Returned if user is not authenticated",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -146,7 +146,7 @@
                     "402": {
                         "description": "Custom message 402",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -176,7 +176,7 @@
                     "403": {
                         "description": "Custom message 403",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -206,7 +206,7 @@
                     "404": {
                         "description": "Custom message 404<br>\nAnother custom message 404",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -236,7 +236,7 @@
                     "406": {
                         "description": "Returned if response content type expected is not supported",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -266,7 +266,7 @@
                     "415": {
                         "description": "Returned if request payload format is not supported",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -317,7 +317,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -373,7 +373,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -481,7 +481,7 @@
                     "401": {
                         "description": "Returned if user is not authenticated",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -511,7 +511,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -558,7 +558,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -603,7 +603,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -921,7 +921,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -1176,7 +1176,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -1286,7 +1286,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -1416,7 +1416,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -1845,7 +1845,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/json": {
+                            "application\/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
