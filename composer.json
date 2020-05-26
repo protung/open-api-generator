@@ -64,7 +64,8 @@
     "prefer-stable": true,
     "scripts": {
         "analyse": [
-            "@analyse-phpstan"
+            "@analyse-phpstan",
+            "@analyse-psalm"
         ],
         "analyse-phpstan": "phpstan analyse",
         "analyse-psalm": "psalm --show-info=false",

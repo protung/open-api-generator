@@ -1,4 +1,4 @@
-- [ ] cs check and phpstan and psalm + all required extra packages
+- [ ] phpstan and psalm
 - [ ] processing of header parameters (like x-api-version)
 - [ ] find a way to provide description and example for properties
 - [ ] problem+json in errors
@@ -6,3 +6,4 @@
 - [ ] handle nullability for model output
 - [ ] handle JMS property recursion
 - [ ] test for discriminator
+- [ ] allow schema reference
