@@ -15,7 +15,7 @@ use Speicher210\OpenApiGenerator\Describer\OutputDescriber;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
 use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorResponse;
-use Speicher210\OpenApiGenerator\Processor\Path\Path;
+use Speicher210\OpenApiGenerator\Model\Path\Path;
 use Speicher210\OpenApiGenerator\Processor\Path\PathOperation;
 use Speicher210\OpenApiGenerator\Processor\Path\PathProcessor as PathProcessorInterface;
 use Symfony\Component\Routing\Route as SymfonyRoute;

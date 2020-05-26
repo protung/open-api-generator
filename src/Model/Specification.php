@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Model;
 
 use Speicher210\OpenApiGenerator\Model\Info\Info;
-use Speicher210\OpenApiGenerator\Processor\Path\Path;
+use Speicher210\OpenApiGenerator\Model\Path\Path;
 
 final class Specification
 {

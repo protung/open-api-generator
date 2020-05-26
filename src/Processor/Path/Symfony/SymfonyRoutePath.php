@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Processor\Path\Symfony;
 
 use Speicher210\OpenApiGenerator\Model\Path\Input;
+use Speicher210\OpenApiGenerator\Model\Path\Path;
 use Speicher210\OpenApiGenerator\Model\Response;
 use Speicher210\OpenApiGenerator\Model\Security\Reference;
-use Speicher210\OpenApiGenerator\Processor\Path\Path;
 
 final class SymfonyRoutePath implements Path
 {

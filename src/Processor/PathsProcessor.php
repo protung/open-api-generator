@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Processor;
 
 use cebe\openapi\spec\PathItem;
-use Speicher210\OpenApiGenerator\Processor\Path\Path;
+use Speicher210\OpenApiGenerator\Model\Path\Path;
 use Speicher210\OpenApiGenerator\Processor\Path\PathProcessor;
 
 final class PathsProcessor
