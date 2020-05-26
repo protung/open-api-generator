@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Model;
 
 use Speicher210\OpenApiGenerator\Model\Path\Output;
-use Speicher210\OpenApiGenerator\Model\Path\Output\ErrorResponse;
 use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
+use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorResponse;
 use function implode;
 use function nl2br;
 use const PHP_EOL;
@@ -72,7 +72,7 @@ final class Response
 
     public static function for401() : self
     {
-        return new self(401, ['Returned if user is not authenticated'], ErrorResponse::for401());
+        return new self(401, ['Returned if user is not authenticated'], RFC7807ErrorResponse::for401());
     }
 
     /**
@@ -80,7 +80,7 @@ final class Response
      */
     public static function for402(array $description) : self
     {
-        return new self(402, $description, ErrorResponse::for402());
+        return new self(402, $description, RFC7807ErrorResponse::for402());
     }
 
     /**
@@ -88,7 +88,7 @@ final class Response
      */
     public static function for403(array $description) : self
     {
-        return new self(403, $description, ErrorResponse::for403());
+        return new self(403, $description, RFC7807ErrorResponse::for403());
     }
 
     /**
@@ -96,7 +96,7 @@ final class Response
      */
     public static function for404(array $description) : self
     {
-        return new self(404, $description, ErrorResponse::for404());
+        return new self(404, $description, RFC7807ErrorResponse::for404());
     }
 
     public static function for406() : self
@@ -104,7 +104,7 @@ final class Response
         return new self(
             406,
             ['Returned if response content type expected is not supported'],
-            ErrorResponse::for406()
+            RFC7807ErrorResponse::for406()
         );
     }
 
@@ -113,7 +113,7 @@ final class Response
         return new self(
             415,
             ['Returned if request payload format is not supported'],
-            ErrorResponse::for415()
+            RFC7807ErrorResponse::for415()
         );
     }
 
@@ -122,7 +122,7 @@ final class Response
         return new self(
             500,
             ['Returned on server error'],
-            ErrorResponse::for500()
+            RFC7807ErrorResponse::for500()
         );
     }
 

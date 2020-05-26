@@ -6,7 +6,7 @@ namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
 
-final class ErrorResponse extends SimpleOutput
+final class RFC7807ErrorResponse extends SimpleOutput
 {
     private int $errorCode;
 
@@ -15,8 +15,10 @@ final class ErrorResponse extends SimpleOutput
     public function __construct(int $errorCode, string $message)
     {
         parent::__construct(
-            IOField::integerField('code'),
-            IOField::stringField('message')
+            IOField::stringField('type'),
+            IOField::stringField('title'),
+            IOField::integerField('status'),
+            IOField::stringField('detail')
         );
 
         $this->errorCode = $errorCode;
@@ -69,8 +71,10 @@ final class ErrorResponse extends SimpleOutput
     public function example() : array
     {
         return [
-            'code' => $this->errorCode,
-            'message' => $this->message,
+            'type' => 'https://tools.ietf.org/html/rfc2616#section-10',
+            'title' => 'An error occurred',
+            'status' => $this->errorCode,
+            'detail' => $this->message,
         ];
     }
 }

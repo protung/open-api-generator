@@ -43,16 +43,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -82,16 +90,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 400,
-                                        "message": "something custom"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 400,
+                                        "detail": "something custom"
                                     }
                                 }
                             }
@@ -104,16 +120,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 401,
-                                        "message": "Unauthorized"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 401,
+                                        "detail": "Unauthorized"
                                     }
                                 }
                             }
@@ -126,16 +150,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 402,
-                                        "message": "Payment Required"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 402,
+                                        "detail": "Payment Required"
                                     }
                                 }
                             }
@@ -148,16 +180,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 403,
-                                        "message": "Forbidden"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 403,
+                                        "detail": "Forbidden"
                                     }
                                 }
                             }
@@ -170,16 +210,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 404,
-                                        "message": "Not Found"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 404,
+                                        "detail": "Not Found"
                                     }
                                 }
                             }
@@ -192,16 +240,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 406,
-                                        "message": "Not Acceptable"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 406,
+                                        "detail": "Not Acceptable"
                                     }
                                 }
                             }
@@ -214,16 +270,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 415,
-                                        "message": "Unsupported Media Type"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 415,
+                                        "detail": "Unsupported Media Type"
                                     }
                                 }
                             }
@@ -257,16 +321,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -305,16 +377,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -405,16 +485,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 401,
-                                        "message": "Unauthorized"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 401,
+                                        "detail": "Unauthorized"
                                     }
                                 }
                             }
@@ -427,16 +515,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -466,16 +562,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -503,16 +607,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -813,16 +925,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -1060,16 +1180,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -1162,16 +1290,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -1284,16 +1420,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }
@@ -1705,16 +1849,24 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
                                             "type": "integer"
                                         },
-                                        "message": {
+                                        "detail": {
                                             "type": "string"
                                         }
                                     },
                                     "example": {
-                                        "code": 500,
-                                        "message": "Internal Server Error"
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
                                     }
                                 }
                             }

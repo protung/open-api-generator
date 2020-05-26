@@ -8,9 +8,9 @@ use Speicher210\OpenApiGenerator\Model\Info\Info;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
 use Speicher210\OpenApiGenerator\Model\Path\Input\FormInput;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
-use Speicher210\OpenApiGenerator\Model\Path\Output\ErrorResponse;
 use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
+use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorResponse;
 use Speicher210\OpenApiGenerator\Model\Response;
 use Speicher210\OpenApiGenerator\Model\Type;
 use Speicher210\OpenApiGenerator\Processor\Path;
@@ -95,7 +95,7 @@ return [
             null,
             [],
             [
-                Response::for400(new ErrorResponse(400, 'something custom'), ['Custom message 400']),
+                Response::for400(new RFC7807ErrorResponse(400, 'something custom'), ['Custom message 400']),
                 Response::for401(),
                 Response::for402(['Custom message 402']),
                 Response::for403(['Custom message 403']),
