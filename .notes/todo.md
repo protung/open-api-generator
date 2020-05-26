@@ -1,5 +1,4 @@
 - [ ] cs check and phpstan and psalm + all required extra packages
-- [ ] minimum symfony version and other vendors
 - [ ] processing of header parameters (like x-api-version)
 - [ ] find a way to provide description and example for properties
 - [ ] problem+json in errors
