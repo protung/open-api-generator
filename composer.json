@@ -69,6 +69,7 @@
             "@analyse-psalm"
         ],
         "analyse-phpstan": "phpstan analyse",
+        "analyse-phpstan-update": "phpstan analyse --generate-baseline",
         "analyse-psalm": "psalm --show-info=false",
         "check": [
             "composer validate",

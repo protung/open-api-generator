@@ -20,6 +20,19 @@ use function sprintf;
 
 final class PropertyAnalyser
 {
+    public function canBeNull(string $class, string $propertyName) : bool
+    {
+        $types = $this->getTypes($class, $propertyName);
+
+        foreach ($types as $type) {
+            if ($type->nullable() === true) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * @return array<PropertyAnalysisType>
      */
@@ -90,7 +103,10 @@ final class PropertyAnalyser
                     if ($actualType->getValueType() instanceof Mixed_) {
                         $elementsType = null;
                     } else {
-                        $elementsType = PropertyAnalysisSingleType::forSingleValue((string) $actualType->getValueType(), false);
+                        $elementsType = PropertyAnalysisSingleType::forSingleValue(
+                            (string) $actualType->getValueType(),
+                            false
+                        );
                     }
 
                     return PropertyAnalysisCollectionType::forCollection(

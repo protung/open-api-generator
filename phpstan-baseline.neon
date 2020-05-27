@@ -12,3 +12,7 @@ parameters:
 			message: "#^Variable property access on cebe\\\\openapi\\\\spec\\\\PathItem\\.$#"
 			count: 1
 			path: src/Processor/PathsProcessor.php
+		-
+			message: "#^Property Speicher210\\\\OpenApiGenerator\\\\Tests\\\\Integration\\\\Fixtures\\\\TestSchemaGeneration\\\\Model\\\\JMSObject\\:\\:\\$unknownProperty has no typehint specified\\.$#"
+			count: 1
+			path: tests/Integration/Fixtures/TestSchemaGeneration/Model/JMSObject.php

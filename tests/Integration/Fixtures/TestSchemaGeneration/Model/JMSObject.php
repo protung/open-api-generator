@@ -10,6 +10,9 @@ use DateTimeInterface;
 
 final class JMSObject
 {
+    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
+    public $unknownProperty;
+
     public string $stringProperty = 'stringProperty';
 
     public string $stringPropertyWithCustomGroup = 'stringPropertyWithCustomGroup';
@@ -41,6 +44,9 @@ final class JMSObject
     public ?DateTimeImmutable $dateTimeImmutableProperty = null;
 
     public ?DateTimeInterface $dateTimeInterfaceProperty = null;
+
+    /** @var int|string */
+    public $scalarUnionProperty;
 
     public function getVirtualProperty() : int
     {

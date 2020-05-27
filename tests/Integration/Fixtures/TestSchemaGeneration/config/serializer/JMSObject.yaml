@@ -1,6 +1,7 @@
 Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSObject:
   exclusion_policy: ALL
   properties:
+    unknownProperty: ~
     stringProperty: ~
     stringPropertyWithCustomGroup:
       groups: ['Test']
@@ -20,6 +21,7 @@ Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Mod
     dateTimeProperty: ~
     dateTimeImmutableProperty: ~
     dateTimeInterfaceProperty: ~
+    scalarUnionProperty: ~
     stringPropertyForOldVersion:
       until_version: 0.0.0.1
   virtual_properties:

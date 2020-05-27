@@ -896,12 +896,14 @@
                         "content": {
                             "application\/json": {
                                 "schema": {
-                                    "type": "object",
                                     "properties": {
                                         "virtualProperty": {
                                             "type": "integer"
                                         },
                                         "virtualPropertyWithCustomName": {
+                                            "type": "string"
+                                        },
+                                        "unknownProperty": {
                                             "type": "string"
                                         },
                                         "stringProperty": {
@@ -911,7 +913,8 @@
                                             "type": "string"
                                         },
                                         "nullableStringProperty": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "nullable": true
                                         },
                                         "intProperty": {
                                             "type": "integer"
@@ -930,20 +933,22 @@
                                             }
                                         },
                                         "childObjectProperty": {
-                                            "type": "object",
                                             "properties": {
                                                 "stringProperty": {
                                                     "type": "string"
                                                 },
                                                 "innerChildProperty": {
-                                                    "type": "object",
                                                     "properties": {
                                                         "stringProperty": {
                                                             "type": "string"
                                                         }
-                                                    }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
                                                 }
-                                            }
+                                            },
+                                            "type": "object",
+                                            "nullable": true
                                         },
                                         "inlineObjectStringProperty": {
                                             "type": "string"
@@ -952,52 +957,71 @@
                                             "type": "integer"
                                         },
                                         "inlineObjectChildObjectProperty": {
-                                            "type": "object",
                                             "properties": {
                                                 "stringProperty": {
                                                     "type": "string"
                                                 },
                                                 "innerChildProperty": {
-                                                    "type": "object",
                                                     "properties": {
                                                         "stringProperty": {
                                                             "type": "string"
                                                         }
-                                                    }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
                                                 }
-                                            }
+                                            },
+                                            "type": "object",
+                                            "nullable": true
                                         },
                                         "arrayOfChildObjectsProperty": {
                                             "type": "array",
                                             "items": {
-                                                "type": "object",
                                                 "properties": {
                                                     "stringProperty": {
                                                         "type": "string"
                                                     },
                                                     "innerChildProperty": {
-                                                        "type": "object",
                                                         "properties": {
                                                             "stringProperty": {
                                                                 "type": "string"
                                                             }
-                                                        }
+                                                        },
+                                                        "type": "object",
+                                                        "nullable": true
                                                     }
-                                                }
+                                                },
+                                                "type": "object",
+                                                "nullable": true
                                             }
                                         },
                                         "dateTimeProperty": {
                                             "type": "string",
-                                            "format": "date-time"
+                                            "format": "date-time",
+                                            "nullable": true
                                         },
                                         "dateTimeImmutableProperty": {
                                             "type": "string",
-                                            "format": "date-time"
+                                            "format": "date-time",
+                                            "nullable": true
                                         },
                                         "dateTimeInterfaceProperty": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
+                                        "scalarUnionProperty": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "integer"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ]
                                         }
-                                    }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -1269,12 +1293,14 @@
                                                     "items": {
                                                         "oneOf": [
                                                             {
-                                                                "type": "object",
                                                                 "properties": {
                                                                     "virtualProperty": {
                                                                         "type": "integer"
                                                                     },
                                                                     "virtualPropertyWithCustomName": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "unknownProperty": {
                                                                         "type": "string"
                                                                     },
                                                                     "stringProperty": {
@@ -1284,7 +1310,8 @@
                                                                         "type": "string"
                                                                     },
                                                                     "nullableStringProperty": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "nullable": true
                                                                     },
                                                                     "intProperty": {
                                                                         "type": "integer"
@@ -1303,20 +1330,22 @@
                                                                         }
                                                                     },
                                                                     "childObjectProperty": {
-                                                                        "type": "object",
                                                                         "properties": {
                                                                             "stringProperty": {
                                                                                 "type": "string"
                                                                             },
                                                                             "innerChildProperty": {
-                                                                                "type": "object",
                                                                                 "properties": {
                                                                                     "stringProperty": {
                                                                                         "type": "string"
                                                                                     }
-                                                                                }
+                                                                                },
+                                                                                "type": "object",
+                                                                                "nullable": true
                                                                             }
-                                                                        }
+                                                                        },
+                                                                        "type": "object",
+                                                                        "nullable": true
                                                                     },
                                                                     "inlineObjectStringProperty": {
                                                                         "type": "string"
@@ -1325,60 +1354,81 @@
                                                                         "type": "integer"
                                                                     },
                                                                     "inlineObjectChildObjectProperty": {
-                                                                        "type": "object",
                                                                         "properties": {
                                                                             "stringProperty": {
                                                                                 "type": "string"
                                                                             },
                                                                             "innerChildProperty": {
-                                                                                "type": "object",
                                                                                 "properties": {
                                                                                     "stringProperty": {
                                                                                         "type": "string"
                                                                                     }
-                                                                                }
+                                                                                },
+                                                                                "type": "object",
+                                                                                "nullable": true
                                                                             }
-                                                                        }
+                                                                        },
+                                                                        "type": "object",
+                                                                        "nullable": true
                                                                     },
                                                                     "arrayOfChildObjectsProperty": {
                                                                         "type": "array",
                                                                         "items": {
-                                                                            "type": "object",
                                                                             "properties": {
                                                                                 "stringProperty": {
                                                                                     "type": "string"
                                                                                 },
                                                                                 "innerChildProperty": {
-                                                                                    "type": "object",
                                                                                     "properties": {
                                                                                         "stringProperty": {
                                                                                             "type": "string"
                                                                                         }
-                                                                                    }
+                                                                                    },
+                                                                                    "type": "object",
+                                                                                    "nullable": true
                                                                                 }
-                                                                            }
+                                                                            },
+                                                                            "type": "object",
+                                                                            "nullable": true
                                                                         }
                                                                     },
                                                                     "dateTimeProperty": {
                                                                         "type": "string",
-                                                                        "format": "date-time"
+                                                                        "format": "date-time",
+                                                                        "nullable": true
                                                                     },
                                                                     "dateTimeImmutableProperty": {
                                                                         "type": "string",
-                                                                        "format": "date-time"
+                                                                        "format": "date-time",
+                                                                        "nullable": true
                                                                     },
                                                                     "dateTimeInterfaceProperty": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "format": "date-time",
+                                                                        "nullable": true
+                                                                    },
+                                                                    "scalarUnionProperty": {
+                                                                        "oneOf": [
+                                                                            {
+                                                                                "type": "integer"
+                                                                            },
+                                                                            {
+                                                                                "type": "string"
+                                                                            }
+                                                                        ]
                                                                     }
-                                                                }
+                                                                },
+                                                                "type": "object"
                                                             },
                                                             {
-                                                                "type": "object",
                                                                 "properties": {
                                                                     "virtualProperty": {
                                                                         "type": "integer"
                                                                     },
                                                                     "virtualPropertyWithCustomName": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "unknownProperty": {
                                                                         "type": "string"
                                                                     },
                                                                     "stringProperty": {
@@ -1391,7 +1441,8 @@
                                                                         "type": "string"
                                                                     },
                                                                     "nullableStringProperty": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "nullable": true
                                                                     },
                                                                     "intProperty": {
                                                                         "type": "integer"
@@ -1410,7 +1461,6 @@
                                                                         }
                                                                     },
                                                                     "childObjectProperty": {
-                                                                        "type": "object",
                                                                         "properties": {
                                                                             "stringProperty": {
                                                                                 "type": "string"
@@ -1419,14 +1469,17 @@
                                                                                 "type": "string"
                                                                             },
                                                                             "innerChildProperty": {
-                                                                                "type": "object",
                                                                                 "properties": {
                                                                                     "stringProperty": {
                                                                                         "type": "string"
                                                                                     }
-                                                                                }
+                                                                                },
+                                                                                "type": "object",
+                                                                                "nullable": true
                                                                             }
-                                                                        }
+                                                                        },
+                                                                        "type": "object",
+                                                                        "nullable": true
                                                                     },
                                                                     "inlineObjectStringProperty": {
                                                                         "type": "string"
@@ -1435,7 +1488,6 @@
                                                                         "type": "integer"
                                                                     },
                                                                     "inlineObjectChildObjectProperty": {
-                                                                        "type": "object",
                                                                         "properties": {
                                                                             "stringProperty": {
                                                                                 "type": "string"
@@ -1444,19 +1496,21 @@
                                                                                 "type": "string"
                                                                             },
                                                                             "innerChildProperty": {
-                                                                                "type": "object",
                                                                                 "properties": {
                                                                                     "stringProperty": {
                                                                                         "type": "string"
                                                                                     }
-                                                                                }
+                                                                                },
+                                                                                "type": "object",
+                                                                                "nullable": true
                                                                             }
-                                                                        }
+                                                                        },
+                                                                        "type": "object",
+                                                                        "nullable": true
                                                                     },
                                                                     "arrayOfChildObjectsProperty": {
                                                                         "type": "array",
                                                                         "items": {
-                                                                            "type": "object",
                                                                             "properties": {
                                                                                 "stringProperty": {
                                                                                     "type": "string"
@@ -1465,28 +1519,46 @@
                                                                                     "type": "string"
                                                                                 },
                                                                                 "innerChildProperty": {
-                                                                                    "type": "object",
                                                                                     "properties": {
                                                                                         "stringProperty": {
                                                                                             "type": "string"
                                                                                         }
-                                                                                    }
+                                                                                    },
+                                                                                    "type": "object",
+                                                                                    "nullable": true
                                                                                 }
-                                                                            }
+                                                                            },
+                                                                            "type": "object",
+                                                                            "nullable": true
                                                                         }
                                                                     },
                                                                     "dateTimeProperty": {
                                                                         "type": "string",
-                                                                        "format": "date-time"
+                                                                        "format": "date-time",
+                                                                        "nullable": true
                                                                     },
                                                                     "dateTimeImmutableProperty": {
                                                                         "type": "string",
-                                                                        "format": "date-time"
+                                                                        "format": "date-time",
+                                                                        "nullable": true
                                                                     },
                                                                     "dateTimeInterfaceProperty": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "format": "date-time",
+                                                                        "nullable": true
+                                                                    },
+                                                                    "scalarUnionProperty": {
+                                                                        "oneOf": [
+                                                                            {
+                                                                                "type": "integer"
+                                                                            },
+                                                                            {
+                                                                                "type": "string"
+                                                                            }
+                                                                        ]
                                                                     }
-                                                                }
+                                                                },
+                                                                "type": "object"
                                                             }
                                                         ]
                                                     }
@@ -1656,7 +1728,6 @@
                                                     "items": {
                                                         "oneOf": [
                                                             {
-                                                                "type": "object",
                                                                 "properties": {
                                                                     "propertyInParent": {
                                                                         "type": "string"
@@ -1673,10 +1744,10 @@
                                                                             "first"
                                                                         ]
                                                                     }
-                                                                }
+                                                                },
+                                                                "type": "object"
                                                             },
                                                             {
-                                                                "type": "object",
                                                                 "properties": {
                                                                     "propertyInParent": {
                                                                         "type": "string"
@@ -1693,7 +1764,8 @@
                                                                             "second"
                                                                         ]
                                                                     }
-                                                                }
+                                                                },
+                                                                "type": "object"
                                                             }
                                                         ]
                                                     }
@@ -1774,7 +1846,6 @@
                                                 "parent_with_discriminator": {
                                                     "type": "array",
                                                     "items": {
-                                                        "type": "object",
                                                         "properties": {
                                                             "propertyInParent": {
                                                                 "type": "string"
@@ -1786,7 +1857,8 @@
                                                                     "second"
                                                                 ]
                                                             }
-                                                        }
+                                                        },
+                                                        "type": "object"
                                                     }
                                                 }
                                             }
@@ -1950,12 +2022,14 @@
                         "content": {
                             "application\/json": {
                                 "schema": {
-                                    "type": "object",
                                     "properties": {
                                         "virtualProperty": {
                                             "type": "integer"
                                         },
                                         "virtualPropertyWithCustomName": {
+                                            "type": "string"
+                                        },
+                                        "unknownProperty": {
                                             "type": "string"
                                         },
                                         "stringProperty": {
@@ -1965,7 +2039,8 @@
                                             "type": "string"
                                         },
                                         "nullableStringProperty": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "nullable": true
                                         },
                                         "intProperty": {
                                             "type": "integer"
@@ -1984,20 +2059,22 @@
                                             }
                                         },
                                         "childObjectProperty": {
-                                            "type": "object",
                                             "properties": {
                                                 "stringProperty": {
                                                     "type": "string"
                                                 },
                                                 "innerChildProperty": {
-                                                    "type": "object",
                                                     "properties": {
                                                         "stringProperty": {
                                                             "type": "string"
                                                         }
-                                                    }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
                                                 }
-                                            }
+                                            },
+                                            "type": "object",
+                                            "nullable": true
                                         },
                                         "inlineObjectStringProperty": {
                                             "type": "string"
@@ -2006,52 +2083,71 @@
                                             "type": "integer"
                                         },
                                         "inlineObjectChildObjectProperty": {
-                                            "type": "object",
                                             "properties": {
                                                 "stringProperty": {
                                                     "type": "string"
                                                 },
                                                 "innerChildProperty": {
-                                                    "type": "object",
                                                     "properties": {
                                                         "stringProperty": {
                                                             "type": "string"
                                                         }
-                                                    }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
                                                 }
-                                            }
+                                            },
+                                            "type": "object",
+                                            "nullable": true
                                         },
                                         "arrayOfChildObjectsProperty": {
                                             "type": "array",
                                             "items": {
-                                                "type": "object",
                                                 "properties": {
                                                     "stringProperty": {
                                                         "type": "string"
                                                     },
                                                     "innerChildProperty": {
-                                                        "type": "object",
                                                         "properties": {
                                                             "stringProperty": {
                                                                 "type": "string"
                                                             }
-                                                        }
+                                                        },
+                                                        "type": "object",
+                                                        "nullable": true
                                                     }
-                                                }
+                                                },
+                                                "type": "object",
+                                                "nullable": true
                                             }
                                         },
                                         "dateTimeProperty": {
                                             "type": "string",
-                                            "format": "date-time"
+                                            "format": "date-time",
+                                            "nullable": true
                                         },
                                         "dateTimeImmutableProperty": {
                                             "type": "string",
-                                            "format": "date-time"
+                                            "format": "date-time",
+                                            "nullable": true
                                         },
                                         "dateTimeInterfaceProperty": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
+                                        "scalarUnionProperty": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "integer"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ]
                                         }
-                                    }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -2063,12 +2159,14 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "type": "object",
                                         "properties": {
                                             "virtualProperty": {
                                                 "type": "integer"
                                             },
                                             "virtualPropertyWithCustomName": {
+                                                "type": "string"
+                                            },
+                                            "unknownProperty": {
                                                 "type": "string"
                                             },
                                             "stringProperty": {
@@ -2078,7 +2176,8 @@
                                                 "type": "string"
                                             },
                                             "nullableStringProperty": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             },
                                             "intProperty": {
                                                 "type": "integer"
@@ -2097,20 +2196,22 @@
                                                 }
                                             },
                                             "childObjectProperty": {
-                                                "type": "object",
                                                 "properties": {
                                                     "stringProperty": {
                                                         "type": "string"
                                                     },
                                                     "innerChildProperty": {
-                                                        "type": "object",
                                                         "properties": {
                                                             "stringProperty": {
                                                                 "type": "string"
                                                             }
-                                                        }
+                                                        },
+                                                        "type": "object",
+                                                        "nullable": true
                                                     }
-                                                }
+                                                },
+                                                "type": "object",
+                                                "nullable": true
                                             },
                                             "inlineObjectStringProperty": {
                                                 "type": "string"
@@ -2119,52 +2220,71 @@
                                                 "type": "integer"
                                             },
                                             "inlineObjectChildObjectProperty": {
-                                                "type": "object",
                                                 "properties": {
                                                     "stringProperty": {
                                                         "type": "string"
                                                     },
                                                     "innerChildProperty": {
-                                                        "type": "object",
                                                         "properties": {
                                                             "stringProperty": {
                                                                 "type": "string"
                                                             }
-                                                        }
+                                                        },
+                                                        "type": "object",
+                                                        "nullable": true
                                                     }
-                                                }
+                                                },
+                                                "type": "object",
+                                                "nullable": true
                                             },
                                             "arrayOfChildObjectsProperty": {
                                                 "type": "array",
                                                 "items": {
-                                                    "type": "object",
                                                     "properties": {
                                                         "stringProperty": {
                                                             "type": "string"
                                                         },
                                                         "innerChildProperty": {
-                                                            "type": "object",
                                                             "properties": {
                                                                 "stringProperty": {
                                                                     "type": "string"
                                                                 }
-                                                            }
+                                                            },
+                                                            "type": "object",
+                                                            "nullable": true
                                                         }
-                                                    }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
                                                 }
                                             },
                                             "dateTimeProperty": {
                                                 "type": "string",
-                                                "format": "date-time"
+                                                "format": "date-time",
+                                                "nullable": true
                                             },
                                             "dateTimeImmutableProperty": {
                                                 "type": "string",
-                                                "format": "date-time"
+                                                "format": "date-time",
+                                                "nullable": true
                                             },
                                             "dateTimeInterfaceProperty": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "nullable": true
+                                            },
+                                            "scalarUnionProperty": {
+                                                "oneOf": [
+                                                    {
+                                                        "type": "integer"
+                                                    },
+                                                    {
+                                                        "type": "string"
+                                                    }
+                                                ]
                                             }
-                                        }
+                                        },
+                                        "type": "object"
                                     }
                                 }
                             }

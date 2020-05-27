@@ -1,8 +1,5 @@
 - phpstan and psalm
 - find a way to provide description and example for properties
 - read requirements also from asserts
-- handle nullability for model output
 - handle JMS property recursion
-- test for discriminator
 - allow schema reference
-- describe DateTimeInterface properties as date-time format
