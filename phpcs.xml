@@ -31,4 +31,5 @@
     <!-- Paths to check -->
     <file>src</file>
     <file>tests</file>
+    <exclude-pattern>tests/Analyser/Fixtures/PropertyAnalyserClassWithProperties.php</exclude-pattern>
 </ruleset>
