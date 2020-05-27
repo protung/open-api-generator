@@ -32,14 +32,14 @@ final class OutputDescriber
 
     public const RESPONSE_CONTENT_TYPE_APPLICATION_PROBLEM_JSON = 'application/problem+json';
 
-    private JMSModel $jmsModelDescriber;
+    private ObjectDescriber $objectDescriber;
 
     private FormFactory $formFactory;
 
-    public function __construct(JMSModel $jmsModelDescriber, FormFactory $formFactory)
+    public function __construct(ObjectDescriber $objectDescriber, FormFactory $formFactory)
     {
-        $this->jmsModelDescriber = $jmsModelDescriber;
-        $this->formFactory       = $formFactory;
+        $this->objectDescriber = $objectDescriber;
+        $this->formFactory     = $formFactory;
     }
 
     /**
@@ -217,6 +217,6 @@ final class OutputDescriber
      */
     private function describeObjectOutput(ObjectOutput $output) : SpecObjectInterface
     {
-        return $this->jmsModelDescriber->describe(new Definition($output->className(), $output->serializationGroups()));
+        return $this->objectDescriber->describe(new Definition($output->className(), $output->serializationGroups()));
     }
 }

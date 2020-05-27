@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
@@ -16,6 +16,7 @@ use JMS\Serializer\SerializationContext;
 use LogicException;
 use Metadata\MetadataFactoryInterface;
 use Speicher210\OpenApiGenerator\Assert\Assert;
+use Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 use function array_filter;
@@ -52,28 +53,20 @@ final class JMSModel implements ObjectDescriber
 
         $this->modelRegistry->addSchema(
             $definition,
-            $this->createSchema(
-                $definition->className(),
-                $definition->serializationGroups()
-            )
+            $this->createSchema($definition)
         );
 
         return $this->modelRegistry->getSchema($definition);
     }
 
-    /**
-     * @param string[] $serializationGroups
-     */
-    private function createSchema(string $className, array $serializationGroups) : Schema
+    private function createSchema(Definition $definition) : Schema
     {
-        $metadata         = $this->getClassMetadata($className);
+        $metadata         = $this->getClassMetadata($definition->className());
         $propertyMetadata = $metadata->propertyMetadata;
         Assert::allIsInstanceOf($propertyMetadata, PropertyMetadata::class);
 
-        $metadataProperties = $this->getPropertiesInSerializationGroups(
-            $propertyMetadata,
-            $serializationGroups
-        );
+        $serializationGroups = $definition->serializationGroups();
+        $metadataProperties  = $this->getPropertiesInSerializationGroups($propertyMetadata, $serializationGroups);
 
         $properties = [];
 
@@ -92,7 +85,10 @@ final class JMSModel implements ObjectDescriber
                     throw new LogicException('Inline schema without type defined is not supported.');
                 }
 
-                $inlineModel = $this->createSchema($metadataProperty->type['name'], $serializationGroups);
+                $inlineModel = $this->createSchema(new Definition(
+                    $metadataProperty->type['name'],
+                    $serializationGroups
+                ));
                 foreach ($inlineModel->properties as $name => $property) {
                     $properties[$name] = $property;
                 }

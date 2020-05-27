@@ -78,7 +78,7 @@ final class GenerateSchemaTest extends TestCase
                             $describerFormFactory
                         ),
                         new Describer\OutputDescriber(
-                            new Describer\JMSModel(
+                            new Describer\ObjectDescriber\JMSModel(
                                 $metadataFactory,
                                 $modelRegistry,
                                 $apiVersion
