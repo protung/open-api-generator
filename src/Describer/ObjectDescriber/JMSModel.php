@@ -6,7 +6,6 @@ namespace Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
-use cebe\openapi\SpecObjectInterface;
 use InvalidArgumentException;
 use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
 use JMS\Serializer\Exclusion\VersionExclusionStrategy;
@@ -18,7 +17,6 @@ use Metadata\MetadataFactoryInterface;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
 use Speicher210\OpenApiGenerator\Model\Definition;
-use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 use function array_filter;
 use function array_key_exists;
 use function array_keys;
@@ -27,39 +25,19 @@ use function get_class;
 use function in_array;
 use function sprintf;
 
-final class JMSModel implements ObjectDescriber
+final class JMSModel implements Describer
 {
     private MetadataFactoryInterface $metadataFactory;
 
     private VersionExclusionStrategy $versionExclusionStrategy;
 
-    private ModelRegistry $modelRegistry;
-
-    public function __construct(
-        MetadataFactoryInterface $metadataFactory,
-        ModelRegistry $modelRegistry,
-        string $apiVersion
-    ) {
+    public function __construct(MetadataFactoryInterface $metadataFactory, string $apiVersion)
+    {
         $this->metadataFactory          = $metadataFactory;
-        $this->modelRegistry            = $modelRegistry;
         $this->versionExclusionStrategy = new VersionExclusionStrategy($apiVersion);
     }
 
-    public function describe(Definition $definition) : SpecObjectInterface
-    {
-        if ($this->modelRegistry->schemaExistsForDefinition($definition)) {
-            return $this->modelRegistry->getSchema($definition);
-        }
-
-        $this->modelRegistry->addSchema(
-            $definition,
-            $this->createSchema($definition)
-        );
-
-        return $this->modelRegistry->getSchema($definition);
-    }
-
-    private function createSchema(Definition $definition) : Schema
+    public function describeInSchema(Schema $schema, Definition $definition, ObjectDescriber $objectDescriber) : void
     {
         $metadata         = $this->getClassMetadata($definition->className());
         $propertyMetadata = $metadata->propertyMetadata;
@@ -85,10 +63,15 @@ final class JMSModel implements ObjectDescriber
                     throw new LogicException('Inline schema without type defined is not supported.');
                 }
 
-                $inlineModel = $this->createSchema(new Definition(
-                    $metadataProperty->type['name'],
-                    $serializationGroups
-                ));
+                $inlineModel = new Schema([]);
+                $this->describeInSchema(
+                    $inlineModel,
+                    new Definition(
+                        $metadataProperty->type['name'],
+                        $serializationGroups
+                    ),
+                    $objectDescriber
+                );
                 foreach ($inlineModel->properties as $name => $property) {
                     $properties[$name] = $property;
                 }
@@ -108,7 +91,7 @@ final class JMSModel implements ObjectDescriber
             $type = $this->getNestedTypeInArray($metadataProperty);
             if ($type !== null) {
                 $property->type  = Type::ARRAY;
-                $property->items = $this->describe(new Definition($type, $serializationGroups));
+                $property->items = $objectDescriber->describe(new Definition($type, $serializationGroups));
             } else {
                 $type = $metadataProperty->type['name'];
 
@@ -136,7 +119,7 @@ final class JMSModel implements ObjectDescriber
                     $property->type   = Type::STRING;
                     $property->format = 'date-time';
                 } else {
-                    $property = $this->describe(new Definition($type, $serializationGroups));
+                    $property = $objectDescriber->describe(new Definition($type, $serializationGroups));
                 }
             }
 
@@ -159,12 +142,8 @@ final class JMSModel implements ObjectDescriber
             $properties[$metadata->discriminatorFieldName] = $property;
         }
 
-        return new Schema(
-            [
-                'properties' => $properties,
-                'type' => Type::OBJECT,
-            ]
-        );
+        $schema->properties = $properties;
+        $schema->type       = Type::OBJECT;
     }
 
     private function getNestedTypeInArray(PropertyMetadata $item) : ?string
