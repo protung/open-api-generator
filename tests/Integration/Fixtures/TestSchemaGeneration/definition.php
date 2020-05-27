@@ -23,6 +23,8 @@ return new Model\Specification(
     ),
     [
         Model\Security\Definition::apiKey('ApiKey', 'X-API-KEY', 'Value for the X-API-KEY header'),
+        Model\Security\Definition::basicAuth('basic-auth', 'The basic auth'),
+        Model\Security\Definition::bearerAuth('bearer-key', 'JWT', 'The bearer auth'),
     ],
     [
         new Path\Symfony\SymfonyRoutePath(
@@ -81,7 +83,7 @@ return new Model\Specification(
                 Response::for201(new Model\Path\Output\ScalarOutput(Type::INTEGER)),
                 Response::for202(),
                 new Response(203, [], new Model\Path\Output\ScalarOutput(Type::NUMBER)),
-                new Response(204, [], new Model\Path\Output\ScalarOutput(Type::BOOLEAN)),
+                new Response(204, [], (new Model\Path\Output\ScalarOutput(Type::BOOLEAN))->withExample(false)),
                 new Response(
                     205,
                     [],
@@ -162,6 +164,7 @@ return new Model\Specification(
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMSDiscriminatorParentObject::class),
                     )
                 ),
+                Response::for204(),
             ],
             Model\Security\Reference::fromString('ApiKey')
         ),

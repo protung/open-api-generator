@@ -40,9 +40,4 @@ final class Definition
     {
         return md5(serialize([$this->className, $this->serializationGroups]));
     }
-
-    public function equals(Definition $other) : bool
-    {
-        return $this->hash() === $other->hash();
-    }
 }

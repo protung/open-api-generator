@@ -28,7 +28,10 @@ final class ScalarOutput implements Output
         return $this->type;
     }
 
-    public function withExample(string $example) : self
+    /**
+     * @param bool|float|int|string|null $example
+     */
+    public function withExample($example) : self
     {
         $this->example = $example;
 

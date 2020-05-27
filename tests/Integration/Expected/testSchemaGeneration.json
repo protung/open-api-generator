@@ -1868,6 +1868,9 @@
                             }
                         }
                     },
+                    "204": {
+                        "description": "Returned on success"
+                    },
                     "500": {
                         "description": "Returned on server error",
                         "content": {
@@ -1967,7 +1970,7 @@
                             "application\/json": {
                                 "schema": {
                                     "type": "boolean",
-                                    "example": true
+                                    "example": false
                                 }
                             }
                         }
@@ -3833,6 +3836,17 @@
                 "description": "Value for the X-API-KEY header",
                 "name": "X-API-KEY",
                 "in": "header"
+            },
+            "basic-auth": {
+                "type": "http",
+                "description": "The basic auth",
+                "scheme": "basic"
+            },
+            "bearer-key": {
+                "type": "http",
+                "description": "The bearer auth",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }
