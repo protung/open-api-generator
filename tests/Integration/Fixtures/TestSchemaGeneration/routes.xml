@@ -8,9 +8,15 @@
            methods="GET"
            path="/api/test/headers"
     />
+
     <route id="api_test_get_one_item"
            methods="GET"
            path="/api/test/item/{id}"
+    />
+
+    <route id="api_test_custom_query_params"
+           methods="GET"
+           path="/api/test/custom-query-params"
     />
 
     <route id="api_test_custom_path_params"
@@ -43,6 +49,11 @@
 
     <route id="api_test_post_with_form"
            methods="POST"
+           path="/api/test/with-form"
+    />
+
+    <route id="api_test_patch_with_form"
+           methods="PATCH"
            path="/api/test/with-form"
     />
 

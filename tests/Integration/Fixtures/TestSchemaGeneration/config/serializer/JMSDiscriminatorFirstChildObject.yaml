@@ -1,0 +1,5 @@
+Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSDiscriminatorFirstChildObject:
+  exclusion_policy: ALL
+  properties:
+    propertyInFirstChild: ~
+    childPropertyWithDifferentType: ~

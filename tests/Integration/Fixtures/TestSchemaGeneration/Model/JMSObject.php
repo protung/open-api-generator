@@ -4,11 +4,19 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model;
 
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
+
 final class JMSObject
 {
     public string $stringProperty = 'stringProperty';
 
     public string $stringPropertyWithCustomGroup = 'stringPropertyWithCustomGroup';
+
+    public string $stringPropertyWithCustomName = 'stringPropertyWithCustomName';
+
+    public string $stringPropertyForOldVersion = 'stringPropertyForOldVersion';
 
     public ?string $nullableStringProperty = null;
 
@@ -22,6 +30,17 @@ final class JMSObject
     public array $arrayProperty = ['test'];
 
     public ?JMSChildObject $childObjectProperty = null;
+
+    public ?JMSInlineObject $inlineObjectProperty = null;
+
+    /** @var JMSChildObject[] */
+    public array $arrayOfChildObjectsProperty = [];
+
+    public ?DateTime $dateTimeProperty = null;
+
+    public ?DateTimeImmutable $dateTimeImmutableProperty = null;
+
+    public ?DateTimeInterface $dateTimeInterfaceProperty = null;
 
     public function getVirtualProperty() : int
     {

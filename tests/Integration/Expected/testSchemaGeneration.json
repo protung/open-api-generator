@@ -83,6 +83,442 @@
                 ]
             }
         },
+        "\/api\/test\/custom-query-params": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test custom query params",
+                "parameters": [
+                    {
+                        "name": "paramNoType",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramWithCustomLabel",
+                        "in": "query",
+                        "description": "customLabel",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramNoType]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramInt]",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 7,
+                            "exclusiveMinimum": true,
+                            "maximum": 13,
+                            "exclusiveMaximum": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramText]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "minLength": 4,
+                            "maxLength": 6
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramNumber]",
+                        "in": "query",
+                        "schema": {
+                            "type": "number",
+                            "minimum": 3.14,
+                            "maximum": 9.9
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramInRange]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "minimum": -20,
+                            "maximum": -4
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDate]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDateTime][date][year]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "2015",
+                                "2016",
+                                "2017",
+                                "2018",
+                                "2019",
+                                "2020",
+                                "2021",
+                                "2022",
+                                "2023",
+                                "2024",
+                                "2025"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDateTime][date][month]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10",
+                                "11",
+                                "12"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDateTime][date][day]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10",
+                                "11",
+                                "12",
+                                "13",
+                                "14",
+                                "15",
+                                "16",
+                                "17",
+                                "18",
+                                "19",
+                                "20",
+                                "21",
+                                "22",
+                                "23",
+                                "24",
+                                "25",
+                                "26",
+                                "27",
+                                "28",
+                                "29",
+                                "30",
+                                "31"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDateTime][time][hour]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "0",
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10",
+                                "11",
+                                "12",
+                                "13",
+                                "14",
+                                "15",
+                                "16",
+                                "17",
+                                "18",
+                                "19",
+                                "20",
+                                "21",
+                                "22",
+                                "23"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDateTime][time][minute]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "0",
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10",
+                                "11",
+                                "12",
+                                "13",
+                                "14",
+                                "15",
+                                "16",
+                                "17",
+                                "18",
+                                "19",
+                                "20",
+                                "21",
+                                "22",
+                                "23",
+                                "24",
+                                "25",
+                                "26",
+                                "27",
+                                "28",
+                                "29",
+                                "30",
+                                "31",
+                                "32",
+                                "33",
+                                "34",
+                                "35",
+                                "36",
+                                "37",
+                                "38",
+                                "39",
+                                "40",
+                                "41",
+                                "42",
+                                "43",
+                                "44",
+                                "45",
+                                "46",
+                                "47",
+                                "48",
+                                "49",
+                                "50",
+                                "51",
+                                "52",
+                                "53",
+                                "54",
+                                "55",
+                                "56",
+                                "57",
+                                "58",
+                                "59"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramEmail]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "email",
+                            "uniqueItems": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramChoice]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "a",
+                                "b"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramChoiceWithLoader]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1",
+                                "2",
+                                "3"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramPassword]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "password"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramCollection][]",
+                        "in": "query",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 3,
+                            "maxItems": 44
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramCustom][paramInt]",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramCustom][paramText]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramCustom][paramInnerCustom][paramText]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramExtended]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "email"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramRequired]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": false,
+                        "description": "Field required for paramRequiredChildren"
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramRequiredWithCustomLabel]",
+                        "in": "query",
+                        "description": "Custom Label<br>\nField required for paramRequiredChildren",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramOptional]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ]
+            }
+        },
         "\/api\/test\/error-responses": {
             "put": {
                 "tags": [
@@ -465,10 +901,13 @@
                                         "virtualProperty": {
                                             "type": "integer"
                                         },
-                                        "propertyWithCustomName": {
+                                        "virtualPropertyWithCustomName": {
                                             "type": "string"
                                         },
                                         "stringProperty": {
+                                            "type": "string"
+                                        },
+                                        "propertyWithCustomName": {
                                             "type": "string"
                                         },
                                         "nullableStringProperty": {
@@ -505,6 +944,58 @@
                                                     }
                                                 }
                                             }
+                                        },
+                                        "inlineObjectStringProperty": {
+                                            "type": "string"
+                                        },
+                                        "inlineObjectIntProperty": {
+                                            "type": "integer"
+                                        },
+                                        "inlineObjectChildObjectProperty": {
+                                            "type": "object",
+                                            "properties": {
+                                                "stringProperty": {
+                                                    "type": "string"
+                                                },
+                                                "innerChildProperty": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "arrayOfChildObjectsProperty": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "stringProperty": {
+                                                        "type": "string"
+                                                    },
+                                                    "innerChildProperty": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "dateTimeProperty": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "dateTimeImmutableProperty": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "dateTimeInterfaceProperty": {
+                                            "type": "string"
                                         }
                                     }
                                 }
@@ -783,10 +1274,13 @@
                                                                     "virtualProperty": {
                                                                         "type": "integer"
                                                                     },
-                                                                    "propertyWithCustomName": {
+                                                                    "virtualPropertyWithCustomName": {
                                                                         "type": "string"
                                                                     },
                                                                     "stringProperty": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "propertyWithCustomName": {
                                                                         "type": "string"
                                                                     },
                                                                     "nullableStringProperty": {
@@ -823,6 +1317,58 @@
                                                                                 }
                                                                             }
                                                                         }
+                                                                    },
+                                                                    "inlineObjectStringProperty": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "inlineObjectIntProperty": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "inlineObjectChildObjectProperty": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "stringProperty": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "innerChildProperty": {
+                                                                                "type": "object",
+                                                                                "properties": {
+                                                                                    "stringProperty": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "arrayOfChildObjectsProperty": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "stringProperty": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "innerChildProperty": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "stringProperty": {
+                                                                                            "type": "string"
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "dateTimeProperty": {
+                                                                        "type": "string",
+                                                                        "format": "date-time"
+                                                                    },
+                                                                    "dateTimeImmutableProperty": {
+                                                                        "type": "string",
+                                                                        "format": "date-time"
+                                                                    },
+                                                                    "dateTimeInterfaceProperty": {
+                                                                        "type": "string"
                                                                     }
                                                                 }
                                                             },
@@ -832,13 +1378,16 @@
                                                                     "virtualProperty": {
                                                                         "type": "integer"
                                                                     },
-                                                                    "propertyWithCustomName": {
+                                                                    "virtualPropertyWithCustomName": {
                                                                         "type": "string"
                                                                     },
                                                                     "stringProperty": {
                                                                         "type": "string"
                                                                     },
                                                                     "stringPropertyWithCustomGroup": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "propertyWithCustomName": {
                                                                         "type": "string"
                                                                     },
                                                                     "nullableStringProperty": {
@@ -878,6 +1427,64 @@
                                                                                 }
                                                                             }
                                                                         }
+                                                                    },
+                                                                    "inlineObjectStringProperty": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "inlineObjectIntProperty": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "inlineObjectChildObjectProperty": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "stringProperty": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "stringPropertyWithCustomGroup": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "innerChildProperty": {
+                                                                                "type": "object",
+                                                                                "properties": {
+                                                                                    "stringProperty": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "arrayOfChildObjectsProperty": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "stringProperty": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "stringPropertyWithCustomGroup": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "innerChildProperty": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "stringProperty": {
+                                                                                            "type": "string"
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "dateTimeProperty": {
+                                                                        "type": "string",
+                                                                        "format": "date-time"
+                                                                    },
+                                                                    "dateTimeImmutableProperty": {
+                                                                        "type": "string",
+                                                                        "format": "date-time"
+                                                                    },
+                                                                    "dateTimeInterfaceProperty": {
+                                                                        "type": "string"
                                                                     }
                                                                 }
                                                             }
@@ -968,6 +1575,217 @@
                                                         },
                                                         "example": {
                                                             "someField": {}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "202": {
+                        "description": "Children with discriminator",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "page": {
+                                            "type": "integer"
+                                        },
+                                        "limit": {
+                                            "type": "integer"
+                                        },
+                                        "pages": {
+                                            "type": "integer"
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        },
+                                        "_links": {
+                                            "type": "object",
+                                            "properties": {
+                                                "self": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "first": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "last": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "previous": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "next": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "_embedded": {
+                                            "type": "object",
+                                            "properties": {
+                                                "children_with_discriminator": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "oneOf": [
+                                                            {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "propertyInParent": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "propertyInFirstChild": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "childPropertyWithDifferentType": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "discriminator": {
+                                                                        "type": "string",
+                                                                        "enum": [
+                                                                            "first"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "propertyInParent": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "propertyInSecondChild": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "childPropertyWithDifferentType": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "discriminator": {
+                                                                        "type": "string",
+                                                                        "enum": [
+                                                                            "second"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "203": {
+                        "description": "Parent class with discriminator",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "page": {
+                                            "type": "integer"
+                                        },
+                                        "limit": {
+                                            "type": "integer"
+                                        },
+                                        "pages": {
+                                            "type": "integer"
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        },
+                                        "_links": {
+                                            "type": "object",
+                                            "properties": {
+                                                "self": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "first": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "last": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "previous": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "next": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "href": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "_embedded": {
+                                            "type": "object",
+                                            "properties": {
+                                                "parent_with_discriminator": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "propertyInParent": {
+                                                                "type": "string"
+                                                            },
+                                                            "discriminator": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "first",
+                                                                    "second"
+                                                                ]
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -1137,10 +1955,13 @@
                                         "virtualProperty": {
                                             "type": "integer"
                                         },
-                                        "propertyWithCustomName": {
+                                        "virtualPropertyWithCustomName": {
                                             "type": "string"
                                         },
                                         "stringProperty": {
+                                            "type": "string"
+                                        },
+                                        "propertyWithCustomName": {
                                             "type": "string"
                                         },
                                         "nullableStringProperty": {
@@ -1177,6 +1998,58 @@
                                                     }
                                                 }
                                             }
+                                        },
+                                        "inlineObjectStringProperty": {
+                                            "type": "string"
+                                        },
+                                        "inlineObjectIntProperty": {
+                                            "type": "integer"
+                                        },
+                                        "inlineObjectChildObjectProperty": {
+                                            "type": "object",
+                                            "properties": {
+                                                "stringProperty": {
+                                                    "type": "string"
+                                                },
+                                                "innerChildProperty": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "arrayOfChildObjectsProperty": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "stringProperty": {
+                                                        "type": "string"
+                                                    },
+                                                    "innerChildProperty": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "dateTimeProperty": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "dateTimeImmutableProperty": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "dateTimeInterfaceProperty": {
+                                            "type": "string"
                                         }
                                     }
                                 }
@@ -1195,10 +2068,13 @@
                                             "virtualProperty": {
                                                 "type": "integer"
                                             },
-                                            "propertyWithCustomName": {
+                                            "virtualPropertyWithCustomName": {
                                                 "type": "string"
                                             },
                                             "stringProperty": {
+                                                "type": "string"
+                                            },
+                                            "propertyWithCustomName": {
                                                 "type": "string"
                                             },
                                             "nullableStringProperty": {
@@ -1235,6 +2111,58 @@
                                                         }
                                                     }
                                                 }
+                                            },
+                                            "inlineObjectStringProperty": {
+                                                "type": "string"
+                                            },
+                                            "inlineObjectIntProperty": {
+                                                "type": "integer"
+                                            },
+                                            "inlineObjectChildObjectProperty": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "stringProperty": {
+                                                        "type": "string"
+                                                    },
+                                                    "innerChildProperty": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "arrayOfChildObjectsProperty": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        },
+                                                        "innerChildProperty": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "stringProperty": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "dateTimeProperty": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "dateTimeImmutableProperty": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "dateTimeInterfaceProperty": {
+                                                "type": "string"
                                             }
                                         }
                                     }
@@ -2197,6 +3125,579 @@
                                     "paramCustom[paramInnerCustom][paramText]",
                                     "paramExtended"
                                 ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test patch with form",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "errors": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "children": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "paramNoType": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramInt": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramText": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramNumber": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramInRange": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramDate": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramDateTime": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "date": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                },
+                                                                                "children": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "year": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "month": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "day": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "time": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                },
+                                                                                "children": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "hour": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "minute": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramEmail": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramChoice": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramChoiceWithLoader": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramPassword": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramCollection": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramCustom": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "paramInt": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "paramText": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "paramInnerCustom": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                },
+                                                                                "children": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "paramText": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "errors": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "string"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramExtended": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNoType": {
+                                        "type": "string"
+                                    },
+                                    "paramInt": {
+                                        "type": "integer",
+                                        "minimum": 7,
+                                        "exclusiveMinimum": true,
+                                        "maximum": 13,
+                                        "exclusiveMaximum": true
+                                    },
+                                    "paramText": {
+                                        "type": "string",
+                                        "minLength": 4,
+                                        "maxLength": 6
+                                    },
+                                    "paramNumber": {
+                                        "type": "number",
+                                        "minimum": 3.14,
+                                        "maximum": 9.9
+                                    },
+                                    "paramInRange": {
+                                        "type": "string",
+                                        "minimum": -20,
+                                        "maximum": -4
+                                    },
+                                    "paramDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "paramDateTime": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "paramEmail": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "uniqueItems": true
+                                    },
+                                    "paramChoice": {
+                                        "type": "string",
+                                        "enum": [
+                                            "a",
+                                            "b"
+                                        ]
+                                    },
+                                    "paramChoiceWithLoader": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3"
+                                        ]
+                                    },
+                                    "paramPassword": {
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "paramCollection": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "minItems": 3,
+                                        "maxItems": 44
+                                    },
+                                    "paramCustom": {
+                                        "type": "object",
+                                        "properties": {
+                                            "paramInt": {
+                                                "type": "integer"
+                                            },
+                                            "paramText": {
+                                                "type": "string"
+                                            },
+                                            "paramInnerCustom": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "paramText": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "paramExtended": {
+                                        "type": "string",
+                                        "format": "email"
+                                    }
+                                }
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNoType": {
+                                        "type": "string"
+                                    },
+                                    "paramInt": {
+                                        "type": "integer",
+                                        "minimum": 7,
+                                        "exclusiveMinimum": true,
+                                        "maximum": 13,
+                                        "exclusiveMaximum": true
+                                    },
+                                    "paramText": {
+                                        "type": "string",
+                                        "minLength": 4,
+                                        "maxLength": 6
+                                    },
+                                    "paramNumber": {
+                                        "type": "number",
+                                        "minimum": 3.14,
+                                        "maximum": 9.9
+                                    },
+                                    "paramInRange": {
+                                        "type": "string",
+                                        "minimum": -20,
+                                        "maximum": -4
+                                    },
+                                    "paramDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "paramDateTime": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "paramEmail": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "uniqueItems": true
+                                    },
+                                    "paramChoice": {
+                                        "type": "string",
+                                        "enum": [
+                                            "a",
+                                            "b"
+                                        ]
+                                    },
+                                    "paramChoiceWithLoader": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3"
+                                        ]
+                                    },
+                                    "paramPassword": {
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "paramCollection[]": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "minItems": 3,
+                                        "maxItems": 44
+                                    },
+                                    "paramCustom[paramInt]": {
+                                        "type": "integer"
+                                    },
+                                    "paramCustom[paramText]": {
+                                        "type": "string"
+                                    },
+                                    "paramCustom[paramInnerCustom][paramText]": {
+                                        "type": "string"
+                                    },
+                                    "paramExtended": {
+                                        "type": "string",
+                                        "format": "email"
+                                    }
+                                }
                             }
                         }
                     },

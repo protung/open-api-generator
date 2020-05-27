@@ -4,6 +4,8 @@ Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Mod
     stringProperty: ~
     stringPropertyWithCustomGroup:
       groups: ['Test']
+    stringPropertyWithCustomName:
+      serialized_name: propertyWithCustomName
     nullableStringProperty: ~
     intProperty: ~
     floatProperty: ~
@@ -11,8 +13,17 @@ Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Mod
     arrayProperty:
       type: array
     childObjectProperty: ~
+    inlineObjectProperty:
+      inline: true
+    arrayOfChildObjectsProperty:
+      type: array<Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSChildObject>
+    dateTimeProperty: ~
+    dateTimeImmutableProperty: ~
+    dateTimeInterfaceProperty: ~
+    stringPropertyForOldVersion:
+      until_version: 0.0.0.1
   virtual_properties:
     getVirtualProperty:
       type: int
     getVirtualPropertyWithCustomName:
-      serialized_name: propertyWithCustomName
+      serialized_name: virtualPropertyWithCustomName

@@ -48,6 +48,20 @@ return new Model\Specification(
             Model\Security\Reference::fromString('ApiKey')
         ),
         new Path\Symfony\SymfonyRoutePath(
+            'api_test_custom_query_params',
+            'Test',
+            'Test custom query params',
+            null,
+            [
+                new FormInput(
+                    new FormDefinition(TestSchemaGeneration\Form\QueryType::class),
+                    Input::LOCATION_QUERY
+                ),
+            ],
+            [],
+            Model\Security\Reference::fromString('ApiKey')
+        ),
+        new Path\Symfony\SymfonyRoutePath(
             'api_test_custom_path_params',
             'Test',
             'Test custom path params',
@@ -131,6 +145,23 @@ return new Model\Specification(
                         new Model\Path\Output\SimpleOutput(new Model\Path\IOField('someField', Model\Type::OBJECT))
                     )
                 ),
+                new Response(
+                    202,
+                    ['Children with discriminator'],
+                    new PaginatedOutput(
+                        'children_with_discriminator',
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSDiscriminatorFirstChildObject::class),
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSDiscriminatorSecondChildObject::class),
+                    )
+                ),
+                new Response(
+                    203,
+                    ['Parent class with discriminator'],
+                    new PaginatedOutput(
+                        'parent_with_discriminator',
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSDiscriminatorParentObject::class),
+                    )
+                ),
             ],
             Model\Security\Reference::fromString('ApiKey')
         ),
@@ -147,6 +178,22 @@ return new Model\Specification(
             'api_test_post_with_form',
             'Test',
             'Test post with form',
+            null,
+            [
+                new FormInput(
+                    new FormDefinition(TestSchemaGeneration\Form\TestType::class),
+                    Input::LOCATION_BODY
+                ),
+            ],
+            [
+                Response::for400WithForm(TestSchemaGeneration\Form\TestType::class),
+            ],
+            Model\Security\Reference::fromString('ApiKey')
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_patch_with_form',
+            'Test',
+            'Test patch with form',
             null,
             [
                 new FormInput(
