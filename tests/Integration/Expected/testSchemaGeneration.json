@@ -75,7 +75,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -511,7 +510,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -798,7 +796,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -862,7 +859,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": []
             }
         },
@@ -1087,7 +1083,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -1143,7 +1138,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -1197,7 +1191,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -1902,7 +1895,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -2443,7 +2435,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -2582,7 +2573,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -3020,7 +3010,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []
@@ -3635,7 +3624,6 @@
                         }
                     }
                 },
-                "deprecated": false,
                 "security": [
                     {
                         "ApiKey": []

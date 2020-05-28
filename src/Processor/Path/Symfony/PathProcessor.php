@@ -24,6 +24,7 @@ use function array_filter;
 use function explode;
 use function sprintf;
 use function strpos;
+use const ARRAY_FILTER_USE_BOTH;
 
 final class PathProcessor implements PathProcessorInterface
 {
@@ -79,7 +80,14 @@ final class PathProcessor implements PathProcessorInterface
                         'parameters' => [],
                         'responses' => new Responses([]),
                     ],
-                    static fn($value) => $value !== null
+                    static function ($value, $key) : bool {
+                        if ($key === 'deprecated' && $value === false) {
+                            return false;
+                        }
+
+                        return $value !== null;
+                    },
+                    ARRAY_FILTER_USE_BOTH
                 )
             );
 
