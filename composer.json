@@ -1,7 +1,10 @@
 {
     "name": "speicher210/open-api-generator",
-    "type": "project",
+    "type": "library",
     "description": "Open Api specification generator.",
+    "keywords": [
+        "openapi"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -10,7 +13,7 @@
         },
         {
             "name": "Cezary Stepkowski",
-            "email": "cezary.stepkowski@maklaro.de"
+            "email": "cezary.stepkowski@protonmail.com"
         }
     ],
     "require": {
