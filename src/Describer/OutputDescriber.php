@@ -87,9 +87,11 @@ final class OutputDescriber
             [
                 'type' => Type::OBJECT,
                 'properties' => [
-                    'code' => ['type' => Type::INTEGER],
-                    'message' => ['type' => Type::STRING],
-                    'errors' => [
+                    'type' => ['type' => Type::STRING],
+                    'title' => ['type' => Type::STRING],
+                    'status' => ['type' => Type::INTEGER],
+                    'detail' => ['type' => Type::STRING],
+                    'violations' => [
                         'type' => Type::OBJECT,
                         'properties' => [
                             'errors' => ['type' => Type::ARRAY, 'items' => ['type' => Type::STRING]],
@@ -153,7 +155,6 @@ final class OutputDescriber
             [
                 'properties' => array_fill_keys(
                     ['self', 'first', 'last', 'previous', 'next'],
-                    // @todo oneOf schema|null where applicable (last, etc)
                     new Schema(
                         [
                             'properties' => ['href' => new Schema(['type' => Type::STRING])],
@@ -162,6 +163,10 @@ final class OutputDescriber
                     )
                 ),
                 'type' => Type::OBJECT,
+                'required' => [
+                    'self',
+                    'first',
+                ],
             ]
         );
     }

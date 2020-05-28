@@ -1234,6 +1234,10 @@
                                             "type": "integer"
                                         },
                                         "_links": {
+                                            "required": [
+                                                "self",
+                                                "first"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "self": {
@@ -1582,6 +1586,10 @@
                                             "type": "integer"
                                         },
                                         "_links": {
+                                            "required": [
+                                                "self",
+                                                "first"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "self": {
@@ -1669,6 +1677,10 @@
                                             "type": "integer"
                                         },
                                         "_links": {
+                                            "required": [
+                                                "self",
+                                                "first"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "self": {
@@ -1789,6 +1801,10 @@
                                             "type": "integer"
                                         },
                                         "_links": {
+                                            "required": [
+                                                "self",
+                                                "first"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "self": {
@@ -2344,13 +2360,19 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "message": {
+                                        "type": {
                                             "type": "string"
                                         },
-                                        "errors": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
                                             "type": "object",
                                             "properties": {
                                                 "errors": {
@@ -2493,13 +2515,19 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "message": {
+                                        "type": {
                                             "type": "string"
                                         },
-                                        "errors": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
                                             "type": "object",
                                             "properties": {
                                                 "errors": {
@@ -2652,13 +2680,19 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "message": {
+                                        "type": {
                                             "type": "string"
                                         },
-                                        "errors": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
                                             "type": "object",
                                             "properties": {
                                                 "errors": {
@@ -3266,13 +3300,19 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "message": {
+                                        "type": {
                                             "type": "string"
                                         },
-                                        "errors": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
                                             "type": "object",
                                             "properties": {
                                                 "errors": {
