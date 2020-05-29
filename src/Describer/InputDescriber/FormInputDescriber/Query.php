@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Speicher210\OpenApiGenerator\Describer\InputDescriber\FormInputDescriber;
 
 use cebe\openapi\spec\Parameter;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
+use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\FormInterface;
 use function array_filter;
 use function array_merge;

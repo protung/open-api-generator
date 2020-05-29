@@ -4,31 +4,39 @@ parameters:
 			message: "#^Property cebe\\\\openapi\\\\spec\\\\Schema\\:\\:\\$exclusiveMinimum \\(float\\|int\\) does not accept true\\.$#"
 			count: 1
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
 		-
 			message: "#^Property cebe\\\\openapi\\\\spec\\\\Schema\\:\\:\\$exclusiveMaximum \\(float\\|int\\) does not accept true\\.$#"
 			count: 1
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
 		-
 			message: "#^Access to an undefined property cebe\\\\openapi\\\\spec\\\\Reference\\|cebe\\\\openapi\\\\spec\\\\Schema\\:\\:\\$format\\.$#"
 			count: 3
-			path: src/Describer/RequestBodyContent.php
+			path: src/Describer/InputDescriber/FormInputDescriber/Body.php
+
 		-
-			message: "#^Parameter \\#1 \\$schema of method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\RequestBodyContent\\:\\:schemaHasFileProperties\\(\\) expects cebe\\\\openapi\\\\spec\\\\Schema, cebe\\\\openapi\\\\spec\\\\Reference\\|cebe\\\\openapi\\\\spec\\\\Schema given\\.$#"
+			message: "#^Parameter \\#1 \\$schema of method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\InputDescriber\\\\FormInputDescriber\\\\Body\\:\\:schemaHasFileProperties\\(\\) expects cebe\\\\openapi\\\\spec\\\\Schema, cebe\\\\openapi\\\\spec\\\\Reference\\|cebe\\\\openapi\\\\spec\\\\Schema given\\.$#"
 			count: 2
-			path: src/Describer/RequestBodyContent.php
+			path: src/Describer/InputDescriber/FormInputDescriber/Body.php
+
 		-
-			message: "#^Parameter \\#1 \\$schema of method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\RequestBodyContent\\:\\:getFilePropertiesFromSchema\\(\\) expects cebe\\\\openapi\\\\spec\\\\Schema, cebe\\\\openapi\\\\spec\\\\Reference\\|cebe\\\\openapi\\\\spec\\\\Schema given\\.$#"
+			message: "#^Parameter \\#1 \\$schema of method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\InputDescriber\\\\FormInputDescriber\\\\Body\\:\\:getFilePropertiesFromSchema\\(\\) expects cebe\\\\openapi\\\\spec\\\\Schema, cebe\\\\openapi\\\\spec\\\\Reference\\|cebe\\\\openapi\\\\spec\\\\Schema given\\.$#"
 			count: 1
-			path: src/Describer/RequestBodyContent.php
+			path: src/Describer/InputDescriber/FormInputDescriber/Body.php
+
 		-
-			message: "#^Method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\RequestBodyContent\\:\\:getFilePropertiesFromSchema\\(\\) should return array\\<string\\> but returns array\\<int\\|string, int\\|string\\>\\.$#"
+			message: "#^Method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\InputDescriber\\\\FormInputDescriber\\\\Body\\:\\:getFilePropertiesFromSchema\\(\\) should return array\\<string\\> but returns array\\<int\\|string, int\\|string\\>\\.$#"
 			count: 1
-			path: src/Describer/RequestBodyContent.php
+			path: src/Describer/InputDescriber/FormInputDescriber/Body.php
+
 		-
 			message: "#^Variable property access on cebe\\\\openapi\\\\spec\\\\PathItem\\.$#"
 			count: 1
 			path: src/Processor/PathsProcessor.php
+
 		-
 			message: "#^Property Speicher210\\\\OpenApiGenerator\\\\Tests\\\\Integration\\\\Fixtures\\\\TestSchemaGeneration\\\\Model\\\\JMSObject\\:\\:\\$unknownProperty has no typehint specified\\.$#"
 			count: 1
 			path: tests/Integration/Fixtures/TestSchemaGeneration/Model/JMSObject.php
+

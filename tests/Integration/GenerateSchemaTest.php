@@ -63,8 +63,7 @@ final class GenerateSchemaTest extends TestCase
                         new Describer\InputDescriber(
                             new Describer\InputDescriber\SimpleInputDescriber(),
                             new Describer\InputDescriber\FormInputDescriber(
-                                new Describer\Query($formDescriber),
-                                new Describer\RequestBodyContent($formDescriber),
+                                $formDescriber,
                                 $describerFormFactory
                             ),
                         ),

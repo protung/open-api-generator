@@ -8,27 +8,24 @@ use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\RequestBody;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
-use Speicher210\OpenApiGenerator\Describer\Query;
-use Speicher210\OpenApiGenerator\Describer\RequestBodyContent;
+use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
 use function array_merge;
 
 final class FormInputDescriber implements InputDescriber
 {
-    private Query $queryDescriber;
+    private FormInputDescriber\Query $queryDescriber;
 
-    private RequestBodyContent $requestBodyContentDescriber;
+    private FormInputDescriber\Body $bodyDescriber;
 
     private FormFactory $formFactory;
 
-    public function __construct(
-        Query $queryDescriber,
-        RequestBodyContent $requestBodyContentDescriber,
-        FormFactory $formFactory
-    ) {
-        $this->queryDescriber              = $queryDescriber;
-        $this->requestBodyContentDescriber = $requestBodyContentDescriber;
-        $this->formFactory                 = $formFactory;
+    public function __construct(FormDescriber $formDescriber, FormFactory $formFactory)
+    {
+        $this->queryDescriber = new FormInputDescriber\Query($formDescriber);
+        $this->bodyDescriber  = new FormInputDescriber\Body($formDescriber);
+
+        $this->formFactory = $formFactory;
     }
 
     public function describe(Input $input, Operation $operation, string $httpMethod) : void
@@ -47,7 +44,7 @@ final class FormInputDescriber implements InputDescriber
             $operation->requestBody = new RequestBody(
                 [
                     'required' => true,
-                    'content' => $this->requestBodyContentDescriber->describe($form, $httpMethod),
+                    'content' => $this->bodyDescriber->describe($form, $httpMethod),
                 ]
             );
         }

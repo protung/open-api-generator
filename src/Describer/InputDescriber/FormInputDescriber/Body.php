@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Speicher210\OpenApiGenerator\Describer\InputDescriber\FormInputDescriber;
 
 use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Schema;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
+use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\FormInterface;
 use function array_filter;
 use function array_intersect;
 use function array_merge;
 
-final class RequestBodyContent
+final class Body
 {
     private const CONTENT_TYPE_APPLICATION_JSON = 'application/json';
 
