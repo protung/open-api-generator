@@ -1173,7 +1173,7 @@
                 "tags": [
                     "Test"
                 ],
-                "summary": "Test get a not descirbed object",
+                "summary": "Test get a not described object",
                 "parameters": [
                     {
                         "name": "X-ALWAYS",

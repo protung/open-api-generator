@@ -258,7 +258,7 @@ return new Model\Specification(
         new Path\Symfony\SymfonyRoutePath(
             'api_test_get_not_described_object',
             'Test',
-            'Test get a not descirbed object',
+            'Test get a not described object',
             null,
             [],
             [
