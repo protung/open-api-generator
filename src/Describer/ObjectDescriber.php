@@ -28,7 +28,6 @@ final class ObjectDescriber
             $this->modelRegistry->addSchema(
                 $definition,
                 $this->createSchema($definition),
-                false
             );
         }
 
@@ -37,13 +36,9 @@ final class ObjectDescriber
 
     public function describeAsReference(Definition $definition) : Reference
     {
-        if (! $this->modelRegistry->schemaExistsForDefinition($definition)) {
-            $this->modelRegistry->addSchema(
-                $definition,
-                $this->createSchema($definition),
-                true
-            );
-        }
+        $this->describe($definition);
+
+        $this->modelRegistry->createReference($definition);
 
         return $this->modelRegistry->getReference($definition);
     }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model;
 
-use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 
 final class Model
@@ -13,13 +12,10 @@ final class Model
 
     private Schema $schema;
 
-    private ?Reference $reference;
-
-    public function __construct(Definition $definition, Schema $schema, ?Reference $reference)
+    public function __construct(Definition $definition, Schema $schema)
     {
         $this->definition = $definition;
         $this->schema     = $schema;
-        $this->reference  = $reference;
     }
 
     public function definition() : Definition
@@ -30,15 +26,5 @@ final class Model
     public function schema() : Schema
     {
         return $this->schema;
-    }
-
-    public function setReference(Reference $reference) : void
-    {
-        $this->reference = $reference;
-    }
-
-    public function reference() : ?Reference
-    {
-        return $this->reference;
     }
 }

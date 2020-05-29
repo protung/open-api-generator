@@ -8,13 +8,19 @@ use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 use RuntimeException;
 use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
+use function array_key_exists;
 use function implode;
+use function md5;
+use function serialize;
 use function sprintf;
 
 final class ModelRegistry
 {
-    /** @var Model[] */
+    /** @var array<string,Model> */
     private array $models = [];
+
+    /** @var array<string,Model> */
+    private array $referencedModels = [];
 
     private DefinitionName $definitionNameResolver;
 
@@ -25,21 +31,16 @@ final class ModelRegistry
 
     public function schemaExistsForDefinition(Definition $definition) : bool
     {
-        foreach ($this->models as $model) {
-            if ($definition->equals($model->definition())) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_key_exists(
+            $this->definitionKey($definition),
+            $this->models
+        );
     }
 
     private function getModelWithDefinition(Definition $definition) : Model
     {
-        foreach ($this->models as $model) {
-            if ($definition->equals($model->definition())) {
-                return $model;
-            }
+        if ($this->schemaExistsForDefinition($definition)) {
+            return $this->models[$this->definitionKey($definition)];
         }
 
         throw new RuntimeException(
@@ -58,17 +59,10 @@ final class ModelRegistry
 
     public function getReference(Definition $definition) : Reference
     {
-        $model     = $this->getModelWithDefinition($definition);
-        $reference = $model->reference();
-        if ($reference === null) {
-            $reference = new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
-            $model->setReference($reference);
-        }
-
-        return $reference;
+        return new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]);
     }
 
-    public function addSchema(Definition $definition, Schema $schema, bool $asReference) : void
+    public function addSchema(Definition $definition, Schema $schema) : void
     {
         if ($this->schemaExistsForDefinition($definition)) {
             throw new RuntimeException(
@@ -80,18 +74,26 @@ final class ModelRegistry
             );
         }
 
-        $this->models[] = new Model(
-            $definition,
-            $schema,
-            $asReference ? new Reference(['$ref' => $this->definitionNameResolver->getReference($definition)]) : null
-        );
+        $this->models[$this->definitionKey($definition)] = new Model($definition, $schema);
+    }
+
+    public function createReference(Definition $definition) : void
+    {
+        $hash = $this->definitionKey($definition);
+
+        $this->referencedModels[$hash] = $this->getModelWithDefinition($definition);
     }
 
     /**
      * @return Model[]
      */
-    public function models() : array
+    public function referencedModels() : array
     {
-        return $this->models;
+        return $this->referencedModels;
+    }
+
+    private function definitionKey(Definition $definition) : string
+    {
+        return md5(serialize([$definition->className(), $definition->serializationGroups()]));
     }
 }

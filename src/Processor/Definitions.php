@@ -27,11 +27,7 @@ final class Definitions implements Processor
     public function process(OpenApi $openApi, Specification $specification) : void
     {
         $definitions = [];
-        foreach ($this->modelRegistry->models() as $model) {
-            if ($model->reference() === null) {
-                continue;
-            }
-
+        foreach ($this->modelRegistry->referencedModels() as $model) {
             $definitions[$this->definitionNameResolver->getName($model->definition())] = $model->schema();
         }
 
