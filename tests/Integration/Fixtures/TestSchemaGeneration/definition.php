@@ -172,10 +172,16 @@ return new Model\Specification(
             [],
             [
                 Response::for200(
-                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObject::class, true),
+                    Model\Path\Output\ReferencableOutput::forOutput(
+                        // JMSObject is also used as not referenced.
+                        // We want to make sure this is only referenced for this path.
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObject::class)
+                    )
                 ),
                 Response::for201(
-                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObjectDescribedOnlyAsReference::class, true),
+                    Model\Path\Output\ReferencableOutput::forOutput(
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObjectDescribedOnlyAsReference::class)
+                    ),
                 ),
             ]
         ),

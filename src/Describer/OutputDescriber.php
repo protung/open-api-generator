@@ -14,10 +14,9 @@ use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\CollectionOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
-use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
-use Speicher210\OpenApiGenerator\Model\Path\Output\ScalarOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\SimpleOutput;
+use Speicher210\OpenApiGenerator\Model\Path\ReferencableOutput;
 use Symfony\Component\Form\FormInterface;
 use function array_fill_keys;
 use function array_map;
@@ -36,10 +35,18 @@ final class OutputDescriber
 
     private FormFactory $formFactory;
 
+    /** @var array<OutputDescriber\OutputDescriber> */
+    private array $outputDescribers;
+
     public function __construct(ObjectDescriber $objectDescriber, FormFactory $formFactory)
     {
         $this->objectDescriber = $objectDescriber;
         $this->formFactory     = $formFactory;
+
+        $this->outputDescribers = [
+            new OutputDescriber\ScalarOutputDescriber(),
+            new OutputDescriber\ObjectOutputDescriber($this->objectDescriber),
+        ];
     }
 
     /**
@@ -47,23 +54,21 @@ final class OutputDescriber
      */
     public function describe(Output $output) : SpecObjectInterface
     {
+        if ($output instanceof ReferencableOutput) {
+            $definition = new Definition($output->output()->className(), $output->output()->serializationGroups());
+
+            return $this->objectDescriber->describeAsReference($definition);
+        }
+
         if ($output instanceof CollectionOutput) {
             $schema = $this->describe($output->output());
 
             return new Schema(['type' => Type::ARRAY, 'items' => $schema]);
         }
 
-        if ($output instanceof ScalarOutput) {
-            return $this->describeScalarOutput($output);
-        }
-
         // This handles ErrorResponse as well (ErrorResponse extends SimpleOutput)
         if ($output instanceof SimpleOutput) {
             return $this->describeSimpleOutput($output);
-        }
-
-        if ($output instanceof ObjectOutput) {
-            return $this->describeObjectOutput($output);
         }
 
         if ($output instanceof PaginatedOutput) {
@@ -72,6 +77,12 @@ final class OutputDescriber
 
         if ($output instanceof FormErrorOutput) {
             return $this->describeFormErrorOutput($output);
+        }
+
+        foreach ($this->outputDescribers as $outputDescriber) {
+            if ($outputDescriber->supports($output)) {
+                return $outputDescriber->describe($output);
+            }
         }
 
         throw new InvalidArgumentException(
@@ -210,24 +221,5 @@ final class OutputDescriber
         }
 
         return new Schema(['type' => Type::OBJECT, 'properties' => $properties, 'example' => $output->example()]);
-    }
-
-    private function describeScalarOutput(ScalarOutput $output) : Schema
-    {
-        return new Schema(['type' => $output->type(), 'example' => $output->example()]);
-    }
-
-    /**
-     * @return Reference|Schema
-     */
-    private function describeObjectOutput(ObjectOutput $output) : SpecObjectInterface
-    {
-        $definition = new Definition($output->className(), $output->serializationGroups());
-
-        if ($output->shouldBeDescribedAsReference()) {
-            return $this->objectDescriber->describeAsReference($definition);
-        }
-
-        return $this->objectDescriber->describe($definition);
     }
 }
