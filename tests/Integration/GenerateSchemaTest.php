@@ -39,23 +39,17 @@ final class GenerateSchemaTest extends TestCase
             )
             ->getFormFactory();
 
-        $namingStrategy = new IdenticalPropertyNamingStrategy();
-
         $metadataDirs = [
             'Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model' => __DIR__ . '/Fixtures/TestSchemaGeneration/config/serializer',
         ];
 
-        $metadataFactory = new MetadataFactory(
-            (new DefaultDriverFactory($namingStrategy))->createDriver($metadataDirs, new AnnotationReader())
-        );
+        $describerFormFactory = new Describer\Form\FormFactory($formFactory);
 
         $formDescriber = new Describer\FormDescriber(
-            new Describer\Form\FormFactory($formFactory),
+            $describerFormFactory,
             new Describer\Form\SymfonyFormPropertyDescriber(),
             new Describer\Form\SymfonyValidatorRequirementsDescriber($validator)
         );
-
-        $describerFormFactory = new Describer\Form\FormFactory($formFactory);
 
         $modelRegistry = new ModelRegistry();
 
@@ -67,15 +61,20 @@ final class GenerateSchemaTest extends TestCase
                     new Path\Symfony\PathProcessor(
                         $routes,
                         new Describer\InputDescriber(
-                            new Describer\Query($formDescriber),
-                            new Describer\RequestBodyContent($formDescriber),
-                            $describerFormFactory
+                            new Describer\InputDescriber\SimpleInputDescriber(),
+                            new Describer\InputDescriber\FormInputDescriber(
+                                new Describer\Query($formDescriber),
+                                new Describer\RequestBodyContent($formDescriber),
+                                $describerFormFactory
+                            ),
                         ),
                         new Describer\OutputDescriber(
                             new Describer\ObjectDescriber(
                                 $modelRegistry,
                                 new Describer\ObjectDescriber\JMSModel(
-                                    $metadataFactory,
+                                    new MetadataFactory(
+                                        (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver($metadataDirs, new AnnotationReader())
+                                    ),
                                     $apiVersion
                                 ),
                             ),
