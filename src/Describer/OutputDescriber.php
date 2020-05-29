@@ -49,7 +49,7 @@ final class OutputDescriber
         if ($output instanceof ReferencableOutput) {
             $definition = new Definition($output->output()->className(), $output->output()->serializationGroups());
 
-            return $this->objectDescriber->describeAsReference($definition);
+            return $this->objectDescriber->describeAsReference($definition, $output->referencePath());
         }
 
         foreach ($this->outputDescribers as $outputDescriber) {

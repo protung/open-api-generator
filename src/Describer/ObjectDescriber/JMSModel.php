@@ -77,6 +77,7 @@ final class JMSModel implements Describer
                     $objectDescriber
                 );
                 foreach ($inlineModel->properties as $name => $property) {
+                    Assert::isInstanceOf($property, Schema::class);
                     $properties[$name] = $property;
                 }
 
@@ -104,6 +105,7 @@ final class JMSModel implements Describer
                     $property = new Schema(['oneOf' => $propertiesSchemas]);
                 } else {
                     $property = reset($propertiesSchemas);
+                    Assert::isInstanceOf($property, Schema::class);
                 }
             }
 

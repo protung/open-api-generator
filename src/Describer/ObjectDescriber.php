@@ -34,13 +34,11 @@ final class ObjectDescriber
         return $this->modelRegistry->getSchema($definition);
     }
 
-    public function describeAsReference(Definition $definition) : Reference
+    public function describeAsReference(Definition $definition, string $referencePath) : Reference
     {
         $this->describe($definition);
 
-        $this->modelRegistry->createReference($definition);
-
-        return $this->modelRegistry->getReference($definition);
+        return $this->modelRegistry->createReference($definition, $referencePath);
     }
 
     private function createSchema(Definition $definition) : Schema

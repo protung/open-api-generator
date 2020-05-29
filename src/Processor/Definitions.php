@@ -8,7 +8,6 @@ use cebe\openapi\spec\Components;
 use cebe\openapi\spec\OpenApi;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 use Speicher210\OpenApiGenerator\Model\Specification;
-use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
 use function count;
 use function ksort;
 
@@ -16,19 +15,16 @@ final class Definitions implements Processor
 {
     private ModelRegistry $modelRegistry;
 
-    private DefinitionName $definitionNameResolver;
-
-    public function __construct(ModelRegistry $modelRegistry, DefinitionName $definitionNameResolver)
+    public function __construct(ModelRegistry $modelRegistry)
     {
-        $this->modelRegistry          = $modelRegistry;
-        $this->definitionNameResolver = $definitionNameResolver;
+        $this->modelRegistry = $modelRegistry;
     }
 
     public function process(OpenApi $openApi, Specification $specification) : void
     {
         $definitions = [];
-        foreach ($this->modelRegistry->referencedModels() as $model) {
-            $definitions[$this->definitionNameResolver->getName($model->definition())] = $model->schema();
+        foreach ($this->modelRegistry->referencedModels() as $referencedModel) {
+            $definitions[$referencedModel->referenceName()] = $referencedModel->schema();
         }
 
         if ($openApi->components === null) {

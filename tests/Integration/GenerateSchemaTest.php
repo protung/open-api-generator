@@ -6,7 +6,6 @@ namespace Speicher210\OpenApiGenerator\Tests\Integration;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\Serializer\Builder\DefaultDriverFactory;
-use JMS\Serializer\Metadata\Driver\YamlDriver;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use Metadata\MetadataFactory;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +14,6 @@ use Speicher210\OpenApiGenerator\Generator;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 use Speicher210\OpenApiGenerator\Processor;
 use Speicher210\OpenApiGenerator\Processor\Path;
-use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactoryBuilder;
@@ -51,8 +49,6 @@ final class GenerateSchemaTest extends TestCase
             (new DefaultDriverFactory($namingStrategy))->createDriver($metadataDirs, new AnnotationReader())
         );
 
-        $jmsDriver = new YamlDriver(new \Metadata\Driver\FileLocator($metadataDirs), $namingStrategy);
-
         $formDescriber = new Describer\FormDescriber(
             new Describer\Form\FormFactory($formFactory),
             new Describer\Form\SymfonyFormPropertyDescriber(),
@@ -61,9 +57,7 @@ final class GenerateSchemaTest extends TestCase
 
         $describerFormFactory = new Describer\Form\FormFactory($formFactory);
 
-        $definitionName = new DefinitionName($jmsDriver);
-
-        $modelRegistry = new ModelRegistry($definitionName);
+        $modelRegistry = new ModelRegistry();
 
         return new Generator(
             new Processor\InfoProcessor($apiVersion),
@@ -90,10 +84,7 @@ final class GenerateSchemaTest extends TestCase
                     )
                 )
             ),
-            new Processor\Definitions(
-                $modelRegistry,
-                $definitionName
-            )
+            new Processor\Definitions($modelRegistry)
         );
     }
 

@@ -1910,7 +1910,7 @@
                         "content": {
                             "application\/json": {
                                 "schema": {
-                                    "$ref": "#\/components\/schemas\/Speicher210OpenApiGeneratorTestsIntegrationFixturesTestSchemaGenerationJMSObject"
+                                    "$ref": "#\/components\/schemas\/JMSObject"
                                 }
                             }
                         }
@@ -1920,7 +1920,17 @@
                         "content": {
                             "application\/json": {
                                 "schema": {
-                                    "$ref": "#\/components\/schemas\/Speicher210OpenApiGeneratorTestsIntegrationFixturesTestSchemaGenerationJMSObjectDescribedOnlyAsReference"
+                                    "$ref": "#\/components\/schemas\/JMSObjectDescribedOnlyAsReferenceCustomName"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/JMSObjectDescribedOnlyAsReferenceCustomName"
                                 }
                             }
                         }
@@ -3919,7 +3929,7 @@
             }
         },
         "schemas": {
-            "Speicher210OpenApiGeneratorTestsIntegrationFixturesTestSchemaGenerationJMSObject": {
+            "JMSObject": {
                 "properties": {
                     "virtualProperty": {
                         "type": "integer"
@@ -4047,7 +4057,7 @@
                 },
                 "type": "object"
             },
-            "Speicher210OpenApiGeneratorTestsIntegrationFixturesTestSchemaGenerationJMSObjectDescribedOnlyAsReference": {
+            "JMSObjectDescribedOnlyAsReferenceCustomName": {
                 "properties": {
                     "intProperty": {
                         "type": "integer"

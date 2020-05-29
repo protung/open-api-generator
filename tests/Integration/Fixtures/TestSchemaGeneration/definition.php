@@ -172,15 +172,23 @@ return new Model\Specification(
             [],
             [
                 Response::for200(
-                    Model\Path\Output\ReferencableOutput::forOutput(
+                    Model\Path\Output\ReferencableOutput::forSchema(
                         // JMSObject is also used as not referenced.
                         // We want to make sure this is only referenced for this path.
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObject::class)
                     )
                 ),
                 Response::for201(
-                    Model\Path\Output\ReferencableOutput::forOutput(
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObjectDescribedOnlyAsReference::class)
+                    Model\Path\Output\ReferencableOutput::forSchema(
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObjectDescribedOnlyAsReference::class),
+                        'JMSObjectDescribedOnlyAsReferenceCustomName'
+                    ),
+                ),
+                Response::for400(
+                    // We want to test that using the same name will not throw an error is the definition matches.
+                    Model\Path\Output\ReferencableOutput::forSchema(
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObjectDescribedOnlyAsReference::class),
+                        'JMSObjectDescribedOnlyAsReferenceCustomName'
                     ),
                 ),
             ]
