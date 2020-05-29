@@ -43,9 +43,9 @@ final class InputDescriber
                 return null;
             }
 
-            if ($input->inQuery()) {
+            if ($input->isInQuery()) {
                 $operation->parameters = array_merge($operation->parameters, $this->queryDescriber->describe($form));
-            } elseif ($input->inBody()) {
+            } elseif ($input->isInBody()) {
                 $operation->requestBody = new RequestBody(
                     [
                         'required' => true,
@@ -54,9 +54,10 @@ final class InputDescriber
                 );
             }
         } elseif ($input instanceof Input\SimpleInput) {
+            $parameters = [];
             foreach ($input->fields() as $field) {
                 $parameter           = new Parameter(['name' => $field->name(), 'in' => $input->location()]);
-                $parameter->required = $input->inPath();
+                $parameter->required = $input->isInPath();
 
                 $parameterSchema = new Schema(
                     [
@@ -69,9 +70,11 @@ final class InputDescriber
                     $parameterSchema->pattern = $field->pattern();
                 }
 
-                $parameter->schema     = $parameterSchema;
-                $operation->parameters = array_merge($operation->parameters, [$parameter]);
+                $parameter->schema = $parameterSchema;
+                $parameters[]      = $parameter;
             }
+
+            $operation->parameters = array_merge($operation->parameters, $parameters);
         } else {
             throw new InvalidArgumentException(
                 sprintf('Can not handle object to describe of type "%s"', get_class($input))

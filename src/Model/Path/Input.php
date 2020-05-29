@@ -20,11 +20,11 @@ interface Input
 
     public function location() : string;
 
-    public function inHeaders() : bool;
+    public function isInHeaders() : bool;
 
-    public function inPath() : bool;
+    public function isInPath() : bool;
 
-    public function inQuery() : bool;
+    public function isInQuery() : bool;
 
-    public function inBody() : bool;
+    public function isInBody() : bool;
 }

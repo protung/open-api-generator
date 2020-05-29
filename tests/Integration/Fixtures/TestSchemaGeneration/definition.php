@@ -55,10 +55,7 @@ return new Model\Specification(
             'Test custom query params',
             null,
             [
-                new FormInput(
-                    new FormDefinition(TestSchemaGeneration\Form\QueryType::class),
-                    Input::LOCATION_QUERY
-                ),
+                FormInput::inQuery(new FormDefinition(TestSchemaGeneration\Form\QueryType::class)),
             ],
             [],
             Model\Security\Reference::fromString('ApiKey')
@@ -198,10 +195,7 @@ return new Model\Specification(
             'Test post with form',
             null,
             [
-                new FormInput(
-                    new FormDefinition(TestSchemaGeneration\Form\TestType::class),
-                    Input::LOCATION_BODY
-                ),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestType::class)),
             ],
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestType::class),
@@ -214,10 +208,7 @@ return new Model\Specification(
             'Test patch with form',
             null,
             [
-                new FormInput(
-                    new FormDefinition(TestSchemaGeneration\Form\TestType::class),
-                    Input::LOCATION_BODY
-                ),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestType::class)),
             ],
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestType::class),
@@ -230,10 +221,7 @@ return new Model\Specification(
             'Test post with file upload',
             null,
             [
-                new FormInput(
-                    new FormDefinition(TestSchemaGeneration\Form\TestFileUpload::class),
-                    Input::LOCATION_BODY
-                ),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestFileUpload::class)),
             ],
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestFileUpload::class),
@@ -246,10 +234,7 @@ return new Model\Specification(
             'Test post with file upload optional',
             null,
             [
-                new FormInput(
-                    new FormDefinition(TestSchemaGeneration\Form\TestFileUploadOptional::class),
-                    Input::LOCATION_BODY
-                ),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestFileUploadOptional::class)),
             ],
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestFileUploadOptional::class),

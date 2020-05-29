@@ -23,22 +23,22 @@ abstract class BaseInput implements Input
         return $this->location;
     }
 
-    public function inHeaders() : bool
+    public function isInHeaders() : bool
     {
         return $this->location === Input::LOCATION_HEADERS;
     }
 
-    public function inPath() : bool
+    public function isInPath() : bool
     {
         return $this->location === Input::LOCATION_PATH;
     }
 
-    public function inQuery() : bool
+    public function isInQuery() : bool
     {
         return $this->location === Input::LOCATION_QUERY;
     }
 
-    public function inBody() : bool
+    public function isInBody() : bool
     {
         return $this->location === Input::LOCATION_BODY;
     }
