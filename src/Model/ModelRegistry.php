@@ -8,8 +8,7 @@ use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 use RuntimeException;
 use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
-use function md5;
-use function serialize;
+use function implode;
 use function sprintf;
 
 final class ModelRegistry
@@ -27,7 +26,7 @@ final class ModelRegistry
     public function schemaExistsForDefinition(Definition $definition) : bool
     {
         foreach ($this->models as $model) {
-            if ($this->hash($definition) === $this->hash($model->definition())) {
+            if ($definition->equals($model->definition())) {
                 return true;
             }
         }
@@ -38,13 +37,17 @@ final class ModelRegistry
     private function getModelWithDefinition(Definition $definition) : Model
     {
         foreach ($this->models as $model) {
-            if ($this->hash($definition) === $this->hash($model->definition())) {
+            if ($definition->equals($model->definition())) {
                 return $model;
             }
         }
 
         throw new RuntimeException(
-            sprintf('Model with definition name "%s" does not exist.', $this->hash($definition))
+            sprintf(
+                'Model with class name "%s" and serialization groups "%s" does not exist.',
+                $definition->className(),
+                implode(', ', $definition->serializationGroups())
+            )
         );
     }
 
@@ -69,7 +72,11 @@ final class ModelRegistry
     {
         if ($this->schemaExistsForDefinition($definition)) {
             throw new RuntimeException(
-                sprintf('Model with definition name "%s" already exists.', $this->hash($definition))
+                sprintf(
+                    'Model with class name "%s" and serialization groups "%s" already exists.',
+                    $definition->className(),
+                    implode(', ', $definition->serializationGroups())
+                )
             );
         }
 
@@ -86,10 +93,5 @@ final class ModelRegistry
     public function models() : array
     {
         return $this->models;
-    }
-
-    private function hash(Definition $definition) : string
-    {
-        return md5(serialize([$definition->className(), $definition->serializationGroups()]));
     }
 }
