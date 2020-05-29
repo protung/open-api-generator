@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model;
 
-use function md5;
-use function serialize;
-
 final class Definition
 {
     private string $className;
@@ -34,10 +31,5 @@ final class Definition
     public function serializationGroups() : array
     {
         return $this->serializationGroups;
-    }
-
-    public function hash() : string
-    {
-        return md5(serialize([$this->className, $this->serializationGroups]));
     }
 }

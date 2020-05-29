@@ -222,6 +222,12 @@ final class OutputDescriber
      */
     private function describeObjectOutput(ObjectOutput $output) : SpecObjectInterface
     {
-        return $this->objectDescriber->describe(new Definition($output->className(), $output->serializationGroups()));
+        $definition = new Definition($output->className(), $output->serializationGroups());
+
+        if ($output->shouldBeDescribedAsReference()) {
+            return $this->objectDescriber->describeAsReference($definition);
+        }
+
+        return $this->objectDescriber->describe($definition);
     }
 }

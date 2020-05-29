@@ -2,4 +2,4 @@
 - find a way to provide description and example for properties
 - read requirements also from asserts
 - handle JMS property recursion
-- allow schema reference
+- allow specifying responses as reference (#/components/responses/...)

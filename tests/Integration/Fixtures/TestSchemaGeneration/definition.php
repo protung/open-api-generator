@@ -169,6 +169,21 @@ return new Model\Specification(
             Model\Security\Reference::fromString('ApiKey')
         ),
         new Path\Symfony\SymfonyRoutePath(
+            'api_test_referenced_response',
+            'Test',
+            'Test referenced response',
+            null,
+            [],
+            [
+                Response::for200(
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObject::class, true),
+                ),
+                Response::for201(
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObjectDescribedOnlyAsReference::class, true),
+                ),
+            ]
+        ),
+        new Path\Symfony\SymfonyRoutePath(
             'api_test_multiple_methods',
             'Test',
             'Test multiple methods',

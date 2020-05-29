@@ -42,6 +42,11 @@
            path="/api/test/paginated-response"
     />
 
+    <route id="api_test_referenced_response"
+           methods="GET"
+           path="/api/test/referenced-response"
+    />
+
     <route id="api_test_multiple_methods"
            methods="GET|POST"
            path="/api/test/multiple/methods"

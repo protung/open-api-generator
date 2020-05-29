@@ -9,6 +9,7 @@ use cebe\openapi\spec\OpenApi;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 use Speicher210\OpenApiGenerator\Model\Specification;
 use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
+use function count;
 use function ksort;
 
 final class Definitions implements Processor
@@ -27,15 +28,22 @@ final class Definitions implements Processor
     {
         $definitions = [];
         foreach ($this->modelRegistry->models() as $model) {
+            if ($model->reference() === null) {
+                continue;
+            }
+
             $definitions[$this->definitionNameResolver->getName($model->definition())] = $model->schema();
         }
-
-        ksort($definitions);
 
         if ($openApi->components === null) {
             $openApi->components = new Components([]);
         }
 
-//        $openApi->components->schemas = $definitions;
+        if (count($definitions) <= 0) {
+            return;
+        }
+
+        ksort($definitions);
+        $openApi->components->schemas = $definitions;
     }
 }
