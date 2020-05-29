@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model;
+namespace Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS;
 
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 
-final class JMSObject
+final class ComplexObject
 {
     /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
     public $unknownProperty;
@@ -32,11 +32,11 @@ final class JMSObject
     /** @var string[] */
     public array $arrayProperty = ['test'];
 
-    public ?JMSChildObject $childObjectProperty = null;
+    public ?ChildObject $childObjectProperty = null;
 
-    public ?JMSInlineObject $inlineObjectProperty = null;
+    public ?InlineObject $inlineObjectProperty = null;
 
-    /** @var JMSChildObject[] */
+    /** @var ChildObject[] */
     public array $arrayOfChildObjectsProperty = [];
 
     public ?DateTime $dateTimeProperty = null;

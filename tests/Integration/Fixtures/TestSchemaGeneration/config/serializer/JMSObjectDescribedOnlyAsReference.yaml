@@ -1,4 +1,0 @@
-Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSObjectDescribedOnlyAsReference:
-  exclusion_policy: ALL
-  properties:
-    intProperty: ~

@@ -40,7 +40,7 @@ final class GenerateSchemaTest extends TestCase
             ->getFormFactory();
 
         $metadataDirs = [
-            'Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model' => __DIR__ . '/Fixtures/TestSchemaGeneration/config/serializer',
+            'Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS' => __DIR__ . '/Fixtures/TestSchemaGeneration/config/serializer',
         ];
 
         $describerFormFactory = new Describer\Form\FormFactory($formFactory);

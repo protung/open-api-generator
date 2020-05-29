@@ -43,7 +43,7 @@ return new Model\Specification(
             [],
             [
                 Response::for200(
-                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObject::class)
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
                 ),
                 Response::for401(),
             ],
@@ -93,9 +93,9 @@ return new Model\Specification(
                 new Response(206, [], new Model\Path\Output\CollectionOutput(
                     new Model\Path\Output\ScalarOutput(Type::STRING)
                 )),
-                new Response(207, [], ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObject::class)),
+                new Response(207, [], ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)),
                 new Response(208, [], new Model\Path\Output\CollectionOutput(
-                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObject::class)
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
                 )),
             ],
             null,
@@ -133,8 +133,9 @@ return new Model\Specification(
                 Response::for200(
                     new PaginatedOutput(
                         'multiple_types',
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObject::class),
-                        ObjectOutput::withSerializationGroups(TestSchemaGeneration\Model\JMSObject::class, ['Test']),
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class),
+                        ObjectOutput::withSerializationGroups(TestSchemaGeneration\Model\JMS\ComplexObject::class, ['Test']),
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\NotDescribedObject::class),
                     )
                 ),
                 Response::for201(
@@ -148,8 +149,8 @@ return new Model\Specification(
                     ['Children with discriminator'],
                     new PaginatedOutput(
                         'children_with_discriminator',
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSDiscriminatorFirstChildObject::class),
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSDiscriminatorSecondChildObject::class),
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\DiscriminatorFirstChildObject::class),
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\DiscriminatorSecondChildObject::class),
                     )
                 ),
                 new Response(
@@ -157,7 +158,7 @@ return new Model\Specification(
                     ['Parent class with discriminator'],
                     new PaginatedOutput(
                         'parent_with_discriminator',
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSDiscriminatorParentObject::class),
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\DiscriminatorParentObject::class),
                     )
                 ),
                 Response::for204(),
@@ -175,19 +176,19 @@ return new Model\Specification(
                     Model\Path\Output\ReferencableOutput::forSchema(
                         // JMSObject is also used as not referenced.
                         // We want to make sure this is only referenced for this path.
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObject::class)
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
                     )
                 ),
                 Response::for201(
                     Model\Path\Output\ReferencableOutput::forSchema(
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObjectDescribedOnlyAsReference::class),
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ObjectDescribedOnlyAsReference::class),
                         'JMSObjectDescribedOnlyAsReferenceCustomName'
                     ),
                 ),
                 Response::for400(
                     // We want to test that using the same name will not throw an error is the definition matches.
                     Model\Path\Output\ReferencableOutput::forSchema(
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMSObjectDescribedOnlyAsReference::class),
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ObjectDescribedOnlyAsReference::class),
                         'JMSObjectDescribedOnlyAsReferenceCustomName'
                     ),
                 ),
@@ -253,6 +254,18 @@ return new Model\Specification(
                 Response::for400WithForm(TestSchemaGeneration\Form\TestFileUploadOptional::class),
             ],
             Model\Security\Reference::fromString('ApiKey')
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_get_not_described_object',
+            'Test',
+            'Test get a not descirbed object',
+            null,
+            [],
+            [
+                Response::for200(
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\NotDescribedObject::class),
+                ),
+            ],
         ),
     ],
     [

@@ -1,9 +1,0 @@
-Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSDiscriminatorParentObject:
-  exclusion_policy: ALL
-  discriminator:
-    field_name: discriminator
-    map:
-      first: Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSDiscriminatorFirstChildObject
-      second: Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMSDiscriminatorSecondChildObject
-  properties:
-    propertyInParent: ~

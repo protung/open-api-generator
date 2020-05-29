@@ -4,20 +4,11 @@
         xsi:schemaLocation="http://symfony.com/schema/routing
         http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="api_test_headers"
-           methods="GET"
-           path="/api/test/headers"
-    />
+    <route id="api_test_headers" methods="GET" path="/api/test/headers"/>
 
-    <route id="api_test_get_one_item"
-           methods="GET"
-           path="/api/test/item/{id}"
-    />
+    <route id="api_test_get_one_item" methods="GET" path="/api/test/item/{id}"/>
 
-    <route id="api_test_custom_query_params"
-           methods="GET"
-           path="/api/test/custom-query-params"
-    />
+    <route id="api_test_custom_query_params" methods="GET" path="/api/test/custom-query-params"/>
 
     <route id="api_test_custom_path_params"
            methods="GET"
@@ -27,49 +18,24 @@
         <requirement key="pattern">^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$</requirement>
     </route>
 
-    <route id="api_test_custom_responses"
-           methods="POST"
-           path="/api/test/responses"
-    />
+    <route id="api_test_custom_responses" methods="POST" path="/api/test/responses"/>
 
-    <route id="api_test_custom_error_responses"
-           methods="PUT"
-           path="/api/test/error-responses"
-    />
+    <route id="api_test_custom_error_responses" methods="PUT" path="/api/test/error-responses"/>
 
-    <route id="api_test_paginated_response"
-           methods="GET"
-           path="/api/test/paginated-response"
-    />
+    <route id="api_test_paginated_response" methods="GET" path="/api/test/paginated-response"/>
 
-    <route id="api_test_referenced_response"
-           methods="GET"
-           path="/api/test/referenced-response"
-    />
+    <route id="api_test_referenced_response" methods="GET" path="/api/test/referenced-response"/>
 
-    <route id="api_test_multiple_methods"
-           methods="GET|POST"
-           path="/api/test/multiple/methods"
-    />
+    <route id="api_test_multiple_methods" methods="GET|POST" path="/api/test/multiple/methods"/>
 
-    <route id="api_test_post_with_form"
-           methods="POST"
-           path="/api/test/with-form"
-    />
+    <route id="api_test_post_with_form" methods="POST" path="/api/test/with-form"/>
 
-    <route id="api_test_patch_with_form"
-           methods="PATCH"
-           path="/api/test/with-form"
-    />
+    <route id="api_test_patch_with_form" methods="PATCH" path="/api/test/with-form"/>
 
-    <route id="api_test_post_with_file_upload"
-           methods="POST"
-           path="/api/test/with-file-upload"
-    />
+    <route id="api_test_post_with_file_upload" methods="POST" path="/api/test/with-file-upload"/>
 
-    <route id="api_test_post_with_file_upload_optional"
-           methods="POST"
-           path="/api/test/with-file-upload-optional"
-    />
+    <route id="api_test_post_with_file_upload_optional" methods="POST" path="/api/test/with-file-upload-optional"/>
+
+    <route id="api_test_get_not_described_object" methods="GET" path="/api/test/not-described-object"/>
 
 </routes>

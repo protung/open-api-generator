@@ -1,0 +1,4 @@
+Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\ObjectDescribedOnlyAsReference:
+  exclusion_policy: ALL
+  properties:
+    intProperty: ~

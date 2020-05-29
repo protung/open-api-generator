@@ -1168,6 +1168,72 @@
                 ]
             }
         },
+        "\/api\/test\/not-described-object": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test get a not descirbed object",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned on success",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "stringProperty": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
         "\/api\/test\/paginated-response": {
             "get": {
                 "tags": [
@@ -1523,6 +1589,14 @@
                                                                                 "type": "string"
                                                                             }
                                                                         ]
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            },
+                                                            {
+                                                                "properties": {
+                                                                    "stringProperty": {
+                                                                        "type": "string"
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -1910,7 +1984,7 @@
                         "content": {
                             "application\/json": {
                                 "schema": {
-                                    "$ref": "#\/components\/schemas\/JMSObject"
+                                    "$ref": "#\/components\/schemas\/ComplexObject"
                                 }
                             }
                         }
@@ -3929,7 +4003,7 @@
             }
         },
         "schemas": {
-            "JMSObject": {
+            "ComplexObject": {
                 "properties": {
                     "virtualProperty": {
                         "type": "integer"

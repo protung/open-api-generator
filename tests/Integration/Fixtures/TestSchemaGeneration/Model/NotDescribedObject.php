@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model;
 
-final class JMSObjectDescribedOnlyAsReference
+final class NotDescribedObject
 {
-    public int $intProperty = 1;
+    public string $stringProperty = 'test';
 }

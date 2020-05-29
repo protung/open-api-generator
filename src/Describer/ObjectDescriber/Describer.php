@@ -11,4 +11,6 @@ use Speicher210\OpenApiGenerator\Model\Definition;
 interface Describer
 {
     public function describeInSchema(Schema $schema, Definition $definition, ObjectDescriber $objectDescriber) : void;
+
+    public function supports(Definition $definition) : bool;
 }

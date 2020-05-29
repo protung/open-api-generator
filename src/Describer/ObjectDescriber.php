@@ -6,20 +6,24 @@ namespace Speicher210\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
+use RuntimeException;
 use Speicher210\OpenApiGenerator\Describer\ObjectDescriber\Describer;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
+use function implode;
+use function sprintf;
 
 final class ObjectDescriber
 {
     private ModelRegistry $modelRegistry;
 
-    private Describer $describer;
+    /** @var Describer[] */
+    private array $describers;
 
-    public function __construct(ModelRegistry $modelRegistry, Describer $describer)
+    public function __construct(ModelRegistry $modelRegistry, Describer ...$describers)
     {
         $this->modelRegistry = $modelRegistry;
-        $this->describer     = $describer;
+        $this->describers    = $describers;
     }
 
     public function describe(Definition $definition) : Schema
@@ -43,10 +47,21 @@ final class ObjectDescriber
 
     private function createSchema(Definition $definition) : Schema
     {
-        $schema = new Schema([]);
+        foreach ($this->describers as $describer) {
+            if ($describer->supports($definition)) {
+                $schema = new Schema([]);
+                $describer->describeInSchema($schema, $definition, $this);
 
-        $this->describer->describeInSchema($schema, $definition, $this);
+                return $schema;
+            }
+        }
 
-        return $schema;
+        throw new RuntimeException(
+            sprintf(
+                'Definition with class name "%s" and serialization groups "%s" can not be described.',
+                $definition->className(),
+                implode(', ', $definition->serializationGroups())
+            )
+        );
     }
 }

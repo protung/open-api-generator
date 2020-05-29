@@ -287,4 +287,9 @@ final class JMSModel implements Describer
 
         return $defaultTypes;
     }
+
+    public function supports(Definition $definition) : bool
+    {
+        return $this->metadataFactory->getMetadataForClass($definition->className()) !== null;
+    }
 }
