@@ -6,7 +6,7 @@ namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
 
-final class RFC7807ErrorResponse extends SimpleOutput
+final class RFC7807ErrorOutput extends SimpleOutput
 {
     private int $errorCode;
 

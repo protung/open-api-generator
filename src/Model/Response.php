@@ -6,7 +6,7 @@ namespace Speicher210\OpenApiGenerator\Model;
 
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
-use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorResponse;
+use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
 use function implode;
 use function nl2br;
 use const PHP_EOL;
@@ -85,7 +85,7 @@ final class Response
      */
     public static function for401($description = ['Authentication is missing, invalid or expired']) : self
     {
-        return new self(401, (array) $description, RFC7807ErrorResponse::for401());
+        return new self(401, (array) $description, RFC7807ErrorOutput::for401());
     }
 
     /**
@@ -93,7 +93,7 @@ final class Response
      */
     public static function for403($description = ['Returned when operation is prohibited']) : self
     {
-        return new self(403, (array) $description, RFC7807ErrorResponse::for403());
+        return new self(403, (array) $description, RFC7807ErrorOutput::for403());
     }
 
     /**
@@ -101,7 +101,7 @@ final class Response
      */
     public static function for404($description = ['Returned when resource is not found']) : self
     {
-        return new self(404, (array) $description, RFC7807ErrorResponse::for404());
+        return new self(404, (array) $description, RFC7807ErrorOutput::for404());
     }
 
     /**
@@ -112,7 +112,7 @@ final class Response
         return new self(
             406,
             (array) $description,
-            RFC7807ErrorResponse::for406()
+            RFC7807ErrorOutput::for406()
         );
     }
 
@@ -124,7 +124,7 @@ final class Response
         return new self(
             415,
             (array) $description,
-            RFC7807ErrorResponse::for415()
+            RFC7807ErrorOutput::for415()
         );
     }
 
@@ -136,7 +136,7 @@ final class Response
         return new self(
             500,
             (array) $description,
-            RFC7807ErrorResponse::for500()
+            RFC7807ErrorOutput::for500()
         );
     }
 
