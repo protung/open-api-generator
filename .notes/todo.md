@@ -1,4 +1,3 @@
-- phpstan and psalm
 - find a way to provide description and example for properties
 - read requirements also from asserts
 - handle JMS property recursion

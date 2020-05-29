@@ -7,6 +7,7 @@ namespace Speicher210\OpenApiGenerator\Model;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
+use Symfony\Component\Form\FormTypeInterface;
 use function implode;
 use function nl2br;
 use const PHP_EOL;
@@ -71,7 +72,8 @@ final class Response
     }
 
     /**
-     * @param string[] $validationGroups
+     * @param class-string<FormTypeInterface> $formType
+     * @param string[]                        $validationGroups
      */
     public static function for400WithForm(string $formType, array $validationGroups = []) : self
     {

@@ -64,10 +64,12 @@ final class InputDescriber
                         'type' => $field->type(),
                     ]
                 );
-                if ($field->possibleValues() !== null) {
-                    $parameterSchema->enum = $field->possibleValues();
-                } elseif ($field->pattern() !== null) {
-                    $parameterSchema->pattern = $field->pattern();
+                $possibleValues  = $field->possibleValues();
+                $fieldPattern    = $field->pattern();
+                if ($possibleValues !== null) {
+                    $parameterSchema->enum = $possibleValues;
+                } elseif ($fieldPattern !== null) {
+                    $parameterSchema->pattern = $fieldPattern;
                 }
 
                 $parameter->schema = $parameterSchema;

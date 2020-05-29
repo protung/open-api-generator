@@ -74,6 +74,7 @@
         "analyse-phpstan": "phpstan analyse",
         "analyse-phpstan-update": "phpstan analyse --generate-baseline",
         "analyse-psalm": "psalm --show-info=false",
+        "analyse-psalm-update": "psalm --set-baseline=psalm.baseline.xml",
         "check": [
             "composer validate",
             "composer normalize --dry-run",

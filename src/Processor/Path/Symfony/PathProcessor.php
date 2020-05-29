@@ -79,7 +79,10 @@ final class PathProcessor implements PathProcessorInterface
                         'parameters' => [],
                         'responses' => new Responses([]),
                     ],
-                    static function ($value, $key) : bool {
+                    /**
+                     * @param mixed $value
+                     */
+                    static function ($value, string $key) : bool {
                         if ($key === 'deprecated' && $value === false) {
                             return false;
                         }
@@ -142,7 +145,7 @@ final class PathProcessor implements PathProcessorInterface
         Operation $operation,
         \Speicher210\OpenApiGenerator\Model\Response ...$responsesConfig
     ) : void {
-        Assert::notNull($operation->responses);
+        Assert::isInstanceOf($operation->responses, Responses::class);
 
         foreach ($responsesConfig as $response) {
             $responseData = [
