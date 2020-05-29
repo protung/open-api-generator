@@ -110,7 +110,6 @@ return new Model\Specification(
             [
                 Response::for400(new RFC7807ErrorResponse(400, 'something custom'), ['Custom message 400']),
                 Response::for401(),
-                Response::for402(['Custom message 402']),
                 Response::for403(['Custom message 403']),
                 Response::for404(['Custom message 404', 'Another custom message 404']),
                 Response::for406(),

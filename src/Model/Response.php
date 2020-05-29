@@ -30,34 +30,44 @@ final class Response
         $this->output      = $output;
     }
 
-    public static function for200(Output $output) : self
+    /**
+     * @param string[]|string $description
+     */
+    public static function for200(Output $output, $description = ['Returned on success']) : self
     {
-        return new self(200, ['Returned on success'], $output);
-    }
-
-    public static function for201(Output $output) : self
-    {
-        return new self(201, ['Returned on success'], $output);
-    }
-
-    public static function for202() : self
-    {
-        return new self(202, ['Returned when successfully accepted data']);
-    }
-
-    public static function for204() : self
-    {
-        return new self(204, ['Returned on success']);
+        return new self(200, (array) $description, $output);
     }
 
     /**
-     * @param string[] $description
+     * @param string[]|string $description
      */
-    public static function for400(
-        Output $output,
-        array $description = ['Returned when there is a validation error']
-    ) : self {
-        return new self(400, $description, $output);
+    public static function for201(Output $output, $description = ['Returned on success']) : self
+    {
+        return new self(201, (array) $description, $output);
+    }
+
+    /**
+     * @param string[]|string $description
+     */
+    public static function for202($description = ['Returned when successfully accepted data']) : self
+    {
+        return new self(202, (array) $description);
+    }
+
+    /**
+     * @param string[]|string $description
+     */
+    public static function for204($description = ['Returned on success']) : self
+    {
+        return new self(204, (array) $description);
+    }
+
+    /**
+     * @param string[]|string $description
+     */
+    public static function for400(Output $output, $description = ['Returned when there is a validation error']) : self
+    {
+        return new self(400, (array) $description, $output);
     }
 
     /**
@@ -70,58 +80,62 @@ final class Response
         );
     }
 
-    public static function for401() : self
+    /**
+     * @param string[]|string $description
+     */
+    public static function for401($description = ['Authentication is missing, invalid or expired']) : self
     {
-        return new self(401, ['Returned if user is not authenticated'], RFC7807ErrorResponse::for401());
+        return new self(401, (array) $description, RFC7807ErrorResponse::for401());
     }
 
     /**
-     * @param string[] $description
+     * @param string[]|string $description
      */
-    public static function for402(array $description) : self
+    public static function for403($description = ['Returned when operation is prohibited']) : self
     {
-        return new self(402, $description, RFC7807ErrorResponse::for402());
+        return new self(403, (array) $description, RFC7807ErrorResponse::for403());
     }
 
     /**
-     * @param string[] $description
+     * @param string[]|string $description
      */
-    public static function for403(array $description) : self
+    public static function for404($description = ['Returned when resource is not found']) : self
     {
-        return new self(403, $description, RFC7807ErrorResponse::for403());
+        return new self(404, (array) $description, RFC7807ErrorResponse::for404());
     }
 
     /**
-     * @param string[] $description
+     * @param string[]|string $description
      */
-    public static function for404(array $description) : self
-    {
-        return new self(404, $description, RFC7807ErrorResponse::for404());
-    }
-
-    public static function for406() : self
+    public static function for406($description = ['Returned when response content type expected is not supported']) : self
     {
         return new self(
             406,
-            ['Returned if response content type expected is not supported'],
+            (array) $description,
             RFC7807ErrorResponse::for406()
         );
     }
 
-    public static function for415() : self
+    /**
+     * @param string[]|string $description
+     */
+    public static function for415($description = ['Returned when request payload format is not supported']) : self
     {
         return new self(
             415,
-            ['Returned if request payload format is not supported'],
+            (array) $description,
             RFC7807ErrorResponse::for415()
         );
     }
 
-    public static function for500() : self
+    /**
+     * @param string[]|string $description
+     */
+    public static function for500($description = ['Returned on server error']) : self
     {
         return new self(
             500,
-            ['Returned on server error'],
+            (array) $description,
             RFC7807ErrorResponse::for500()
         );
     }

@@ -565,7 +565,7 @@
                         }
                     },
                     "401": {
-                        "description": "Returned if user is not authenticated",
+                        "description": "Authentication is missing, invalid or expired",
                         "content": {
                             "application\/problem+json": {
                                 "schema": {
@@ -589,36 +589,6 @@
                                         "title": "An error occurred",
                                         "status": 401,
                                         "detail": "Unauthorized"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "402": {
-                        "description": "Custom message 402",
-                        "content": {
-                            "application\/problem+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string"
-                                        },
-                                        "title": {
-                                            "type": "string"
-                                        },
-                                        "status": {
-                                            "type": "integer"
-                                        },
-                                        "detail": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
-                                        "title": "An error occurred",
-                                        "status": 402,
-                                        "detail": "Payment Required"
                                     }
                                 }
                             }
@@ -685,7 +655,7 @@
                         }
                     },
                     "406": {
-                        "description": "Returned if response content type expected is not supported",
+                        "description": "Returned when response content type expected is not supported",
                         "content": {
                             "application\/problem+json": {
                                 "schema": {
@@ -715,7 +685,7 @@
                         }
                     },
                     "415": {
-                        "description": "Returned if request payload format is not supported",
+                        "description": "Returned when request payload format is not supported",
                         "content": {
                             "application\/problem+json": {
                                 "schema": {
@@ -1023,7 +993,7 @@
                         }
                     },
                     "401": {
-                        "description": "Returned if user is not authenticated",
+                        "description": "Authentication is missing, invalid or expired",
                         "content": {
                             "application\/problem+json": {
                                 "schema": {

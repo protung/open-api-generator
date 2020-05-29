@@ -3,3 +3,4 @@
 - read requirements also from asserts
 - handle JMS property recursion
 - allow specifying responses as reference (#/components/responses/...)
+- mark output properties as required
