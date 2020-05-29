@@ -34,7 +34,7 @@ final class InputDescriber
         $this->formFactory                 = $formFactory;
     }
 
-    public function describe(Operation $operation, Input $input, ?string $httpMethod = null) : ?SpecObjectInterface
+    public function describe(Operation $operation, Input $input, string $httpMethod) : ?SpecObjectInterface
     {
         if ($input instanceof Input\FormInput) {
             $form = $this->formFactory->create($input->formDefinition());

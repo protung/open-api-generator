@@ -9,6 +9,22 @@ parameters:
 			count: 1
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
 		-
+			message: "#^Access to an undefined property cebe\\\\openapi\\\\spec\\\\Reference\\|cebe\\\\openapi\\\\spec\\\\Schema\\:\\:\\$format\\.$#"
+			count: 3
+			path: src/Describer/RequestBodyContent.php
+		-
+			message: "#^Parameter \\#1 \\$schema of method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\RequestBodyContent\\:\\:schemaHasFileProperties\\(\\) expects cebe\\\\openapi\\\\spec\\\\Schema, cebe\\\\openapi\\\\spec\\\\Reference\\|cebe\\\\openapi\\\\spec\\\\Schema given\\.$#"
+			count: 2
+			path: src/Describer/RequestBodyContent.php
+		-
+			message: "#^Parameter \\#1 \\$schema of method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\RequestBodyContent\\:\\:getFilePropertiesFromSchema\\(\\) expects cebe\\\\openapi\\\\spec\\\\Schema, cebe\\\\openapi\\\\spec\\\\Reference\\|cebe\\\\openapi\\\\spec\\\\Schema given\\.$#"
+			count: 1
+			path: src/Describer/RequestBodyContent.php
+		-
+			message: "#^Method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\RequestBodyContent\\:\\:getFilePropertiesFromSchema\\(\\) should return array\\<string\\> but returns array\\<int\\|string, int\\|string\\>\\.$#"
+			count: 1
+			path: src/Describer/RequestBodyContent.php
+		-
 			message: "#^Variable property access on cebe\\\\openapi\\\\spec\\\\PathItem\\.$#"
 			count: 1
 			path: src/Processor/PathsProcessor.php

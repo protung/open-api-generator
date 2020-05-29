@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Schema;
+use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Symfony\Component\Form\FormInterface;
 use function array_filter;
@@ -90,6 +91,7 @@ final class RequestBodyContent
         $schema->properties = $properties;
 
         foreach ($schema->properties as $name => $property) {
+            Assert::isInstanceOf($property, Schema::class);
             if ($property->type !== 'array') {
                 continue;
             }

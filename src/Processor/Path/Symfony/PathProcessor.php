@@ -142,6 +142,8 @@ final class PathProcessor implements PathProcessorInterface
         Operation $operation,
         \Speicher210\OpenApiGenerator\Model\Response ...$responsesConfig
     ) : void {
+        Assert::notNull($operation->responses);
+
         foreach ($responsesConfig as $response) {
             $responseData = [
                 'description' => $response->description(),

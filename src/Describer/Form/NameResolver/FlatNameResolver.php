@@ -20,7 +20,7 @@ trait FlatNameResolver
         $names   = [];
         $names[] = $form->getName();
 
-        while ($form->getParent()) {
+        while ($form->getParent() !== null) {
             $form    = $form->getParent();
             $names[] = $form->getName();
         }
