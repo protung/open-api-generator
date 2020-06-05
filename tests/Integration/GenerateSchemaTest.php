@@ -18,7 +18,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactoryBuilder;
 use Symfony\Component\Routing\Loader\XmlFileLoader;
-use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Validator\ValidatorBuilder;
 use function json_encode;
 use const JSON_THROW_ON_ERROR;
@@ -27,9 +26,7 @@ final class GenerateSchemaTest extends TestCase
 {
     private static function createGenerator(string $apiVersion) : Generator
     {
-        $routes = (new RouteCollectionBuilder(new XmlFileLoader(new FileLocator(__DIR__ . '/Fixtures/TestSchemaGeneration/'))))
-            ->import('routes.xml')
-            ->build();
+        $routes = (new XmlFileLoader(new FileLocator(__DIR__ . '/Fixtures/TestSchemaGeneration/')))->load('routes.xml');
 
         $validator = (new ValidatorBuilder())->getValidator();
 
@@ -72,7 +69,10 @@ final class GenerateSchemaTest extends TestCase
                                 $modelRegistry,
                                 new Describer\ObjectDescriber\JMSModel(
                                     new MetadataFactory(
-                                        (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver($metadataDirs, new AnnotationReader())
+                                        (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver(
+                                            $metadataDirs,
+                                            new AnnotationReader()
+                                        )
                                     ),
                                     $apiVersion
                                 ),
