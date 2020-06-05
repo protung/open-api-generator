@@ -93,15 +93,13 @@ return new Model\Specification(
                 new Response(
                     206,
                     [],
-                    new Model\Path\Output\CollectionOutput(new Model\Path\Output\ScalarOutput(Type::STRING))
+                    Model\Path\Output\CollectionOutput::forOutput(new Model\Path\Output\ScalarOutput(Type::STRING))
                 ),
                 new Response(207, [], ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)),
                 new Response(
                     208,
                     [],
-                    new Model\Path\Output\CollectionOutput(
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
-                    )
+                    Model\Path\Output\CollectionOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
                 ),
                 new Response(
                     209,

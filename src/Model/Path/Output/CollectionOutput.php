@@ -10,9 +10,19 @@ final class CollectionOutput implements Output
 {
     private Output $output;
 
-    public function __construct(Output $output)
+    private function __construct(Output $output)
     {
         $this->output = $output;
+    }
+
+    public static function forOutput(Output $output) : self
+    {
+        return new self($output);
+    }
+
+    public static function forClass(string $className) : self
+    {
+        return new self(ObjectOutput::forClass($className));
     }
 
     public function output() : Output
