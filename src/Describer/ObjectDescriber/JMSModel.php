@@ -15,6 +15,7 @@ use JMS\Serializer\Metadata\StaticPropertyMetadata;
 use JMS\Serializer\Metadata\VirtualPropertyMetadata;
 use JMS\Serializer\SerializationContext;
 use Metadata\MetadataFactoryInterface;
+use RuntimeException;
 use Speicher210\OpenApiGenerator\Analyser\PropertyAnalyser;
 use Speicher210\OpenApiGenerator\Analyser\PropertyAnalysisSingleType;
 use Speicher210\OpenApiGenerator\Analyser\PropertyAnalysisType;
@@ -53,20 +54,35 @@ final class JMSModel implements Describer
         Assert::allIsInstanceOf($propertyMetadata, PropertyMetadata::class);
 
         $serializationGroups = $definition->serializationGroups();
-        $metadataProperties  = $this->getPropertiesInSerializationGroups($propertyMetadata, $serializationGroups);
+        $metadataProperties  = array_filter(
+            $this->getPropertiesInSerializationGroups($propertyMetadata, $serializationGroups),
+            function (PropertyMetadata $metadataProperty) : bool {
+                // filter properties for not current version
+                return ! $this->versionExclusionStrategy->shouldSkipProperty(
+                    $metadataProperty,
+                    SerializationContext::create()
+                );
+            }
+        );
 
         $properties = [];
 
         foreach ($metadataProperties as $metadataProperty) {
-            // filter properties for not current version
-            if ($this->versionExclusionStrategy->shouldSkipProperty(
-                $metadataProperty,
-                SerializationContext::create()
-            )) {
-                continue;
-            }
-
             if ($metadataProperty->inline === true) {
+                $type = $this->getNestedTypeInArray($metadataProperty);
+                if ($type !== null) {
+                    if (count($metadataProperties) > 1) {
+                        throw new RuntimeException(
+                            'Describing of inline array of objects together with other properties is not supported.'
+                        );
+                    }
+
+                    $schema->type  = Type::ARRAY;
+                    $schema->items = $objectDescriber->describe(new Definition($type, $serializationGroups));
+
+                    return;
+                }
+
                 $inlineModel = new Schema([]);
                 $this->describeInSchema(
                     $inlineModel,

@@ -2426,6 +2426,34 @@
                             }
                         }
                     },
+                    "209": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "stringProperty": {
+                                                "type": "string"
+                                            },
+                                            "innerChildProperty": {
+                                                "properties": {
+                                                    "stringProperty": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "type": "object",
+                                        "nullable": true
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Returned on server error",
                         "content": {

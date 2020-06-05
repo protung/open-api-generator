@@ -90,13 +90,24 @@ return new Model\Specification(
                         new IOField('myChoice', Type::NUMBER, null, [1, 2, 3]),
                     )
                 ),
-                new Response(206, [], new Model\Path\Output\CollectionOutput(
-                    new Model\Path\Output\ScalarOutput(Type::STRING)
-                )),
+                new Response(
+                    206,
+                    [],
+                    new Model\Path\Output\CollectionOutput(new Model\Path\Output\ScalarOutput(Type::STRING))
+                ),
                 new Response(207, [], ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)),
-                new Response(208, [], new Model\Path\Output\CollectionOutput(
-                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
-                )),
+                new Response(
+                    208,
+                    [],
+                    new Model\Path\Output\CollectionOutput(
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
+                    )
+                ),
+                new Response(
+                    209,
+                    [],
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\InlineArrayOfObjects::class)
+                ),
             ],
             null,
             true
@@ -134,7 +145,10 @@ return new Model\Specification(
                     new PaginatedOutput(
                         'multiple_types',
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class),
-                        ObjectOutput::withSerializationGroups(TestSchemaGeneration\Model\JMS\ComplexObject::class, ['Test']),
+                        ObjectOutput::withSerializationGroups(
+                            TestSchemaGeneration\Model\JMS\ComplexObject::class,
+                            ['Test']
+                        ),
                         ObjectOutput::forClass(TestSchemaGeneration\Model\NotDescribedObject::class),
                     )
                 ),

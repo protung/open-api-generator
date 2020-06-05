@@ -1,0 +1,6 @@
+Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\InlineArrayOfObjects:
+  exclusion_policy: ALL
+  properties:
+    inlineArrayOfChildObjectsProperty:
+      type: array<Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\ChildObject>
+      inline: true
