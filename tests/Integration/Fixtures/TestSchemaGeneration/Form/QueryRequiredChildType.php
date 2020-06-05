@@ -17,7 +17,7 @@ final class QueryRequiredChildType extends AbstractType
     {
         $builder
             ->add('paramRequired', TextType::class, ['required' => true])
-            ->add('paramRequiredWithCustomLabel', TextType::class, ['required' => true, 'label' => 'Custom Label'])
+            ->add('paramRequiredWithCustomDescription', TextType::class, ['required' => true, 'help' => 'My Description'])
             ->add('paramOptional', TextType::class, ['required' => false]);
     }
 }

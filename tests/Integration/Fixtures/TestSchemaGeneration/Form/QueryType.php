@@ -17,7 +17,11 @@ final class QueryType extends AbstractType
     {
         $builder
             ->add('paramNoType')
-            ->add('paramWithCustomLabel', TextType::class, ['label' => 'customLabel'])
+            ->add(
+                'paramWithCustomDescriptionAndExample',
+                TextType::class,
+                ['help' => 'customLabel', 'attr' => ['placeholder' => 'my-query-example']]
+            )
             ->add('innerForm', TestType::class)
             ->add('paramRequiredChildren', QueryRequiredChildType::class, ['required' => false]);
     }

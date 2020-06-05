@@ -98,11 +98,13 @@
                         "required": true
                     },
                     {
-                        "name": "paramWithCustomLabel",
+                        "name": "paramWithCustomDescriptionAndExample",
                         "in": "query",
                         "description": "customLabel",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "my-query-example",
+                            "description": "customLabel"
                         },
                         "required": true
                     },
@@ -446,6 +448,7 @@
                     {
                         "name": "innerForm[paramWithExampleAndDescription]",
                         "in": "query",
+                        "description": "Custom description.",
                         "schema": {
                             "type": "string",
                             "example": "my-example",
@@ -463,11 +466,12 @@
                         "description": "Field required for paramRequiredChildren"
                     },
                     {
-                        "name": "paramRequiredChildren[paramRequiredWithCustomLabel]",
+                        "name": "paramRequiredChildren[paramRequiredWithCustomDescription]",
                         "in": "query",
-                        "description": "Custom Label<br>\nField required for paramRequiredChildren",
+                        "description": "My Description<br>\nField required for paramRequiredChildren",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "My Description"
                         },
                         "required": false
                     },

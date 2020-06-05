@@ -61,7 +61,7 @@ final class Query
         $name = $nameResolver->getPropertyName($form);
 
         $parameter   = new Parameter(['name' => $name, 'in' => self::PARAMETER_LOCATION_QUERY]);
-        $description = $form->getConfig()->getOption('label');
+        $description = $form->getConfig()->getOption('help');
         if ($description !== null) {
             $parameter->description = $description;
         }
