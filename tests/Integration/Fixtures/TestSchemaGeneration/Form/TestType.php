@@ -66,6 +66,11 @@ final class TestType extends AbstractType
                 ]
             )
             ->add('paramCustom', TestInnerType::class)
-            ->add('paramExtended', TestExtendedType::class);
+            ->add('paramExtended', TestExtendedType::class)
+            ->add(
+                'paramWithExampleAndDescription',
+                TextType::class,
+                ['help' => 'Custom description.', 'attr' => ['placeholder' => 'my-example']]
+            );
     }
 }

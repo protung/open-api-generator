@@ -70,5 +70,17 @@ final class SymfonyFormPropertyDescriber implements PropertyDescriber
                     $this->describe($schema, $parentType->getBlockPrefix(), $parentForm);
                 }
         }
+
+        $attr = $form->getConfig()->getOption('attr');
+        if (is_array($attr) && isset($attr['placeholder'])) {
+            $schema->example = $attr['placeholder'];
+        }
+
+        $description = $form->getConfig()->getOption('help');
+        if ($description === null) {
+            return;
+        }
+
+        $schema->description = $description;
     }
 }
