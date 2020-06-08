@@ -421,6 +421,41 @@
                         "required": true
                     },
                     {
+                        "name": "innerForm[paramCustomCollection]",
+                        "in": "query",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "innerForm[paramCustomCollection][test_inner][paramInt]": {
+                                        "type": "integer"
+                                    },
+                                    "innerForm[paramCustomCollection][test_inner][paramText]": {
+                                        "type": "string"
+                                    },
+                                    "innerForm[paramCustomCollection][test_inner][paramInnerCustom]": {
+                                        "type": "object",
+                                        "properties": {
+                                            "innerForm[paramCustomCollection][test_inner][paramInnerCustom][paramText]": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "innerForm[paramCustomCollection][test_inner][paramInnerCustom][paramText]"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "innerForm[paramCustomCollection][test_inner][paramInt]",
+                                    "innerForm[paramCustomCollection][test_inner][paramText]",
+                                    "innerForm[paramCustomCollection][test_inner][paramInnerCustom]"
+                                ]
+                            }
+                        },
+                        "required": true
+                    },
+                    {
                         "name": "innerForm[paramCustom][paramInt]",
                         "in": "query",
                         "schema": {
@@ -3114,6 +3149,17 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramCustomCollection": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramCustom": {
                                                             "type": "object",
                                                             "properties": {
@@ -3320,6 +3366,36 @@
                                         "minItems": 3,
                                         "maxItems": 44
                                     },
+                                    "paramCustomCollection": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "paramInt": {
+                                                    "type": "integer"
+                                                },
+                                                "paramText": {
+                                                    "type": "string"
+                                                },
+                                                "paramInnerCustom": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "paramText": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "paramText"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "paramInt",
+                                                "paramText",
+                                                "paramInnerCustom"
+                                            ]
+                                        }
+                                    },
                                     "paramCustom": {
                                         "type": "object",
                                         "properties": {
@@ -3370,6 +3446,7 @@
                                     "paramChoiceWithLoader",
                                     "paramPassword",
                                     "paramCollection",
+                                    "paramCustomCollection",
                                     "paramCustom",
                                     "paramExtended",
                                     "paramWithExampleAndDescription"
@@ -3448,6 +3525,36 @@
                                         "minItems": 3,
                                         "maxItems": 44
                                     },
+                                    "paramCustomCollection": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "paramCustomCollection[test_inner][paramInt]": {
+                                                    "type": "integer"
+                                                },
+                                                "paramCustomCollection[test_inner][paramText]": {
+                                                    "type": "string"
+                                                },
+                                                "paramCustomCollection[test_inner][paramInnerCustom]": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "paramCustomCollection[test_inner][paramInnerCustom][paramText]": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "paramCustomCollection[test_inner][paramInnerCustom][paramText]"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "paramCustomCollection[test_inner][paramInt]",
+                                                "paramCustomCollection[test_inner][paramText]",
+                                                "paramCustomCollection[test_inner][paramInnerCustom]"
+                                            ]
+                                        }
+                                    },
                                     "paramCustom[paramInt]": {
                                         "type": "integer"
                                     },
@@ -3480,6 +3587,7 @@
                                     "paramChoiceWithLoader",
                                     "paramPassword",
                                     "paramCollection[]",
+                                    "paramCustomCollection",
                                     "paramCustom[paramInt]",
                                     "paramCustom[paramText]",
                                     "paramCustom[paramInnerCustom][paramText]",
@@ -3774,6 +3882,17 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramCustomCollection": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramCustom": {
                                                             "type": "object",
                                                             "properties": {
@@ -3980,6 +4099,28 @@
                                         "minItems": 3,
                                         "maxItems": 44
                                     },
+                                    "paramCustomCollection": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "paramInt": {
+                                                    "type": "integer"
+                                                },
+                                                "paramText": {
+                                                    "type": "string"
+                                                },
+                                                "paramInnerCustom": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "paramText": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
                                     "paramCustom": {
                                         "type": "object",
                                         "properties": {
@@ -4082,6 +4223,28 @@
                                         },
                                         "minItems": 3,
                                         "maxItems": 44
+                                    },
+                                    "paramCustomCollection": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "paramCustomCollection[test_inner][paramInt]": {
+                                                    "type": "integer"
+                                                },
+                                                "paramCustomCollection[test_inner][paramText]": {
+                                                    "type": "string"
+                                                },
+                                                "paramCustomCollection[test_inner][paramInnerCustom]": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "paramCustomCollection[test_inner][paramInnerCustom][paramText]": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     },
                                     "paramCustom[paramInt]": {
                                         "type": "integer"

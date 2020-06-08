@@ -67,6 +67,7 @@ final class TestType extends AbstractType
                     'constraints' => [new Count(['min' => 3, 'max' => 44])],
                 ]
             )
+            ->add('paramCustomCollection', TestCustomCollectionType::class)
             ->add('paramCustom', TestInnerType::class)
             ->add('paramExtended', TestExtendedType::class)
             ->add(

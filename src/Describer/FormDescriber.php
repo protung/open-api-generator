@@ -12,6 +12,7 @@ use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber;
 use Speicher210\OpenApiGenerator\Describer\Form\RequirementsDescriber;
 use Speicher210\OpenApiGenerator\Model\FormDefinition;
+use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use function array_filter;
@@ -47,17 +48,36 @@ final class FormDescriber
 
         $schema = new Schema([]);
 
-        switch ($blockPrefix) {
-            case 'collection':
-                $this->describeCollection($schema, $form, $nameResolver, $httpMethod);
-                break;
-            default:
-                $this->propertyDescriber->describe($schema, $blockPrefix, $form);
+        if ($this->isCollection($formConfig)) {
+            $this->describeCollection($schema, $form, $nameResolver, $httpMethod);
+        } else {
+            $this->propertyDescriber->describe($schema, $blockPrefix, $form);
         }
 
         $this->requirementsDescriber->describe($schema, $form);
 
         return $schema;
+    }
+
+    private function isCollection(FormConfigInterface $formConfig) : bool
+    {
+        if ($formConfig->getType()->getBlockPrefix() === 'collection') {
+            return true;
+        }
+
+        $parentType = $formConfig->getType()->getParent();
+        if ($parentType !== null) {
+            $newForm = $this->formFactory->create(
+                new FormDefinition(
+                    get_class($parentType->getInnerType()),
+                    (array) $formConfig->getOption('validation_groups')
+                )
+            );
+
+            return $this->isCollection($newForm->getConfig());
+        }
+
+        return false;
     }
 
     public function addDeepSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod) : Schema
