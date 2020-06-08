@@ -139,6 +139,14 @@
                         "required": true
                     },
                     {
+                        "name": "innerForm[paramHidden]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": false
+                    },
+                    {
                         "name": "innerForm[paramNumber]",
                         "in": "query",
                         "schema": {
@@ -2904,6 +2912,17 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramHidden": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramNumber": {
                                                             "type": "object",
                                                             "properties": {
@@ -3248,6 +3267,9 @@
                                         "minLength": 4,
                                         "maxLength": 6
                                     },
+                                    "paramHidden": {
+                                        "type": "string"
+                                    },
                                     "paramNumber": {
                                         "type": "number",
                                         "minimum": 3.14,
@@ -3372,6 +3394,9 @@
                                         "type": "string",
                                         "minLength": 4,
                                         "maxLength": 6
+                                    },
+                                    "paramHidden": {
+                                        "type": "string"
                                     },
                                     "paramNumber": {
                                         "type": "number",
@@ -3547,6 +3572,17 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramHidden": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramNumber": {
                                                             "type": "object",
                                                             "properties": {
@@ -3891,6 +3927,9 @@
                                         "minLength": 4,
                                         "maxLength": 6
                                     },
+                                    "paramHidden": {
+                                        "type": "string"
+                                    },
                                     "paramNumber": {
                                         "type": "number",
                                         "minimum": 3.14,
@@ -3990,6 +4029,9 @@
                                         "type": "string",
                                         "minLength": 4,
                                         "maxLength": 6
+                                    },
+                                    "paramHidden": {
+                                        "type": "string"
                                     },
                                     "paramNumber": {
                                         "type": "number",

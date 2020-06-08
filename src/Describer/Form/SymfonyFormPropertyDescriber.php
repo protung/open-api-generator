@@ -35,6 +35,7 @@ final class SymfonyFormPropertyDescriber implements PropertyDescriber
                 $schema->format = 'date-time';
                 break;
             case 'text':
+            case 'hidden':
             case 'string':
                 $schema->type = Type::STRING;
                 break;
