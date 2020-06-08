@@ -503,7 +503,8 @@
                         "name": "paramRequiredChildren[paramRequired]",
                         "in": "query",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Field required for paramRequiredChildren"
                         },
                         "required": false,
                         "description": "Field required for paramRequiredChildren"
@@ -514,7 +515,7 @@
                         "description": "My Description<br>\nField required for paramRequiredChildren",
                         "schema": {
                             "type": "string",
-                            "description": "My Description"
+                            "description": "My Description<br>\nField required for paramRequiredChildren"
                         },
                         "required": false
                     },

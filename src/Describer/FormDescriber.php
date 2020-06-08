@@ -41,45 +41,6 @@ final class FormDescriber
         $this->requirementsDescriber = $requirementsDescriber;
     }
 
-    public function createSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod) : Schema
-    {
-        $formConfig  = $form->getConfig();
-        $blockPrefix = $formConfig->getType()->getBlockPrefix();
-
-        $schema = new Schema([]);
-
-        if ($this->isCollection($formConfig)) {
-            $this->describeCollection($schema, $form, $nameResolver, $httpMethod);
-        } else {
-            $this->propertyDescriber->describe($schema, $blockPrefix, $form);
-        }
-
-        $this->requirementsDescriber->describe($schema, $form);
-
-        return $schema;
-    }
-
-    private function isCollection(FormConfigInterface $formConfig) : bool
-    {
-        if ($formConfig->getType()->getBlockPrefix() === 'collection') {
-            return true;
-        }
-
-        $parentType = $formConfig->getType()->getParent();
-        if ($parentType !== null) {
-            $newForm = $this->formFactory->create(
-                new FormDefinition(
-                    get_class($parentType->getInnerType()),
-                    (array) $formConfig->getOption('validation_groups')
-                )
-            );
-
-            return $this->isCollection($newForm->getConfig());
-        }
-
-        return false;
-    }
-
     public function addDeepSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod) : Schema
     {
         if ($form->count() === 0) {
@@ -182,6 +143,45 @@ final class FormDescriber
         $schema->properties      = $schemaProperties;
 
         $this->handleRequiredProperty($schema, $name, $form, $httpMethod);
+    }
+
+    private function createSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod) : Schema
+    {
+        $formConfig  = $form->getConfig();
+        $blockPrefix = $formConfig->getType()->getBlockPrefix();
+
+        $schema = new Schema([]);
+
+        if ($this->isCollection($formConfig)) {
+            $this->describeCollection($schema, $form, $nameResolver, $httpMethod);
+        } else {
+            $this->propertyDescriber->describe($schema, $blockPrefix, $form);
+        }
+
+        $this->requirementsDescriber->describe($schema, $form);
+
+        return $schema;
+    }
+
+    private function isCollection(FormConfigInterface $formConfig) : bool
+    {
+        if ($formConfig->getType()->getBlockPrefix() === 'collection') {
+            return true;
+        }
+
+        $parentType = $formConfig->getType()->getParent();
+        if ($parentType !== null) {
+            $newForm = $this->formFactory->create(
+                new FormDefinition(
+                    get_class($parentType->getInnerType()),
+                    (array) $formConfig->getOption('validation_groups')
+                )
+            );
+
+            return $this->isCollection($newForm->getConfig());
+        }
+
+        return false;
     }
 
     private function updateDescription(?string $originalDescription, string $newText) : string
