@@ -19,6 +19,10 @@ final class SymfonyFormPropertyDescriber implements PropertyDescriber
         $formConfig = $form->getConfig();
 
         switch ($blockPrefix) {
+            case 'boolean':
+            case 'checkbox':
+                $schema->type = Type::BOOLEAN;
+                break;
             case 'integer':
                 $schema->type = Type::INTEGER;
                 break;

@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGene
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -36,6 +37,8 @@ final class TestType extends AbstractType
     {
         $builder
             ->add('paramNoType')
+            ->add('paramBoolean', TestBooleanType::class)
+            ->add('paramCheckbox', CheckboxType::class)
             ->add('paramInt', IntegerType::class, ['constraints' => [new GreaterThan(7), new LessThan(13)]])
             ->add('paramText', TextType::class, ['constraints' => [new Length(['min' => 4, 'max' => 6])]])
             ->add('paramHidden', HiddenType::class)
