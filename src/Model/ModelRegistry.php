@@ -11,6 +11,7 @@ use function array_key_exists;
 use function implode;
 use function md5;
 use function serialize;
+use function spl_object_hash;
 use function sprintf;
 
 final class ModelRegistry
@@ -99,6 +100,17 @@ final class ModelRegistry
 
     private function definitionKey(Definition $definition) : string
     {
-        return md5(serialize([$definition->className(), $definition->serializationGroups()]));
+        $exampleObject = $definition->exampleObject();
+        $objectHash    = $exampleObject !== null ? spl_object_hash($exampleObject) : null;
+
+        return md5(
+            serialize(
+                [
+                    $definition->className(),
+                    $definition->serializationGroups(),
+                    $objectHash,
+                ]
+            )
+        );
     }
 }

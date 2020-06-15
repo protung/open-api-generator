@@ -38,4 +38,6 @@
 
     <route id="api_test_get_not_described_object" methods="GET" path="/api/test/not-described-object"/>
 
+    <route id="api_test_get_output_object_example" methods="GET" path="/api/test/output/object/example"/>
+
 </routes>

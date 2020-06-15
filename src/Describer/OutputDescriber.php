@@ -8,6 +8,7 @@ use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\SpecObjectInterface;
 use InvalidArgumentException;
+use Speicher210\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
@@ -27,17 +28,20 @@ final class OutputDescriber
     /** @var array<OutputDescriber\OutputDescriber> */
     private array $outputDescribers;
 
-    public function __construct(ObjectDescriber $objectDescriber, FormFactory $formFactory)
-    {
+    public function __construct(
+        ObjectDescriber $objectDescriber,
+        FormFactory $formFactory,
+        ExampleDescriber $exampleDescriber
+    ) {
         $this->objectDescriber = $objectDescriber;
 
         $this->outputDescribers = [
             new OutputDescriber\ScalarOutputDescriber(),
             new OutputDescriber\SimpleOutputDescriber(),
-            new OutputDescriber\CollectionOutputDescriber($this),
+            new OutputDescriber\CollectionOutputDescriber($this, $exampleDescriber),
             new OutputDescriber\PaginatedOutputDescriber($this),
             new OutputDescriber\FormErrorOutputDescriber($formFactory),
-            new OutputDescriber\ObjectOutputDescriber($this->objectDescriber),
+            new OutputDescriber\ObjectOutputDescriber($this->objectDescriber, $exampleDescriber),
         ];
     }
 
@@ -47,7 +51,7 @@ final class OutputDescriber
     public function describe(Output $output) : SpecObjectInterface
     {
         if ($output instanceof ReferencableOutput) {
-            $definition = new Definition($output->output()->className(), $output->output()->serializationGroups());
+            $definition = Definition::fromObjectOutput($output->output());
 
             return $this->objectDescriber->describeAsReference($definition, $output->referencePath());
         }

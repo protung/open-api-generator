@@ -279,6 +279,31 @@ return new Model\Specification(
                 ),
             ],
         ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_get_output_object_example',
+            'Test',
+            'Test get an output example from an object',
+            null,
+            [],
+            [
+                Response::for200(
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
+                    ->withExample(TestSchemaGeneration\Model\JMS\ComplexObjectExampleBuilder::create()),
+                ),
+                Response::for201(
+                    ObjectOutput::withSerializationGroups(TestSchemaGeneration\Model\JMS\ComplexObject::class, ['Test'])
+                    ->withExample(TestSchemaGeneration\Model\JMS\ComplexObjectExampleBuilder::create()),
+                ),
+                new Response(
+                    202,
+                    [],
+                    Model\Path\Output\CollectionOutput::forOutput(
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
+                            ->withExample(TestSchemaGeneration\Model\JMS\ComplexObjectExampleBuilder::create())
+                    )
+                ),
+            ],
+        ),
     ],
     [
         Input\HeaderInput::withName('X-ALWAYS'),

@@ -1308,6 +1308,610 @@
                 "security": []
             }
         },
+        "\/api\/test\/output\/object\/example": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test get an output example from an object",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned on success",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "virtualProperty": {
+                                            "type": "integer"
+                                        },
+                                        "virtualPropertyWithCustomName": {
+                                            "type": "string"
+                                        },
+                                        "unknownProperty": {
+                                            "type": "string"
+                                        },
+                                        "stringProperty": {
+                                            "type": "string"
+                                        },
+                                        "propertyWithCustomName": {
+                                            "type": "string"
+                                        },
+                                        "nullableStringProperty": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "intProperty": {
+                                            "type": "integer"
+                                        },
+                                        "floatProperty": {
+                                            "type": "number",
+                                            "format": "float"
+                                        },
+                                        "boolProperty": {
+                                            "type": "boolean"
+                                        },
+                                        "arrayProperty": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "childObjectProperty": {
+                                            "properties": {
+                                                "stringProperty": {
+                                                    "type": "string"
+                                                },
+                                                "innerChildProperty": {
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "type": "object",
+                                            "nullable": true
+                                        },
+                                        "inlineObjectStringProperty": {
+                                            "type": "string"
+                                        },
+                                        "inlineObjectIntProperty": {
+                                            "type": "integer"
+                                        },
+                                        "inlineObjectChildObjectProperty": {
+                                            "properties": {
+                                                "stringProperty": {
+                                                    "type": "string"
+                                                },
+                                                "innerChildProperty": {
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "type": "object",
+                                            "nullable": true
+                                        },
+                                        "arrayOfChildObjectsProperty": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "stringProperty": {
+                                                        "type": "string"
+                                                    },
+                                                    "innerChildProperty": {
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object",
+                                                        "nullable": true
+                                                    }
+                                                },
+                                                "type": "object",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "dateTimeProperty": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
+                                        "dateTimeImmutableProperty": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
+                                        "dateTimeInterfaceProperty": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
+                                        "scalarUnionProperty": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "integer"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "virtual_property": 123,
+                                        "virtualPropertyWithCustomName": "testing",
+                                        "unknown_property": null,
+                                        "string_property": "stringProperty",
+                                        "propertyWithCustomName": "stringPropertyWithCustomName",
+                                        "string_property_for_old_version": "stringPropertyForOldVersion",
+                                        "nullable_string_property": null,
+                                        "int_property": 1,
+                                        "float_property": 1.23,
+                                        "bool_property": true,
+                                        "array_property": [
+                                            "test"
+                                        ],
+                                        "child_object_property": {
+                                            "string_property": "test",
+                                            "inner_child_property": null
+                                        },
+                                        "inline_object_string_property": "inlineObjectStringProperty",
+                                        "inline_object_int_property": 1,
+                                        "inline_object_child_object_property": null,
+                                        "array_of_child_objects_property": [
+                                            {
+                                                "string_property": "test",
+                                                "inner_child_property": null
+                                            }
+                                        ],
+                                        "date_time_property": "2020-06-01T14:00:00+00:00",
+                                        "date_time_immutable_property": null,
+                                        "date_time_interface_property": null,
+                                        "scalar_union_property": null
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Returned on success",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "virtualProperty": {
+                                            "type": "integer"
+                                        },
+                                        "virtualPropertyWithCustomName": {
+                                            "type": "string"
+                                        },
+                                        "unknownProperty": {
+                                            "type": "string"
+                                        },
+                                        "stringProperty": {
+                                            "type": "string"
+                                        },
+                                        "stringPropertyWithCustomGroup": {
+                                            "type": "string"
+                                        },
+                                        "propertyWithCustomName": {
+                                            "type": "string"
+                                        },
+                                        "nullableStringProperty": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "intProperty": {
+                                            "type": "integer"
+                                        },
+                                        "floatProperty": {
+                                            "type": "number",
+                                            "format": "float"
+                                        },
+                                        "boolProperty": {
+                                            "type": "boolean"
+                                        },
+                                        "arrayProperty": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "childObjectProperty": {
+                                            "properties": {
+                                                "stringProperty": {
+                                                    "type": "string"
+                                                },
+                                                "stringPropertyWithCustomGroup": {
+                                                    "type": "string"
+                                                },
+                                                "innerChildProperty": {
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "type": "object",
+                                            "nullable": true
+                                        },
+                                        "inlineObjectStringProperty": {
+                                            "type": "string"
+                                        },
+                                        "inlineObjectIntProperty": {
+                                            "type": "integer"
+                                        },
+                                        "inlineObjectChildObjectProperty": {
+                                            "properties": {
+                                                "stringProperty": {
+                                                    "type": "string"
+                                                },
+                                                "stringPropertyWithCustomGroup": {
+                                                    "type": "string"
+                                                },
+                                                "innerChildProperty": {
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "type": "object",
+                                            "nullable": true
+                                        },
+                                        "arrayOfChildObjectsProperty": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "stringProperty": {
+                                                        "type": "string"
+                                                    },
+                                                    "stringPropertyWithCustomGroup": {
+                                                        "type": "string"
+                                                    },
+                                                    "innerChildProperty": {
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object",
+                                                        "nullable": true
+                                                    }
+                                                },
+                                                "type": "object",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "dateTimeProperty": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
+                                        "dateTimeImmutableProperty": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
+                                        "dateTimeInterfaceProperty": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
+                                        "scalarUnionProperty": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "integer"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "virtual_property": 123,
+                                        "virtualPropertyWithCustomName": "testing",
+                                        "unknown_property": null,
+                                        "string_property": "stringProperty",
+                                        "string_property_with_custom_group": "stringPropertyWithCustomGroup",
+                                        "propertyWithCustomName": "stringPropertyWithCustomName",
+                                        "string_property_for_old_version": "stringPropertyForOldVersion",
+                                        "nullable_string_property": null,
+                                        "int_property": 1,
+                                        "float_property": 1.23,
+                                        "bool_property": true,
+                                        "array_property": [
+                                            "test"
+                                        ],
+                                        "child_object_property": {
+                                            "string_property": "test",
+                                            "string_property_with_custom_group": "stringPropertyWithCustomGroup",
+                                            "inner_child_property": null
+                                        },
+                                        "inline_object_string_property": "inlineObjectStringProperty",
+                                        "inline_object_int_property": 1,
+                                        "inline_object_child_object_property": null,
+                                        "array_of_child_objects_property": [
+                                            {
+                                                "string_property": "test",
+                                                "string_property_with_custom_group": "stringPropertyWithCustomGroup",
+                                                "inner_child_property": null
+                                            }
+                                        ],
+                                        "date_time_property": "2020-06-01T14:00:00+00:00",
+                                        "date_time_immutable_property": null,
+                                        "date_time_interface_property": null,
+                                        "scalar_union_property": null
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "202": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "virtualProperty": {
+                                                "type": "integer"
+                                            },
+                                            "virtualPropertyWithCustomName": {
+                                                "type": "string"
+                                            },
+                                            "unknownProperty": {
+                                                "type": "string"
+                                            },
+                                            "stringProperty": {
+                                                "type": "string"
+                                            },
+                                            "propertyWithCustomName": {
+                                                "type": "string"
+                                            },
+                                            "nullableStringProperty": {
+                                                "type": "string",
+                                                "nullable": true
+                                            },
+                                            "intProperty": {
+                                                "type": "integer"
+                                            },
+                                            "floatProperty": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "boolProperty": {
+                                                "type": "boolean"
+                                            },
+                                            "arrayProperty": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "childObjectProperty": {
+                                                "properties": {
+                                                    "stringProperty": {
+                                                        "type": "string"
+                                                    },
+                                                    "innerChildProperty": {
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object",
+                                                        "nullable": true
+                                                    }
+                                                },
+                                                "type": "object",
+                                                "nullable": true
+                                            },
+                                            "inlineObjectStringProperty": {
+                                                "type": "string"
+                                            },
+                                            "inlineObjectIntProperty": {
+                                                "type": "integer"
+                                            },
+                                            "inlineObjectChildObjectProperty": {
+                                                "properties": {
+                                                    "stringProperty": {
+                                                        "type": "string"
+                                                    },
+                                                    "innerChildProperty": {
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object",
+                                                        "nullable": true
+                                                    }
+                                                },
+                                                "type": "object",
+                                                "nullable": true
+                                            },
+                                            "arrayOfChildObjectsProperty": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "string"
+                                                        },
+                                                        "innerChildProperty": {
+                                                            "properties": {
+                                                                "stringProperty": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object",
+                                                            "nullable": true
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "dateTimeProperty": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "nullable": true
+                                            },
+                                            "dateTimeImmutableProperty": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "nullable": true
+                                            },
+                                            "dateTimeInterfaceProperty": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "nullable": true
+                                            },
+                                            "scalarUnionProperty": {
+                                                "oneOf": [
+                                                    {
+                                                        "type": "integer"
+                                                    },
+                                                    {
+                                                        "type": "string"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "type": "object",
+                                        "example": {
+                                            "virtual_property": 123,
+                                            "virtualPropertyWithCustomName": "testing",
+                                            "unknown_property": null,
+                                            "string_property": "stringProperty",
+                                            "propertyWithCustomName": "stringPropertyWithCustomName",
+                                            "string_property_for_old_version": "stringPropertyForOldVersion",
+                                            "nullable_string_property": null,
+                                            "int_property": 1,
+                                            "float_property": 1.23,
+                                            "bool_property": true,
+                                            "array_property": [
+                                                "test"
+                                            ],
+                                            "child_object_property": {
+                                                "string_property": "test",
+                                                "inner_child_property": null
+                                            },
+                                            "inline_object_string_property": "inlineObjectStringProperty",
+                                            "inline_object_int_property": 1,
+                                            "inline_object_child_object_property": null,
+                                            "array_of_child_objects_property": [
+                                                {
+                                                    "string_property": "test",
+                                                    "inner_child_property": null
+                                                }
+                                            ],
+                                            "date_time_property": "2020-06-01T14:00:00+00:00",
+                                            "date_time_immutable_property": null,
+                                            "date_time_interface_property": null,
+                                            "scalar_union_property": null
+                                        }
+                                    },
+                                    "example": [
+                                        {
+                                            "virtual_property": 123,
+                                            "virtualPropertyWithCustomName": "testing",
+                                            "unknown_property": null,
+                                            "string_property": "stringProperty",
+                                            "propertyWithCustomName": "stringPropertyWithCustomName",
+                                            "string_property_for_old_version": "stringPropertyForOldVersion",
+                                            "nullable_string_property": null,
+                                            "int_property": 1,
+                                            "float_property": 1.23,
+                                            "bool_property": true,
+                                            "array_property": [
+                                                "test"
+                                            ],
+                                            "child_object_property": {
+                                                "string_property": "test",
+                                                "inner_child_property": null
+                                            },
+                                            "inline_object_string_property": "inlineObjectStringProperty",
+                                            "inline_object_int_property": 1,
+                                            "inline_object_child_object_property": null,
+                                            "array_of_child_objects_property": [
+                                                {
+                                                    "string_property": "test",
+                                                    "inner_child_property": null
+                                                }
+                                            ],
+                                            "date_time_property": "2020-06-01T14:00:00+00:00",
+                                            "date_time_immutable_property": null,
+                                            "date_time_interface_property": null,
+                                            "scalar_union_property": null
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
         "\/api\/test\/paginated-response": {
             "get": {
                 "tags": [

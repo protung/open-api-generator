@@ -20,6 +20,9 @@ final class CollectionOutput implements Output
         return new self($output);
     }
 
+    /**
+     * @param class-string $className
+     */
     public static function forClass(string $className) : self
     {
         return new self(ObjectOutput::forClass($className));

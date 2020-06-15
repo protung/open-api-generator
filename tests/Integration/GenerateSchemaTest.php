@@ -7,6 +7,8 @@ namespace Speicher210\OpenApiGenerator\Tests\Integration;
 use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\Serializer\Builder\DefaultDriverFactory;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerBuilder;
 use Metadata\MetadataFactory;
 use PHPUnit\Framework\TestCase;
 use Speicher210\OpenApiGenerator\Describer;
@@ -19,6 +21,7 @@ use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactoryBuilder;
 use Symfony\Component\Routing\Loader\XmlFileLoader;
 use Symfony\Component\Validator\ValidatorBuilder;
+use function assert;
 use function json_encode;
 use const JSON_THROW_ON_ERROR;
 
@@ -40,7 +43,19 @@ final class GenerateSchemaTest extends TestCase
             'Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS' => __DIR__ . '/Fixtures/TestSchemaGeneration/config/serializer',
         ];
 
+        $jmsSerializer = SerializerBuilder::create()
+            ->addMetadataDirs($metadataDirs)
+            ->build();
+        assert($jmsSerializer instanceof Serializer);
+
         $describerFormFactory = new Describer\Form\FormFactory($formFactory);
+
+        $exampleDescriberJms        = new Describer\ExampleDescriber\JmsSerializerExampleDescriber($jmsSerializer);
+        $exampleDescriberCollection = new Describer\ExampleDescriber\CollectionExampleDescriber($exampleDescriberJms);
+        $exampleDescriber           = new Describer\ExampleDescriber\CompoundExampleDescriber(
+            $exampleDescriberJms,
+            $exampleDescriberCollection
+        );
 
         $formDescriber = new Describer\FormDescriber(
             $describerFormFactory,
@@ -77,7 +92,8 @@ final class GenerateSchemaTest extends TestCase
                                     $apiVersion
                                 ),
                             ),
-                            $describerFormFactory
+                            $describerFormFactory,
+                            $exampleDescriber
                         )
                     )
                 )

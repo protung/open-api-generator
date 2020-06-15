@@ -24,7 +24,7 @@ final class ReferencableOutput implements ReferencableOutputInterface
 
     public static function forSchema(ObjectOutput $output, ?string $name = null) : self
     {
-        $name ??= DefinitionName::getName(new Definition($output->className(), $output->serializationGroups()));
+        $name ??= DefinitionName::getName(Definition::fromObjectOutput($output));
 
         return new self($output, self::REFERENCE_PREFIX_SCHEMA . $name);
     }
