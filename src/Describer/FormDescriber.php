@@ -9,8 +9,8 @@ use cebe\openapi\spec\Type;
 use Speicher210\OpenApiGenerator\Describer\Form\FlatNameResolver;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
-use Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber;
 use Speicher210\OpenApiGenerator\Describer\Form\RequirementsDescriber;
+use Speicher210\OpenApiGenerator\Describer\Form\SymfonyFormPropertyDescriber;
 use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
@@ -27,13 +27,13 @@ final class FormDescriber
 {
     private FormFactory $formFactory;
 
-    private PropertyDescriber $propertyDescriber;
+    private SymfonyFormPropertyDescriber $propertyDescriber;
 
     private RequirementsDescriber $requirementsDescriber;
 
     public function __construct(
         FormFactory $formFactory,
-        PropertyDescriber $propertyDescriber,
+        SymfonyFormPropertyDescriber $propertyDescriber,
         RequirementsDescriber $requirementsDescriber
     ) {
         $this->formFactory           = $formFactory;
