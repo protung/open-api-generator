@@ -24,8 +24,8 @@ final class SymfonyFormPropertyDescriber
     public function describe(Schema $schema, string $blockPrefix, FormInterface $form): void
     {
         foreach ($this->propertyDescribers as $propertyDescriber) {
-            if ($propertyDescriber->supports($blockPrefix)) {
-                $propertyDescriber->describe($schema, $blockPrefix, $form);
+            if ($propertyDescriber->supports($form)) {
+                $propertyDescriber->describe($schema, $form);
                 $this->describeHelp($schema, $form);
 
                 return;

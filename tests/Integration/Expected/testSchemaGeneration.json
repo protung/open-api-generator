@@ -505,6 +505,15 @@
                         "required": true
                     },
                     {
+                        "name": "innerForm[paramExtendedExtended]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "email"
+                        },
+                        "required": true
+                    },
+                    {
                         "name": "innerForm[paramWithExampleAndDescription]",
                         "in": "query",
                         "description": "Custom description.",
@@ -3879,6 +3888,17 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramExtendedExtended": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramWithExampleAndDescription": {
                                                             "type": "object",
                                                             "properties": {
@@ -4076,6 +4096,10 @@
                                         "type": "string",
                                         "format": "email"
                                     },
+                                    "paramExtendedExtended": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
                                     "paramWithExampleAndDescription": {
                                         "type": "string",
                                         "example": "my-example",
@@ -4100,6 +4124,7 @@
                                     "paramCustomCollection",
                                     "paramCustom",
                                     "paramExtended",
+                                    "paramExtendedExtended",
                                     "paramWithExampleAndDescription"
                                 ]
                             }
@@ -4225,6 +4250,10 @@
                                         "type": "string",
                                         "format": "email"
                                     },
+                                    "paramExtendedExtended": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
                                     "paramWithExampleAndDescription": {
                                         "type": "string",
                                         "example": "my-example",
@@ -4251,6 +4280,7 @@
                                     "paramCustom[paramText]",
                                     "paramCustom[paramInnerCustom][paramText]",
                                     "paramExtended",
+                                    "paramExtendedExtended",
                                     "paramWithExampleAndDescription"
                                 ]
                             }
@@ -4650,6 +4680,17 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramExtendedExtended": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramWithExampleAndDescription": {
                                                             "type": "object",
                                                             "properties": {
@@ -4831,6 +4872,10 @@
                                         "type": "string",
                                         "format": "email"
                                     },
+                                    "paramExtendedExtended": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
                                     "paramWithExampleAndDescription": {
                                         "type": "string",
                                         "example": "my-example",
@@ -4949,6 +4994,10 @@
                                         "type": "string"
                                     },
                                     "paramExtended": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "paramExtendedExtended": {
                                         "type": "string",
                                         "format": "email"
                                     },

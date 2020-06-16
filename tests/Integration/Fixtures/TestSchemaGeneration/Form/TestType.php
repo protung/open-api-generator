@@ -73,6 +73,7 @@ final class TestType extends AbstractType
             ->add('paramCustomCollection', TestCustomCollectionType::class)
             ->add('paramCustom', TestInnerType::class)
             ->add('paramExtended', TestExtendedType::class)
+            ->add('paramExtendedExtended', TestExtendedExtendedType::class)
             ->add(
                 'paramWithExampleAndDescription',
                 TextType::class,

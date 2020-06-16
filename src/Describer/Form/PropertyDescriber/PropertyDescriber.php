@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormInterface;
 
 interface PropertyDescriber
 {
-    public function describe(Schema $schema, string $blockPrefix, FormInterface $form): void;
+    public function describe(Schema $schema, FormInterface $form): void;
 
-    public function supports(string $blockPrefix): bool;
+    public function supports(FormInterface $form): bool;
 }

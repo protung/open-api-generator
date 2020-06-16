@@ -26,6 +26,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
      */
     private function __construct(string $className, array $serializationGroups)
     {
+        /** @psalm-suppress RedundantConditionGivenDocblockType */
         Assert::classExists($className);
 
         $this->className           = $className;

@@ -8,16 +8,28 @@ use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
+use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\ResolvedFormTypeInterface;
 
 use function count;
 use function is_array;
 
 final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
 {
-    public function describe(Schema $schema, string $blockPrefix, FormInterface $form): void
+    public function describe(Schema $schema, FormInterface $form): void
     {
         $formConfig = $form->getConfig();
+
+        $this->describeProperty($schema, $formConfig->getType(), $formConfig);
+    }
+
+    private function describeProperty(
+        Schema $schema,
+        ResolvedFormTypeInterface $formType,
+        FormConfigInterface $formConfig
+    ): void {
+        $blockPrefix = $formType->getBlockPrefix();
 
         switch ($blockPrefix) {
             case 'boolean':
@@ -70,15 +82,14 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
                 $schema->format = 'password';
                 break;
             default:
-                $parentType = $formConfig->getType()->getParent();
-                $parentForm = $form->getParent();
-                if ($parentType !== null && $parentForm !== null) {
-                    $this->describe($schema, $parentType->getBlockPrefix(), $parentForm);
+                $parentType = $formType->getParent();
+                if ($parentType !== null) {
+                    $this->describeProperty($schema, $parentType, $formConfig);
                 }
         }
     }
 
-    public function supports(string $blockPrefix): bool
+    public function supports(FormInterface $form): bool
     {
         // we support any type, as we will fallback on string.
         return true;
