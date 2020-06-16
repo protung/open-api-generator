@@ -5,6 +5,7 @@ parameters:
         - tests
     excludes_analyse:
         - tests/Analyser/Fixtures/PropertyAnalyserClassWithProperties.php
+    treatPhpDocTypesAsCertain: false
 
 includes:
     - phpstan-baseline.neon
