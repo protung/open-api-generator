@@ -9,5 +9,5 @@ use Speicher210\OpenApiGenerator\Model\Specification;
 
 interface Processor
 {
-    public function process(OpenApi $openApi, Specification $specification) : void;
+    public function process(OpenApi $openApi, Specification $specification): void;
 }

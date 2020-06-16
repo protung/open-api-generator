@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Resolver;
 
 use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
 use Speicher210\OpenApiGenerator\Model\Definition;
+
 use function array_filter;
 use function array_key_last;
 use function array_map;
@@ -21,7 +22,7 @@ final class DefinitionName
     {
     }
 
-    public static function getName(Definition $definition) : string
+    public static function getName(Definition $definition): string
     {
         return sprintf(
             '%s%s',
@@ -30,7 +31,7 @@ final class DefinitionName
         );
     }
 
-    private static function getNameForClass(string $class) : string
+    private static function getNameForClass(string $class): string
     {
         $classParts = explode(self::NAMESPACE_SEPARATOR, $class);
 
@@ -40,13 +41,13 @@ final class DefinitionName
     /**
      * @param string[] $groups
      */
-    private static function getGroupsSuffix(array $groups) : string
+    private static function getGroupsSuffix(array $groups): string
     {
         $groupString = implode(
             '',
             array_filter(
                 $groups,
-                static function ($group) : bool {
+                static function ($group): bool {
                     return $group !== GroupsExclusionStrategy::DEFAULT_GROUP;
                 }
             )

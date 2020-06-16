@@ -8,6 +8,7 @@ use cebe\openapi\spec\Components;
 use cebe\openapi\spec\OpenApi;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 use Speicher210\OpenApiGenerator\Model\Specification;
+
 use function count;
 use function ksort;
 
@@ -20,7 +21,7 @@ final class Definitions implements Processor
         $this->modelRegistry = $modelRegistry;
     }
 
-    public function process(OpenApi $openApi, Specification $specification) : void
+    public function process(OpenApi $openApi, Specification $specification): void
     {
         $definitions = [];
         foreach ($this->modelRegistry->referencedModels() as $referencedModel) {

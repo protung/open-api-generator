@@ -9,6 +9,7 @@ use cebe\openapi\spec\Type;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
+
 use function array_fill_keys;
 use function array_map;
 use function count;
@@ -23,7 +24,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
         $this->outputDescriber = $outputDescriber;
     }
 
-    public function describe(Output $output) : Schema
+    public function describe(Output $output): Schema
     {
         Assert::isInstanceOf($output, PaginatedOutput::class);
 
@@ -41,7 +42,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
         );
     }
 
-    private function createLinksSchema() : Schema
+    private function createLinksSchema(): Schema
     {
         return new Schema(
             [
@@ -63,7 +64,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
         );
     }
 
-    private function createEmbeddedSchema(PaginatedOutput $output) : Schema
+    private function createEmbeddedSchema(PaginatedOutput $output): Schema
     {
         $resourcesSchema = new Schema(['type' => Type::ARRAY]);
 
@@ -88,7 +89,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
         );
     }
 
-    public function supports(Output $output) : bool
+    public function supports(Output $output): bool
     {
         return $output instanceof PaginatedOutput;
     }

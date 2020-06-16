@@ -10,6 +10,7 @@ use RuntimeException;
 use Speicher210\OpenApiGenerator\Describer\ObjectDescriber\Describer;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
+
 use function implode;
 use function sprintf;
 
@@ -26,7 +27,7 @@ final class ObjectDescriber
         $this->describers    = $describers;
     }
 
-    public function describe(Definition $definition) : Schema
+    public function describe(Definition $definition): Schema
     {
         if (! $this->modelRegistry->schemaExistsForDefinition($definition)) {
             $this->modelRegistry->addSchema(
@@ -38,14 +39,14 @@ final class ObjectDescriber
         return $this->modelRegistry->getSchema($definition);
     }
 
-    public function describeAsReference(Definition $definition, string $referencePath) : Reference
+    public function describeAsReference(Definition $definition, string $referencePath): Reference
     {
         $this->describe($definition);
 
         return $this->modelRegistry->createReference($definition, $referencePath);
     }
 
-    private function createSchema(Definition $definition) : Schema
+    private function createSchema(Definition $definition): Schema
     {
         foreach ($this->describers as $describer) {
             if ($describer->supports($definition)) {

@@ -9,7 +9,7 @@ use Speicher210\OpenApiGenerator\Model\Path\Output;
 
 interface ExampleDescriber
 {
-    public function describe(Schema $schema, Output $output) : void;
+    public function describe(Schema $schema, Output $output): void;
 
-    public function supports(Output $output) : bool;
+    public function supports(Output $output): bool;
 }

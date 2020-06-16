@@ -9,12 +9,13 @@ use cebe\openapi\spec\Type;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Form\FormInterface;
+
 use function count;
 use function is_array;
 
 final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
 {
-    public function describe(Schema $schema, string $blockPrefix, FormInterface $form) : void
+    public function describe(Schema $schema, string $blockPrefix, FormInterface $form): void
     {
         $formConfig = $form->getConfig();
 
@@ -77,7 +78,7 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
         }
     }
 
-    public function supports(string $blockPrefix) : bool
+    public function supports(string $blockPrefix): bool
     {
         // we support any type, as we will fallback on string.
         return true;

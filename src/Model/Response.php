@@ -8,8 +8,10 @@ use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
 use Symfony\Component\Form\FormTypeInterface;
+
 use function implode;
 use function nl2br;
+
 use const PHP_EOL;
 
 final class Response
@@ -34,7 +36,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for200(Output $output, $description = ['Returned on success']) : self
+    public static function for200(Output $output, $description = ['Returned on success']): self
     {
         return new self(200, (array) $description, $output);
     }
@@ -42,7 +44,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for201(Output $output, $description = ['Returned on success']) : self
+    public static function for201(Output $output, $description = ['Returned on success']): self
     {
         return new self(201, (array) $description, $output);
     }
@@ -50,7 +52,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for202($description = ['Returned when successfully accepted data']) : self
+    public static function for202($description = ['Returned when successfully accepted data']): self
     {
         return new self(202, (array) $description);
     }
@@ -58,7 +60,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for204($description = ['Returned on success']) : self
+    public static function for204($description = ['Returned on success']): self
     {
         return new self(204, (array) $description);
     }
@@ -66,7 +68,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for400(Output $output, $description = ['Returned when there is a validation error']) : self
+    public static function for400(Output $output, $description = ['Returned when there is a validation error']): self
     {
         return new self(400, (array) $description, $output);
     }
@@ -75,7 +77,7 @@ final class Response
      * @param class-string<FormTypeInterface> $formType
      * @param string[]                        $validationGroups
      */
-    public static function for400WithForm(string $formType, array $validationGroups = []) : self
+    public static function for400WithForm(string $formType, array $validationGroups = []): self
     {
         return self::for400(
             new FormErrorOutput(new FormDefinition($formType, $validationGroups))
@@ -85,7 +87,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for401($description = ['Authentication is missing, invalid or expired']) : self
+    public static function for401($description = ['Authentication is missing, invalid or expired']): self
     {
         return new self(401, (array) $description, RFC7807ErrorOutput::for401());
     }
@@ -93,7 +95,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for403($description = ['Returned when operation is prohibited']) : self
+    public static function for403($description = ['Returned when operation is prohibited']): self
     {
         return new self(403, (array) $description, RFC7807ErrorOutput::for403());
     }
@@ -101,7 +103,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for404($description = ['Returned when resource is not found']) : self
+    public static function for404($description = ['Returned when resource is not found']): self
     {
         return new self(404, (array) $description, RFC7807ErrorOutput::for404());
     }
@@ -109,7 +111,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for406($description = ['Returned when response content type expected is not supported']) : self
+    public static function for406($description = ['Returned when response content type expected is not supported']): self
     {
         return new self(
             406,
@@ -121,7 +123,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for415($description = ['Returned when request payload format is not supported']) : self
+    public static function for415($description = ['Returned when request payload format is not supported']): self
     {
         return new self(
             415,
@@ -133,7 +135,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for500($description = ['Returned on server error']) : self
+    public static function for500($description = ['Returned on server error']): self
     {
         return new self(
             500,
@@ -142,17 +144,17 @@ final class Response
         );
     }
 
-    public function statusCode() : int
+    public function statusCode(): int
     {
         return $this->statusCode;
     }
 
-    public function description() : string
+    public function description(): string
     {
         return nl2br(implode(PHP_EOL, $this->description), false);
     }
 
-    public function output() : ?Output
+    public function output(): ?Output
     {
         return $this->output;
     }

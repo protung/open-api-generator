@@ -11,5 +11,5 @@ interface SerializationGroupAwareOutput extends Output
     /**
      * @return string[]
      */
-    public function serializationGroups() : array;
+    public function serializationGroups(): array;
 }

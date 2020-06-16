@@ -8,6 +8,7 @@ use cebe\openapi\spec\Schema;
 use RuntimeException;
 use Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber\PropertyDescriber;
 use Symfony\Component\Form\FormInterface;
+
 use function is_array;
 
 final class SymfonyFormPropertyDescriber
@@ -20,7 +21,7 @@ final class SymfonyFormPropertyDescriber
         $this->propertyDescribers = $propertyDescribers;
     }
 
-    public function describe(Schema $schema, string $blockPrefix, FormInterface $form) : void
+    public function describe(Schema $schema, string $blockPrefix, FormInterface $form): void
     {
         foreach ($this->propertyDescribers as $propertyDescriber) {
             if ($propertyDescriber->supports($blockPrefix)) {
@@ -34,7 +35,7 @@ final class SymfonyFormPropertyDescriber
         throw new RuntimeException('No property describer supports "' . $blockPrefix . '".');
     }
 
-    private function describeHelp(Schema $schema, FormInterface $form) : void
+    private function describeHelp(Schema $schema, FormInterface $form): void
     {
         $attr = $form->getConfig()->getOption('attr');
         if (is_array($attr) && isset($attr['placeholder'])) {

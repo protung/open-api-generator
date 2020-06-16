@@ -17,7 +17,7 @@ final class CompoundExampleDescriber implements ExampleDescriber
         $this->exampleDescribers = $exampleDescribers;
     }
 
-    public function describe(Schema $schema, Output $output) : void
+    public function describe(Schema $schema, Output $output): void
     {
         foreach ($this->exampleDescribers as $exampleDescriber) {
             if ($exampleDescriber->supports($output)) {
@@ -28,7 +28,7 @@ final class CompoundExampleDescriber implements ExampleDescriber
         }
     }
 
-    public function supports(Output $output) : bool
+    public function supports(Output $output): bool
     {
         foreach ($this->exampleDescribers as $exampleDescriber) {
             if ($exampleDescriber->supports($output)) {

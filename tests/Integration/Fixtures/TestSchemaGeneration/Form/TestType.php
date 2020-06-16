@@ -33,7 +33,7 @@ final class TestType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('paramNoType')
@@ -57,7 +57,7 @@ final class TestType extends AbstractType
             ->add('paramEmail', EmailType::class, ['constraints' => [new Unique()]])
             ->add('paramChoice', ChoiceType::class, ['choices' => ['a', 'b']])
             ->add('paramChoiceWithLoader', ChoiceType::class, [
-                'choice_loader' => new CallbackChoiceLoader(static function () : array {
+                'choice_loader' => new CallbackChoiceLoader(static function (): array {
                     return [1, 2, 3];
                 }),
             ])

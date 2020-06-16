@@ -15,7 +15,7 @@ final class CollectionOutput implements Output
         $this->output = $output;
     }
 
-    public static function forOutput(Output $output) : self
+    public static function forOutput(Output $output): self
     {
         return new self($output);
     }
@@ -23,12 +23,12 @@ final class CollectionOutput implements Output
     /**
      * @param class-string $className
      */
-    public static function forClass(string $className) : self
+    public static function forClass(string $className): self
     {
         return new self(ObjectOutput::forClass($className));
     }
 
-    public function output() : Output
+    public function output(): Output
     {
         return $this->output;
     }
@@ -36,7 +36,7 @@ final class CollectionOutput implements Output
     /**
      * @return array<mixed>
      */
-    public function example() : array
+    public function example(): array
     {
         return [$this->output->example()];
     }

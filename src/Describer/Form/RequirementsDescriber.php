@@ -9,5 +9,5 @@ use Symfony\Component\Form\FormInterface;
 
 interface RequirementsDescriber
 {
-    public function describe(Schema $schema, FormInterface $form) : void;
+    public function describe(Schema $schema, FormInterface $form): void;
 }

@@ -10,6 +10,7 @@ use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
+
 use function array_merge;
 
 final class FormInputDescriber implements InputDescriber
@@ -28,7 +29,7 @@ final class FormInputDescriber implements InputDescriber
         $this->formFactory = $formFactory;
     }
 
-    public function describe(Input $input, Operation $operation, string $httpMethod) : void
+    public function describe(Input $input, Operation $operation, string $httpMethod): void
     {
         Assert::isInstanceOf($input, Input\FormInput::class);
 
@@ -50,7 +51,7 @@ final class FormInputDescriber implements InputDescriber
         }
     }
 
-    public function supports(Input $input) : bool
+    public function supports(Input $input): bool
     {
         return $input instanceof Input\FormInput;
     }

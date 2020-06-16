@@ -19,12 +19,12 @@ final class Reference
         $this->references = $references;
     }
 
-    public static function none() : self
+    public static function none(): self
     {
         return new self([]);
     }
 
-    public static function fromString(string $reference) : self
+    public static function fromString(string $reference): self
     {
         return self::fromReferences([$reference]);
     }
@@ -32,17 +32,17 @@ final class Reference
     /**
      * @param string[] $references
      */
-    public static function fromReferences(array $references) : self
+    public static function fromReferences(array $references): self
     {
         return new self(
-            array_map(static fn($value) => [$value => []], $references)
+            array_map(static fn ($value) => [$value => []], $references)
         );
     }
 
     /**
      * @return array<string,mixed[]>
      */
-    public function references() : array
+    public function references(): array
     {
         return $this->references;
     }

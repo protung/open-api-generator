@@ -17,17 +17,17 @@ final class Info
         $this->apiVersion  = $apiVersion;
     }
 
-    public function title() : string
+    public function title(): string
     {
         return $this->title;
     }
 
-    public function description() : ?string
+    public function description(): ?string
     {
         return $this->description;
     }
 
-    public function apiVersion() : ?string
+    public function apiVersion(): ?string
     {
         return $this->apiVersion;
     }

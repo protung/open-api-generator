@@ -14,7 +14,7 @@ final class DefinitionNameTest extends TestCase
     /**
      * @return mixed[]
      */
-    public static function dataProviderTestGetName() : array
+    public static function dataProviderTestGetName(): array
     {
         return [
             [new Definition(stdClass::class, []), 'stdClass'],
@@ -28,7 +28,7 @@ final class DefinitionNameTest extends TestCase
     /**
      * @dataProvider dataProviderTestGetName
      */
-    public function testGetName(Definition $definition, string $expected) : void
+    public function testGetName(Definition $definition, string $expected): void
     {
         $actual = DefinitionName::getName($definition);
 

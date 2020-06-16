@@ -35,7 +35,7 @@ final class Generator
         $this->definitionsProcessor         = $definitionsProcessor;
     }
 
-    public function generate(Specification $specification) : OpenApi
+    public function generate(Specification $specification): OpenApi
     {
         $openApi = new OpenApi(
             [

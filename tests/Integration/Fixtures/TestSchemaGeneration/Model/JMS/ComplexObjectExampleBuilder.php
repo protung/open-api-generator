@@ -12,7 +12,7 @@ final class ComplexObjectExampleBuilder
     {
     }
 
-    public static function create() : ComplexObject
+    public static function create(): ComplexObject
     {
         $object = new ComplexObject();
 

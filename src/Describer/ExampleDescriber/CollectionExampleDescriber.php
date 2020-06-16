@@ -18,7 +18,7 @@ final class CollectionExampleDescriber implements ExampleDescriber
         $this->exampleDescribers = $exampleDescribers;
     }
 
-    public function describe(Schema $schema, Output $output) : void
+    public function describe(Schema $schema, Output $output): void
     {
         Assert::isInstanceOf($output, Output\CollectionOutput::class);
 
@@ -40,7 +40,7 @@ final class CollectionExampleDescriber implements ExampleDescriber
         $schema->example = [$exampleSchema->example];
     }
 
-    public function supports(Output $output) : bool
+    public function supports(Output $output): bool
     {
         return $output instanceof Output\CollectionOutput;
     }

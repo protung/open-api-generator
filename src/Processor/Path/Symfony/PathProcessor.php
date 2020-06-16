@@ -19,10 +19,12 @@ use Speicher210\OpenApiGenerator\Processor\Path\PathOperation;
 use Speicher210\OpenApiGenerator\Processor\Path\PathProcessor as PathProcessorInterface;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 use Symfony\Component\Routing\RouteCollection;
+
 use function array_filter;
 use function explode;
 use function sprintf;
 use function strpos;
+
 use const ARRAY_FILTER_USE_BOTH;
 
 final class PathProcessor implements PathProcessorInterface
@@ -46,7 +48,7 @@ final class PathProcessor implements PathProcessorInterface
     /**
      * {@inheritDoc}
      */
-    public function process(Path $path) : array
+    public function process(Path $path): array
     {
         Assert::isInstanceOf($path, SymfonyRoutePath::class);
 
@@ -64,7 +66,7 @@ final class PathProcessor implements PathProcessorInterface
     /**
      * @return PathOperation[]
      */
-    private function processRoute(SymfonyRoute $route, SymfonyRoutePath $path) : array
+    private function processRoute(SymfonyRoute $route, SymfonyRoutePath $path): array
     {
         $operations = [];
         foreach ($route->getMethods() as $method) {
@@ -82,7 +84,7 @@ final class PathProcessor implements PathProcessorInterface
                     /**
                      * @param mixed $value
                      */
-                    static function ($value, string $key) : bool {
+                    static function ($value, string $key): bool {
                         if ($key === 'deprecated' && $value === false) {
                             return false;
                         }
@@ -114,7 +116,7 @@ final class PathProcessor implements PathProcessorInterface
         return $operations;
     }
 
-    private function extractInputFromRoute(SymfonyRoute $route) : Input\SimpleInput
+    private function extractInputFromRoute(SymfonyRoute $route): Input\SimpleInput
     {
         $ioFields = [];
         foreach ($route->compile()->getPathVariables() as $pathVariable) {
@@ -134,7 +136,7 @@ final class PathProcessor implements PathProcessorInterface
         return new Input\SimpleInput(Input::LOCATION_PATH, ...$ioFields);
     }
 
-    private function processInputs(Operation $operation, string $httpMethod, Input ...$inputs) : void
+    private function processInputs(Operation $operation, string $httpMethod, Input ...$inputs): void
     {
         foreach ($inputs as $input) {
             $this->inputDescriber->describe($operation, $input, $httpMethod);
@@ -144,7 +146,7 @@ final class PathProcessor implements PathProcessorInterface
     private function processResponses(
         Operation $operation,
         \Speicher210\OpenApiGenerator\Model\Response ...$responsesConfig
-    ) : void {
+    ): void {
         Assert::isInstanceOf($operation->responses, Responses::class);
 
         foreach ($responsesConfig as $response) {
@@ -170,7 +172,7 @@ final class PathProcessor implements PathProcessorInterface
         }
     }
 
-    public function canProcess(Path $path) : bool
+    public function canProcess(Path $path): bool
     {
         return $path instanceof SymfonyRoutePath;
     }

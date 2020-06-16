@@ -8,5 +8,5 @@ use Symfony\Component\Form\FormInterface;
 
 interface NameResolver
 {
-    public function getPropertyName(FormInterface $form) : string;
+    public function getPropertyName(FormInterface $form): string;
 }

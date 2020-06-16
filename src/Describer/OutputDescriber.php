@@ -14,6 +14,7 @@ use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
 use Speicher210\OpenApiGenerator\Model\Path\ReferencableOutput;
+
 use function get_class;
 use function sprintf;
 
@@ -48,7 +49,7 @@ final class OutputDescriber
     /**
      * @return Reference|Schema
      */
-    public function describe(Output $output) : SpecObjectInterface
+    public function describe(Output $output): SpecObjectInterface
     {
         if ($output instanceof ReferencableOutput) {
             $definition = Definition::fromObjectOutput($output->output());
@@ -67,7 +68,7 @@ final class OutputDescriber
         );
     }
 
-    public function contentType(Output $output) : string
+    public function contentType(Output $output): string
     {
         if ($output instanceof ReferencableOutput) {
             return $this->contentType($output->output());

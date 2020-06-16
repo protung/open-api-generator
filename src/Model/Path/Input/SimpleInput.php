@@ -25,7 +25,7 @@ class SimpleInput extends BaseInput
     /**
      * @return IOField[]
      */
-    public function fields() : array
+    public function fields(): array
     {
         return $this->fields;
     }
@@ -33,7 +33,7 @@ class SimpleInput extends BaseInput
     /**
      * @return array<string,mixed>
      */
-    public function example() : array
+    public function example(): array
     {
         $example = [];
 

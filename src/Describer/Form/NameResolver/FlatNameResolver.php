@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
+
 use function array_pop;
 use function array_reverse;
 use function in_array;
@@ -15,7 +16,7 @@ trait FlatNameResolver
     /**
      * @return string[]
      */
-    private function namesFromForm(FormInterface $form) : array
+    private function namesFromForm(FormInterface $form): array
     {
         $names   = [];
         $names[] = $form->getName();
@@ -34,7 +35,7 @@ trait FlatNameResolver
     /**
      * @param string[] $names
      */
-    private function fromArray(string $name, array $names, FormConfigInterface $formConfig) : string
+    private function fromArray(string $name, array $names, FormConfigInterface $formConfig): string
     {
         foreach ($names as $subName) {
             $name .= '[' . $subName . ']';

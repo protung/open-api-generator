@@ -44,7 +44,7 @@ final class Specification
         $this->alwaysAddedResponses = $alwaysAddedResponses;
     }
 
-    public function info() : Info
+    public function info(): Info
     {
         return $this->info;
     }
@@ -52,7 +52,7 @@ final class Specification
     /**
      * @return Security\Definition[]
      */
-    public function securityDefinitions() : array
+    public function securityDefinitions(): array
     {
         return $this->securityDefinitions;
     }
@@ -60,7 +60,7 @@ final class Specification
     /**
      * @return Path[]
      */
-    public function paths() : array
+    public function paths(): array
     {
         return $this->paths;
     }
@@ -68,7 +68,7 @@ final class Specification
     /**
      * @return Input[]
      */
-    public function alwaysAddedInputs() : array
+    public function alwaysAddedInputs(): array
     {
         return $this->alwaysAddedInputs;
     }
@@ -76,7 +76,7 @@ final class Specification
     /**
      * @return Response[]
      */
-    public function alwaysAddedResponses() : array
+    public function alwaysAddedResponses(): array
     {
         return $this->alwaysAddedResponses;
     }

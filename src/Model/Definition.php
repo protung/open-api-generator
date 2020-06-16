@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Model;
 
 use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
+
 use function sort;
 
 final class Definition
@@ -28,7 +29,7 @@ final class Definition
         $this->exampleObject = $exampleObject;
     }
 
-    public static function fromObjectOutput(ObjectOutput $objectOutput) : self
+    public static function fromObjectOutput(ObjectOutput $objectOutput): self
     {
         return new self(
             $objectOutput->className(),
@@ -37,7 +38,7 @@ final class Definition
         );
     }
 
-    public function className() : string
+    public function className(): string
     {
         return $this->className;
     }
@@ -45,17 +46,17 @@ final class Definition
     /**
      * @return string[]
      */
-    public function serializationGroups() : array
+    public function serializationGroups(): array
     {
         return $this->serializationGroups;
     }
 
-    public function exampleObject() : ?object
+    public function exampleObject(): ?object
     {
         return $this->exampleObject;
     }
 
-    public function equals(Definition $other) : bool
+    public function equals(Definition $other): bool
     {
         return $other->className === $this->className && $other->serializationGroups === $this->serializationGroups;
     }

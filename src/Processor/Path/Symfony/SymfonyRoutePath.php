@@ -53,22 +53,22 @@ final class SymfonyRoutePath implements Path
         $this->deprecated  = $deprecated;
     }
 
-    public function routeName() : string
+    public function routeName(): string
     {
         return $this->routeName;
     }
 
-    public function tag() : string
+    public function tag(): string
     {
         return $this->tag;
     }
 
-    public function summary() : string
+    public function summary(): string
     {
         return $this->summary;
     }
 
-    public function description() : ?string
+    public function description(): ?string
     {
         return $this->description;
     }
@@ -76,12 +76,12 @@ final class SymfonyRoutePath implements Path
     /**
      * @return Input[]
      */
-    public function input() : array
+    public function input(): array
     {
         return $this->input;
     }
 
-    public function addInput(Input $input) : void
+    public function addInput(Input $input): void
     {
         $this->input[] = $input;
     }
@@ -89,22 +89,22 @@ final class SymfonyRoutePath implements Path
     /**
      * @return Response[]
      */
-    public function responses() : array
+    public function responses(): array
     {
         return $this->responses;
     }
 
-    public function addResponse(Response $response) : void
+    public function addResponse(Response $response): void
     {
         $this->responses[] = $response;
     }
 
-    public function security() : Reference
+    public function security(): Reference
     {
         return $this->security;
     }
 
-    public function isDeprecated() : bool
+    public function isDeprecated(): bool
     {
         return $this->deprecated;
     }

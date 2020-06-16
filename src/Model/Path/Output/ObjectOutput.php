@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\SerializationGroupAwareOutput;
+
 use function array_merge;
 use function array_unique;
 
@@ -34,7 +35,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
     /**
      * @param class-string $className
      */
-    public static function forClass(string $className) : self
+    public static function forClass(string $className): self
     {
         return new self($className, SerializationGroupAwareOutput::DEFAULT_SERIALIZATION_GROUPS);
     }
@@ -43,7 +44,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
      * @param class-string $className
      * @param string[]     $groups
      */
-    public static function withSerializationGroups(string $className, array $groups) : self
+    public static function withSerializationGroups(string $className, array $groups): self
     {
         $groups = array_unique(
             array_merge(
@@ -58,12 +59,12 @@ final class ObjectOutput implements SerializationGroupAwareOutput
     /**
      * @return class-string
      */
-    public function className() : string
+    public function className(): string
     {
         return $this->className;
     }
 
-    public function withExample(object $exampleObject) : self
+    public function withExample(object $exampleObject): self
     {
         Assert::isInstanceOf($exampleObject, $this->className);
 
@@ -72,7 +73,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
         return $this;
     }
 
-    public function example() : ?object
+    public function example(): ?object
     {
         return $this->exampleObject;
     }
@@ -80,7 +81,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
     /**
      * {@inheritDoc}
      */
-    public function serializationGroups() : array
+    public function serializationGroups(): array
     {
         return $this->serializationGroups;
     }

@@ -23,7 +23,7 @@ final class ScalarOutput implements Output
         $this->example = Type::example($type);
     }
 
-    public function type() : string
+    public function type(): string
     {
         return $this->type;
     }
@@ -31,7 +31,7 @@ final class ScalarOutput implements Output
     /**
      * @param bool|float|int|string|null $example
      */
-    public function withExample($example) : self
+    public function withExample($example): self
     {
         $this->example = $example;
 

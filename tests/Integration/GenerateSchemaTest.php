@@ -21,13 +21,15 @@ use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactoryBuilder;
 use Symfony\Component\Routing\Loader\XmlFileLoader;
 use Symfony\Component\Validator\ValidatorBuilder;
+
 use function assert;
 use function json_encode;
+
 use const JSON_THROW_ON_ERROR;
 
 final class GenerateSchemaTest extends TestCase
 {
-    private static function createGenerator(string $apiVersion) : Generator
+    private static function createGenerator(string $apiVersion): Generator
     {
         $routes = (new XmlFileLoader(new FileLocator(__DIR__ . '/Fixtures/TestSchemaGeneration/')))->load('routes.xml');
 
@@ -104,7 +106,7 @@ final class GenerateSchemaTest extends TestCase
         );
     }
 
-    public function testSchemaGeneration() : void
+    public function testSchemaGeneration(): void
     {
         $generator = self::createGenerator('0.0.1');
 

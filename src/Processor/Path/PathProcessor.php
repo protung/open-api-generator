@@ -11,7 +11,7 @@ interface PathProcessor
     /**
      * @return PathOperation[]
      */
-    public function process(Path $path) : array;
+    public function process(Path $path): array;
 
-    public function canProcess(Path $path) : bool;
+    public function canProcess(Path $path): bool;
 }

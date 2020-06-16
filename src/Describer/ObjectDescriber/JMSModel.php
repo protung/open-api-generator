@@ -22,6 +22,7 @@ use Speicher210\OpenApiGenerator\Analyser\PropertyAnalysisType;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
 use Speicher210\OpenApiGenerator\Model\Definition;
+
 use function array_filter;
 use function array_key_exists;
 use function array_keys;
@@ -47,7 +48,7 @@ final class JMSModel implements Describer
         $this->propertyAnalyser         = new PropertyAnalyser();
     }
 
-    public function describeInSchema(Schema $schema, Definition $definition, ObjectDescriber $objectDescriber) : void
+    public function describeInSchema(Schema $schema, Definition $definition, ObjectDescriber $objectDescriber): void
     {
         $metadata         = $this->getClassMetadata($definition->className());
         $propertyMetadata = $metadata->propertyMetadata;
@@ -56,7 +57,7 @@ final class JMSModel implements Describer
         $serializationGroups = $definition->serializationGroups();
         $metadataProperties  = array_filter(
             $this->getPropertiesInSerializationGroups($propertyMetadata, $serializationGroups),
-            function (PropertyMetadata $metadataProperty) : bool {
+            function (PropertyMetadata $metadataProperty): bool {
                 // filter properties for not current version
                 return ! $this->versionExclusionStrategy->shouldSkipProperty(
                     $metadataProperty,
@@ -107,7 +108,7 @@ final class JMSModel implements Describer
                 $property->items = $objectDescriber->describe(new Definition($type, $serializationGroups));
             } else {
                 $propertiesSchemas = array_map(
-                    fn($type) => $this->describePropertyInSchema(
+                    fn ($type) => $this->describePropertyInSchema(
                         $type,
                         $metadata,
                         $metadataProperty,
@@ -158,7 +159,7 @@ final class JMSModel implements Describer
         PropertyMetadata $propertyMetadata,
         ObjectDescriber $objectDescriber,
         array $serializationGroups
-    ) : Schema {
+    ): Schema {
         $name = $propertyMetadata->serializedName;
 
         $property = new Schema([]);
@@ -197,7 +198,7 @@ final class JMSModel implements Describer
         return $property;
     }
 
-    private function getNestedTypeInArray(PropertyMetadata $item) : ?string
+    private function getNestedTypeInArray(PropertyMetadata $item): ?string
     {
         if ($item->type === null) {
             return null;
@@ -223,7 +224,7 @@ final class JMSModel implements Describer
     /**
      * @todo determine if it is base class and use oneOf functionality if it is so.
      */
-    private function shouldAddDiscriminatorProperty(ClassMetadata $metadata) : bool
+    private function shouldAddDiscriminatorProperty(ClassMetadata $metadata): bool
     {
         if ($metadata->discriminatorDisabled) {
             return false;
@@ -243,20 +244,20 @@ final class JMSModel implements Describer
      *
      * @return PropertyMetadata[]
      */
-    private function getPropertiesInSerializationGroups(array $metadataProperties, array $serializationGroups) : array
+    private function getPropertiesInSerializationGroups(array $metadataProperties, array $serializationGroups): array
     {
         $groupsExclusion = new GroupsExclusionStrategy($serializationGroups);
         $context         = SerializationContext::create();
 
         return array_filter(
             $metadataProperties,
-            static function (PropertyMetadata $item) use ($groupsExclusion, $context) : bool {
+            static function (PropertyMetadata $item) use ($groupsExclusion, $context): bool {
                 return ! $groupsExclusion->shouldSkipProperty($item, $context);
             }
         );
     }
 
-    private function getClassMetadata(string $className) : ClassMetadata
+    private function getClassMetadata(string $className): ClassMetadata
     {
         $metadata = $this->metadataFactory->getMetadataForClass($className);
         if ($metadata === null) {
@@ -275,7 +276,7 @@ final class JMSModel implements Describer
     /**
      * @return array<PropertyAnalysisType>
      */
-    private function getPropertyTypes(PropertyMetadata $propertyMetadata) : array
+    private function getPropertyTypes(PropertyMetadata $propertyMetadata): array
     {
         $defaultTypes = [PropertyAnalysisSingleType::forSingleValue('string', false)];
 
@@ -304,7 +305,7 @@ final class JMSModel implements Describer
         return $defaultTypes;
     }
 
-    public function supports(Definition $definition) : bool
+    public function supports(Definition $definition): bool
     {
         return $this->metadataFactory->getMetadataForClass($definition->className()) !== null;
     }

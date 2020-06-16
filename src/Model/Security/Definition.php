@@ -46,7 +46,7 @@ final class Definition
         string $name,
         ?string $description = null,
         ?string $in = self::IN_HEADER
-    ) : self {
+    ): self {
         return new self(
             $key,
             self::TYPE_API_KEY,
@@ -56,7 +56,7 @@ final class Definition
         );
     }
 
-    public static function basicAuth(string $key, ?string $description = null) : self
+    public static function basicAuth(string $key, ?string $description = null): self
     {
         return new self(
             $key,
@@ -68,7 +68,7 @@ final class Definition
         );
     }
 
-    public static function bearerAuth(string $key, ?string $bearerFormat = null, ?string $description = null) : self
+    public static function bearerAuth(string $key, ?string $bearerFormat = null, ?string $description = null): self
     {
         return new self(
             $key,
@@ -81,37 +81,37 @@ final class Definition
         );
     }
 
-    public function key() : string
+    public function key(): string
     {
         return $this->key;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return $this->type;
     }
 
-    public function in() : ?string
+    public function in(): ?string
     {
         return $this->in;
     }
 
-    public function description() : ?string
+    public function description(): ?string
     {
         return $this->description;
     }
 
-    public function name() : ?string
+    public function name(): ?string
     {
         return $this->name;
     }
 
-    public function scheme() : ?string
+    public function scheme(): ?string
     {
         return $this->scheme;
     }
 
-    public function bearerFormat() : ?string
+    public function bearerFormat(): ?string
     {
         return $this->bearerFormat;
     }

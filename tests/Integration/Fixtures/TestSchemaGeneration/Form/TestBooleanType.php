@@ -8,7 +8,7 @@ use Symfony\Component\Form\AbstractType;
 
 final class TestBooleanType extends AbstractType
 {
-    public function getBlockPrefix() : string
+    public function getBlockPrefix(): string
     {
         return 'boolean';
     }

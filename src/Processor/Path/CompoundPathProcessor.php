@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Processor\Path;
 
 use RuntimeException;
 use Speicher210\OpenApiGenerator\Model\Path\Path;
+
 use function get_class;
 
 final class CompoundPathProcessor implements PathProcessor
@@ -21,7 +22,7 @@ final class CompoundPathProcessor implements PathProcessor
     /**
      * {@inheritDoc}
      */
-    public function process(Path $path) : array
+    public function process(Path $path): array
     {
         foreach ($this->pathProcessors as $pathProcessor) {
             if ($pathProcessor->canProcess($path)) {
@@ -32,7 +33,7 @@ final class CompoundPathProcessor implements PathProcessor
         throw new RuntimeException('Can not process path of type ' . get_class($path));
     }
 
-    public function canProcess(Path $path) : bool
+    public function canProcess(Path $path): bool
     {
         foreach ($this->pathProcessors as $pathProcessor) {
             if ($pathProcessor->canProcess($path)) {

@@ -17,7 +17,7 @@ final class InfoProcessor implements Processor
         $this->apiVersion = $apiVersion;
     }
 
-    public function process(OpenApi $openApi, Specification $specification) : void
+    public function process(OpenApi $openApi, Specification $specification): void
     {
         $openApi->info = new InfoSpec(
             [

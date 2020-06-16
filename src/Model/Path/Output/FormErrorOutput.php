@@ -16,12 +16,12 @@ final class FormErrorOutput implements Output
         $this->formDefinition = $formDefinition;
     }
 
-    public function formDefinition() : FormDefinition
+    public function formDefinition(): FormDefinition
     {
         return $this->formDefinition;
     }
 
-    public function example() : void
+    public function example(): void
     {
         // TODO implement
     }

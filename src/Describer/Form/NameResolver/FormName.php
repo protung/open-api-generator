@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormInterface;
 
 final class FormName implements NameResolver
 {
-    public function getPropertyName(FormInterface $form) : string
+    public function getPropertyName(FormInterface $form): string
     {
         return $form->getName();
     }

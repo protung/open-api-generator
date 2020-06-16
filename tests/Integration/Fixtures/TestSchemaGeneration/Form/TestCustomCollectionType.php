@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class TestCustomCollectionType extends AbstractType
 {
-    public function configureOptions(OptionsResolver $resolver) : void
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [
@@ -22,7 +22,7 @@ final class TestCustomCollectionType extends AbstractType
         );
     }
 
-    public function getParent() : string
+    public function getParent(): string
     {
         return CollectionType::class;
     }

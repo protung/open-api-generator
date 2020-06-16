@@ -15,7 +15,7 @@ use stdClass;
 
 final class PropertyAnalyserTest extends TestCase
 {
-    public function testGetPropertyTypeThrowsExceptionIfPropertyDoesNotExist() : void
+    public function testGetPropertyTypeThrowsExceptionIfPropertyDoesNotExist(): void
     {
         $propertyAnalyser = new PropertyAnalyser();
 
@@ -28,7 +28,7 @@ final class PropertyAnalyserTest extends TestCase
     /**
      * @return mixed[]
      */
-    public static function dataProviderTestGetPropertyType() : array
+    public static function dataProviderTestGetPropertyType(): array
     {
         return [
             ['nonDocumented', []],
@@ -129,7 +129,7 @@ final class PropertyAnalyserTest extends TestCase
      * @dataProvider dataProviderTestGetPropertyType
      * @group ttt
      */
-    public function testGetPropertyType(string $propertyName, array $expected) : void
+    public function testGetPropertyType(string $propertyName, array $expected): void
     {
         $propertyAnalyser = new PropertyAnalyser();
         $actual           = $propertyAnalyser->getTypes(PropertyAnalyserClassWithProperties::class, $propertyName);

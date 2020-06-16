@@ -10,14 +10,14 @@ use Speicher210\OpenApiGenerator\Model\Path\Output;
 
 final class ScalarOutputDescriber implements OutputDescriber
 {
-    public function describe(Output $output) : Schema
+    public function describe(Output $output): Schema
     {
         Assert::isInstanceOf($output, Output\ScalarOutput::class);
 
         return new Schema(['type' => $output->type(), 'example' => $output->example()]);
     }
 
-    public function supports(Output $output) : bool
+    public function supports(Output $output): bool
     {
         return $output instanceof Output\ScalarOutput;
     }

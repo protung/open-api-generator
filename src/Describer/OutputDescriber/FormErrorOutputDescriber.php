@@ -11,6 +11,7 @@ use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
 use Symfony\Component\Form\FormInterface;
+
 use function count;
 
 final class FormErrorOutputDescriber implements OutputDescriber
@@ -22,7 +23,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
         $this->formFactory = $formFactory;
     }
 
-    public function describe(Output $output) : Schema
+    public function describe(Output $output): Schema
     {
         Assert::isInstanceOf($output, FormErrorOutput::class);
 
@@ -54,7 +55,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
     /**
      * @return mixed[]
      */
-    private function describeFormProperties(FormInterface $form) : array
+    private function describeFormProperties(FormInterface $form): array
     {
         $properties = [];
         foreach ($form as $child) {
@@ -78,7 +79,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
         return $properties;
     }
 
-    public function supports(Output $output) : bool
+    public function supports(Output $output): bool
     {
         return $output instanceof FormErrorOutput;
     }

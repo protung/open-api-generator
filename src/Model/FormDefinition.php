@@ -27,7 +27,7 @@ final class FormDefinition
     /**
      * @return class-string<FormTypeInterface>
      */
-    public function formClass() : string
+    public function formClass(): string
     {
         return $this->formClass;
     }
@@ -35,7 +35,7 @@ final class FormDefinition
     /**
      * @return string[]
      */
-    public function validationGroups() : array
+    public function validationGroups(): array
     {
         return $this->validationGroups;
     }

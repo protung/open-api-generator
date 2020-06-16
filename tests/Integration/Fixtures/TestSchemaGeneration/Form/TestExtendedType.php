@@ -9,12 +9,12 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 final class TestExtendedType extends AbstractType
 {
-    public function getParent() : string
+    public function getParent(): string
     {
         return EmailType::class;
     }
 
-    public function getBlockPrefix() : string
+    public function getBlockPrefix(): string
     {
         return 'custom';
     }

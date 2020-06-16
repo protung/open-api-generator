@@ -11,34 +11,34 @@ abstract class BaseInput implements Input
 {
     private string $location;
 
-    final protected function setLocation(string $location) : void
+    final protected function setLocation(string $location): void
     {
         Assert::inArray($location, self::LOCATIONS);
 
         $this->location = $location;
     }
 
-    public function location() : string
+    public function location(): string
     {
         return $this->location;
     }
 
-    public function isInHeaders() : bool
+    public function isInHeaders(): bool
     {
         return $this->location === Input::LOCATION_HEADERS;
     }
 
-    public function isInPath() : bool
+    public function isInPath(): bool
     {
         return $this->location === Input::LOCATION_PATH;
     }
 
-    public function isInQuery() : bool
+    public function isInQuery(): bool
     {
         return $this->location === Input::LOCATION_QUERY;
     }
 
-    public function isInBody() : bool
+    public function isInBody(): bool
     {
         return $this->location === Input::LOCATION_BODY;
     }

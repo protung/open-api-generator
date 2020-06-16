@@ -9,11 +9,12 @@ use cebe\openapi\spec\Parameter;
 use cebe\openapi\spec\Schema;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
+
 use function array_merge;
 
 final class SimpleInputDescriber implements InputDescriber
 {
-    public function describe(Input $input, Operation $operation, string $httpMethod) : void
+    public function describe(Input $input, Operation $operation, string $httpMethod): void
     {
         Assert::isInstanceOf($input, Input\SimpleInput::class);
 
@@ -42,7 +43,7 @@ final class SimpleInputDescriber implements InputDescriber
         $operation->parameters = array_merge($operation->parameters, $parameters);
     }
 
-    public function supports(Input $input) : bool
+    public function supports(Input $input): bool
     {
         return $input instanceof Input\SimpleInput;
     }

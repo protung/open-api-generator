@@ -23,7 +23,7 @@ final class ObjectOutputDescriber implements OutputDescriber
         $this->exampleDescriber = $exampleDescriber;
     }
 
-    public function describe(Output $output) : Schema
+    public function describe(Output $output): Schema
     {
         Assert::isInstanceOf($output, ObjectOutput::class);
 
@@ -38,7 +38,7 @@ final class ObjectOutputDescriber implements OutputDescriber
         return $schema;
     }
 
-    public function supports(Output $output) : bool
+    public function supports(Output $output): bool
     {
         return $output instanceof ObjectOutput;
     }

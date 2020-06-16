@@ -8,11 +8,13 @@ use cebe\openapi\spec\Parameter;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\FormInterface;
+
 use function array_filter;
 use function array_merge;
 use function implode;
 use function nl2br;
 use function sprintf;
+
 use const PHP_EOL;
 
 final class Query
@@ -29,7 +31,7 @@ final class Query
     /**
      * @return Parameter[]
      */
-    public function describe(FormInterface $form) : array
+    public function describe(FormInterface $form): array
     {
         return $this->processParametersFromForm($form, new NameResolver\FlatArray());
     }
@@ -37,7 +39,7 @@ final class Query
     /**
      * @return Parameter[]
      */
-    private function processParametersFromForm(FormInterface $form, NameResolver $nameResolver) : array
+    private function processParametersFromForm(FormInterface $form, NameResolver $nameResolver): array
     {
         $parameters = [];
         if ($form->count() === 0) {
@@ -54,7 +56,7 @@ final class Query
         return array_merge($parameters, ...$childParameters);
     }
 
-    private function createParameter(FormInterface $form, NameResolver $nameResolver) : Parameter
+    private function createParameter(FormInterface $form, NameResolver $nameResolver): Parameter
     {
         $formConfig = $form->getConfig();
 
@@ -84,7 +86,7 @@ final class Query
         return $parameter;
     }
 
-    private function updateDescription(?string $originalDescription, string $newText) : string
+    private function updateDescription(?string $originalDescription, string $newText): string
     {
         return nl2br(implode(PHP_EOL, array_filter([$originalDescription, $newText])), false);
     }

@@ -18,13 +18,13 @@ interface Input
         self::LOCATION_BODY,
     ];
 
-    public function location() : string;
+    public function location(): string;
 
-    public function isInHeaders() : bool;
+    public function isInHeaders(): bool;
 
-    public function isInPath() : bool;
+    public function isInPath(): bool;
 
-    public function isInQuery() : bool;
+    public function isInQuery(): bool;
 
-    public function isInBody() : bool;
+    public function isInBody(): bool;
 }

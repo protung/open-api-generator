@@ -16,17 +16,17 @@ final class PropertyAnalysisSingleType implements PropertyAnalysisType
         $this->nullable = $nullable;
     }
 
-    public static function forSingleValue(string $type, bool $nullable) : self
+    public static function forSingleValue(string $type, bool $nullable): self
     {
         return new self($type, $nullable);
     }
 
-    public function type() : string
+    public function type(): string
     {
         return $this->type;
     }
 
-    public function nullable() : bool
+    public function nullable(): bool
     {
         return $this->nullable;
     }

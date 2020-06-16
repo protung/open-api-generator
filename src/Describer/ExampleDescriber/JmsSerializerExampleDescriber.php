@@ -19,7 +19,7 @@ final class JmsSerializerExampleDescriber implements ExampleDescriber
         $this->jmsSerializer = $jmsSerializer;
     }
 
-    public function describe(Schema $schema, Output $output) : void
+    public function describe(Schema $schema, Output $output): void
     {
         Assert::isInstanceOf($output, Output\ObjectOutput::class);
 
@@ -35,7 +35,7 @@ final class JmsSerializerExampleDescriber implements ExampleDescriber
         $schema->example = $this->jmsSerializer->toArray($exampleObject, $serializationContext);
     }
 
-    public function supports(Output $output) : bool
+    public function supports(Output $output): bool
     {
         return $output instanceof Output\ObjectOutput;
     }

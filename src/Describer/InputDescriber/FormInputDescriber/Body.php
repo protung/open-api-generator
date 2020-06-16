@@ -10,6 +10,7 @@ use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\FormInterface;
+
 use function array_filter;
 use function array_intersect;
 use function array_merge;
@@ -37,7 +38,7 @@ final class Body
      *
      * @return array<string,MediaType>
      */
-    public function describe(FormInterface $form, string $httpMethod) : array
+    public function describe(FormInterface $form, string $httpMethod): array
     {
         $jsonSchema = $this->formDescriber->addDeepSchema($form, new NameResolver\FormName(), $httpMethod);
 
@@ -64,7 +65,7 @@ final class Body
         return $content;
     }
 
-    private function schemaWithoutFileProperties(Schema $schema) : Schema
+    private function schemaWithoutFileProperties(Schema $schema): Schema
     {
         $schemaWithoutProperties = clone $schema;
         $this->removeFilePropertiesFromSchema($schemaWithoutProperties);
@@ -72,7 +73,7 @@ final class Body
         return $schemaWithoutProperties;
     }
 
-    private function removeFilePropertiesFromSchema(Schema $schema) : void
+    private function removeFilePropertiesFromSchema(Schema $schema): void
     {
         if ($schema->properties === null || $schema->properties === []) {
             return;
@@ -81,7 +82,7 @@ final class Body
         $properties         = $schema->properties;
         $properties         = array_filter(
             $properties,
-            static function (Schema $property) : bool {
+            static function (Schema $property): bool {
                 if ($property->format === 'binary') {
                     return false;
                 }
@@ -101,7 +102,7 @@ final class Body
         }
     }
 
-    private function schemaContainsRequiredFileProperties(Schema $schema) : bool
+    private function schemaContainsRequiredFileProperties(Schema $schema): bool
     {
         if ($schema->required === null || $schema->required === []) {
             return false;
@@ -115,7 +116,7 @@ final class Body
         return array_intersect($fileProperties, $schema->required) !== [];
     }
 
-    private function schemaHasFileProperties(Schema $schema) : bool
+    private function schemaHasFileProperties(Schema $schema): bool
     {
         if ($schema->format === 'binary') {
             return true;
@@ -139,7 +140,7 @@ final class Body
     /**
      * @return string[]
      */
-    private function getFilePropertiesFromSchema(Schema $schema) : array
+    private function getFilePropertiesFromSchema(Schema $schema): array
     {
         $fileProperties = [];
         if ($schema->properties !== null && $schema->properties !== []) {

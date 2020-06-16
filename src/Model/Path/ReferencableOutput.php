@@ -8,7 +8,7 @@ use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 
 interface ReferencableOutput extends Output
 {
-    public function output() : ObjectOutput;
+    public function output(): ObjectOutput;
 
-    public function referencePath() : string;
+    public function referencePath(): string;
 }

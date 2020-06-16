@@ -48,12 +48,12 @@ final class ComplexObject
     /** @var int|string */
     public $scalarUnionProperty;
 
-    public function getVirtualProperty() : int
+    public function getVirtualProperty(): int
     {
         return 123;
     }
 
-    public function getVirtualPropertyWithCustomName() : string
+    public function getVirtualPropertyWithCustomName(): string
     {
         return 'testing';
     }

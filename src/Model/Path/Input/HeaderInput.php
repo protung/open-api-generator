@@ -15,14 +15,14 @@ final class HeaderInput extends SimpleInput
         parent::__construct(self::LOCATION_HEADERS, ...$fields);
     }
 
-    public static function withIOField(IOField $field) : self
+    public static function withIOField(IOField $field): self
     {
         Assert::same($field->type(), Type::STRING, 'Header type must be a string.');
 
         return new self($field);
     }
 
-    public static function withName(string $name) : self
+    public static function withName(string $name): self
     {
         return new self(IOField::stringField($name));
     }

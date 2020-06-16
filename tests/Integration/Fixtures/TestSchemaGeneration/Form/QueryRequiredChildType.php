@@ -13,7 +13,7 @@ final class QueryRequiredChildType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('paramRequired', TextType::class, ['required' => true])

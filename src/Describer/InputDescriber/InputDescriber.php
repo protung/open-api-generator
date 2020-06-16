@@ -9,7 +9,7 @@ use Speicher210\OpenApiGenerator\Model\Path\Input;
 
 interface InputDescriber
 {
-    public function describe(Input $input, Operation $operation, string $httpMethod) : void;
+    public function describe(Input $input, Operation $operation, string $httpMethod): void;
 
-    public function supports(Input $input) : bool;
+    public function supports(Input $input): bool;
 }

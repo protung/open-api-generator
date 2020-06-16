@@ -14,7 +14,7 @@ final class TestFileUploadOptional extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('paramFileOptional', FileType::class, ['required' => false])

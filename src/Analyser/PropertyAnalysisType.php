@@ -6,7 +6,7 @@ namespace Speicher210\OpenApiGenerator\Analyser;
 
 interface PropertyAnalysisType
 {
-    public function type() : string;
+    public function type(): string;
 
-    public function nullable() : bool;
+    public function nullable(): bool;
 }

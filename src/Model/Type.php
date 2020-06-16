@@ -50,16 +50,22 @@ final class Type
         switch ($type) {
             case self::INTEGER:
                 return 123;
+
             case self::NUMBER:
                 return 3.14;
+
             case self::STRING:
                 return 'string';
+
             case self::BOOLEAN:
                 return true;
+
             case self::OBJECT:
                 return new stdClass();
+
             case self::ARRAY:
                 return ['array'];
+
             default:
                 return null;
         }

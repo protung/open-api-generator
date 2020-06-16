@@ -12,6 +12,7 @@ use phpDocumentor\Reflection\Types\Null_;
 use phpDocumentor\Reflection\Types\Nullable;
 use Roave\BetterReflection\BetterReflection;
 use Roave\BetterReflection\Reflection\ReflectionProperty;
+
 use function array_filter;
 use function array_map;
 use function array_reduce;
@@ -20,7 +21,7 @@ use function sprintf;
 
 final class PropertyAnalyser
 {
-    public function canBeNull(string $class, string $propertyName) : bool
+    public function canBeNull(string $class, string $propertyName): bool
     {
         $types = $this->getTypes($class, $propertyName);
 
@@ -36,7 +37,7 @@ final class PropertyAnalyser
     /**
      * @return array<PropertyAnalysisType>
      */
-    public function getTypes(string $class, string $propertyName) : array
+    public function getTypes(string $class, string $propertyName): array
     {
         $classInfo    = (new BetterReflection())->classReflector()->reflect($class);
         $propertyInfo = $classInfo->getProperty($propertyName);
@@ -75,7 +76,7 @@ final class PropertyAnalyser
     /**
      * @return PropertyAnalysisType[]
      */
-    private function getTypesFromDocBlock(ReflectionProperty $propertyInfo) : array
+    private function getTypesFromDocBlock(ReflectionProperty $propertyInfo): array
     {
         try {
             $docBlockTypes = $propertyInfo->getDocBlockTypes();
@@ -86,17 +87,17 @@ final class PropertyAnalyser
 
         $alwaysNullable = array_reduce(
             $docBlockTypes,
-            static fn(bool $carry, Type $type) => $carry || $type instanceof Null_,
+            static fn (bool $carry, Type $type) => $carry || $type instanceof Null_,
             false
         );
 
         $docBlockTypes = array_filter(
             $docBlockTypes,
-            static fn(Type $type) => ! $type instanceof Null_
+            static fn (Type $type) => ! $type instanceof Null_
         );
 
         return array_map(
-            static function (Type $type) use ($alwaysNullable) : PropertyAnalysisType {
+            static function (Type $type) use ($alwaysNullable): PropertyAnalysisType {
                 $actualType = $type instanceof Nullable ? $type->getActualType() : $type;
 
                 if ($actualType instanceof Array_) {

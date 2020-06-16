@@ -12,7 +12,7 @@ use Speicher210\OpenApiGenerator\Model\Path\Output\SimpleOutput;
 
 final class SimpleOutputDescriber implements OutputDescriber
 {
-    public function describe(Output $output) : Schema
+    public function describe(Output $output): Schema
     {
         Assert::isInstanceOf($output, SimpleOutput::class);
 
@@ -30,7 +30,7 @@ final class SimpleOutputDescriber implements OutputDescriber
         return new Schema(['type' => Type::OBJECT, 'properties' => $properties, 'example' => $output->example()]);
     }
 
-    public function supports(Output $output) : bool
+    public function supports(Output $output): bool
     {
         return $output instanceof SimpleOutput;
     }

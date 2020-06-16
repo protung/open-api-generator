@@ -23,21 +23,21 @@ final class PropertyAnalysisCollectionType implements PropertyAnalysisType
         string $type,
         bool $nullable,
         ?PropertyAnalysisType $collectionElementsType
-    ) : self {
+    ): self {
         return new self($type, $nullable, $collectionElementsType);
     }
 
-    public function type() : string
+    public function type(): string
     {
         return $this->type;
     }
 
-    public function nullable() : bool
+    public function nullable(): bool
     {
         return $this->nullable;
     }
 
-    public function collectionElementsType() : ?PropertyAnalysisType
+    public function collectionElementsType(): ?PropertyAnalysisType
     {
         return $this->collectionElementsType;
     }

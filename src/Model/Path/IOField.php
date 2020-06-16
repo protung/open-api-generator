@@ -31,27 +31,27 @@ final class IOField
         $this->possibleValues = $possibleValues;
     }
 
-    public static function stringField(string $name) : self
+    public static function stringField(string $name): self
     {
         return new self($name, Type::STRING);
     }
 
-    public static function integerField(string $name) : self
+    public static function integerField(string $name): self
     {
         return new self($name, Type::INTEGER);
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return $this->type;
     }
 
-    public function pattern() : ?string
+    public function pattern(): ?string
     {
         return $this->pattern;
     }
@@ -59,7 +59,7 @@ final class IOField
     /**
      * @return mixed[]|null
      */
-    public function possibleValues() : ?array
+    public function possibleValues(): ?array
     {
         return $this->possibleValues;
     }

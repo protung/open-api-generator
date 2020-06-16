@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Model;
 
 use cebe\openapi\spec\Schema;
+
 use function array_key_last;
 use function explode;
 
@@ -20,24 +21,24 @@ final class ReferenceModel
         $this->referencePath = $referencePath;
     }
 
-    public function definition() : Definition
+    public function definition(): Definition
     {
         return $this->model->definition();
     }
 
-    public function schema() : Schema
+    public function schema(): Schema
     {
         return $this->model->schema();
     }
 
-    public function referenceName() : string
+    public function referenceName(): string
     {
         $paths = explode('/', $this->referencePath);
 
         return $paths[array_key_last($paths)];
     }
 
-    public function referencePath() : string
+    public function referencePath(): string
     {
         return $this->referencePath;
     }

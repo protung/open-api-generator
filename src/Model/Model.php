@@ -18,12 +18,12 @@ final class Model
         $this->schema     = $schema;
     }
 
-    public function definition() : Definition
+    public function definition(): Definition
     {
         return $this->definition;
     }
 
-    public function schema() : Schema
+    public function schema(): Schema
     {
         return $this->schema;
     }

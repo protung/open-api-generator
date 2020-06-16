@@ -7,6 +7,7 @@ namespace Speicher210\OpenApiGenerator\Describer;
 use cebe\openapi\spec\Operation;
 use InvalidArgumentException;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
+
 use function get_class;
 use function sprintf;
 
@@ -20,7 +21,7 @@ final class InputDescriber
         $this->inputDescribers = $inputDescribers;
     }
 
-    public function describe(Operation $operation, Input $input, string $httpMethod) : void
+    public function describe(Operation $operation, Input $input, string $httpMethod): void
     {
         foreach ($this->inputDescribers as $inputDescriber) {
             if ($inputDescriber->supports($input)) {

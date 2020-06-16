@@ -28,7 +28,7 @@
         "webmozart/assert": "^1.8"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^7.0.2",
+        "doctrine/coding-standard": "^8.0.0",
         "ergebnis/composer-normalize": "^2.5",
         "phpstan/phpstan": "^0.12.29",
         "phpstan/phpstan-deprecation-rules": "^0.12.4",

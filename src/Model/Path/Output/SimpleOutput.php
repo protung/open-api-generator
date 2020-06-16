@@ -7,6 +7,7 @@ namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Type;
+
 use function reset;
 
 /**
@@ -25,7 +26,7 @@ class SimpleOutput implements Output
     /**
      * @return IOField[]
      */
-    public function fields() : array
+    public function fields(): array
     {
         return $this->fields;
     }
@@ -33,7 +34,7 @@ class SimpleOutput implements Output
     /**
      * @return array<string,mixed>
      */
-    public function example() : array
+    public function example(): array
     {
         $example = [];
 

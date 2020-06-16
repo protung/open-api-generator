@@ -15,12 +15,14 @@ use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
+
 use function array_filter;
 use function get_class;
 use function implode;
 use function nl2br;
 use function sprintf;
 use function strpos;
+
 use const PHP_EOL;
 
 final class FormDescriber
@@ -41,7 +43,7 @@ final class FormDescriber
         $this->requirementsDescriber = $requirementsDescriber;
     }
 
-    public function addDeepSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod) : Schema
+    public function addDeepSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod): Schema
     {
         if ($form->count() === 0) {
             $schema = $this->createSchema($form, $nameResolver, $httpMethod);
@@ -72,7 +74,7 @@ final class FormDescriber
         return $schema;
     }
 
-    public function addFlattenSchema(FormInterface $form, FlatNameResolver $nameResolver, string $httpMethod) : Schema
+    public function addFlattenSchema(FormInterface $form, FlatNameResolver $nameResolver, string $httpMethod): Schema
     {
         $schema = new Schema(['type' => Type::OBJECT]);
 
@@ -84,7 +86,7 @@ final class FormDescriber
         FormInterface $form,
         FlatNameResolver $nameResolver,
         string $httpMethod
-    ) : Schema {
+    ): Schema {
         if ($form->count() === 0) {
             $this->addParameterToSchema($schema, $nameResolver, $form, $httpMethod);
         } else {
@@ -133,7 +135,7 @@ final class FormDescriber
         NameResolver $nameResolver,
         FormInterface $form,
         string $httpMethod
-    ) : void {
+    ): void {
         $childSchema = $this->createSchema($form, $nameResolver, $httpMethod);
         $this->handleRequiredForParent($childSchema, $form, $nameResolver);
 
@@ -145,7 +147,7 @@ final class FormDescriber
         $this->handleRequiredProperty($schema, $name, $form, $httpMethod);
     }
 
-    private function createSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod) : Schema
+    private function createSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod): Schema
     {
         $formConfig  = $form->getConfig();
         $blockPrefix = $formConfig->getType()->getBlockPrefix();
@@ -163,7 +165,7 @@ final class FormDescriber
         return $schema;
     }
 
-    private function isCollection(FormConfigInterface $formConfig) : bool
+    private function isCollection(FormConfigInterface $formConfig): bool
     {
         if ($formConfig->getType()->getBlockPrefix() === 'collection') {
             return true;
@@ -184,7 +186,7 @@ final class FormDescriber
         return false;
     }
 
-    private function updateDescription(?string $originalDescription, string $newText) : string
+    private function updateDescription(?string $originalDescription, string $newText): string
     {
         return nl2br(implode(PHP_EOL, array_filter([$originalDescription, $newText])), false);
     }
@@ -194,7 +196,7 @@ final class FormDescriber
         FormInterface $form,
         NameResolver $nameResolver,
         string $httpMethod
-    ) : void {
+    ): void {
         $formConfig = $form->getConfig();
 
         $subForm = $this->formFactory->create(
@@ -209,14 +211,14 @@ final class FormDescriber
         $schema->items = $this->addDeepSchema($subForm, $nameResolver, $httpMethod);
     }
 
-    private function isBuiltinType(FormTypeInterface $formType) : bool
+    private function isBuiltinType(FormTypeInterface $formType): bool
     {
         $formClass = get_class($formType);
 
         return strpos($formClass, 'Symfony\Component\Form\Extension\Core\Type') === 0;
     }
 
-    private function handleRequiredForParent(Schema $schema, FormInterface $form, NameResolver $nameResolver) : void
+    private function handleRequiredForParent(Schema $schema, FormInterface $form, NameResolver $nameResolver): void
     {
         if ($form->getConfig()->getRequired() !== true) {
             return;
@@ -233,7 +235,7 @@ final class FormDescriber
         );
     }
 
-    private function handleRequiredProperty(Schema $schema, string $name, FormInterface $form, string $httpMethod) : void
+    private function handleRequiredProperty(Schema $schema, string $name, FormInterface $form, string $httpMethod): void
     {
         if ($this->isFormPropertyRequired($form, $httpMethod) !== true) {
             return;
@@ -244,7 +246,7 @@ final class FormDescriber
         $schema->required = $schemaRequired;
     }
 
-    private function isFormPropertyRequired(FormInterface $form, string $httpMethod) : bool
+    private function isFormPropertyRequired(FormInterface $form, string $httpMethod): bool
     {
         // For PATCH endpoints all properties are optional.
         if ($httpMethod === 'PATCH') {

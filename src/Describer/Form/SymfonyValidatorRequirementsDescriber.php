@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Unique;
 use Symfony\Component\Validator\Mapping\ClassMetadataInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 use function array_map;
 use function array_merge;
 use function get_class;
@@ -34,7 +35,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         $this->validator = $validator;
     }
 
-    public function describe(Schema $schema, FormInterface $form) : void
+    public function describe(Schema $schema, FormInterface $form): void
     {
         $constraints = $this->getConstraints($form);
 
@@ -96,7 +97,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     /**
      * @return Constraint[]
      */
-    private function getConstraints(FormInterface $form) : array
+    private function getConstraints(FormInterface $form): array
     {
         $formConfig = $form->getConfig();
 
@@ -110,7 +111,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     /**
      * @return Constraint[]
      */
-    private function getConstraintsForClass(FormConfigInterface $formConfig) : array
+    private function getConstraintsForClass(FormConfigInterface $formConfig): array
     {
         $class = $formConfig->getOption('data_class');
         if ($class === null) {
@@ -123,7 +124,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     /**
      * @return Constraint[]
      */
-    private function getConstraintsForClassProperty(FormInterface $form) : array
+    private function getConstraintsForClassProperty(FormInterface $form): array
     {
         $formConfig = $form->getConfig();
         if ($formConfig->getOption('mapped') === false) {
@@ -161,7 +162,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         return [];
     }
 
-    private function isDescribingClass(FormInterface $form) : bool
+    private function isDescribingClass(FormInterface $form): bool
     {
         $formConfig = $form->getConfig();
         if ($formConfig->getOption('data_class') !== null) {
@@ -179,13 +180,13 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     /**
      * @param Constraint[] $constraints
      */
-    private function handleNullability(Schema $schema, FormInterface $form, array $constraints) : void
+    private function handleNullability(Schema $schema, FormInterface $form, array $constraints): void
     {
         if (! $this->isDescribingClass($form)) {
             return;
         }
 
-        $constraintClasses = array_map(static fn($constraint) => get_class($constraint), $constraints);
+        $constraintClasses = array_map(static fn ($constraint) => get_class($constraint), $constraints);
 
         if (in_array(NotNull::class, $constraintClasses, true) || in_array(NotBlank::class, $constraintClasses, true)) {
             return;

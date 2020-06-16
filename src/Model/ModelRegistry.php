@@ -7,6 +7,7 @@ namespace Speicher210\OpenApiGenerator\Model;
 use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 use RuntimeException;
+
 use function array_key_exists;
 use function implode;
 use function md5;
@@ -22,7 +23,7 @@ final class ModelRegistry
     /** @var array<string,ReferenceModel> */
     private array $referencedModels = [];
 
-    public function schemaExistsForDefinition(Definition $definition) : bool
+    public function schemaExistsForDefinition(Definition $definition): bool
     {
         return array_key_exists(
             $this->definitionKey($definition),
@@ -30,7 +31,7 @@ final class ModelRegistry
         );
     }
 
-    private function getModelWithDefinition(Definition $definition) : Model
+    private function getModelWithDefinition(Definition $definition): Model
     {
         if ($this->schemaExistsForDefinition($definition)) {
             return $this->models[$this->definitionKey($definition)];
@@ -45,12 +46,12 @@ final class ModelRegistry
         );
     }
 
-    public function getSchema(Definition $definition) : Schema
+    public function getSchema(Definition $definition): Schema
     {
         return $this->getModelWithDefinition($definition)->schema();
     }
 
-    public function addSchema(Definition $definition, Schema $schema) : void
+    public function addSchema(Definition $definition, Schema $schema): void
     {
         if ($this->schemaExistsForDefinition($definition)) {
             throw new RuntimeException(
@@ -65,7 +66,7 @@ final class ModelRegistry
         $this->models[$this->definitionKey($definition)] = new Model($definition, $schema);
     }
 
-    public function createReference(Definition $definition, string $referencePath) : Reference
+    public function createReference(Definition $definition, string $referencePath): Reference
     {
         $hash = $this->definitionKey($definition);
 
@@ -93,12 +94,12 @@ final class ModelRegistry
     /**
      * @return ReferenceModel[]
      */
-    public function referencedModels() : array
+    public function referencedModels(): array
     {
         return $this->referencedModels;
     }
 
-    private function definitionKey(Definition $definition) : string
+    private function definitionKey(Definition $definition): string
     {
         $exampleObject = $definition->exampleObject();
         $objectHash    = $exampleObject !== null ? spl_object_hash($exampleObject) : null;

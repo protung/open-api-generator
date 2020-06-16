@@ -17,17 +17,17 @@ final class FormInput extends BaseInput
         $this->setLocation($location);
     }
 
-    public static function inBody(FormDefinition $formDefinition) : self
+    public static function inBody(FormDefinition $formDefinition): self
     {
         return new self($formDefinition, Input::LOCATION_BODY);
     }
 
-    public static function inQuery(FormDefinition $formDefinition) : self
+    public static function inQuery(FormDefinition $formDefinition): self
     {
         return new self($formDefinition, Input::LOCATION_QUERY);
     }
 
-    public function formDefinition() : FormDefinition
+    public function formDefinition(): FormDefinition
     {
         return $this->formDefinition;
     }

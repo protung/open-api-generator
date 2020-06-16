@@ -22,7 +22,7 @@ final class PaginatedOutput implements Output
         $this->embedded     = $embedded;
     }
 
-    public function resourcesKey() : string
+    public function resourcesKey(): string
     {
         return $this->resourcesKey;
     }
@@ -30,12 +30,12 @@ final class PaginatedOutput implements Output
     /**
      * @return Output[]
      */
-    public function embedded() : array
+    public function embedded(): array
     {
         return $this->embedded;
     }
 
-    public function example() : void
+    public function example(): void
     {
         // TODO: Implement example() method.
     }
