@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Variable property access on Symfony\\\\Component\\\\Validator\\\\Constraints\\\\Composite\\.$#"
+			count: 1
+			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
 			message: "#^Property cebe\\\\openapi\\\\spec\\\\Schema\\:\\:\\$exclusiveMinimum \\(float\\|int\\) does not accept true\\.$#"
 			count: 1
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php

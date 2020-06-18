@@ -5,6 +5,10 @@
       <code>true</code>
       <code>true</code>
     </InvalidPropertyAssignmentValue>
+    <PossiblyInvalidFunctionCall occurrences="1"/>
+    <UndefinedMethod occurrences="1">
+      <code>getCompositeOption</code>
+    </UndefinedMethod>
   </file>
   <file src="src/Describer/InputDescriber/FormInputDescriber/Body.php">
     <DocblockTypeContradiction occurrences="2">
