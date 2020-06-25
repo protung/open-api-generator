@@ -40,4 +40,6 @@
 
     <route id="api_test_get_output_object_example" methods="GET" path="/api/test/output/object/example"/>
 
+    <route id="api_test_get_with_file_output" methods="GET" path="/api/test/with-file-output"/>
+
 </routes>

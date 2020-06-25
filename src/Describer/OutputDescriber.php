@@ -12,6 +12,7 @@ use Speicher210\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
+use Speicher210\OpenApiGenerator\Model\Path\Output\FileOutput;
 use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
 use Speicher210\OpenApiGenerator\Model\Path\ReferencableOutput;
 
@@ -39,6 +40,7 @@ final class OutputDescriber
         $this->outputDescribers = [
             new OutputDescriber\ScalarOutputDescriber(),
             new OutputDescriber\SimpleOutputDescriber(),
+            new OutputDescriber\FileOutputDescriber(),
             new OutputDescriber\CollectionOutputDescriber($this, $exampleDescriber),
             new OutputDescriber\PaginatedOutputDescriber($this),
             new OutputDescriber\FormErrorOutputDescriber($formFactory),
@@ -70,6 +72,10 @@ final class OutputDescriber
 
     public function contentType(Output $output): string
     {
+        if ($output instanceof FileOutput) {
+            return $output->contentType();
+        }
+
         if ($output instanceof ReferencableOutput) {
             return $this->contentType($output->output());
         }

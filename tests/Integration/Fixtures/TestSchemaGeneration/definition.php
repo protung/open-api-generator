@@ -304,6 +304,18 @@ return new Model\Specification(
                 ),
             ],
         ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_get_with_file_output',
+            'Test',
+            'Test get with a file output',
+            null,
+            [],
+            [
+                Response::for200(
+                    Model\Path\Output\FileOutput::forPdf(),
+                ),
+            ],
+        ),
     ],
     [
         Input\HeaderInput::withName('X-ALWAYS'),
