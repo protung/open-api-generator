@@ -116,7 +116,7 @@ final class PathProcessor implements PathProcessorInterface
         return $operations;
     }
 
-    private function extractInputFromRoute(SymfonyRoute $route): Input\SimpleInput
+    private function extractInputFromRoute(SymfonyRoute $route): Input\PathInput
     {
         $ioFields = [];
         foreach ($route->compile()->getPathVariables() as $pathVariable) {
@@ -133,7 +133,7 @@ final class PathProcessor implements PathProcessorInterface
             $ioFields[] = new IOField($pathVariable, Type::STRING, $pattern, $possibleValues);
         }
 
-        return new Input\SimpleInput(Input::LOCATION_PATH, ...$ioFields);
+        return Input\PathInput::withIOFields(...$ioFields);
     }
 
     private function processInputs(Operation $operation, string $httpMethod, Input ...$inputs): void

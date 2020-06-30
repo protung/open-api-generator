@@ -553,6 +553,30 @@
                         "required": false
                     },
                     {
+                        "name": "custom_query_string_field",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "custom_query_integer_field",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "custom_query_boolean_field",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
                         "name": "X-ALWAYS",
                         "in": "header",
                         "required": false,

@@ -56,6 +56,9 @@ return new Model\Specification(
             null,
             [
                 FormInput::inQuery(new FormDefinition(TestSchemaGeneration\Form\QueryType::class)),
+                Input\QueryInput::withIOField(IOField::stringField('custom_query_string_field')),
+                Input\QueryInput::withIOField(IOField::integerField('custom_query_integer_field')),
+                Input\QueryInput::withIOField(IOField::booleanField('custom_query_boolean_field')),
             ],
             [],
             Model\Security\Reference::fromString('ApiKey')
