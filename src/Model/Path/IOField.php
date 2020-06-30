@@ -41,6 +41,11 @@ final class IOField
         return new self($name, Type::INTEGER);
     }
 
+    public static function booleanField(string $name): self
+    {
+        return new self($name, Type::BOOLEAN);
+    }
+
     public function name(): string
     {
         return $this->name;

@@ -87,6 +87,7 @@ return new Model\Specification(
                     new Model\Path\Output\SimpleOutput(
                         IOField::integerField('myInt'),
                         IOField::stringField('myString'),
+                        IOField::booleanField('myBoolean'),
                         new IOField('myChoice', Type::NUMBER, null, [1, 2, 3]),
                     )
                 ),

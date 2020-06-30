@@ -2808,6 +2808,9 @@
                                         "myString": {
                                             "type": "string"
                                         },
+                                        "myBoolean": {
+                                            "type": "boolean"
+                                        },
                                         "myChoice": {
                                             "enum": [
                                                 1,
@@ -2820,6 +2823,7 @@
                                     "example": {
                                         "myInt": 123,
                                         "myString": "string",
+                                        "myBoolean": true,
                                         "myChoice": 1
                                     }
                                 }
