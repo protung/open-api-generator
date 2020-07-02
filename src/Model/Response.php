@@ -44,7 +44,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public static function for201(Output $output, $description = ['Returned on success']): self
+    public static function for201(?Output $output, $description = ['Returned on success']): self
     {
         return new self(201, (array) $description, $output);
     }
