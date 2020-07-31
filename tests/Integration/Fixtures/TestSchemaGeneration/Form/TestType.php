@@ -21,6 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Validator\Constraints\DivisibleBy;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\Length;
@@ -48,6 +49,13 @@ final class TestType extends AbstractType
                 NumberType::class,
                 [
                     'constraints' => [new All([new GreaterThanOrEqual(3.14), new LessThanOrEqual(9.9)])],
+                ]
+            )
+            ->add(
+                'paramNumberDivisibleBy',
+                NumberType::class,
+                [
+                    'constraints' => [new DivisibleBy(0.5)],
                 ]
             )
             ->add('paramInRange', RangeType::class, ['constraints' => [new Range(['min' => -20, 'max' => -4])]])

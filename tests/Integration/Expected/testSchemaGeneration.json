@@ -173,6 +173,15 @@
                         "required": true
                     },
                     {
+                        "name": "innerForm[paramNumberDivisibleBy]",
+                        "in": "query",
+                        "schema": {
+                            "type": "number",
+                            "multipleOf": 0.5
+                        },
+                        "required": true
+                    },
+                    {
                         "name": "innerForm[paramInRange]",
                         "in": "query",
                         "schema": {
@@ -3711,6 +3720,17 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramNumberDivisibleBy": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramInRange": {
                                                             "type": "object",
                                                             "properties": {
@@ -4080,6 +4100,10 @@
                                         "minimum": 3.14,
                                         "maximum": 9.9
                                     },
+                                    "paramNumberDivisibleBy": {
+                                        "type": "number",
+                                        "multipleOf": 0.5
+                                    },
                                     "paramInRange": {
                                         "type": "string",
                                         "minimum": -20,
@@ -4203,6 +4227,7 @@
                                     "paramInt",
                                     "paramText",
                                     "paramNumber",
+                                    "paramNumberDivisibleBy",
                                     "paramInRange",
                                     "paramDate",
                                     "paramDateTime",
@@ -4251,6 +4276,10 @@
                                         "type": "number",
                                         "minimum": 3.14,
                                         "maximum": 9.9
+                                    },
+                                    "paramNumberDivisibleBy": {
+                                        "type": "number",
+                                        "multipleOf": 0.5
                                     },
                                     "paramInRange": {
                                         "type": "string",
@@ -4357,6 +4386,7 @@
                                     "paramInt",
                                     "paramText",
                                     "paramNumber",
+                                    "paramNumberDivisibleBy",
                                     "paramInRange",
                                     "paramDate",
                                     "paramDateTime",
@@ -4503,6 +4533,17 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramNumberDivisibleBy": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramInRange": {
                                                             "type": "object",
                                                             "properties": {
@@ -4872,6 +4913,10 @@
                                         "minimum": 3.14,
                                         "maximum": 9.9
                                     },
+                                    "paramNumberDivisibleBy": {
+                                        "type": "number",
+                                        "multipleOf": 0.5
+                                    },
                                     "paramInRange": {
                                         "type": "string",
                                         "minimum": -20,
@@ -5006,6 +5051,10 @@
                                         "type": "number",
                                         "minimum": 3.14,
                                         "maximum": 9.9
+                                    },
+                                    "paramNumberDivisibleBy": {
+                                        "type": "number",
+                                        "multipleOf": 0.5
                                     },
                                     "paramInRange": {
                                         "type": "string",

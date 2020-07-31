@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\Composite;
 use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Validator\Constraints\DivisibleBy;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\Length;
@@ -179,6 +180,9 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                         $schema->maxItems = $constraint->max;
                     }
 
+                    break;
+                case $constraint instanceof DivisibleBy:
+                    $schema->multipleOf = $constraint->value;
                     break;
                 case $constraint instanceof GreaterThan:
                     $schema->minimum          = $constraint->value;
