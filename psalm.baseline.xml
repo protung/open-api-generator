@@ -24,6 +24,9 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Describer/ObjectDescriber/JMSModel.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$propertyMetadata</code>
+    </ArgumentTypeCoercion>
     <DocblockTypeContradiction occurrences="2">
       <code>$item-&gt;type === null</code>
       <code>$propertyMetadata-&gt;type === null</code>
