@@ -27,23 +27,26 @@
         "symfony/validator": "^4.4 || ^5.0",
         "webmozart/assert": "^1.8"
     },
+    "conflict": {
+        "nikic/php-parser": "^4.7.0"
+    },
     "require-dev": {
-        "doctrine/coding-standard": "^8.0.0",
-        "ergebnis/composer-normalize": "^2.5",
-        "phpstan/phpstan": "^0.12.29",
-        "phpstan/phpstan-deprecation-rules": "^0.12.4",
-        "phpstan/phpstan-phpunit": "^0.12.11",
-        "phpstan/phpstan-strict-rules": "^0.12.2",
-        "phpstan/phpstan-symfony": "^0.12.6",
-        "phpstan/phpstan-webmozart-assert": "^0.12.6",
-        "phpunit/phpunit": "^9.2.3",
+        "doctrine/coding-standard": "^8.1.0",
+        "ergebnis/composer-normalize": "^2.6",
+        "phpstan/phpstan": "^0.12.34",
+        "phpstan/phpstan-deprecation-rules": "^0.12.5",
+        "phpstan/phpstan-phpunit": "^0.12.15",
+        "phpstan/phpstan-strict-rules": "^0.12.4",
+        "phpstan/phpstan-symfony": "^0.12.7",
+        "phpstan/phpstan-webmozart-assert": "^0.12.7",
+        "phpunit/phpunit": "^9.2.6",
         "psalm/plugin-phpunit": "^0.10.1",
         "roave/security-advisories": "dev-master",
-        "slevomat/coding-standard": "^6.3.9",
+        "slevomat/coding-standard": "^6.3.10",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/var-dumper": "4.4 || ^5.0",
         "thecodingmachine/phpstan-strict-rules": "^0.12.0",
-        "vimeo/psalm": "^3.11.5"
+        "vimeo/psalm": "^3.13.1"
     },
     "config": {
         "preferred-install": {

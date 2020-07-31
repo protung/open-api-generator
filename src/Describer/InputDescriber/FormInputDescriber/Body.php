@@ -87,7 +87,7 @@ final class Body
                     return false;
                 }
 
-                return $property->type !== 'array' || $property->items === null || $property->items->format !== 'binary';
+                return $property->type !== 'array' || $property->items === null || ($property->items instanceof Schema && $property->items->format !== 'binary');
             }
         );
         $schema->properties = $properties;
@@ -124,6 +124,10 @@ final class Body
 
         if ($schema->properties !== null && $schema->properties !== []) {
             foreach ($schema->properties as $property) {
+                if (! ($property instanceof Schema)) {
+                    continue;
+                }
+
                 if ($property->format === 'binary') {
                     return true;
                 }
@@ -134,7 +138,7 @@ final class Body
             }
         }
 
-        return $schema->items !== null && $this->schemaHasFileProperties($schema->items);
+        return $schema->items instanceof Schema && $this->schemaHasFileProperties($schema->items);
     }
 
     /**
@@ -146,6 +150,10 @@ final class Body
         if ($schema->properties !== null && $schema->properties !== []) {
             $childFileProperties = [];
             foreach ($schema->properties as $name => $property) {
+                if (! ($property instanceof Schema)) {
+                    continue;
+                }
+
                 if ($property->format === 'binary') {
                     $fileProperties[] = $name;
                 }
