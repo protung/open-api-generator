@@ -27,15 +27,13 @@
         "symfony/validator": "^4.4 || ^5.0",
         "webmozart/assert": "^1.8"
     },
-    "conflict": {
-        "nikic/php-parser": "^4.7.0"
-    },
+    "conflict": {},
     "require-dev": {
         "doctrine/coding-standard": "^8.1.0",
         "ergebnis/composer-normalize": "^2.6",
-        "phpstan/phpstan": "^0.12.34",
+        "phpstan/phpstan": "^0.12.37",
         "phpstan/phpstan-deprecation-rules": "^0.12.5",
-        "phpstan/phpstan-phpunit": "^0.12.15",
+        "phpstan/phpstan-phpunit": "^0.12.16",
         "phpstan/phpstan-strict-rules": "^0.12.4",
         "phpstan/phpstan-symfony": "^0.12.7",
         "phpstan/phpstan-webmozart-assert": "^0.12.7",
