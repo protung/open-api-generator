@@ -39,4 +39,9 @@ final class PaginatedOutput implements Output
     {
         // TODO: Implement example() method.
     }
+
+    public function contentType(): string
+    {
+        return Output::CONTENT_TYPE_APPLICATION_JSON;
+    }
 }

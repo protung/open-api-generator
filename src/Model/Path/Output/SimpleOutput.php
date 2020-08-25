@@ -49,4 +49,9 @@ class SimpleOutput implements Output
 
         return $example;
     }
+
+    public function contentType(): string
+    {
+        return Output::CONTENT_TYPE_APPLICATION_JSON;
+    }
 }

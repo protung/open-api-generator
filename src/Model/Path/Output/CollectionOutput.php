@@ -40,4 +40,9 @@ final class CollectionOutput implements Output
     {
         return [$this->output->example()];
     }
+
+    public function contentType(): string
+    {
+        return $this->output->contentType();
+    }
 }

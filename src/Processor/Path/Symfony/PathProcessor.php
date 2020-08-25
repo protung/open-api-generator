@@ -156,10 +156,8 @@ final class PathProcessor implements PathProcessorInterface
 
             $output = $response->output();
             if ($output !== null) {
-                $contentType = $this->outputDescriber->contentType($output);
-
                 $responseData['content'] = [
-                    $contentType => [
+                    $output->contentType() => [
                         'schema' => $this->outputDescriber->describe($output),
                     ],
                 ];

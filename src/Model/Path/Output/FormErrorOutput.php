@@ -25,4 +25,9 @@ final class FormErrorOutput implements Output
     {
         // TODO implement
     }
+
+    public function contentType(): string
+    {
+        return Output::CONTENT_TYPE_APPLICATION_JSON;
+    }
 }

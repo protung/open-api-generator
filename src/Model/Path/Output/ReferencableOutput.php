@@ -46,4 +46,9 @@ final class ReferencableOutput implements ReferencableOutputInterface
     {
         return $this->output->example();
     }
+
+    public function contentType(): string
+    {
+        return $this->output->contentType();
+    }
 }

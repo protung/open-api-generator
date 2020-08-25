@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
 use Speicher210\OpenApiGenerator\Assert\Assert;
+use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\SerializationGroupAwareOutput;
 
 use function array_merge;
@@ -85,5 +86,10 @@ final class ObjectOutput implements SerializationGroupAwareOutput
     public function serializationGroups(): array
     {
         return $this->serializationGroups;
+    }
+
+    public function contentType(): string
+    {
+        return Output::CONTENT_TYPE_APPLICATION_JSON;
     }
 }

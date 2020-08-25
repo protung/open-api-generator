@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
+use Speicher210\OpenApiGenerator\Model\Path\Output;
 
 final class RFC7807ErrorOutput extends SimpleOutput
 {
@@ -76,5 +77,10 @@ final class RFC7807ErrorOutput extends SimpleOutput
             'status' => $this->errorCode,
             'detail' => $this->message,
         ];
+    }
+
+    public function contentType(): string
+    {
+        return Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON;
     }
 }
