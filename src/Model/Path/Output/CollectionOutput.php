@@ -40,4 +40,12 @@ final class CollectionOutput implements Output
     {
         return [$this->output->example()];
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function contentTypes(): array
+    {
+        return $this->output->contentTypes();
+    }
 }

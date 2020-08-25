@@ -127,7 +127,6 @@ final class PropertyAnalyserTest extends TestCase
      * @param PropertyAnalysisType[] $expected
      *
      * @dataProvider dataProviderTestGetPropertyType
-     * @group ttt
      */
     public function testGetPropertyType(string $propertyName, array $expected): void
     {

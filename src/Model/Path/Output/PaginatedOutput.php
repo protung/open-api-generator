@@ -39,4 +39,12 @@ final class PaginatedOutput implements Output
     {
         // TODO: Implement example() method.
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function contentTypes(): array
+    {
+        return [Output::CONTENT_TYPE_APPLICATION_JSON];
+    }
 }
