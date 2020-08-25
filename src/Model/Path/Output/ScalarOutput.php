@@ -46,8 +46,11 @@ final class ScalarOutput implements Output
         return $this->example;
     }
 
-    public function contentType(): string
+    /**
+     * {@inheritDoc}
+     */
+    public function contentTypes(): array
     {
-        return Output::CONTENT_TYPE_APPLICATION_JSON;
+        return [Output::CONTENT_TYPE_APPLICATION_JSON];
     }
 }

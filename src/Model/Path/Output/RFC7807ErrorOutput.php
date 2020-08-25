@@ -79,8 +79,11 @@ final class RFC7807ErrorOutput extends SimpleOutput
         ];
     }
 
-    public function contentType(): string
+    /**
+     * {@inheritDoc}
+     */
+    public function contentTypes(): array
     {
-        return Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON;
+        return [Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON];
     }
 }

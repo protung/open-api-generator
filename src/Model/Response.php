@@ -11,6 +11,7 @@ use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
 use Symfony\Component\Form\FormTypeInterface;
 
 use function array_map;
+use function array_merge;
 use function implode;
 use function nl2br;
 
@@ -32,9 +33,11 @@ final class Response
     public function __construct(int $statusCode, array $description, Output ...$outputs)
     {
         Assert::uniqueValues(
-            array_map(
-                static fn (Output $output): string => $output->contentType(),
-                $outputs
+            array_merge(
+                ...array_map(
+                    static fn (Output $output): array => $output->contentTypes(),
+                    $outputs
+                )
             ),
             'Outputs must have different content types'
         );

@@ -47,8 +47,11 @@ final class ReferencableOutput implements ReferencableOutputInterface
         return $this->output->example();
     }
 
-    public function contentType(): string
+    /**
+     * {@inheritDoc}
+     */
+    public function contentTypes(): array
     {
-        return $this->output->contentType();
+        return $this->output->contentTypes();
     }
 }

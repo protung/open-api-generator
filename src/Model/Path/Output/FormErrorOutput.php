@@ -26,8 +26,11 @@ final class FormErrorOutput implements Output
         // TODO implement
     }
 
-    public function contentType(): string
+    /**
+     * {@inheritDoc}
+     */
+    public function contentTypes(): array
     {
-        return Output::CONTENT_TYPE_APPLICATION_JSON;
+        return [Output::CONTENT_TYPE_APPLICATION_JSON];
     }
 }

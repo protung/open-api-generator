@@ -20,9 +20,12 @@ final class FileOutput implements Output
         return new self('application/pdf');
     }
 
-    public function contentType(): string
+    /**
+     * {@inheritDoc}
+     */
+    public function contentTypes(): array
     {
-        return $this->contentType;
+        return [$this->contentType];
     }
 
     public function example(): void

@@ -15,5 +15,8 @@ interface Output
      */
     public function example();
 
-    public function contentType(): string;
+    /**
+     * @return string[]
+     */
+    public function contentTypes(): array;
 }

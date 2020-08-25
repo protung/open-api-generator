@@ -88,8 +88,11 @@ final class ObjectOutput implements SerializationGroupAwareOutput
         return $this->serializationGroups;
     }
 
-    public function contentType(): string
+    /**
+     * {@inheritDoc}
+     */
+    public function contentTypes(): array
     {
-        return Output::CONTENT_TYPE_APPLICATION_JSON;
+        return [Output::CONTENT_TYPE_APPLICATION_JSON];
     }
 }
