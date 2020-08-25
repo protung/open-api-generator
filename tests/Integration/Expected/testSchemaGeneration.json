@@ -3178,6 +3178,23 @@
                             }
                         }
                     },
+                    "210": {
+                        "description": "multiple outputs",
+                        "content": {
+                            "application\/pdf": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "type": "integer",
+                                    "example": 123
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Returned on server error",
                         "content": {

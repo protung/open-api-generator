@@ -16,11 +16,6 @@ parameters:
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
 
 		-
-			message: "#^Method Speicher210\\\\OpenApiGenerator\\\\Describer\\\\InputDescriber\\\\FormInputDescriber\\\\Body\\:\\:getFilePropertiesFromSchema\\(\\) should return array\\<string\\> but returns array\\<int\\|string, int\\|string\\>\\.$#"
-			count: 1
-			path: src/Describer/InputDescriber/FormInputDescriber/Body.php
-
-		-
 			message: "#^Variable property access on cebe\\\\openapi\\\\spec\\\\PathItem\\.$#"
 			count: 1
 			path: src/Processor/PathsProcessor.php

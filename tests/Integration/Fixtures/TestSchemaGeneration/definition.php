@@ -110,6 +110,12 @@ return new Model\Specification(
                     [],
                     ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\InlineArrayOfObjects::class)
                 ),
+                new Response(
+                    210,
+                    ['multiple outputs'],
+                    Model\Path\Output\FileOutput::forPdf(),
+                    new Model\Path\Output\ScalarOutput(Type::INTEGER)
+                ),
             ],
             null,
             true
@@ -121,10 +127,10 @@ return new Model\Specification(
             null,
             [],
             [
-                Response::for400(new RFC7807ErrorOutput(400, 'something custom'), ['Custom message 400']),
+                Response::for400(new RFC7807ErrorOutput(400, 'something custom'))->withDescription(['Custom message 400']),
                 Response::for401(),
-                Response::for403(['Custom message 403']),
-                Response::for404(['Custom message 404', 'Another custom message 404']),
+                Response::for403()->withDescription(['Custom message 403']),
+                Response::for404()->withDescription(['Custom message 404', 'Another custom message 404']),
                 Response::for406(),
                 Response::for415(),
                 new Response(418, ['Teapot without output']),

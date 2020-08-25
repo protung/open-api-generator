@@ -13,6 +13,7 @@ use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\ReferencableOutput;
+
 use function get_class;
 use function sprintf;
 
