@@ -2,18 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor\Path\Symfony;
+namespace Speicher210\OpenApiGenerator\Model\Callback;
 
 use Speicher210\OpenApiGenerator\Model\Callback;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
-use Speicher210\OpenApiGenerator\Model\Path\Path;
 use Speicher210\OpenApiGenerator\Model\Response;
 use Speicher210\OpenApiGenerator\Model\Security\Reference;
 
-final class SymfonyRoutePath implements Path
+final class Path implements \Speicher210\OpenApiGenerator\Model\Path\Path
 {
-    private string $routeName;
-
     private string $tag;
 
     private string $summary;
@@ -30,26 +27,19 @@ final class SymfonyRoutePath implements Path
 
     private bool $deprecated;
 
-    /** @var Callback[] */
-    private array $callbacks;
-
     /**
      * @param Input[]    $input
      * @param Response[] $responses
-     * @param Callback[] $callbacks
      */
     public function __construct(
-        string $routeName,
         string $tag,
         string $summary,
         ?string $description,
         array $input,
         array $responses,
         ?Reference $security = null,
-        bool $deprecated = false,
-        array $callbacks = []
+        bool $deprecated = false
     ) {
-        $this->routeName   = $routeName;
         $this->tag         = $tag;
         $this->summary     = $summary;
         $this->description = $description;
@@ -57,12 +47,6 @@ final class SymfonyRoutePath implements Path
         $this->responses   = $responses;
         $this->security    = $security ?? Reference::none();
         $this->deprecated  = $deprecated;
-        $this->callbacks   = $callbacks;
-    }
-
-    public function routeName(): string
-    {
-        return $this->routeName;
     }
 
     public function tag(): string
@@ -121,6 +105,6 @@ final class SymfonyRoutePath implements Path
      */
     public function callbacks(): array
     {
-        return $this->callbacks;
+        return [];
     }
 }

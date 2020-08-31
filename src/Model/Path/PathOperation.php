@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor\Path;
+namespace Speicher210\OpenApiGenerator\Model\Path;
 
 use cebe\openapi\spec\Operation;
 

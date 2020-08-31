@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path;
 
+use Speicher210\OpenApiGenerator\Model\Callback;
 use Speicher210\OpenApiGenerator\Model\Response;
 use Speicher210\OpenApiGenerator\Model\Security\Reference;
 
@@ -32,4 +33,9 @@ interface Path
     public function security(): Reference;
 
     public function isDeprecated(): bool;
+
+    /**
+     * @return Callback[]
+     */
+    public function callbacks(): array;
 }

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Speicher210\OpenApiGenerator\Model;
+use Speicher210\OpenApiGenerator\Model\Callback;
 use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Speicher210\OpenApiGenerator\Model\Info\Info;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
@@ -325,6 +326,36 @@ return new Model\Specification(
                     Model\Path\Output\FileOutput::forPdf(),
                 ),
             ],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_callbacks',
+            'Test',
+            'Test callbacks',
+            null,
+            [],
+            [],
+            null,
+            false,
+            [
+                new Callback(
+                    'eventName',
+                    '{$request.body#/callbackUrl}',
+                    'GET',
+                    new Callback\Path(
+                        'Callback tag',
+                        'Callback summary',
+                        'Callback description',
+                        [
+                            FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestType::class)),
+                        ],
+                        [
+                            Response::for200(
+                                ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
+                            ),
+                        ],
+                    ),
+                ),
+            ]
         ),
     ],
     [

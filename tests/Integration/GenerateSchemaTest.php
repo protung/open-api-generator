@@ -76,28 +76,30 @@ final class GenerateSchemaTest extends TestCase
                 new Processor\Path\CompoundPathProcessor(
                     new Path\Symfony\PathProcessor(
                         $routes,
-                        new Describer\InputDescriber(
-                            new Describer\InputDescriber\SimpleInputDescriber(),
-                            new Describer\InputDescriber\FormInputDescriber(
-                                $formDescriber,
-                                $describerFormFactory
-                            ),
-                        ),
-                        new Describer\OutputDescriber(
-                            new Describer\ObjectDescriber(
-                                $modelRegistry,
-                                new Describer\ObjectDescriber\JMSModel(
-                                    new MetadataFactory(
-                                        (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver(
-                                            $metadataDirs,
-                                            new AnnotationReader()
-                                        )
-                                    ),
-                                    $apiVersion
+                        new Describer\OperationDescriber(
+                            new Describer\InputDescriber(
+                                new Describer\InputDescriber\SimpleInputDescriber(),
+                                new Describer\InputDescriber\FormInputDescriber(
+                                    $formDescriber,
+                                    $describerFormFactory
                                 ),
                             ),
-                            $describerFormFactory,
-                            $exampleDescriber
+                            new Describer\OutputDescriber(
+                                new Describer\ObjectDescriber(
+                                    $modelRegistry,
+                                    new Describer\ObjectDescriber\JMSModel(
+                                        new MetadataFactory(
+                                            (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver(
+                                                $metadataDirs,
+                                                new AnnotationReader()
+                                            )
+                                        ),
+                                        $apiVersion
+                                    ),
+                                ),
+                                $describerFormFactory,
+                                $exampleDescriber
+                            )
                         )
                     )
                 )

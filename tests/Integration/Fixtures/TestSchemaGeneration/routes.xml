@@ -42,4 +42,5 @@
 
     <route id="api_test_get_with_file_output" methods="GET" path="/api/test/with-file-output"/>
 
+    <route id="api_test_callbacks" methods="GET" path="/api/test/callbacks"/>
 </routes>
