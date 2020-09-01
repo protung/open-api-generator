@@ -7,7 +7,6 @@ namespace Speicher210\OpenApiGenerator\Tests\Integration;
 use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\Serializer\Builder\DefaultDriverFactory;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
-use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use Metadata\MetadataFactory;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +21,6 @@ use Symfony\Component\Form\FormFactoryBuilder;
 use Symfony\Component\Routing\Loader\XmlFileLoader;
 use Symfony\Component\Validator\ValidatorBuilder;
 
-use function assert;
 use function json_encode;
 
 use const JSON_THROW_ON_ERROR;
@@ -48,7 +46,6 @@ final class GenerateSchemaTest extends TestCase
         $jmsSerializer = SerializerBuilder::create()
             ->addMetadataDirs($metadataDirs)
             ->build();
-        assert($jmsSerializer instanceof Serializer);
 
         $describerFormFactory = new Describer\Form\FormFactory($formFactory);
 

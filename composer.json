@@ -20,7 +20,7 @@
         "php": "^7.4",
         "ext-json": "*",
         "cebe/php-openapi": "^1.4",
-        "jms/serializer": "^3.7",
+        "jms/serializer": "^3.9",
         "roave/better-reflection": "^4.2",
         "symfony/form": "^4.4 || ^5.0",
         "symfony/routing": "^4.4 || ^5.0",
@@ -30,21 +30,21 @@
     "conflict": {},
     "require-dev": {
         "doctrine/coding-standard": "^8.1.0",
-        "ergebnis/composer-normalize": "^2.6",
-        "phpstan/phpstan": "^0.12.39",
+        "ergebnis/composer-normalize": "^2.8",
+        "phpstan/phpstan": "^0.12.40",
         "phpstan/phpstan-deprecation-rules": "^0.12.5",
         "phpstan/phpstan-phpunit": "^0.12.16",
-        "phpstan/phpstan-strict-rules": "^0.12.4",
+        "phpstan/phpstan-strict-rules": "^0.12.5",
         "phpstan/phpstan-symfony": "^0.12.7",
         "phpstan/phpstan-webmozart-assert": "^0.12.7",
-        "phpunit/phpunit": "^9.2.6",
-        "psalm/plugin-phpunit": "^0.10.1",
+        "phpunit/phpunit": "^9.3.8",
+        "psalm/plugin-phpunit": "^0.12.1",
         "roave/security-advisories": "dev-master",
         "slevomat/coding-standard": "^6.3.10",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/var-dumper": "4.4 || ^5.0",
         "thecodingmachine/phpstan-strict-rules": "^0.12.0",
-        "vimeo/psalm": "^3.13.1"
+        "vimeo/psalm": "^3.14.2"
     },
     "config": {
         "preferred-install": {
