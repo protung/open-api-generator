@@ -357,6 +357,48 @@ return new Model\Specification(
                 ),
             ]
         ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_post_simple_object_input_and_output',
+            'Test',
+            'Test post with simple object input and output',
+            null,
+            [
+                Input\BodyInput::withIOFields(
+                    IOField::stringField('simpleString'),
+                    IOField::objectField(
+                        'simpleObject',
+                        IOField::booleanField('simpleBoolean'),
+                        IOField::stringField('simpleString'),
+                        IOField::integerField('simpleInteger'),
+                        IOField::objectField(
+                            'simpleInnerObject',
+                            IOField::booleanField('simpleBoolean'),
+                            IOField::stringField('simpleString'),
+                            IOField::integerField('simpleInteger'),
+                        )
+                    )
+                ),
+            ],
+            [
+                Response::for200(
+                    new Model\Path\Output\SimpleOutput(
+                        IOField::stringField('simpleString'),
+                        IOField::objectField(
+                            'simpleObject',
+                            IOField::booleanField('simpleBoolean'),
+                            IOField::stringField('simpleString'),
+                            IOField::integerField('simpleInteger'),
+                            IOField::objectField(
+                                'simpleInnerObject',
+                                IOField::booleanField('simpleBoolean'),
+                                IOField::stringField('simpleString'),
+                                IOField::integerField('simpleInteger'),
+                            )
+                        )
+                    ),
+                ),
+            ],
+        ),
     ],
     [
         Input\HeaderInput::withName('X-ALWAYS'),

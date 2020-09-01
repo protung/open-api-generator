@@ -18,17 +18,27 @@ final class IOField
     /** @var mixed[]|null */
     private ?array $possibleValues;
 
+    /** @var IOField[]|null */
+    private ?array $children;
+
     /**
-     * @param mixed[]|null $possibleValues
+     * @param mixed[]|null   $possibleValues
+     * @param IOField[]|null $children
      */
-    public function __construct(string $name, string $type, ?string $pattern = null, ?array $possibleValues = null)
-    {
+    public function __construct(
+        string $name,
+        string $type,
+        ?string $pattern = null,
+        ?array $possibleValues = null,
+        ?array $children = null
+    ) {
         Assert::inArray($type, Type::TYPES);
 
         $this->name           = $name;
         $this->type           = $type;
         $this->pattern        = $pattern;
         $this->possibleValues = $possibleValues;
+        $this->children       = $children;
     }
 
     public static function stringField(string $name): self
@@ -44,6 +54,19 @@ final class IOField
     public static function booleanField(string $name): self
     {
         return new self($name, Type::BOOLEAN);
+    }
+
+    public static function objectField(string $name, IOField ...$children): self
+    {
+        return new self($name, Type::OBJECT, null, null, $children);
+    }
+
+    /**
+     * @return IOField[]|null
+     */
+    public function children(): ?array
+    {
+        return $this->children;
     }
 
     public function name(): string

@@ -36,14 +36,28 @@ class SimpleOutput implements Output
      */
     public function example(): array
     {
+        return $this->exampleFromFields($this->fields);
+    }
+
+    /**
+     * @param IOField[] $fields
+     *
+     * @return mixed[]
+     */
+    private function exampleFromFields(array $fields): array
+    {
         $example = [];
 
-        foreach ($this->fields as $field) {
-            $possibleValues = $field->possibleValues();
-            if ($possibleValues !== null && $possibleValues !== []) {
-                $example[$field->name()] = reset($possibleValues);
+        foreach ($fields as $field) {
+            if ($field->children() !== null) {
+                $example[$field->name()] = $this->exampleFromFields($field->children());
             } else {
-                $example[$field->name()] = Type::example($field->type());
+                $possibleValues = $field->possibleValues();
+                if ($possibleValues !== null && $possibleValues !== []) {
+                    $example[$field->name()] = reset($possibleValues);
+                } else {
+                    $example[$field->name()] = Type::example($field->type());
+                }
             }
         }
 
