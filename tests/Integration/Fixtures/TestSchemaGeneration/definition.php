@@ -279,6 +279,19 @@ return new Model\Specification(
             Model\Security\Reference::fromString('ApiKey')
         ),
         new Path\Symfony\SymfonyRoutePath(
+            'api_test_post_with_form_with_data_class',
+            'Test',
+            'Test post with data class form',
+            null,
+            [
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestDataClassType::class)),
+            ],
+            [
+                Response::for400WithForm(TestSchemaGeneration\Form\TestDataClassType::class),
+            ],
+            Model\Security\Reference::fromString('ApiKey')
+        ),
+        new Path\Symfony\SymfonyRoutePath(
             'api_test_get_not_described_object',
             'Test',
             'Test get a not described object',

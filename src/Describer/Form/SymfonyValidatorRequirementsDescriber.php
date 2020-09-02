@@ -135,6 +135,10 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
      */
     private function handleNullability(Schema $schema, FormInterface $form, array $constraints): void
     {
+        if ($form->isRoot()) {
+            return;
+        }
+
         if (! $this->isDescribingClass($form)) {
             return;
         }

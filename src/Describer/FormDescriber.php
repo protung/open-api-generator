@@ -56,7 +56,10 @@ final class FormDescriber
                 if ($this->isBuiltinType($type->getInnerType())) {
                     $this->addParameterToSchema($schema, $nameResolver, $child, $httpMethod);
                 } else {
-                    $childSchema             = $this->addDeepSchema($child, $nameResolver, $httpMethod);
+                    $childSchema = $this->addDeepSchema($child, $nameResolver, $httpMethod);
+
+                    $this->requirementsDescriber->describe($childSchema, $child);
+
                     $name                    = $nameResolver->getPropertyName($child);
                     $schemaProperties        = $schema->properties;
                     $schemaProperties[$name] = $childSchema;

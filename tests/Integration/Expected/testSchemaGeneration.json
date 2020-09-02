@@ -89,7 +89,9 @@
                                                     "paramCustom",
                                                     "paramExtended",
                                                     "paramExtendedExtended",
-                                                    "paramWithExampleAndDescription"
+                                                    "paramWithExampleAndDescription",
+                                                    "paramWithDataClassRequired",
+                                                    "paramWithDataClassOptional"
                                                 ],
                                                 "type": "object",
                                                 "properties": {
@@ -240,6 +242,31 @@
                                                         "type": "string",
                                                         "description": "Custom description.",
                                                         "example": "my-example"
+                                                    },
+                                                    "paramWithDataClassRequired": {
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            }
+                                                        }
+                                                    },
+                                                    "paramWithDataClassOptional": {
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "stringProperty": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            }
+                                                        },
+                                                        "nullable": true
                                                     }
                                                 }
                                             }
@@ -268,7 +295,9 @@
                                                     "paramCustom[paramInnerCustom][paramText]",
                                                     "paramExtended",
                                                     "paramExtendedExtended",
-                                                    "paramWithExampleAndDescription"
+                                                    "paramWithExampleAndDescription",
+                                                    "paramWithDataClassRequired[stringProperty]",
+                                                    "paramWithDataClassOptional[stringProperty]"
                                                 ],
                                                 "type": "object",
                                                 "properties": {
@@ -401,6 +430,14 @@
                                                         "type": "string",
                                                         "description": "Custom description.",
                                                         "example": "my-example"
+                                                    },
+                                                    "paramWithDataClassRequired[stringProperty]": {
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramWithDataClassOptional[stringProperty]": {
+                                                        "type": "string",
+                                                        "nullable": true
                                                     }
                                                 }
                                             }
@@ -1076,6 +1113,24 @@
                             "type": "string",
                             "example": "my-example",
                             "description": "Custom description."
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramWithDataClassRequired][stringProperty]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramWithDataClassOptional][stringProperty]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -3926,6 +3981,145 @@
                 }
             }
         },
+        "\/api\/test\/with-data-class-form": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test post with data class form",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
+                                            "type": "object",
+                                            "properties": {
+                                                "errors": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "children": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "stringProperty": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "stringProperty": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "stringProperty"
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "stringProperty": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "stringProperty"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
         "\/api\/test\/with-file-output": {
             "get": {
                 "tags": [
@@ -4732,6 +4926,60 @@
                                                                     }
                                                                 }
                                                             }
+                                                        },
+                                                        "paramWithDataClassRequired": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "stringProperty": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramWithDataClassOptional": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "stringProperty": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -4931,6 +5179,31 @@
                                         "type": "string",
                                         "example": "my-example",
                                         "description": "Custom description."
+                                    },
+                                    "paramWithDataClassRequired": {
+                                        "type": "object",
+                                        "properties": {
+                                            "stringProperty": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "stringProperty"
+                                        ]
+                                    },
+                                    "paramWithDataClassOptional": {
+                                        "type": "object",
+                                        "properties": {
+                                            "stringProperty": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "stringProperty"
+                                        ],
+                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -4953,7 +5226,9 @@
                                     "paramCustom",
                                     "paramExtended",
                                     "paramExtendedExtended",
-                                    "paramWithExampleAndDescription"
+                                    "paramWithExampleAndDescription",
+                                    "paramWithDataClassRequired",
+                                    "paramWithDataClassOptional"
                                 ]
                             }
                         },
@@ -5090,6 +5365,14 @@
                                         "type": "string",
                                         "example": "my-example",
                                         "description": "Custom description."
+                                    },
+                                    "paramWithDataClassRequired[stringProperty]": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramWithDataClassOptional[stringProperty]": {
+                                        "type": "string",
+                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -5114,7 +5397,9 @@
                                     "paramCustom[paramInnerCustom][paramText]",
                                     "paramExtended",
                                     "paramExtendedExtended",
-                                    "paramWithExampleAndDescription"
+                                    "paramWithExampleAndDescription",
+                                    "paramWithDataClassRequired[stringProperty]",
+                                    "paramWithDataClassOptional[stringProperty]"
                                 ]
                             }
                         }
@@ -5545,6 +5830,60 @@
                                                                     }
                                                                 }
                                                             }
+                                                        },
+                                                        "paramWithDataClassRequired": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "stringProperty": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramWithDataClassOptional": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "stringProperty": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -5728,6 +6067,25 @@
                                         "type": "string",
                                         "example": "my-example",
                                         "description": "Custom description."
+                                    },
+                                    "paramWithDataClassRequired": {
+                                        "type": "object",
+                                        "properties": {
+                                            "stringProperty": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        }
+                                    },
+                                    "paramWithDataClassOptional": {
+                                        "type": "object",
+                                        "properties": {
+                                            "stringProperty": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "nullable": true
                                     }
                                 }
                             }
@@ -5857,6 +6215,14 @@
                                         "type": "string",
                                         "example": "my-example",
                                         "description": "Custom description."
+                                    },
+                                    "paramWithDataClassRequired[stringProperty]": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramWithDataClassOptional[stringProperty]": {
+                                        "type": "string",
+                                        "nullable": true
                                     }
                                 }
                             }

@@ -36,6 +36,8 @@
 
     <route id="api_test_post_with_file_upload_optional" methods="POST" path="/api/test/with-file-upload-optional"/>
 
+    <route id="api_test_post_with_form_with_data_class" methods="POST" path="/api/test/with-data-class-form"/>
+
     <route id="api_test_get_not_described_object" methods="GET" path="/api/test/not-described-object"/>
 
     <route id="api_test_get_output_object_example" methods="GET" path="/api/test/output/object/example"/>

@@ -27,6 +27,7 @@ use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Unique;
 
@@ -89,6 +90,8 @@ final class TestType extends AbstractType
                 'paramWithExampleAndDescription',
                 TextType::class,
                 ['help' => 'Custom description.', 'attr' => ['placeholder' => 'my-example']]
-            );
+            )
+            ->add('paramWithDataClassRequired', TestDataClassType::class, ['constraints' => [new NotBlank()]])
+            ->add('paramWithDataClassOptional', TestDataClassType::class);
     }
 }
