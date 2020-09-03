@@ -383,25 +383,25 @@
                                                         "type": "array",
                                                         "items": {
                                                             "required": [
-                                                                "paramCustomCollection[test_inner][paramInt]",
-                                                                "paramCustomCollection[test_inner][paramText]",
-                                                                "paramCustomCollection[test_inner][paramInnerCustom]"
+                                                                "paramInt",
+                                                                "paramText",
+                                                                "paramInnerCustom"
                                                             ],
                                                             "type": "object",
                                                             "properties": {
-                                                                "paramCustomCollection[test_inner][paramInt]": {
+                                                                "paramInt": {
                                                                     "type": "integer"
                                                                 },
-                                                                "paramCustomCollection[test_inner][paramText]": {
+                                                                "paramText": {
                                                                     "type": "string"
                                                                 },
-                                                                "paramCustomCollection[test_inner][paramInnerCustom]": {
+                                                                "paramInnerCustom": {
                                                                     "required": [
-                                                                        "paramCustomCollection[test_inner][paramInnerCustom][paramText]"
+                                                                        "paramInnerCustom[paramText]"
                                                                     ],
                                                                     "type": "object",
                                                                     "properties": {
-                                                                        "paramCustomCollection[test_inner][paramInnerCustom][paramText]": {
+                                                                        "paramInnerCustom[paramText]": {
                                                                             "type": "string"
                                                                         }
                                                                     }
@@ -1036,28 +1036,28 @@
                             "items": {
                                 "type": "object",
                                 "properties": {
-                                    "innerForm[paramCustomCollection][test_inner][paramInt]": {
+                                    "paramInt": {
                                         "type": "integer"
                                     },
-                                    "innerForm[paramCustomCollection][test_inner][paramText]": {
+                                    "paramText": {
                                         "type": "string"
                                     },
-                                    "innerForm[paramCustomCollection][test_inner][paramInnerCustom]": {
+                                    "paramInnerCustom": {
                                         "type": "object",
                                         "properties": {
-                                            "innerForm[paramCustomCollection][test_inner][paramInnerCustom][paramText]": {
+                                            "paramInnerCustom[paramText]": {
                                                 "type": "string"
                                             }
                                         },
                                         "required": [
-                                            "innerForm[paramCustomCollection][test_inner][paramInnerCustom][paramText]"
+                                            "paramInnerCustom[paramText]"
                                         ]
                                     }
                                 },
                                 "required": [
-                                    "innerForm[paramCustomCollection][test_inner][paramInt]",
-                                    "innerForm[paramCustomCollection][test_inner][paramText]",
-                                    "innerForm[paramCustomCollection][test_inner][paramInnerCustom]"
+                                    "paramInt",
+                                    "paramText",
+                                    "paramInnerCustom"
                                 ]
                             }
                         },
@@ -5319,28 +5319,28 @@
                                         "items": {
                                             "type": "object",
                                             "properties": {
-                                                "paramCustomCollection[test_inner][paramInt]": {
+                                                "paramInt": {
                                                     "type": "integer"
                                                 },
-                                                "paramCustomCollection[test_inner][paramText]": {
+                                                "paramText": {
                                                     "type": "string"
                                                 },
-                                                "paramCustomCollection[test_inner][paramInnerCustom]": {
+                                                "paramInnerCustom": {
                                                     "type": "object",
                                                     "properties": {
-                                                        "paramCustomCollection[test_inner][paramInnerCustom][paramText]": {
+                                                        "paramInnerCustom[paramText]": {
                                                             "type": "string"
                                                         }
                                                     },
                                                     "required": [
-                                                        "paramCustomCollection[test_inner][paramInnerCustom][paramText]"
+                                                        "paramInnerCustom[paramText]"
                                                     ]
                                                 }
                                             },
                                             "required": [
-                                                "paramCustomCollection[test_inner][paramInt]",
-                                                "paramCustomCollection[test_inner][paramText]",
-                                                "paramCustomCollection[test_inner][paramInnerCustom]"
+                                                "paramInt",
+                                                "paramText",
+                                                "paramInnerCustom"
                                             ]
                                         }
                                     },
@@ -6177,16 +6177,16 @@
                                         "items": {
                                             "type": "object",
                                             "properties": {
-                                                "paramCustomCollection[test_inner][paramInt]": {
+                                                "paramInt": {
                                                     "type": "integer"
                                                 },
-                                                "paramCustomCollection[test_inner][paramText]": {
+                                                "paramText": {
                                                     "type": "string"
                                                 },
-                                                "paramCustomCollection[test_inner][paramInnerCustom]": {
+                                                "paramInnerCustom": {
                                                     "type": "object",
                                                     "properties": {
-                                                        "paramCustomCollection[test_inner][paramInnerCustom][paramText]": {
+                                                        "paramInnerCustom[paramText]": {
                                                             "type": "string"
                                                         }
                                                     }

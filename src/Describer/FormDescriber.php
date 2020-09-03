@@ -208,7 +208,6 @@ final class FormDescriber
                 (array) $formConfig->getOption('validation_groups')
             )
         );
-        $subForm->setParent($form);
 
         $schema->type  = Type::ARRAY;
         $schema->items = $this->addDeepSchema($subForm, $nameResolver, $httpMethod);
