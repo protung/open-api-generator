@@ -397,11 +397,11 @@
                                                                 },
                                                                 "paramInnerCustom": {
                                                                     "required": [
-                                                                        "paramInnerCustom[paramText]"
+                                                                        "paramText"
                                                                     ],
                                                                     "type": "object",
                                                                     "properties": {
-                                                                        "paramInnerCustom[paramText]": {
+                                                                        "paramText": {
                                                                             "type": "string"
                                                                         }
                                                                     }
@@ -1045,12 +1045,12 @@
                                     "paramInnerCustom": {
                                         "type": "object",
                                         "properties": {
-                                            "paramInnerCustom[paramText]": {
+                                            "paramText": {
                                                 "type": "string"
                                             }
                                         },
                                         "required": [
-                                            "paramInnerCustom[paramText]"
+                                            "paramText"
                                         ]
                                     }
                                 },
@@ -5328,12 +5328,12 @@
                                                 "paramInnerCustom": {
                                                     "type": "object",
                                                     "properties": {
-                                                        "paramInnerCustom[paramText]": {
+                                                        "paramText": {
                                                             "type": "string"
                                                         }
                                                     },
                                                     "required": [
-                                                        "paramInnerCustom[paramText]"
+                                                        "paramText"
                                                     ]
                                                 }
                                             },
@@ -6031,9 +6031,17 @@
                                                         "paramText": {
                                                             "type": "string"
                                                         }
-                                                    }
+                                                    },
+                                                    "required": [
+                                                        "paramText"
+                                                    ]
                                                 }
-                                            }
+                                            },
+                                            "required": [
+                                                "paramInt",
+                                                "paramText",
+                                                "paramInnerCustom"
+                                            ]
                                         }
                                     },
                                     "paramCustom": {
@@ -6186,12 +6194,20 @@
                                                 "paramInnerCustom": {
                                                     "type": "object",
                                                     "properties": {
-                                                        "paramInnerCustom[paramText]": {
+                                                        "paramText": {
                                                             "type": "string"
                                                         }
-                                                    }
+                                                    },
+                                                    "required": [
+                                                        "paramText"
+                                                    ]
                                                 }
-                                            }
+                                            },
+                                            "required": [
+                                                "paramInt",
+                                                "paramText",
+                                                "paramInnerCustom"
+                                            ]
                                         }
                                     },
                                     "paramCustom[paramInt]": {

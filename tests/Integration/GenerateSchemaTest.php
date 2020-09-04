@@ -59,6 +59,7 @@ final class GenerateSchemaTest extends TestCase
         $formDescriber = new Describer\FormDescriber(
             $describerFormFactory,
             new Describer\Form\SymfonyFormPropertyDescriber(
+                new Describer\Form\PropertyDescriber\CollectionPropertyDescriber($describerFormFactory),
                 new Describer\Form\PropertyDescriber\SymfonyBuiltInPropertyDescriber()
             ),
             new Describer\Form\SymfonyValidatorRequirementsDescriber($validator)
