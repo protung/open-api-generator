@@ -160,7 +160,7 @@ final class FormDescriber
         if ($this->isCollection($formConfig)) {
             $this->describeCollection($schema, $form, $nameResolver, $httpMethod);
         } else {
-            $this->propertyDescriber->describe($schema, $blockPrefix, $form);
+            $this->propertyDescriber->describe($schema, $blockPrefix, $form, $this);
         }
 
         $this->requirementsDescriber->describe($schema, $form);

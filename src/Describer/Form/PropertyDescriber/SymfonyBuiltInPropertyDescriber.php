@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Form\FormConfigInterface;
@@ -17,7 +18,7 @@ use function is_array;
 
 final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
 {
-    public function describe(Schema $schema, FormInterface $form): void
+    public function describe(Schema $schema, FormInterface $form, FormDescriber $formDescriber): void
     {
         $formConfig = $form->getConfig();
 

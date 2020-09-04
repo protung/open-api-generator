@@ -7,6 +7,7 @@ namespace Speicher210\OpenApiGenerator\Describer\Form;
 use cebe\openapi\spec\Schema;
 use RuntimeException;
 use Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber\PropertyDescriber;
+use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\FormInterface;
 
 use function is_array;
@@ -21,11 +22,11 @@ final class SymfonyFormPropertyDescriber
         $this->propertyDescribers = $propertyDescribers;
     }
 
-    public function describe(Schema $schema, string $blockPrefix, FormInterface $form): void
+    public function describe(Schema $schema, string $blockPrefix, FormInterface $form, FormDescriber $formDescriber): void
     {
         foreach ($this->propertyDescribers as $propertyDescriber) {
             if ($propertyDescriber->supports($form)) {
-                $propertyDescriber->describe($schema, $form);
+                $propertyDescriber->describe($schema, $form, $formDescriber);
                 $this->describeHelp($schema, $form);
 
                 return;
