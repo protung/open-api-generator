@@ -6,6 +6,9 @@ namespace Speicher210\OpenApiGenerator\Model;
 
 use Symfony\Component\Form\FormTypeInterface;
 
+/**
+ * @psalm-immutable
+ */
 final class FormDefinition
 {
     /** @var class-string<FormTypeInterface> */

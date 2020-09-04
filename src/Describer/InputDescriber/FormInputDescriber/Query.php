@@ -86,6 +86,9 @@ final class Query
         return $parameter;
     }
 
+    /**
+     * @psalm-pure
+     */
     private function updateDescription(?string $originalDescription, string $newText): string
     {
         return nl2br(implode(PHP_EOL, array_filter([$originalDescription, $newText])), false);

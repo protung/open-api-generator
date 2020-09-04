@@ -7,6 +7,9 @@ namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 
+/**
+ * @psalm-immutable
+ */
 final class FormErrorOutput implements Output
 {
     private FormDefinition $formDefinition;

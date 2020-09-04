@@ -22,6 +22,9 @@ final class DefinitionName
     {
     }
 
+    /**
+     * @psalm-pure
+     */
     public static function getName(Definition $definition): string
     {
         return sprintf(
@@ -31,6 +34,9 @@ final class DefinitionName
         );
     }
 
+    /**
+     * @psalm-pure
+     */
     private static function getNameForClass(string $class): string
     {
         $classParts = explode(self::NAMESPACE_SEPARATOR, $class);
@@ -40,6 +46,8 @@ final class DefinitionName
 
     /**
      * @param string[] $groups
+     *
+     * @psalm-pure
      */
     private static function getGroupsSuffix(array $groups): string
     {

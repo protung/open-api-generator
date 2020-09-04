@@ -42,6 +42,8 @@ final class Type
 
     /**
      * @return mixed
+     *
+     * @psalm-pure
      */
     public static function example(string $type)
     {

@@ -189,6 +189,9 @@ final class FormDescriber
         return false;
     }
 
+    /**
+     * @psalm-pure
+     */
     private function updateDescription(?string $originalDescription, string $newText): string
     {
         return nl2br(implode(PHP_EOL, array_filter([$originalDescription, $newText])), false);
@@ -213,6 +216,9 @@ final class FormDescriber
         $schema->items = $this->addDeepSchema($subForm, $nameResolver, $httpMethod);
     }
 
+    /**
+     * @psalm-pure
+     */
     private function isBuiltinType(FormTypeInterface $formType): bool
     {
         $formClass = get_class($formType);

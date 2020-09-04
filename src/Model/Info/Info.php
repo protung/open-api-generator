@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Info;
 
+/**
+ * @psalm-immutable
+ */
 final class Info
 {
     private string $title;
