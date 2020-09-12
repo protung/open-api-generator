@@ -57,9 +57,9 @@ return new Model\Specification(
             null,
             [
                 FormInput::inQuery(new FormDefinition(TestSchemaGeneration\Form\QueryType::class)),
-                Input\QueryInput::withIOField(IOField::stringField('custom_query_string_field')),
-                Input\QueryInput::withIOField(IOField::integerField('custom_query_integer_field')),
-                Input\QueryInput::withIOField(IOField::booleanField('custom_query_boolean_field')),
+                Input\QueryInput::withIOField(IOField::stringField('custom_query_string_field')->withExample('sf')),
+                Input\QueryInput::withIOField(IOField::integerField('custom_query_integer_field')->withExample(42)),
+                Input\QueryInput::withIOField(IOField::booleanField('custom_query_boolean_field')->withExample(true)),
             ],
             [],
             Model\Security\Reference::fromString('ApiKey')
@@ -89,9 +89,9 @@ return new Model\Specification(
                     205,
                     [],
                     new Model\Path\Output\SimpleOutput(
-                        IOField::integerField('myInt'),
-                        IOField::stringField('myString'),
-                        IOField::booleanField('myBoolean'),
+                        IOField::integerField('myInt')->withExample(42),
+                        IOField::stringField('myString')->withExample('ms'),
+                        IOField::booleanField('myBoolean')->withExample(false),
                         new IOField('myChoice', Type::NUMBER, null, [1, 2, 3]),
                     )
                 ),

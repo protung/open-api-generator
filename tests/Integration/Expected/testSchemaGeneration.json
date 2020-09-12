@@ -1167,7 +1167,8 @@
                         "in": "query",
                         "required": false,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "sf"
                         }
                     },
                     {
@@ -1175,7 +1176,8 @@
                         "in": "query",
                         "required": false,
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "example": 42
                         }
                     },
                     {
@@ -1183,7 +1185,8 @@
                         "in": "query",
                         "required": false,
                         "schema": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "example": true
                         }
                     },
                     {
@@ -3437,13 +3440,16 @@
                                     "type": "object",
                                     "properties": {
                                         "myInt": {
-                                            "type": "integer"
+                                            "type": "integer",
+                                            "example": 42
                                         },
                                         "myString": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "example": "ms"
                                         },
                                         "myBoolean": {
-                                            "type": "boolean"
+                                            "type": "boolean",
+                                            "example": false
                                         },
                                         "myChoice": {
                                             "enum": [

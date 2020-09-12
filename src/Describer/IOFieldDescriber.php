@@ -23,11 +23,17 @@ final class IOFieldDescriber
             } else {
                 $properties[$fieldName] = ['type' => $field->type()];
 
-                if ($field->possibleValues() === null) {
-                    continue;
+                if ($field->possibleValues() !== null) {
+                    $properties[$fieldName]['enum'] = $field->possibleValues();
                 }
 
-                $properties[$fieldName]['enum'] = $field->possibleValues();
+                if ($field->pattern() !== null) {
+                    $properties[$fieldName]['pattern'] = $field->pattern();
+                }
+
+                if ($field->example() !== null) {
+                    $properties[$fieldName]['example'] = $field->example();
+                }
             }
         }
 
