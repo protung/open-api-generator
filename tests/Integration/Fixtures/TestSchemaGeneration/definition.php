@@ -132,7 +132,9 @@ return new Model\Specification(
                 Response::for401(),
                 Response::for403()->withDescription(['Custom message 403']),
                 Response::for404()->withDescription(['Custom message 404', 'Another custom message 404']),
+                Response::for405(),
                 Response::for406(),
+                Response::for409(),
                 Response::for415(),
                 new Response(418, ['Teapot without output']),
                 new Response(

@@ -46,9 +46,19 @@ final class RFC7807ErrorOutput extends SimpleOutput
         return new self(404, 'Not Found');
     }
 
+    public static function for405(): self
+    {
+        return new self(405, 'Method Not Allowed');
+    }
+
     public static function for406(): self
     {
         return new self(406, 'Not Acceptable');
+    }
+
+    public static function for409(): self
+    {
+        return new self(409, 'Conflict');
     }
 
     public static function for415(): self

@@ -1374,6 +1374,36 @@
                             }
                         }
                     },
+                    "405": {
+                        "description": "Returned when HTTP method is not allowed",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 405,
+                                        "detail": "Method Not Allowed"
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "406": {
                         "description": "Returned when response content type expected is not supported",
                         "content": {
@@ -1399,6 +1429,36 @@
                                         "title": "An error occurred",
                                         "status": 406,
                                         "detail": "Not Acceptable"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Returned when conflict with current state of the server occurred.",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 409,
+                                        "detail": "Conflict"
                                     }
                                 }
                             }

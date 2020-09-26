@@ -98,12 +98,26 @@ final class Response
         return new self(404, ['Returned when resource is not found'], RFC7807ErrorOutput::for404());
     }
 
+    public static function for405(): self
+    {
+        return new self(405, ['Returned when HTTP method is not allowed'], RFC7807ErrorOutput::for405());
+    }
+
     public static function for406(): self
     {
         return new self(
             406,
             ['Returned when response content type expected is not supported'],
             RFC7807ErrorOutput::for406()
+        );
+    }
+
+    public static function for409(): self
+    {
+        return new self(
+            409,
+            ['Returned when conflict with current state of the server occurred.'],
+            RFC7807ErrorOutput::for409()
         );
     }
 
