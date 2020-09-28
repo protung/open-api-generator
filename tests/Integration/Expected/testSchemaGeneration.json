@@ -566,6 +566,11 @@
                                                             "format": "date-time",
                                                             "nullable": true
                                                         },
+                                                        "dateProperty": {
+                                                            "type": "string",
+                                                            "format": "date",
+                                                            "nullable": true
+                                                        },
                                                         "scalarUnionProperty": {
                                                             "oneOf": [
                                                                 {
@@ -1756,6 +1761,11 @@
                                             "format": "date-time",
                                             "nullable": true
                                         },
+                                        "dateProperty": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "nullable": true
+                                        },
                                         "scalarUnionProperty": {
                                             "oneOf": [
                                                 {
@@ -2150,6 +2160,11 @@
                                             "format": "date-time",
                                             "nullable": true
                                         },
+                                        "dateProperty": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "nullable": true
+                                        },
                                         "scalarUnionProperty": {
                                             "oneOf": [
                                                 {
@@ -2192,6 +2207,7 @@
                                         "date_time_property": "2020-06-01T14:00:00+00:00",
                                         "date_time_immutable_property": null,
                                         "date_time_interface_property": null,
+                                        "date_property": null,
                                         "scalar_union_property": null
                                     }
                                 }
@@ -2329,6 +2345,11 @@
                                             "format": "date-time",
                                             "nullable": true
                                         },
+                                        "dateProperty": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "nullable": true
+                                        },
                                         "scalarUnionProperty": {
                                             "oneOf": [
                                                 {
@@ -2374,6 +2395,7 @@
                                         "date_time_property": "2020-06-01T14:00:00+00:00",
                                         "date_time_immutable_property": null,
                                         "date_time_interface_property": null,
+                                        "date_property": null,
                                         "scalar_union_property": null
                                     }
                                 }
@@ -2501,6 +2523,11 @@
                                                 "format": "date-time",
                                                 "nullable": true
                                             },
+                                            "dateProperty": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "nullable": true
+                                            },
                                             "scalarUnionProperty": {
                                                 "oneOf": [
                                                     {
@@ -2543,6 +2570,7 @@
                                             "date_time_property": "2020-06-01T14:00:00+00:00",
                                             "date_time_immutable_property": null,
                                             "date_time_interface_property": null,
+                                            "date_property": null,
                                             "scalar_union_property": null
                                         }
                                     },
@@ -2577,6 +2605,7 @@
                                             "date_time_property": "2020-06-01T14:00:00+00:00",
                                             "date_time_immutable_property": null,
                                             "date_time_interface_property": null,
+                                            "date_property": null,
                                             "scalar_union_property": null
                                         }
                                     ]
@@ -2824,6 +2853,11 @@
                                                                         "format": "date-time",
                                                                         "nullable": true
                                                                     },
+                                                                    "dateProperty": {
+                                                                        "type": "string",
+                                                                        "format": "date",
+                                                                        "nullable": true
+                                                                    },
                                                                     "scalarUnionProperty": {
                                                                         "oneOf": [
                                                                             {
@@ -2962,6 +2996,11 @@
                                                                     "dateTimeInterfaceProperty": {
                                                                         "type": "string",
                                                                         "format": "date-time",
+                                                                        "nullable": true
+                                                                    },
+                                                                    "dateProperty": {
+                                                                        "type": "string",
+                                                                        "format": "date",
                                                                         "nullable": true
                                                                     },
                                                                     "scalarUnionProperty": {
@@ -3663,6 +3702,11 @@
                                             "format": "date-time",
                                             "nullable": true
                                         },
+                                        "dateProperty": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "nullable": true
+                                        },
                                         "scalarUnionProperty": {
                                             "oneOf": [
                                                 {
@@ -3798,6 +3842,11 @@
                                             "dateTimeInterfaceProperty": {
                                                 "type": "string",
                                                 "format": "date-time",
+                                                "nullable": true
+                                            },
+                                            "dateProperty": {
+                                                "type": "string",
+                                                "format": "date",
                                                 "nullable": true
                                             },
                                             "scalarUnionProperty": {
@@ -6449,6 +6498,11 @@
                     "dateTimeInterfaceProperty": {
                         "type": "string",
                         "format": "date-time",
+                        "nullable": true
+                    },
+                    "dateProperty": {
+                        "type": "string",
+                        "format": "date",
                         "nullable": true
                     },
                     "scalarUnionProperty": {

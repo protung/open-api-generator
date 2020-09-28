@@ -21,6 +21,8 @@ Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Mod
     dateTimeProperty: ~
     dateTimeImmutableProperty: ~
     dateTimeInterfaceProperty: ~
+    dateProperty:
+      type: DateTimeInterface<'Y-m-d'>
     scalarUnionProperty: ~
     stringPropertyForOldVersion:
       until_version: 0.0.0.1

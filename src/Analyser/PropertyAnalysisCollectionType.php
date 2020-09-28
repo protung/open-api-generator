@@ -41,4 +41,12 @@ final class PropertyAnalysisCollectionType implements PropertyAnalysisType
     {
         return $this->collectionElementsType;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function parameters(): array
+    {
+        return [];
+    }
 }

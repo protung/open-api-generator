@@ -45,6 +45,8 @@ final class ComplexObject
 
     public ?DateTimeInterface $dateTimeInterfaceProperty = null;
 
+    public ?DateTimeInterface $dateProperty = null;
+
     /** @var int|string */
     public $scalarUnionProperty;
 

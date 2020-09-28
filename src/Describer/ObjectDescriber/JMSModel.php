@@ -185,8 +185,12 @@ final class JMSModel implements Describer
             $property->type   = Type::NUMBER;
             $property->format = $propertyType->type();
         } elseif (in_array($propertyType->type(), ['DateTime', 'DateTimeImmutable', 'DateTimeInterface'], true)) {
-            $property->type   = Type::STRING;
-            $property->format = 'date-time';
+            $property->type = Type::STRING;
+            if (isset($propertyType->parameters()[0]) && $propertyType->parameters()[0] === 'Y-m-d') { // As defined by full-date - RFC3339
+                $property->format = 'date';
+            } else {
+                $property->format = 'date-time';
+            }
         } else {
             $property = $objectDescriber->describe(new Definition($propertyType->type(), $serializationGroups));
         }
@@ -278,21 +282,22 @@ final class JMSModel implements Describer
      */
     private function getPropertyTypes(PropertyMetadata $propertyMetadata): array
     {
-        $defaultTypes = [PropertyAnalysisSingleType::forSingleValue('string', false)];
+        $defaultTypes = [PropertyAnalysisSingleType::forSingleValue('string', false, $propertyMetadata->type['params'] ?? [])];
 
         if ($propertyMetadata instanceof VirtualPropertyMetadata || $propertyMetadata instanceof StaticPropertyMetadata) {
             if ($propertyMetadata->type === null) {
                 return $defaultTypes;
             }
 
-            return [PropertyAnalysisSingleType::forSingleValue($propertyMetadata->type['name'], false)];
+            return [PropertyAnalysisSingleType::forSingleValue($propertyMetadata->type['name'], false, $propertyMetadata->type['params'] ?? [])];
         }
 
         if ($propertyMetadata->type !== null) {
             return [
                 PropertyAnalysisSingleType::forSingleValue(
                     $propertyMetadata->type['name'],
-                    $this->propertyAnalyser->canBeNull($propertyMetadata->class, $propertyMetadata->name)
+                    $this->propertyAnalyser->canBeNull($propertyMetadata->class, $propertyMetadata->name),
+                    $propertyMetadata->type['params']
                 ),
             ];
         }

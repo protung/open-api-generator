@@ -9,4 +9,9 @@ interface PropertyAnalysisType
     public function type(): string;
 
     public function nullable(): bool;
+
+    /**
+     * @return array<mixed>
+     */
+    public function parameters(): array;
 }

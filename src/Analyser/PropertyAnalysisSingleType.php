@@ -10,15 +10,25 @@ final class PropertyAnalysisSingleType implements PropertyAnalysisType
 
     private bool $nullable;
 
-    private function __construct(string $type, bool $nullable)
+    /** @var array<mixed> */
+    private array $parameters;
+
+    /**
+     * @param array<mixed> $parameters
+     */
+    private function __construct(string $type, bool $nullable, array $parameters)
     {
-        $this->type     = $type;
-        $this->nullable = $nullable;
+        $this->type       = $type;
+        $this->nullable   = $nullable;
+        $this->parameters = $parameters;
     }
 
-    public static function forSingleValue(string $type, bool $nullable): self
+    /**
+     * @param array<mixed> $parameters
+     */
+    public static function forSingleValue(string $type, bool $nullable, array $parameters): self
     {
-        return new self($type, $nullable);
+        return new self($type, $nullable, $parameters);
     }
 
     public function type(): string
@@ -29,5 +39,13 @@ final class PropertyAnalysisSingleType implements PropertyAnalysisType
     public function nullable(): bool
     {
         return $this->nullable;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function parameters(): array
+    {
+        return $this->parameters;
     }
 }

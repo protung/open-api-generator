@@ -59,7 +59,7 @@ final class PropertyAnalyser
 
         if ($propertyType->getName() !== 'array') {
             return [
-                PropertyAnalysisSingleType::forSingleValue($propertyType->getName(), $propertyType->allowsNull()),
+                PropertyAnalysisSingleType::forSingleValue($propertyType->getName(), $propertyType->allowsNull(), []),
             ];
         }
 
@@ -106,7 +106,8 @@ final class PropertyAnalyser
                     } else {
                         $elementsType = PropertyAnalysisSingleType::forSingleValue(
                             (string) $actualType->getValueType(),
-                            false
+                            false,
+                            []
                         );
                     }
 
@@ -119,7 +120,8 @@ final class PropertyAnalyser
 
                 return PropertyAnalysisSingleType::forSingleValue(
                     (string) $actualType,
-                    $alwaysNullable || $type instanceof Nullable
+                    $alwaysNullable || $type instanceof Nullable,
+                    []
                 );
             },
             array_values($docBlockTypes)
