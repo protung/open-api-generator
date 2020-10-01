@@ -3903,6 +3903,18 @@
                                     "format": "binary"
                                 }
                             },
+                            "image\/png": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            },
                             "application\/json": {
                                 "schema": {
                                     "type": "integer",

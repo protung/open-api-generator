@@ -15,6 +15,26 @@ final class FileOutput implements Output
         $this->contentType = $contentType;
     }
 
+    public static function forHtml(): self
+    {
+        return new self('text/html');
+    }
+
+    public static function forPlainText(): self
+    {
+        return new self('text/plain');
+    }
+
+    public static function forJpeg(): self
+    {
+        return new self('image/jpeg');
+    }
+
+    public static function forPng(): self
+    {
+        return new self('image/png');
+    }
+
     public static function forPdf(): self
     {
         return new self('application/pdf');

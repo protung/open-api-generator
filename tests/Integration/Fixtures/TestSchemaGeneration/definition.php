@@ -115,6 +115,8 @@ return new Model\Specification(
                     210,
                     ['multiple outputs'],
                     Model\Path\Output\FileOutput::forPdf(),
+                    Model\Path\Output\FileOutput::forPng(),
+                    Model\Path\Output\FileOutput::forHtml(),
                     new Model\Path\Output\ScalarOutput(Type::INTEGER)
                 ),
             ],
