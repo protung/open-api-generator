@@ -382,6 +382,25 @@ return new Model\Specification(
             [
                 Input\BodyInput::withIOFields(
                     IOField::stringField('simpleString'),
+                    IOField::arrayField(
+                        'simpleArrayOfStrings',
+                        IOField::stringField('simpleString'),
+                    ),
+                    IOField::arrayField(
+                        'simpleArrayOfObjects',
+                        IOField::objectField(
+                            'simpleObjectInArray',
+                            IOField::booleanField('simpleBoolean'),
+                            IOField::stringField('simpleString'),
+                            IOField::integerField('simpleInteger'),
+                            IOField::objectField(
+                                'simpleInnerObject',
+                                IOField::booleanField('simpleBoolean'),
+                                IOField::stringField('simpleString'),
+                                IOField::integerField('simpleInteger'),
+                            )
+                        )
+                    ),
                     IOField::objectField(
                         'simpleObject',
                         IOField::booleanField('simpleBoolean'),

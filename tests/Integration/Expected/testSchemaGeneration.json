@@ -4072,6 +4072,43 @@
                                     "simpleString": {
                                         "type": "string"
                                     },
+                                    "simpleArrayOfStrings": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "simpleArrayOfObjects": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "simpleBoolean": {
+                                                    "type": "boolean"
+                                                },
+                                                "simpleString": {
+                                                    "type": "string"
+                                                },
+                                                "simpleInteger": {
+                                                    "type": "integer"
+                                                },
+                                                "simpleInnerObject": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "simpleBoolean": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "simpleString": {
+                                                            "type": "string"
+                                                        },
+                                                        "simpleInteger": {
+                                                            "type": "integer"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
                                     "simpleObject": {
                                         "type": "object",
                                         "properties": {

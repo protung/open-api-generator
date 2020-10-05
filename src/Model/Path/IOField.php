@@ -7,6 +7,9 @@ namespace Speicher210\OpenApiGenerator\Model\Path;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Type;
 
+/**
+ * @todo split into multiple models
+ */
 final class IOField
 {
     private string $name;
@@ -60,6 +63,11 @@ final class IOField
     public static function booleanField(string $name): self
     {
         return new self($name, Type::BOOLEAN);
+    }
+
+    public static function arrayField(string $name, IOField $element): self
+    {
+        return new self($name, Type::ARRAY, null, null, [$element]);
     }
 
     public static function objectField(string $name, IOField ...$children): self
