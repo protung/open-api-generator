@@ -31,20 +31,20 @@
     "require-dev": {
         "doctrine/coding-standard": "^8.1.0",
         "ergebnis/composer-normalize": "^2.8.2",
-        "phpstan/phpstan": "^0.12.47",
+        "phpstan/phpstan": "^0.12.49",
         "phpstan/phpstan-deprecation-rules": "^0.12.5",
         "phpstan/phpstan-phpunit": "^0.12.16",
         "phpstan/phpstan-strict-rules": "^0.12.5",
-        "phpstan/phpstan-symfony": "^0.12.7",
+        "phpstan/phpstan-symfony": "^0.12.8",
         "phpstan/phpstan-webmozart-assert": "^0.12.7",
-        "phpunit/phpunit": "^9.3.11",
+        "phpunit/phpunit": "^9.4.1",
         "psalm/plugin-phpunit": "^0.12.2",
         "roave/security-advisories": "dev-master",
-        "slevomat/coding-standard": "^6.4.0",
+        "slevomat/coding-standard": "^6.4.1",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/var-dumper": "4.4 || ^5.0",
         "thecodingmachine/phpstan-strict-rules": "^0.12.1",
-        "vimeo/psalm": "^3.16.0"
+        "vimeo/psalm": "^3.17.1"
     },
     "config": {
         "preferred-install": {
