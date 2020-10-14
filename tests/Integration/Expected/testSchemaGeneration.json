@@ -3897,7 +3897,25 @@
                     "210": {
                         "description": "multiple outputs",
                         "content": {
+                            "text\/html": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            },
+                            "image\/jpeg": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            },
                             "application\/pdf": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            },
+                            "text\/plain": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
@@ -3909,7 +3927,7 @@
                                     "format": "binary"
                                 }
                             },
-                            "text\/html": {
+                            "application\/zip": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"

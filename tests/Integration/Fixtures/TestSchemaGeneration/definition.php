@@ -114,9 +114,12 @@ return new Model\Specification(
                 new Response(
                     210,
                     ['multiple outputs'],
-                    Model\Path\Output\FileOutput::forPdf(),
-                    Model\Path\Output\FileOutput::forPng(),
                     Model\Path\Output\FileOutput::forHtml(),
+                    Model\Path\Output\FileOutput::forJpeg(),
+                    Model\Path\Output\FileOutput::forPdf(),
+                    Model\Path\Output\FileOutput::forPlainText(),
+                    Model\Path\Output\FileOutput::forPng(),
+                    Model\Path\Output\FileOutput::forZip(),
                     new Model\Path\Output\ScalarOutput(Type::INTEGER)
                 ),
             ],

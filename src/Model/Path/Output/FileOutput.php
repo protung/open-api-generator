@@ -40,6 +40,11 @@ final class FileOutput implements Output
         return new self('application/pdf');
     }
 
+    public static function forZip(): self
+    {
+        return new self('application/zip');
+    }
+
     /**
      * {@inheritDoc}
      */
