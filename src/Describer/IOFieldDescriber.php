@@ -34,6 +34,12 @@ final class IOFieldDescriber
             } elseif ($field->type() === \Speicher210\OpenApiGenerator\Model\Type::OBJECT) {
                 if ($children !== null) {
                     $properties[$fieldName] = $this->describeFields($children);
+                } else {
+                    $properties[$fieldName] = new Schema(['type' => Type::OBJECT]);
+                }
+
+                if ($field->isNullable()) {
+                    $properties[$fieldName]->nullable = true;
                 }
             } else {
                 $properties[$fieldName] = $this->describeField($field);
@@ -46,10 +52,20 @@ final class IOFieldDescriber
     private function describeField(IOField $field): Schema
     {
         if ($field->type() === \Speicher210\OpenApiGenerator\Model\Type::OBJECT) {
-            return $this->describeFields($field->children() ?? []);
+            $schema = $this->describeFields($field->children() ?? []);
+
+            if ($field->isNullable()) {
+                $schema->nullable = true;
+            }
+
+            return $schema;
         }
 
         $schema = ['type' => $field->type()];
+
+        if ($field->isNullable()) {
+            $schema['nullable'] = true;
+        }
 
         if ($field->possibleValues() !== null) {
             $schema['enum'] = $field->possibleValues();

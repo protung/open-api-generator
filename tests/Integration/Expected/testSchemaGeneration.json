@@ -4133,11 +4133,23 @@
                                             "simpleBoolean": {
                                                 "type": "boolean"
                                             },
+                                            "simpleNullableBoolean": {
+                                                "type": "boolean",
+                                                "nullable": true
+                                            },
                                             "simpleString": {
                                                 "type": "string"
                                             },
+                                            "simpleNullableString": {
+                                                "type": "string",
+                                                "nullable": true
+                                            },
                                             "simpleInteger": {
                                                 "type": "integer"
+                                            },
+                                            "simpleNullableInteger": {
+                                                "type": "integer",
+                                                "nullable": true
                                             },
                                             "simpleInnerObject": {
                                                 "type": "object",
@@ -4152,8 +4164,21 @@
                                                         "type": "integer"
                                                     }
                                                 }
+                                            },
+                                            "simpleNullableObjectWithoutChildren": {
+                                                "type": "object",
+                                                "nullable": true
                                             }
                                         }
+                                    },
+                                    "simpleNullableObjectWithChildren": {
+                                        "type": "object",
+                                        "properties": {
+                                            "simpleBoolean": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "nullable": true
                                     }
                                 }
                             }

@@ -407,15 +407,20 @@ return new Model\Specification(
                     IOField::objectField(
                         'simpleObject',
                         IOField::booleanField('simpleBoolean'),
+                        IOField::booleanField('simpleNullableBoolean')->asNullable(),
                         IOField::stringField('simpleString'),
+                        IOField::stringField('simpleNullableString')->asNullable(),
                         IOField::integerField('simpleInteger'),
+                        IOField::integerField('simpleNullableInteger')->asNullable(),
                         IOField::objectField(
                             'simpleInnerObject',
                             IOField::booleanField('simpleBoolean'),
                             IOField::stringField('simpleString'),
                             IOField::integerField('simpleInteger'),
-                        )
-                    )
+                        ),
+                        IOField::objectField('simpleNullableObjectWithoutChildren')->asNullable(),
+                    ),
+                    IOField::objectField('simpleNullableObjectWithChildren', IOField::booleanField('simpleBoolean'))->asNullable()
                 ),
             ],
             [
