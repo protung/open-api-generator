@@ -4096,6 +4096,13 @@
                                             "type": "string"
                                         }
                                     },
+                                    "simpleNullableArrayOfStrings": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "nullable": true
+                                    },
                                     "simpleArrayOfObjects": {
                                         "type": "array",
                                         "items": {

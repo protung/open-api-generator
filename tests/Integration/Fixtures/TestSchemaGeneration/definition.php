@@ -389,6 +389,7 @@ return new Model\Specification(
                         'simpleArrayOfStrings',
                         IOField::stringField('simpleString'),
                     ),
+                    IOField::arrayField('simpleNullableArrayOfStrings', IOField::stringField('simpleString'))->asNullable(),
                     IOField::arrayField(
                         'simpleArrayOfObjects',
                         IOField::objectField(

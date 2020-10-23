@@ -8,6 +8,7 @@ use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
+use Speicher210\OpenApiGenerator\Model\Type as ModelType;
 
 /**
  * @todo support array of arrays
@@ -21,17 +22,17 @@ final class IOFieldDescriber
     {
         $properties = [];
         foreach ($fields as $field) {
-            $children = $field->children();
-
+            $children  = $field->children();
             $fieldName = $field->name();
 
-            $properties[$fieldName] = ['type' => $field->type()];
-            if ($field->type() === \Speicher210\OpenApiGenerator\Model\Type::ARRAY) {
-                if ($children !== null) {
-                    Assert::count($children, 1);
-                    $properties[$fieldName]['items'] = $this->describeField($children[0]);
+            if ($field->type() === ModelType::ARRAY) {
+                Assert::notNull($children);
+                Assert::count($children, 1);
+                $properties[$fieldName] = new Schema(['type' => Type::ARRAY, 'items' => $this->describeField($children[0])]);
+                if ($field->isNullable()) {
+                    $properties[$fieldName]->nullable = true;
                 }
-            } elseif ($field->type() === \Speicher210\OpenApiGenerator\Model\Type::OBJECT) {
+            } elseif ($field->type() === ModelType::OBJECT) {
                 if ($children !== null) {
                     $properties[$fieldName] = $this->describeFields($children);
                 } else {
@@ -51,7 +52,7 @@ final class IOFieldDescriber
 
     private function describeField(IOField $field): Schema
     {
-        if ($field->type() === \Speicher210\OpenApiGenerator\Model\Type::OBJECT) {
+        if ($field->type() === ModelType::OBJECT) {
             $schema = $this->describeFields($field->children() ?? []);
 
             if ($field->isNullable()) {
