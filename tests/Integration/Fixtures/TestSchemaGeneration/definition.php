@@ -92,7 +92,7 @@ return new Model\Specification(
                         IOField::integerField('myInt')->withExample(42),
                         IOField::stringField('myString')->withExample('ms'),
                         IOField::booleanField('myBoolean')->withExample(false),
-                        new IOField('myChoice', Type::NUMBER, null, [1, 2, 3]),
+                        IOField::numberField('myChoice')->withPossibleValues([1, 2, 3]),
                     )
                 ),
                 new Response(
@@ -145,7 +145,7 @@ return new Model\Specification(
                 new Response(
                     428,
                     ['Custom precondition'],
-                    new Model\Path\Output\SimpleOutput(new Model\Path\IOField('precondition', Model\Type::STRING))
+                    new Model\Path\Output\SimpleOutput(Model\Path\IOField::stringField('precondition'))
                 ),
             ],
             Model\Security\Reference::fromString('ApiKey')
@@ -171,7 +171,7 @@ return new Model\Specification(
                 Response::for201(
                     new PaginatedOutput(
                         'one_type',
-                        new Model\Path\Output\SimpleOutput(new Model\Path\IOField('someField', Model\Type::OBJECT))
+                        new Model\Path\Output\SimpleOutput(Model\Path\IOField::objectField('someField'))
                     )
                 ),
                 new Response(

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Processor\Path\Symfony;
 
-use cebe\openapi\spec\Type;
 use InvalidArgumentException;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\OperationDescriber;
@@ -75,17 +74,18 @@ final class PathProcessor implements PathProcessorInterface
     {
         $ioFields = [];
         foreach ($route->compile()->getPathVariables() as $pathVariable) {
+            $field = IOField::stringField($pathVariable);
+
             $requirement = $route->getRequirement($pathVariable);
-
-            $pattern = $possibleValues = null;
-
-            if ($requirement !== null && strpos($requirement, '|') !== false) {
-                $possibleValues = explode('|', $requirement);
-            } else {
-                $pattern = $requirement;
+            if ($requirement !== null) {
+                if (strpos($requirement, '|') !== false) {
+                    $field->withPossibleValues(explode('|', $requirement));
+                } else {
+                    $field->withPattern($requirement);
+                }
             }
 
-            $ioFields[] = new IOField($pathVariable, Type::STRING, $pattern, $possibleValues);
+            $ioFields[] = $field;
         }
 
         return Input\PathInput::withIOFields(...$ioFields);

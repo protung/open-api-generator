@@ -7,52 +7,43 @@ namespace Speicher210\OpenApiGenerator\Model\Path;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Type;
 
-/**
- * @todo split into multiple models
- */
+use function count;
+
 final class IOField
 {
     private string $name;
 
     private string $type;
 
-    private ?string $pattern;
+    private ?string $pattern = null;
 
     /** @var mixed[]|null */
-    private ?array $possibleValues;
+    private ?array $possibleValues = null;
 
     /** @var IOField[]|null */
-    private ?array $children;
+    private ?array $children = null;
+
+    private bool $nullable = false;
 
     /** @var mixed|null */
-    private $example;
+    private $example = null;
 
-    /**
-     * @param mixed[]|null   $possibleValues
-     * @param IOField[]|null $children
-     * @param mixed|null     $example
-     */
-    public function __construct(
-        string $name,
-        string $type,
-        ?string $pattern = null,
-        ?array $possibleValues = null,
-        ?array $children = null,
-        $example = null
-    ) {
+    private function __construct(string $name, string $type)
+    {
         Assert::inArray($type, Type::TYPES);
 
-        $this->name           = $name;
-        $this->type           = $type;
-        $this->pattern        = $pattern;
-        $this->possibleValues = $possibleValues;
-        $this->children       = $children;
-        $this->example        = $example;
+        $this->name = $name;
+        $this->type = $type;
     }
 
     public static function stringField(string $name): self
     {
         return new self($name, Type::STRING);
+    }
+
+    public static function numberField(string $name): self
+    {
+        return new self($name, Type::NUMBER);
     }
 
     public static function integerField(string $name): self
@@ -67,20 +58,20 @@ final class IOField
 
     public static function arrayField(string $name, IOField $element): self
     {
-        return new self($name, Type::ARRAY, null, null, [$element]);
+        $self = new self($name, Type::ARRAY);
+        $self->withChildren([$element]);
+
+        return $self;
     }
 
     public static function objectField(string $name, IOField ...$children): self
     {
-        return new self($name, Type::OBJECT, null, null, $children);
-    }
+        $self = new self($name, Type::OBJECT);
+        if (count($children) > 0) {
+            $self->withChildren($children);
+        }
 
-    /**
-     * @return IOField[]|null
-     */
-    public function children(): ?array
-    {
-        return $this->children;
+        return $self;
     }
 
     public function name(): string
@@ -93,9 +84,56 @@ final class IOField
         return $this->type;
     }
 
+    /**
+     * @param IOField[] $children
+     */
+    public function withChildren(array $children): self
+    {
+        $this->children = $children;
+
+        return $this;
+    }
+
+    /**
+     * @return IOField[]|null
+     */
+    public function children(): ?array
+    {
+        return $this->children;
+    }
+
+    public function asNullable(): self
+    {
+        $this->nullable = true;
+
+        return $this;
+    }
+
+    public function isNullable(): bool
+    {
+        return $this->nullable;
+    }
+
+    public function withPattern(string $pattern): self
+    {
+        $this->pattern = $pattern;
+
+        return $this;
+    }
+
     public function pattern(): ?string
     {
         return $this->pattern;
+    }
+
+    /**
+     * @param mixed[] $possibleValues
+     */
+    public function withPossibleValues(array $possibleValues): self
+    {
+        $this->possibleValues = $possibleValues;
+
+        return $this;
     }
 
     /**
