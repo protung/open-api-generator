@@ -122,6 +122,11 @@ return new Model\Specification(
                     Model\Path\Output\FileOutput::forZip(),
                     new Model\Path\Output\ScalarOutput(Type::INTEGER)
                 ),
+                new Response(
+                    211,
+                    ['output with discriminator'],
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\DiscriminatorParentObject::class),
+                ),
             ],
             null,
             true

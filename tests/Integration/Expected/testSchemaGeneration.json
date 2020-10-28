@@ -3322,19 +3322,48 @@
                                                 "parent_with_discriminator": {
                                                     "type": "array",
                                                     "items": {
-                                                        "properties": {
-                                                            "propertyInParent": {
-                                                                "type": "string"
+                                                        "oneOf": [
+                                                            {
+                                                                "properties": {
+                                                                    "propertyInParent": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "propertyInFirstChild": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "childPropertyWithDifferentType": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "discriminator": {
+                                                                        "type": "string",
+                                                                        "enum": [
+                                                                            "first"
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                "type": "object"
                                                             },
-                                                            "discriminator": {
-                                                                "type": "string",
-                                                                "enum": [
-                                                                    "first",
-                                                                    "second"
-                                                                ]
+                                                            {
+                                                                "properties": {
+                                                                    "propertyInParent": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "propertyInSecondChild": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "childPropertyWithDifferentType": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "discriminator": {
+                                                                        "type": "string",
+                                                                        "enum": [
+                                                                            "second"
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                "type": "object"
                                                             }
-                                                        },
-                                                        "type": "object"
+                                                        ]
                                                     }
                                                 }
                                             }
@@ -3937,6 +3966,57 @@
                                 "schema": {
                                     "type": "integer",
                                     "example": 123
+                                }
+                            }
+                        }
+                    },
+                    "211": {
+                        "description": "output with discriminator",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "properties": {
+                                                "propertyInParent": {
+                                                    "type": "string"
+                                                },
+                                                "propertyInFirstChild": {
+                                                    "type": "string"
+                                                },
+                                                "childPropertyWithDifferentType": {
+                                                    "type": "integer"
+                                                },
+                                                "discriminator": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "first"
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "propertyInParent": {
+                                                    "type": "string"
+                                                },
+                                                "propertyInSecondChild": {
+                                                    "type": "string"
+                                                },
+                                                "childPropertyWithDifferentType": {
+                                                    "type": "boolean"
+                                                },
+                                                "discriminator": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "second"
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
                                 }
                             }
                         }

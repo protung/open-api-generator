@@ -50,12 +50,32 @@ final class JMSModel implements Describer
 
     public function describeInSchema(Schema $schema, Definition $definition, ObjectDescriber $objectDescriber): void
     {
-        $metadata         = $this->getClassMetadata($definition->className());
+        $metadata            = $this->getClassMetadata($definition->className());
+        $serializationGroups = $definition->serializationGroups();
+
+        if ($this->isDiscriminatorBaseClass($metadata)) {
+            $childSchemas = [];
+            foreach ($metadata->discriminatorMap as $childClass) {
+                $childSchema = new Schema([]);
+                $this->describeInSchema(
+                    $childSchema,
+                    new Definition(
+                        $childClass,
+                        $serializationGroups
+                    ),
+                    $objectDescriber
+                );
+                $childSchemas[] = $childSchema;
+            }
+
+            $schema->oneOf = $childSchemas;
+
+            return;
+        }
+
         $propertyMetadata = $metadata->propertyMetadata;
         Assert::allIsInstanceOf($propertyMetadata, PropertyMetadata::class);
-
-        $serializationGroups = $definition->serializationGroups();
-        $metadataProperties  = array_filter(
+        $metadataProperties = array_filter(
             $this->getPropertiesInSerializationGroups($propertyMetadata, $serializationGroups),
             function (PropertyMetadata $metadataProperty): bool {
                 // filter properties for not current version
@@ -128,22 +148,6 @@ final class JMSModel implements Describer
 
             $name              = $metadataProperty->serializedName;
             $properties[$name] = $property;
-        }
-
-        if ($this->shouldAddDiscriminatorProperty($metadata)) {
-            if (array_key_exists($metadata->discriminatorFieldName, $properties)) {
-                $property = $properties[$metadata->discriminatorFieldName];
-            } else {
-                $property = new Schema(['type' => Type::STRING]);
-            }
-
-            if ($metadata->discriminatorValue !== null) {
-                $property->enum = [$metadata->discriminatorValue];
-            } elseif (count($metadata->discriminatorMap) > 0) {
-                $property->enum = array_keys($metadata->discriminatorMap);
-            }
-
-            $properties[$metadata->discriminatorFieldName] = $property;
         }
 
         $schema->properties = $properties;
@@ -225,10 +229,7 @@ final class JMSModel implements Describer
         return null;
     }
 
-    /**
-     * @todo determine if it is base class and use oneOf functionality if it is so.
-     */
-    private function shouldAddDiscriminatorProperty(ClassMetadata $metadata): bool
+    private function isDiscriminatorBaseClass(ClassMetadata $metadata): bool
     {
         if ($metadata->discriminatorDisabled) {
             return false;
@@ -282,14 +283,26 @@ final class JMSModel implements Describer
      */
     private function getPropertyTypes(PropertyMetadata $propertyMetadata): array
     {
-        $defaultTypes = [PropertyAnalysisSingleType::forSingleValue('string', false, $propertyMetadata->type['params'] ?? [])];
+        $defaultTypes = [
+            PropertyAnalysisSingleType::forSingleValue(
+                'string',
+                false,
+                $propertyMetadata->type['params'] ?? []
+            ),
+        ];
 
         if ($propertyMetadata instanceof VirtualPropertyMetadata || $propertyMetadata instanceof StaticPropertyMetadata) {
             if ($propertyMetadata->type === null) {
                 return $defaultTypes;
             }
 
-            return [PropertyAnalysisSingleType::forSingleValue($propertyMetadata->type['name'], false, $propertyMetadata->type['params'] ?? [])];
+            return [
+                PropertyAnalysisSingleType::forSingleValue(
+                    $propertyMetadata->type['name'],
+                    false,
+                    $propertyMetadata->type['params'] ?? []
+                ),
+            ];
         }
 
         if ($propertyMetadata->type !== null) {
