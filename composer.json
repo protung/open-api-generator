@@ -17,21 +17,21 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 || ^8.0",
         "ext-json": "*",
         "cebe/php-openapi": "^1.4",
         "jms/serializer": "^3.9",
         "roave/better-reflection": "^4.2",
-        "symfony/form": "^4.4 || ^5.0",
-        "symfony/routing": "^4.4 || ^5.0",
-        "symfony/validator": "^4.4 || ^5.0",
+        "symfony/form": "^4.4 || ^5.1",
+        "symfony/routing": "^4.4 || ^5.1",
+        "symfony/validator": "^4.4 || ^5.1",
         "webmozart/assert": "^1.8"
     },
     "conflict": {},
     "require-dev": {
         "doctrine/coding-standard": "^8.1.0",
         "ergebnis/composer-normalize": "^2.9.0",
-        "phpstan/phpstan": "^0.12.50",
+        "phpstan/phpstan": "^0.12.52",
         "phpstan/phpstan-deprecation-rules": "^0.12.5",
         "phpstan/phpstan-phpunit": "^0.12.16",
         "phpstan/phpstan-strict-rules": "^0.12.5",
@@ -41,8 +41,8 @@
         "psalm/plugin-phpunit": "^0.13.0",
         "roave/security-advisories": "dev-master",
         "slevomat/coding-standard": "^6.4.1",
-        "symfony/config": "^4.4 || ^5.0",
-        "symfony/var-dumper": "4.4 || ^5.0",
+        "symfony/config": "^4.4 || ^5.1",
+        "symfony/var-dumper": "4.4 || ^5.1",
         "thecodingmachine/phpstan-strict-rules": "^0.12.1",
         "vimeo/psalm": "^4.0.1"
     },
