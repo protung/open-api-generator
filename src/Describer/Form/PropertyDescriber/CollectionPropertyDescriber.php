@@ -10,10 +10,8 @@ use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver\FormName;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Speicher210\OpenApiGenerator\Model\FormDefinition;
-use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
-
-use function get_class;
+use Symfony\Component\Form\ResolvedFormTypeInterface;
 
 final class CollectionPropertyDescriber implements PropertyDescriber
 {
@@ -41,25 +39,18 @@ final class CollectionPropertyDescriber implements PropertyDescriber
 
     public function supports(FormInterface $form): bool
     {
-        return $this->isCollection($form->getConfig());
+        return $this->isCollection($form->getConfig()->getType());
     }
 
-    private function isCollection(FormConfigInterface $formConfig): bool
+    private function isCollection(ResolvedFormTypeInterface $formType): bool
     {
-        if ($formConfig->getType()->getBlockPrefix() === 'collection') {
+        if ($formType->getBlockPrefix() === 'collection') {
             return true;
         }
 
-        $parentType = $formConfig->getType()->getParent();
+        $parentType =  $formType->getParent();
         if ($parentType !== null) {
-            $newForm = $this->formFactory->create(
-                new FormDefinition(
-                    get_class($parentType->getInnerType()),
-                    (array) $formConfig->getOption('validation_groups')
-                )
-            );
-
-            return $this->isCollection($newForm->getConfig());
+            return $this->isCollection($parentType);
         }
 
         return false;
