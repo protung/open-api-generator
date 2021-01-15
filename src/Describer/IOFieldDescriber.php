@@ -62,7 +62,10 @@ final class IOFieldDescriber
             return $schema;
         }
 
-        $schema = ['type' => $field->type()];
+        $schema = [];
+        if ($field->type() !== ModelType::UNKNOWN) {
+            $schema['type'] = $field->type();
+        }
 
         if ($field->isNullable()) {
             $schema['nullable'] = true;

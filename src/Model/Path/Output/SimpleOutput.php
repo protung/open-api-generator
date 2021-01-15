@@ -69,7 +69,7 @@ class SimpleOutput implements Output
         $fields = [];
         foreach ($data as $fieldName => $fieldValue) {
             if ($fieldValue === null) {
-                $fields[] = IOField::anything($fieldName)->asNullable();
+                $fields[] = IOField::unknown($fieldName)->asNullable();
             } elseif (is_string($fieldValue)) {
                 $fields[] = IOField::stringField($fieldName);
             } elseif (is_int($fieldValue)) {

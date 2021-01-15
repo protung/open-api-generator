@@ -9,6 +9,8 @@ use stdClass;
 
 final class Type
 {
+    public const UNKNOWN = 'unknown';
+
     public const ANY = 'any';
 
     public const INTEGER = 'integer';
@@ -24,6 +26,7 @@ final class Type
     public const ARRAY = 'array';
 
     public const TYPES = [
+        self::UNKNOWN,
         self::ANY,
         self::INTEGER,
         self::NUMBER,

@@ -3567,7 +3567,8 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "myNull": {
+                                        "myUnknown": {},
+                                        "myAnything": {
                                             "type": "any"
                                         },
                                         "myInt": {
@@ -3592,7 +3593,8 @@
                                         }
                                     },
                                     "example": {
-                                        "myNull": null,
+                                        "myUnknown": null,
+                                        "myAnything": null,
                                         "myInt": 123,
                                         "myString": "string",
                                         "myBoolean": true,
@@ -4032,8 +4034,7 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "myNull": {
-                                            "type": "any",
+                                        "myUnknown": {
                                             "nullable": true
                                         },
                                         "myInt": {
@@ -4051,8 +4052,7 @@
                                         "myObject": {
                                             "type": "object",
                                             "properties": {
-                                                "myNull": {
-                                                    "type": "any",
+                                                "myUnknown": {
                                                     "nullable": true
                                                 },
                                                 "myInt": {
@@ -4098,8 +4098,7 @@
                                             "items": {
                                                 "type": "object",
                                                 "properties": {
-                                                    "myNull": {
-                                                        "type": "any",
+                                                    "myUnknown": {
                                                         "nullable": true
                                                     },
                                                     "myInt": {
@@ -4125,13 +4124,13 @@
                                         }
                                     },
                                     "example": {
-                                        "myNull": null,
+                                        "myUnknown": null,
                                         "myInt": 42,
                                         "myFloat": 3.1415,
                                         "myString": "ms",
                                         "myBoolean": false,
                                         "myObject": {
-                                            "myNull": null,
+                                            "myUnknown": null,
                                             "myInt": -42,
                                             "myFloat": -3.1415,
                                             "myString": "sm",
@@ -4158,7 +4157,7 @@
                                         ],
                                         "myObjectCollection": [
                                             {
-                                                "myNull": null,
+                                                "myUnknown": null,
                                                 "myInt": -42,
                                                 "myFloat": -3.1415,
                                                 "myString": "sm",
@@ -4234,7 +4233,8 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "simpleAny": {
+                                        "simpleUnknown": {},
+                                        "simpleAnything": {
                                             "type": "any"
                                         },
                                         "simpleString": {
@@ -4270,7 +4270,8 @@
                                         }
                                     },
                                     "example": {
-                                        "simpleAny": null,
+                                        "simpleUnknown": null,
+                                        "simpleAnything": null,
                                         "simpleString": "string",
                                         "simpleObject": {
                                             "simpleBoolean": true,
