@@ -89,6 +89,7 @@ return new Model\Specification(
                     205,
                     [],
                     Model\Path\Output\SimpleOutput::fromIOFields(
+                        IOField::anything('myNull'),
                         IOField::integerField('myInt')->withExample(42),
                         IOField::stringField('myString')->withExample('ms'),
                         IOField::booleanField('myBoolean')->withExample(false),
@@ -132,11 +133,13 @@ return new Model\Specification(
                     ['from example data'],
                     Model\Path\Output\SimpleOutput::fromExampleData(
                         [
+                            'myNull' => null,
                             'myInt' => 42,
                             'myFloat' => 3.1415,
                             'myString' => 'ms',
                             'myBoolean' => false,
                             'myObject' => [
+                                'myNull' => null,
                                 'myInt' => -42,
                                 'myFloat' => -3.1415,
                                 'myString' => 'sm',
@@ -148,6 +151,7 @@ return new Model\Specification(
                             'myStringCollection' => ['a', 'b', 'c'],
                             'myObjectCollection' => [
                                 [
+                                    'myNull' => null,
                                     'myInt' => -42,
                                     'myFloat' => -3.1415,
                                     'myString' => 'sm',
@@ -474,6 +478,7 @@ return new Model\Specification(
             [
                 Response::for200(
                     Model\Path\Output\SimpleOutput::fromIOFields(
+                        IOField::anything('simpleAny'),
                         IOField::stringField('simpleString'),
                         IOField::objectField(
                             'simpleObject',

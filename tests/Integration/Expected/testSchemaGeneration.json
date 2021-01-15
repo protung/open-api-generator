@@ -3567,6 +3567,9 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
+                                        "myNull": {
+                                            "type": "any"
+                                        },
                                         "myInt": {
                                             "type": "integer",
                                             "example": 42
@@ -3589,6 +3592,7 @@
                                         }
                                     },
                                     "example": {
+                                        "myNull": null,
                                         "myInt": 123,
                                         "myString": "string",
                                         "myBoolean": true,
@@ -4028,6 +4032,10 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
+                                        "myNull": {
+                                            "type": "any",
+                                            "nullable": true
+                                        },
                                         "myInt": {
                                             "type": "integer"
                                         },
@@ -4043,6 +4051,10 @@
                                         "myObject": {
                                             "type": "object",
                                             "properties": {
+                                                "myNull": {
+                                                    "type": "any",
+                                                    "nullable": true
+                                                },
                                                 "myInt": {
                                                     "type": "integer"
                                                 },
@@ -4086,6 +4098,10 @@
                                             "items": {
                                                 "type": "object",
                                                 "properties": {
+                                                    "myNull": {
+                                                        "type": "any",
+                                                        "nullable": true
+                                                    },
                                                     "myInt": {
                                                         "type": "integer"
                                                     },
@@ -4109,11 +4125,13 @@
                                         }
                                     },
                                     "example": {
+                                        "myNull": null,
                                         "myInt": 42,
                                         "myFloat": 3.1415,
                                         "myString": "ms",
                                         "myBoolean": false,
                                         "myObject": {
+                                            "myNull": null,
                                             "myInt": -42,
                                             "myFloat": -3.1415,
                                             "myString": "sm",
@@ -4140,6 +4158,7 @@
                                         ],
                                         "myObjectCollection": [
                                             {
+                                                "myNull": null,
                                                 "myInt": -42,
                                                 "myFloat": -3.1415,
                                                 "myString": "sm",
@@ -4215,6 +4234,9 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
+                                        "simpleAny": {
+                                            "type": "any"
+                                        },
                                         "simpleString": {
                                             "type": "string"
                                         },
@@ -4248,6 +4270,7 @@
                                         }
                                     },
                                     "example": {
+                                        "simpleAny": null,
                                         "simpleString": "string",
                                         "simpleObject": {
                                             "simpleBoolean": true,

@@ -36,6 +36,11 @@ final class IOField
         $this->type = $type;
     }
 
+    public static function anything(string $name): self
+    {
+        return new self($name, Type::ANY);
+    }
+
     public static function stringField(string $name): self
     {
         return new self($name, Type::STRING);
