@@ -19,32 +19,32 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-json": "*",
-        "cebe/php-openapi": "^1.4",
-        "jms/serializer": "^3.9",
-        "roave/better-reflection": "^4.2",
-        "symfony/form": "^4.4 || ^5.1",
-        "symfony/routing": "^4.4 || ^5.1",
-        "symfony/validator": "^4.4 || ^5.1",
-        "webmozart/assert": "^1.8"
+        "cebe/php-openapi": "^1.5",
+        "jms/serializer": "^3.11",
+        "roave/better-reflection": "^4.12",
+        "symfony/form": "^4.4 || ^5.2",
+        "symfony/routing": "^4.4 || ^5.2",
+        "symfony/validator": "^4.4 || ^5.2",
+        "webmozart/assert": "^1.9"
     },
     "conflict": {},
     "require-dev": {
-        "doctrine/coding-standard": "^8.1.0",
-        "ergebnis/composer-normalize": "^2.9.0",
-        "phpstan/phpstan": "^0.12.52",
-        "phpstan/phpstan-deprecation-rules": "^0.12.5",
-        "phpstan/phpstan-phpunit": "^0.12.16",
-        "phpstan/phpstan-strict-rules": "^0.12.5",
-        "phpstan/phpstan-symfony": "^0.12.10",
-        "phpstan/phpstan-webmozart-assert": "^0.12.7",
-        "phpunit/phpunit": "^9.4.2",
-        "psalm/plugin-phpunit": "^0.13.0",
+        "doctrine/coding-standard": "^8.2.0",
+        "ergebnis/composer-normalize": "^2.13.2",
+        "phpstan/phpstan": "^0.12.67",
+        "phpstan/phpstan-deprecation-rules": "^0.12.6",
+        "phpstan/phpstan-phpunit": "^0.12.17",
+        "phpstan/phpstan-strict-rules": "^0.12.9",
+        "phpstan/phpstan-symfony": "^0.12.14",
+        "phpstan/phpstan-webmozart-assert": "^0.12.8",
+        "phpunit/phpunit": "^9.5.0",
+        "psalm/plugin-phpunit": "^0.15.0",
         "roave/security-advisories": "dev-master",
         "slevomat/coding-standard": "^6.4.1",
-        "symfony/config": "^4.4 || ^5.1",
-        "symfony/var-dumper": "4.4 || ^5.1",
+        "symfony/config": "^4.4 || ^5.2",
+        "symfony/var-dumper": "4.4 || ^5.2",
         "thecodingmachine/phpstan-strict-rules": "^0.12.1",
-        "vimeo/psalm": "^4.0.1"
+        "vimeo/psalm": "^4.4.1"
     },
     "config": {
         "preferred-install": {
@@ -73,8 +73,8 @@
             "@analyse-phpstan",
             "@analyse-psalm"
         ],
-        "analyse-phpstan": "phpstan analyse",
-        "analyse-phpstan-update": "phpstan analyse --generate-baseline",
+        "analyse-phpstan": "phpstan analyse --memory-limit=1024M",
+        "analyse-phpstan-update": "phpstan analyse --memory-limit=1024M --generate-baseline",
         "analyse-psalm": "psalm --show-info=false",
         "analyse-psalm-update": "psalm --set-baseline=psalm.baseline.xml",
         "check": [
