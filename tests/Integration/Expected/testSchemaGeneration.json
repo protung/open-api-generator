@@ -4021,6 +4021,141 @@
                             }
                         }
                     },
+                    "212": {
+                        "description": "from example data",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "myInt": {
+                                            "type": "integer"
+                                        },
+                                        "myFloat": {
+                                            "type": "number"
+                                        },
+                                        "myString": {
+                                            "type": "string"
+                                        },
+                                        "myBoolean": {
+                                            "type": "boolean"
+                                        },
+                                        "myObject": {
+                                            "type": "object",
+                                            "properties": {
+                                                "myInt": {
+                                                    "type": "integer"
+                                                },
+                                                "myFloat": {
+                                                    "type": "number"
+                                                },
+                                                "myString": {
+                                                    "type": "string"
+                                                },
+                                                "myBoolean": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "myIntegerCollection": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "myFloatCollection": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "myBooleanCollection": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "myStringCollection": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "myObjectCollection": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "myInt": {
+                                                        "type": "integer"
+                                                    },
+                                                    "myFloat": {
+                                                        "type": "number"
+                                                    },
+                                                    "myString": {
+                                                        "type": "string"
+                                                    },
+                                                    "myBoolean": {
+                                                        "type": "boolean"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "myArrayCollection": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "array"
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "myInt": 42,
+                                        "myFloat": 3.1415,
+                                        "myString": "ms",
+                                        "myBoolean": false,
+                                        "myObject": {
+                                            "myInt": -42,
+                                            "myFloat": -3.1415,
+                                            "myString": "sm",
+                                            "myBoolean": true
+                                        },
+                                        "myIntegerCollection": [
+                                            1,
+                                            2,
+                                            3
+                                        ],
+                                        "myFloatCollection": [
+                                            1.1,
+                                            2.2,
+                                            3.3
+                                        ],
+                                        "myBooleanCollection": [
+                                            true,
+                                            false
+                                        ],
+                                        "myStringCollection": [
+                                            "a",
+                                            "b",
+                                            "c"
+                                        ],
+                                        "myObjectCollection": [
+                                            {
+                                                "myInt": -42,
+                                                "myFloat": -3.1415,
+                                                "myString": "sm",
+                                                "myBoolean": true
+                                            }
+                                        ],
+                                        "myArrayCollection": [
+                                            [
+                                                1
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Returned on server error",
                         "content": {

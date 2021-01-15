@@ -4,11 +4,21 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
+use InvalidArgumentException;
+use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Type;
 
+use function array_is_list;
+use function gettype;
+use function is_array;
+use function is_bool;
+use function is_float;
+use function is_int;
+use function is_string;
 use function reset;
+use function sprintf;
 
 /**
  * @todo rename class, give it a better name
@@ -27,6 +37,8 @@ class SimpleOutput implements Output
      */
     protected function __construct(array $fields, array $example)
     {
+        Assert::minCount($fields, 1, 'At least one field should be defined.');
+
         $this->fields  = $fields;
         $this->example = $example;
     }
@@ -34,6 +46,59 @@ class SimpleOutput implements Output
     public static function fromIOFields(IOField ...$fields): self
     {
         return new self($fields, self::exampleFromFields($fields));
+    }
+
+    /**
+     * @param array<mixed> $data
+     */
+    public static function fromExampleData(array $data): self
+    {
+        return new self(
+            self::createIOFields($data),
+            $data
+        );
+    }
+
+    /**
+     * @param array<mixed> $data
+     *
+     * @return array<IOField>
+     */
+    private static function createIOFields(array $data): array
+    {
+        $fields = [];
+        foreach ($data as $fieldName => $fieldValue) {
+            if (is_string($fieldValue)) {
+                $fields[] = IOField::stringField($fieldName);
+            } elseif (is_int($fieldValue)) {
+                $fields[] = IOField::integerField($fieldName);
+            } elseif (is_float($fieldValue)) {
+                $fields[] = IOField::numberField($fieldName);
+            } elseif (is_bool($fieldValue)) {
+                $fields[] = IOField::booleanField($fieldName);
+            } elseif (is_array($fieldValue)) {
+                if (array_is_list($fieldValue)) {
+                    $fields[] = IOField::arrayField(
+                        $fieldName,
+                        self::createIOFields([$fieldName => reset($fieldValue)])[0]
+                    );
+                } else {
+                    $fields[] = IOField::objectField(
+                        $fieldName,
+                        ...self::createIOFields($fieldValue)
+                    );
+                }
+            } else {
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'Only scalars or arrays can be used as example value for building SimpleOutput, "%s" given.',
+                        gettype($fieldValue)
+                    )
+                );
+            }
+        }
+
+        return $fields;
     }
 
     /**

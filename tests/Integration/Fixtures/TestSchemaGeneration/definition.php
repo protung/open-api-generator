@@ -127,6 +127,39 @@ return new Model\Specification(
                     ['output with discriminator'],
                     ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\DiscriminatorParentObject::class),
                 ),
+                new Response(
+                    212,
+                    ['from example data'],
+                    Model\Path\Output\SimpleOutput::fromExampleData(
+                        [
+                            'myInt' => 42,
+                            'myFloat' => 3.1415,
+                            'myString' => 'ms',
+                            'myBoolean' => false,
+                            'myObject' => [
+                                'myInt' => -42,
+                                'myFloat' => -3.1415,
+                                'myString' => 'sm',
+                                'myBoolean' => true,
+                            ],
+                            'myIntegerCollection' => [1, 2, 3],
+                            'myFloatCollection' => [1.1, 2.2, 3.3],
+                            'myBooleanCollection' => [true, false],
+                            'myStringCollection' => ['a', 'b', 'c'],
+                            'myObjectCollection' => [
+                                [
+                                    'myInt' => -42,
+                                    'myFloat' => -3.1415,
+                                    'myString' => 'sm',
+                                    'myBoolean' => true,
+                                ],
+                            ],
+                            'myArrayCollection' => [
+                                [1],
+                            ],
+                        ]
+                    )
+                ),
             ],
             null,
             true
@@ -138,7 +171,10 @@ return new Model\Specification(
             null,
             [],
             [
-                Response::for400(RFC7807ErrorOutput::create(400, 'something custom'))->withDescription(['Custom message 400']),
+                Response::for400(RFC7807ErrorOutput::create(
+                    400,
+                    'something custom'
+                ))->withDescription(['Custom message 400']),
                 Response::for401(),
                 Response::for403()->withDescription(['Custom message 403']),
                 Response::for404()->withDescription(['Custom message 404', 'Another custom message 404']),
@@ -209,8 +245,8 @@ return new Model\Specification(
             [
                 Response::for200(
                     Model\Path\Output\ReferencableOutput::forSchema(
-                        // JMSObject is also used as not referenced.
-                        // We want to make sure this is only referenced for this path.
+                    // JMSObject is also used as not referenced.
+                    // We want to make sure this is only referenced for this path.
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
                     )
                 ),
@@ -221,7 +257,7 @@ return new Model\Specification(
                     ),
                 ),
                 Response::for400(
-                    // We want to test that using the same name will not throw an error is the definition matches.
+                // We want to test that using the same name will not throw an error is the definition matches.
                     Model\Path\Output\ReferencableOutput::forSchema(
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ObjectDescribedOnlyAsReference::class),
                         'JMSObjectDescribedOnlyAsReferenceCustomName'
@@ -324,11 +360,11 @@ return new Model\Specification(
             [
                 Response::for200(
                     ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
-                    ->withExample(TestSchemaGeneration\Model\JMS\ComplexObjectExampleBuilder::create()),
+                        ->withExample(TestSchemaGeneration\Model\JMS\ComplexObjectExampleBuilder::create()),
                 ),
                 Response::for201(
                     ObjectOutput::withSerializationGroups(TestSchemaGeneration\Model\JMS\ComplexObject::class, ['Test'])
-                    ->withExample(TestSchemaGeneration\Model\JMS\ComplexObjectExampleBuilder::create()),
+                        ->withExample(TestSchemaGeneration\Model\JMS\ComplexObjectExampleBuilder::create()),
                 ),
                 new Response(
                     202,
@@ -394,7 +430,10 @@ return new Model\Specification(
                         'simpleArrayOfStrings',
                         IOField::stringField('simpleString'),
                     ),
-                    IOField::arrayField('simpleNullableArrayOfStrings', IOField::stringField('simpleString'))->asNullable(),
+                    IOField::arrayField(
+                        'simpleNullableArrayOfStrings',
+                        IOField::stringField('simpleString')
+                    )->asNullable(),
                     IOField::arrayField(
                         'simpleArrayOfObjects',
                         IOField::objectField(
@@ -426,7 +465,10 @@ return new Model\Specification(
                         ),
                         IOField::objectField('simpleNullableObjectWithoutChildren')->asNullable(),
                     ),
-                    IOField::objectField('simpleNullableObjectWithChildren', IOField::booleanField('simpleBoolean'))->asNullable()
+                    IOField::objectField(
+                        'simpleNullableObjectWithChildren',
+                        IOField::booleanField('simpleBoolean')
+                    )->asNullable()
                 ),
             ],
             [
