@@ -9,21 +9,27 @@ use Speicher210\OpenApiGenerator\Model\Path\Output;
 
 final class RFC7807ErrorOutput extends SimpleOutput
 {
-    private int $errorCode;
-
-    private string $message;
-
-    public function __construct(int $errorCode, string $message)
+    private function __construct(int $errorCode, string $message)
     {
         parent::__construct(
-            IOField::stringField('type'),
-            IOField::stringField('title'),
-            IOField::integerField('status'),
-            IOField::stringField('detail')
+            [
+                IOField::stringField('type'),
+                IOField::stringField('title'),
+                IOField::integerField('status'),
+                IOField::stringField('detail'),
+            ],
+            [
+                'type' => 'https://tools.ietf.org/html/rfc2616#section-10',
+                'title' => 'An error occurred',
+                'status' => $errorCode,
+                'detail' => $message,
+            ]
         );
+    }
 
-        $this->errorCode = $errorCode;
-        $this->message   = $message;
+    public static function create(int $errorCode, string $message): self
+    {
+        return new self($errorCode, $message);
     }
 
     public static function for401(): self
@@ -74,19 +80,6 @@ final class RFC7807ErrorOutput extends SimpleOutput
     public static function for500(): self
     {
         return new self(500, 'Internal Server Error');
-    }
-
-    /**
-     * @return array<string,string|int>
-     */
-    public function example(): array
-    {
-        return [
-            'type' => 'https://tools.ietf.org/html/rfc2616#section-10',
-            'title' => 'An error occurred',
-            'status' => $this->errorCode,
-            'detail' => $this->message,
-        ];
     }
 
     /**

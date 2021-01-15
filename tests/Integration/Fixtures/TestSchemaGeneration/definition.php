@@ -88,7 +88,7 @@ return new Model\Specification(
                 new Response(
                     205,
                     [],
-                    new Model\Path\Output\SimpleOutput(
+                    Model\Path\Output\SimpleOutput::fromIOFields(
                         IOField::integerField('myInt')->withExample(42),
                         IOField::stringField('myString')->withExample('ms'),
                         IOField::booleanField('myBoolean')->withExample(false),
@@ -138,7 +138,7 @@ return new Model\Specification(
             null,
             [],
             [
-                Response::for400(new RFC7807ErrorOutput(400, 'something custom'))->withDescription(['Custom message 400']),
+                Response::for400(RFC7807ErrorOutput::create(400, 'something custom'))->withDescription(['Custom message 400']),
                 Response::for401(),
                 Response::for403()->withDescription(['Custom message 403']),
                 Response::for404()->withDescription(['Custom message 404', 'Another custom message 404']),
@@ -150,7 +150,7 @@ return new Model\Specification(
                 new Response(
                     428,
                     ['Custom precondition'],
-                    new Model\Path\Output\SimpleOutput(Model\Path\IOField::stringField('precondition'))
+                    Model\Path\Output\SimpleOutput::fromIOFields(Model\Path\IOField::stringField('precondition'))
                 ),
             ],
             Model\Security\Reference::fromString('ApiKey')
@@ -176,7 +176,7 @@ return new Model\Specification(
                 Response::for201(
                     new PaginatedOutput(
                         'one_type',
-                        new Model\Path\Output\SimpleOutput(Model\Path\IOField::objectField('someField'))
+                        Model\Path\Output\SimpleOutput::fromIOFields(Model\Path\IOField::objectField('someField'))
                     )
                 ),
                 new Response(
@@ -431,7 +431,7 @@ return new Model\Specification(
             ],
             [
                 Response::for200(
-                    new Model\Path\Output\SimpleOutput(
+                    Model\Path\Output\SimpleOutput::fromIOFields(
                         IOField::stringField('simpleString'),
                         IOField::objectField(
                             'simpleObject',

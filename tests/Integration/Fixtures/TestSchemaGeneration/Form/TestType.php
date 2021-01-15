@@ -31,6 +31,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Unique;
 
+use function range;
+
 final class TestType extends AbstractType
 {
     /**
@@ -65,7 +67,7 @@ final class TestType extends AbstractType
                 DateType::class,
                 ['widget' => 'single_text']
             )
-            ->add('paramDateTime', DateTimeType::class, ['years' => \range(2015, 2025)])
+            ->add('paramDateTime', DateTimeType::class, ['years' => range(2015, 2025)])
             ->add('paramEmail', EmailType::class, ['constraints' => [new Unique()]])
             ->add('paramChoice', ChoiceType::class, ['choices' => ['a', 'b']])
             ->add('paramChoiceWithLoader', ChoiceType::class, [

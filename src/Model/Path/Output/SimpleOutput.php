@@ -18,9 +18,22 @@ class SimpleOutput implements Output
     /** @var IOField[] */
     private array $fields;
 
-    public function __construct(IOField ...$fields)
+    /** @var array<mixed> */
+    private array $example;
+
+    /**
+     * @param IOField[]    $fields
+     * @param array<mixed> $example
+     */
+    protected function __construct(array $fields, array $example)
     {
-        $this->fields = $fields;
+        $this->fields  = $fields;
+        $this->example = $example;
+    }
+
+    public static function fromIOFields(IOField ...$fields): self
+    {
+        return new self($fields, self::exampleFromFields($fields));
     }
 
     /**
@@ -36,7 +49,7 @@ class SimpleOutput implements Output
      */
     public function example(): array
     {
-        return $this->exampleFromFields($this->fields);
+        return $this->example;
     }
 
     /**
@@ -44,13 +57,13 @@ class SimpleOutput implements Output
      *
      * @return mixed[]
      */
-    private function exampleFromFields(array $fields): array
+    private static function exampleFromFields(array $fields): array
     {
         $example = [];
 
         foreach ($fields as $field) {
             if ($field->children() !== null) {
-                $example[$field->name()] = $this->exampleFromFields($field->children());
+                $example[$field->name()] = self::exampleFromFields($field->children());
             } else {
                 $possibleValues = $field->possibleValues();
                 if ($possibleValues !== null && $possibleValues !== []) {
