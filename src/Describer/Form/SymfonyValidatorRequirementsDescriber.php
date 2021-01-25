@@ -6,14 +6,17 @@ namespace Speicher210\OpenApiGenerator\Describer\Form;
 
 use cebe\openapi\spec\Schema;
 use Closure;
+use Speicher210\OpenApiGenerator\Describer\SpecificationDescriber;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\Composite;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\DivisibleBy;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
@@ -27,7 +30,10 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use function array_map;
 use function array_merge;
 use function get_class;
+use function implode;
 use function in_array;
+use function number_format;
+use function sprintf;
 
 final class SymfonyValidatorRequirementsDescriber implements RequirementsDescriber
 {
@@ -172,6 +178,10 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     {
         foreach ($constraints as $constraint) {
             switch (true) {
+                case $constraint instanceof NotBlank:
+                case $constraint instanceof NotNull:
+                    // We handle nullability using $this->handleNullability method.
+                    break;
                 case $constraint instanceof Composite:
                     $this->describeComposite($constraint, $schema, $form);
                     break;
@@ -225,7 +235,66 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                 case $constraint instanceof Unique:
                     $schema->uniqueItems = true;
                     break;
+                case $constraint instanceof File:
+                    if ($constraint->mimeTypes !== null && $constraint->mimeTypes !== []) {
+                        $schema->description = SpecificationDescriber::updateDescription(
+                            $schema->description,
+                            sprintf('Allowed mime types: %s', implode(', ', (array) $constraint->mimeTypes))
+                        );
+                    }
+
+                    if ($constraint->maxSize !== null) {
+                        $schema->description = SpecificationDescriber::updateDescription(
+                            $schema->description,
+                            sprintf('Allowed max file size: %s', $this->humanReadableFileSize($constraint->maxSize))
+                        );
+                    }
+
+                    if ($constraint instanceof Image) {
+                        if ($constraint->minWidth !== null) {
+                            $schema->description = SpecificationDescriber::updateDescription(
+                                $schema->description,
+                                sprintf('Allowed minimum width is %dpx', $constraint->minWidth)
+                            );
+                        }
+
+                        if ($constraint->minHeight !== null) {
+                            $schema->description = SpecificationDescriber::updateDescription(
+                                $schema->description,
+                                sprintf('Allowed minimum height is %dpx', $constraint->minHeight)
+                            );
+                        }
+
+                        if ($constraint->maxWidth !== null) {
+                            $schema->description = SpecificationDescriber::updateDescription(
+                                $schema->description,
+                                sprintf('Allowed maximum width is %dpx', $constraint->maxWidth)
+                            );
+                        }
+
+                        if ($constraint->maxHeight !== null) {
+                            $schema->description = SpecificationDescriber::updateDescription(
+                                $schema->description,
+                                sprintf('Allowed maximum height is %dpx', $constraint->maxHeight)
+                            );
+                        }
+                    }
+
+                    break;
             }
         }
+    }
+
+    private function humanReadableFileSize(int $size): string
+    {
+        if ($size >= 1048576) {
+            return sprintf('%s MB', number_format($size / 1048576, $size % 1048576 === 0 ? 0 : 3));
+        }
+
+        if ($size >= 1024) {
+            return sprintf('%s KB', number_format($size / 1024, $size % 1024 === 0 ? 0 : 3));
+        }
+
+        return sprintf('%d bytes', $size);
     }
 }

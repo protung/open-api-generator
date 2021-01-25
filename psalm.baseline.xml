@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.15@de6e7f324f44dde540ebe7ebd4eb481b97c86f30">
+<files psalm-version="4.4.1@9fd7a7d885b3a216cff8dec9d8c21a132f275224">
   <file src="src/Describer/Form/SymfonyValidatorRequirementsDescriber.php">
-    <InvalidPropertyAssignmentValue occurrences="2">
-      <code>true</code>
-      <code>true</code>
-    </InvalidPropertyAssignmentValue>
     <PossiblyInvalidFunctionCall occurrences="1"/>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>$constraint-&gt;maxSize !== null</code>
+    </RedundantConditionGivenDocblockType>
     <UndefinedMethod occurrences="1">
       <code>getCompositeOption</code>
     </UndefinedMethod>
@@ -16,23 +15,17 @@
       <code>$schema-&gt;required === null</code>
     </DocblockTypeContradiction>
     <PossiblyInvalidArgument occurrences="1"/>
-    <RedundantConditionGivenDocblockType occurrences="4">
-      <code>$schema-&gt;properties === null || $schema-&gt;properties === []</code>
-      <code>$schema-&gt;required === null || $schema-&gt;required === []</code>
+    <RedundantConditionGivenDocblockType occurrences="2">
       <code>$schema-&gt;properties !== null</code>
       <code>$schema-&gt;properties !== null</code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Describer/ObjectDescriber/JMSModel.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>$propertyMetadata</code>
-    </ArgumentTypeCoercion>
     <DocblockTypeContradiction occurrences="2">
       <code>$item-&gt;type === null</code>
       <code>$propertyMetadata-&gt;type === null</code>
     </DocblockTypeContradiction>
-    <RedundantConditionGivenDocblockType occurrences="3">
-      <code>$metadata-&gt;discriminatorValue !== null</code>
+    <RedundantConditionGivenDocblockType occurrences="2">
       <code>$metadata-&gt;discriminatorValue !== null</code>
       <code>$propertyMetadata-&gt;type !== null</code>
     </RedundantConditionGivenDocblockType>

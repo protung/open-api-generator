@@ -4769,11 +4769,13 @@
                                 "properties": {
                                     "paramFile": {
                                         "type": "string",
-                                        "format": "binary"
+                                        "format": "binary",
+                                        "description": "Allowed mime types: image\/*<br>\nAllowed max file size: 1.205 KB<br>\nAllowed minimum width is 100px<br>\nAllowed minimum height is 300px<br>\nAllowed maximum width is 200px<br>\nAllowed maximum height is 400px"
                                     },
                                     "paramFileOptional": {
                                         "type": "string",
-                                        "format": "binary"
+                                        "format": "binary",
+                                        "description": "Allowed mime types: application\/pdf, image\/png, image\/jpeg<br>\nAllowed max file size: 5 MB"
                                     },
                                     "paramExtra": {
                                         "type": "string"
@@ -4939,7 +4941,8 @@
                                 "properties": {
                                     "paramFileOptional": {
                                         "type": "string",
-                                        "format": "binary"
+                                        "format": "binary",
+                                        "description": "Allowed max file size: 1023 bytes"
                                     },
                                     "paramExtra": {
                                         "type": "string"
