@@ -13,7 +13,6 @@ use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
 use function array_fill_keys;
 use function array_map;
 use function count;
-use function reset;
 
 final class PaginatedOutputDescriber implements OutputDescriber
 {
@@ -75,10 +74,12 @@ final class PaginatedOutputDescriber implements OutputDescriber
             $output->embedded()
         );
 
+        Assert::minCount($resources, 1);
+
         if (count($resources) > 1) {
             $resourcesSchema->items = new Schema(['oneOf' => $resources]);
         } else {
-            $resourcesSchema->items = reset($resources);
+            $resourcesSchema->items = $resources[0];
         }
 
         return new Schema(

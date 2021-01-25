@@ -7,15 +7,11 @@ namespace Speicher210\OpenApiGenerator\Describer\InputDescriber\FormInputDescrib
 use cebe\openapi\spec\Parameter;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
+use Speicher210\OpenApiGenerator\Describer\SpecificationDescriber;
 use Symfony\Component\Form\FormInterface;
 
-use function array_filter;
 use function array_merge;
-use function implode;
-use function nl2br;
 use function sprintf;
-
-use const PHP_EOL;
 
 final class Query
 {
@@ -76,7 +72,7 @@ final class Query
             $parentForm = $form->getParent();
             if ($parentForm !== null && ! $parentForm->isRoot() && $parentForm->isRequired() === false) {
                 $parameter->required    = false;
-                $parameter->description = $this->updateDescription(
+                $parameter->description = SpecificationDescriber::updateDescription(
                     $parameter->description,
                     sprintf('Field required for %s', $nameResolver->getPropertyName($parentForm))
                 );
@@ -84,13 +80,5 @@ final class Query
         }
 
         return $parameter;
-    }
-
-    /**
-     * @psalm-pure
-     */
-    private function updateDescription(?string $originalDescription, string $newText): string
-    {
-        return nl2br(implode(PHP_EOL, array_filter([$originalDescription, $newText])), false);
     }
 }

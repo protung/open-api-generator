@@ -15,14 +15,9 @@ use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 
-use function array_filter;
 use function get_class;
-use function implode;
-use function nl2br;
 use function sprintf;
 use function strpos;
-
-use const PHP_EOL;
 
 final class FormDescriber
 {
@@ -165,14 +160,6 @@ final class FormDescriber
     /**
      * @psalm-pure
      */
-    private function updateDescription(?string $originalDescription, string $newText): string
-    {
-        return nl2br(implode(PHP_EOL, array_filter([$originalDescription, $newText])), false);
-    }
-
-    /**
-     * @psalm-pure
-     */
     private function isBuiltinType(FormTypeInterface $formType): bool
     {
         $formClass = get_class($formType);
@@ -191,7 +178,7 @@ final class FormDescriber
             return;
         }
 
-        $schema->description = $this->updateDescription(
+        $schema->description = SpecificationDescriber::updateDescription(
             $schema->description,
             sprintf('Field required for %s', $nameResolver->getPropertyName($parentForm))
         );
