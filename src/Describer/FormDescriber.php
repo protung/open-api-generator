@@ -49,8 +49,6 @@ final class FormDescriber
             } else {
                 $childSchema = $this->addDeepSchema($child, $nameResolver, $httpMethod);
 
-                $this->requirementsDescriber->describe($childSchema, $child);
-
                 $name                    = $nameResolver->getPropertyName($child);
                 $schemaProperties        = $schema->properties;
                 $schemaProperties[$name] = $childSchema;
