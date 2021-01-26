@@ -22,6 +22,10 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
     {
         $formConfig = $form->getConfig();
 
+        if ($formConfig->getCompound() === true) {
+            $schema->type = Type::OBJECT;
+        }
+
         $this->describeProperty($schema, $formConfig->getType(), $formConfig);
     }
 

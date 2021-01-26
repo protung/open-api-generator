@@ -39,28 +39,24 @@ final class FormDescriber
 
     public function addDeepSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod): Schema
     {
-        if ($form->count() === 0) {
-            $schema = $this->createSchema($form, $nameResolver, $httpMethod);
-            $this->handleRequiredForParent($schema, $form, $nameResolver);
-        } else {
-            $schema = new Schema(['type' => Type::OBJECT]);
-            foreach ($form->all() as $child) {
-                $type = $child->getConfig()->getType();
+        $schema = $this->createSchema($form);
+        $this->handleRequiredForParent($schema, $form, $nameResolver);
+        foreach ($form->all() as $child) {
+            $type = $child->getConfig()->getType();
 
-                if ($this->isBuiltinType($type->getInnerType())) {
-                    $this->addParameterToSchema($schema, $nameResolver, $child, $httpMethod);
-                } else {
-                    $childSchema = $this->addDeepSchema($child, $nameResolver, $httpMethod);
+            if ($this->isBuiltinType($type->getInnerType())) {
+                $this->addParameterToSchema($schema, $nameResolver, $child, $httpMethod);
+            } else {
+                $childSchema = $this->addDeepSchema($child, $nameResolver, $httpMethod);
 
-                    $this->requirementsDescriber->describe($childSchema, $child);
+                $this->requirementsDescriber->describe($childSchema, $child);
 
-                    $name                    = $nameResolver->getPropertyName($child);
-                    $schemaProperties        = $schema->properties;
-                    $schemaProperties[$name] = $childSchema;
-                    $schema->properties      = $schemaProperties;
+                $name                    = $nameResolver->getPropertyName($child);
+                $schemaProperties        = $schema->properties;
+                $schemaProperties[$name] = $childSchema;
+                $schema->properties      = $schemaProperties;
 
-                    $this->handleRequiredProperty($schema, $name, $child, $httpMethod);
-                }
+                $this->handleRequiredProperty($schema, $name, $child, $httpMethod);
             }
         }
 
@@ -133,7 +129,7 @@ final class FormDescriber
         FormInterface $form,
         string $httpMethod
     ): void {
-        $childSchema = $this->createSchema($form, $nameResolver, $httpMethod);
+        $childSchema = $this->createSchema($form);
         $this->handleRequiredForParent($childSchema, $form, $nameResolver);
 
         $name                    = $nameResolver->getPropertyName($form);
@@ -144,7 +140,7 @@ final class FormDescriber
         $this->handleRequiredProperty($schema, $name, $form, $httpMethod);
     }
 
-    private function createSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod): Schema
+    private function createSchema(FormInterface $form): Schema
     {
         $formConfig  = $form->getConfig();
         $blockPrefix = $formConfig->getType()->getBlockPrefix();
