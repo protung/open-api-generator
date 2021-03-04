@@ -13,8 +13,11 @@ use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\ResolvedFormTypeInterface;
 
+use function array_map;
+use function array_values;
 use function count;
 use function is_array;
+use function is_callable;
 
 final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
 {
@@ -67,13 +70,32 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
                 break;
             case 'choice':
                 $schema->type = Type::STRING;
-                $choices      = $formConfig->getOption('choices');
+
+                $choices = $formConfig->getOption('choices');
                 if ($choices !== null && is_array($choices) === true && count($choices) > 0) {
-                    $schema->enum = (new ArrayChoiceList($choices))->getValues();
+                    $choiceValue = $formConfig->getOption('choice_value');
+                    if (is_callable($choiceValue)) {
+                        $schema->enum = array_map(
+                            $choiceValue,
+                            (new ArrayChoiceList($choices))->getValues()
+                        );
+                    } else {
+                        $schema->enum = (new ArrayChoiceList($choices))->getValues();
+                    }
                 } else {
                     $choiceLoader = $formConfig->getOption('choice_loader');
                     if ($choiceLoader instanceof ChoiceLoaderInterface) {
-                        $schema->enum = $choiceLoader->loadChoiceList()->getValues();
+                        $choiceValue = $formConfig->getOption('choice_value');
+                        if (is_callable($choiceValue)) {
+                            $schema->enum = array_values(
+                                array_map(
+                                    $choiceValue,
+                                    $choiceLoader->loadChoiceList()->getChoices()
+                                )
+                            );
+                        } else {
+                            $schema->enum = $choiceLoader->loadChoiceList()->getValues();
+                        }
                     }
                 }
 

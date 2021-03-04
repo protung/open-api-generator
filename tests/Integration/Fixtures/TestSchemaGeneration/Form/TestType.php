@@ -70,11 +70,23 @@ final class TestType extends AbstractType
             ->add('paramDateTime', DateTimeType::class, ['years' => range(2015, 2025)])
             ->add('paramEmail', EmailType::class, ['constraints' => [new Unique()]])
             ->add('paramChoice', ChoiceType::class, ['choices' => ['a', 'b']])
-            ->add('paramChoiceWithLoader', ChoiceType::class, [
-                'choice_loader' => new CallbackChoiceLoader(static function (): array {
-                    return [1, 2, 3];
-                }),
-            ])
+            ->add('paramChoiceWithLoader', ChoiceType::class, ['choice_loader' => new CallbackChoiceLoader(static fn (): array => [1, 2, 3])])
+            ->add(
+                'paramChoiceWithChoiceValueCallable',
+                ChoiceType::class,
+                [
+                    'choices' => ['a', 'b'],
+                    'choice_value' => static fn (?string $choice): string => 'choice_value_with_callable: ' . $choice,
+                ]
+            )
+            ->add(
+                'paramChoiceWithLoaderAndChoiceValueCallable',
+                ChoiceType::class,
+                [
+                    'choice_loader' => new CallbackChoiceLoader(static fn (): array => [1, 2, 3]),
+                    'choice_value' => static fn (?string $choice): string => 'choice_value_with_loader_and_callable: ' . $choice,
+                ]
+            )
             ->add('paramPassword', PasswordType::class)
             ->add(
                 'paramCollection',

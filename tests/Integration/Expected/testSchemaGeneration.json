@@ -83,6 +83,8 @@
                                                     "paramEmail",
                                                     "paramChoice",
                                                     "paramChoiceWithLoader",
+                                                    "paramChoiceWithChoiceValueCallable",
+                                                    "paramChoiceWithLoaderAndChoiceValueCallable",
                                                     "paramPassword",
                                                     "paramCollection",
                                                     "paramCustomCollection",
@@ -158,6 +160,21 @@
                                                             "1",
                                                             "2",
                                                             "3"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "paramChoiceWithChoiceValueCallable": {
+                                                        "enum": [
+                                                            "choice_value_with_callable: a",
+                                                            "choice_value_with_callable: b"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                                        "enum": [
+                                                            "choice_value_with_loader_and_callable: 1",
+                                                            "choice_value_with_loader_and_callable: 2",
+                                                            "choice_value_with_loader_and_callable: 3"
                                                         ],
                                                         "type": "string"
                                                     },
@@ -287,6 +304,8 @@
                                                     "paramEmail",
                                                     "paramChoice",
                                                     "paramChoiceWithLoader",
+                                                    "paramChoiceWithChoiceValueCallable",
+                                                    "paramChoiceWithLoaderAndChoiceValueCallable",
                                                     "paramPassword",
                                                     "paramCollection[]",
                                                     "paramCustomCollection",
@@ -364,6 +383,21 @@
                                                             "1",
                                                             "2",
                                                             "3"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "paramChoiceWithChoiceValueCallable": {
+                                                        "enum": [
+                                                            "choice_value_with_callable: a",
+                                                            "choice_value_with_callable: b"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                                        "enum": [
+                                                            "choice_value_with_loader_and_callable: 1",
+                                                            "choice_value_with_loader_and_callable: 2",
+                                                            "choice_value_with_loader_and_callable: 3"
                                                         ],
                                                         "type": "string"
                                                     },
@@ -1007,6 +1041,31 @@
                                 "1",
                                 "2",
                                 "3"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramChoiceWithChoiceValueCallable]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "choice_value_with_callable: a",
+                                "choice_value_with_callable: b"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramChoiceWithLoaderAndChoiceValueCallable]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "choice_value_with_loader_and_callable: 1",
+                                "choice_value_with_loader_and_callable: 2",
+                                "choice_value_with_loader_and_callable: 3"
                             ]
                         },
                         "required": true
@@ -5252,6 +5311,28 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramChoiceWithChoiceValueCallable": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramPassword": {
                                                             "type": "object",
                                                             "properties": {
@@ -5554,6 +5635,21 @@
                                             "3"
                                         ]
                                     },
+                                    "paramChoiceWithChoiceValueCallable": {
+                                        "type": "string",
+                                        "enum": [
+                                            "choice_value_with_callable: a",
+                                            "choice_value_with_callable: b"
+                                        ]
+                                    },
+                                    "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                        "type": "string",
+                                        "enum": [
+                                            "choice_value_with_loader_and_callable: 1",
+                                            "choice_value_with_loader_and_callable: 2",
+                                            "choice_value_with_loader_and_callable: 3"
+                                        ]
+                                    },
                                     "paramPassword": {
                                         "type": "string",
                                         "format": "password"
@@ -5650,6 +5746,7 @@
                                     },
                                     "paramWithDataClassOptional": {
                                         "type": "object",
+                                        "nullable": true,
                                         "properties": {
                                             "stringProperty": {
                                                 "type": "string",
@@ -5658,8 +5755,7 @@
                                         },
                                         "required": [
                                             "stringProperty"
-                                        ],
-                                        "nullable": true
+                                        ]
                                     }
                                 },
                                 "required": [
@@ -5676,6 +5772,8 @@
                                     "paramEmail",
                                     "paramChoice",
                                     "paramChoiceWithLoader",
+                                    "paramChoiceWithChoiceValueCallable",
+                                    "paramChoiceWithLoaderAndChoiceValueCallable",
                                     "paramPassword",
                                     "paramCollection",
                                     "paramCustomCollection",
@@ -5756,6 +5854,21 @@
                                             "1",
                                             "2",
                                             "3"
+                                        ]
+                                    },
+                                    "paramChoiceWithChoiceValueCallable": {
+                                        "type": "string",
+                                        "enum": [
+                                            "choice_value_with_callable: a",
+                                            "choice_value_with_callable: b"
+                                        ]
+                                    },
+                                    "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                        "type": "string",
+                                        "enum": [
+                                            "choice_value_with_loader_and_callable: 1",
+                                            "choice_value_with_loader_and_callable: 2",
+                                            "choice_value_with_loader_and_callable: 3"
                                         ]
                                     },
                                     "paramPassword": {
@@ -5845,6 +5958,8 @@
                                     "paramEmail",
                                     "paramChoice",
                                     "paramChoiceWithLoader",
+                                    "paramChoiceWithChoiceValueCallable",
+                                    "paramChoiceWithLoaderAndChoiceValueCallable",
                                     "paramPassword",
                                     "paramCollection[]",
                                     "paramCustomCollection",
@@ -6156,6 +6271,28 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramChoiceWithChoiceValueCallable": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramPassword": {
                                                             "type": "object",
                                                             "properties": {
@@ -6458,6 +6595,21 @@
                                             "3"
                                         ]
                                     },
+                                    "paramChoiceWithChoiceValueCallable": {
+                                        "type": "string",
+                                        "enum": [
+                                            "choice_value_with_callable: a",
+                                            "choice_value_with_callable: b"
+                                        ]
+                                    },
+                                    "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                        "type": "string",
+                                        "enum": [
+                                            "choice_value_with_loader_and_callable: 1",
+                                            "choice_value_with_loader_and_callable: 2",
+                                            "choice_value_with_loader_and_callable: 3"
+                                        ]
+                                    },
                                     "paramPassword": {
                                         "type": "string",
                                         "format": "password"
@@ -6543,13 +6695,13 @@
                                     },
                                     "paramWithDataClassOptional": {
                                         "type": "object",
+                                        "nullable": true,
                                         "properties": {
                                             "stringProperty": {
                                                 "type": "string",
                                                 "nullable": true
                                             }
-                                        },
-                                        "nullable": true
+                                        }
                                     }
                                 }
                             }
@@ -6622,6 +6774,21 @@
                                             "1",
                                             "2",
                                             "3"
+                                        ]
+                                    },
+                                    "paramChoiceWithChoiceValueCallable": {
+                                        "type": "string",
+                                        "enum": [
+                                            "choice_value_with_callable: a",
+                                            "choice_value_with_callable: b"
+                                        ]
+                                    },
+                                    "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                        "type": "string",
+                                        "enum": [
+                                            "choice_value_with_loader_and_callable: 1",
+                                            "choice_value_with_loader_and_callable: 2",
+                                            "choice_value_with_loader_and_callable: 3"
                                         ]
                                     },
                                     "paramPassword": {
