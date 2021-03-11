@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Describer;
 
+use Speicher210\OpenApiGenerator\Assert\Assert;
+
 use function explode;
 use function implode;
 use function nl2br;
@@ -22,6 +24,7 @@ final class SpecificationDescriber
         }
 
         $existingLines = explode('<br>' . PHP_EOL, $existingText);
+        Assert::isArray($existingLines);
 
         return nl2br(implode(PHP_EOL, [...$existingLines, $newText]), false);
     }
