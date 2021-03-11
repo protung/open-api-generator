@@ -22,6 +22,8 @@
 
     <route id="api_test_custom_error_responses" methods="PUT" path="/api/test/error-responses"/>
 
+    <route id="api_test_custom_polymorphic_responses" methods="POST" path="/api/test/polymorphic-responses"/>
+
     <route id="api_test_paginated_response" methods="GET" path="/api/test/paginated-response"/>
 
     <route id="api_test_referenced_response" methods="GET" path="/api/test/referenced-response"/>

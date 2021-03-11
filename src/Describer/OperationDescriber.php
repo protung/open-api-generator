@@ -14,6 +14,7 @@ use Speicher210\OpenApiGenerator\Model\Path\Path;
 use Speicher210\OpenApiGenerator\Model\Response as ModelResponse;
 
 use function array_filter;
+use function count;
 
 use const ARRAY_FILTER_USE_BOTH;
 
@@ -96,10 +97,19 @@ final class OperationDescriber
                 'description' => $response->description(),
             ];
 
+            $responseContentOutputs = [];
             foreach ($response->outputs() as $output) {
                 $outputSchema = $this->outputDescriber->describe($output);
                 foreach ($output->contentTypes() as $contentType) {
-                    $responseData['content'][$contentType] = ['schema' => $outputSchema];
+                    $responseContentOutputs[$contentType][] = $outputSchema;
+                }
+            }
+
+            foreach ($responseContentOutputs as $contentType => $outputs) {
+                if (count($outputs) > 1) {
+                    $responseData['content'][$contentType] = ['schema' => ['oneOf' => $outputs]];
+                } else {
+                    $responseData['content'][$contentType] = ['schema' => $outputs[0]];
                 }
             }
 

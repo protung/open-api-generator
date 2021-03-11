@@ -197,6 +197,20 @@ return new Model\Specification(
             Model\Security\Reference::fromString('ApiKey')
         ),
         new Path\Symfony\SymfonyRoutePath(
+            'api_test_custom_polymorphic_responses',
+            'Test',
+            'Test custom polymorphic responses',
+            null,
+            [],
+            [
+                Response::for400(
+                    new Model\Path\Output\ScalarOutput(Type::STRING),
+                    new Model\Path\Output\ScalarOutput(Type::INTEGER),
+                    RFC7807ErrorOutput::create(400, 'Test')
+                ),
+            ],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
             'api_test_paginated_response',
             'Test',
             'Test paginated response',
