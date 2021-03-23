@@ -6965,6 +6965,210 @@
                     "required": true
                 }
             }
+        },
+        "\/api\/test\/with-multiple-form-inputs": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test post with multiple form inputs",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "paramInt": {
+                                                "type": "integer"
+                                            },
+                                            "paramText": {
+                                                "type": "string"
+                                            },
+                                            "paramInnerCustom": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "paramText": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "paramText"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "paramInt",
+                                            "paramText",
+                                            "paramInnerCustom"
+                                        ]
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "stringProperty": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "stringProperty"
+                                        ]
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "paramExtra": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "paramExtra"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "paramInt": {
+                                                "type": "integer"
+                                            },
+                                            "paramText": {
+                                                "type": "string"
+                                            },
+                                            "paramInnerCustom[paramText]": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "paramInt",
+                                            "paramText",
+                                            "paramInnerCustom[paramText]"
+                                        ]
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "stringProperty": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "stringProperty"
+                                        ]
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "paramExtra": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "paramExtra"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        "multipart\/form-data": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "paramFile": {
+                                                "type": "string",
+                                                "format": "binary",
+                                                "description": "Allowed mime types: image\/*<br>\nAllowed max file size: 1.205 KB<br>\nAllowed minimum width is 100px<br>\nAllowed minimum height is 300px<br>\nAllowed maximum width is 200px<br>\nAllowed maximum height is 400px"
+                                            },
+                                            "paramFileOptional": {
+                                                "type": "string",
+                                                "format": "binary",
+                                                "description": "Allowed mime types: application\/pdf, image\/png, image\/jpeg<br>\nAllowed max file size: 5 MB"
+                                            },
+                                            "paramExtra": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "paramFile",
+                                            "paramExtra"
+                                        ]
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "paramFileOptional": {
+                                                "type": "string",
+                                                "format": "binary",
+                                                "description": "Allowed max file size: 1023 bytes"
+                                            },
+                                            "paramExtra": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "paramExtra"
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
         }
     },
     "components": {

@@ -359,6 +359,19 @@ return new Model\Specification(
             Model\Security\Reference::fromString('ApiKey')
         ),
         new Path\Symfony\SymfonyRoutePath(
+            'api_test_post_with_multiple_form_inputs',
+            'Test',
+            'Test post with multiple form inputs',
+            null,
+            [
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestInnerType::class)),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestDataClassType::class)),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestFileUpload::class)),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestFileUploadOptional::class)),
+            ],
+            [],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
             'api_test_get_not_described_object',
             'Test',
             'Test get a not described object',
