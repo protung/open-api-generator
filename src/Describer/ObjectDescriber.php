@@ -11,6 +11,7 @@ use Speicher210\OpenApiGenerator\Describer\ObjectDescriber\Describer;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 
+use function DeepCopy\deep_copy;
 use function implode;
 use function sprintf;
 
@@ -36,7 +37,7 @@ final class ObjectDescriber
             );
         }
 
-        return $this->modelRegistry->getSchema($definition);
+        return deep_copy($this->modelRegistry->getSchema($definition));
     }
 
     public function describeAsReference(Definition $definition, string $referencePath): Reference

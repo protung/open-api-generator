@@ -21,6 +21,7 @@
         "ext-json": "*",
         "cebe/php-openapi": "^1.5",
         "jms/serializer": "^3.11",
+        "myclabs/deep-copy": "^1.10",
         "roave/better-reflection": "^4.12",
         "symfony/form": "^4.4 || ^5.2",
         "symfony/polyfill-php81": "^1.22",

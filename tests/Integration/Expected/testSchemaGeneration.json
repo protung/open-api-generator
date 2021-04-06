@@ -581,8 +581,7 @@
                                                                         },
                                                                         "nullable": true
                                                                     }
-                                                                },
-                                                                "nullable": true
+                                                                }
                                                             }
                                                         },
                                                         "dateTimeProperty": {
@@ -1801,8 +1800,7 @@
                                                         "nullable": true
                                                     }
                                                 },
-                                                "type": "object",
-                                                "nullable": true
+                                                "type": "object"
                                             }
                                         },
                                         "dateTimeProperty": {
@@ -2200,8 +2198,7 @@
                                                         "nullable": true
                                                     }
                                                 },
-                                                "type": "object",
-                                                "nullable": true
+                                                "type": "object"
                                             }
                                         },
                                         "dateTimeProperty": {
@@ -2385,8 +2382,7 @@
                                                         "nullable": true
                                                     }
                                                 },
-                                                "type": "object",
-                                                "nullable": true
+                                                "type": "object"
                                             }
                                         },
                                         "dateTimeProperty": {
@@ -2563,8 +2559,7 @@
                                                             "nullable": true
                                                         }
                                                     },
-                                                    "type": "object",
-                                                    "nullable": true
+                                                    "type": "object"
                                                 }
                                             },
                                             "dateTimeProperty": {
@@ -2893,8 +2888,7 @@
                                                                                     "nullable": true
                                                                                 }
                                                                             },
-                                                                            "type": "object",
-                                                                            "nullable": true
+                                                                            "type": "object"
                                                                         }
                                                                     },
                                                                     "dateTimeProperty": {
@@ -3038,8 +3032,7 @@
                                                                                     "nullable": true
                                                                                 }
                                                                             },
-                                                                            "type": "object",
-                                                                            "nullable": true
+                                                                            "type": "object"
                                                                         }
                                                                     },
                                                                     "dateTimeProperty": {
@@ -3872,8 +3865,7 @@
                                                         "nullable": true
                                                     }
                                                 },
-                                                "type": "object",
-                                                "nullable": true
+                                                "type": "object"
                                             }
                                         },
                                         "dateTimeProperty": {
@@ -4014,8 +4006,7 @@
                                                             "nullable": true
                                                         }
                                                     },
-                                                    "type": "object",
-                                                    "nullable": true
+                                                    "type": "object"
                                                 }
                                             },
                                             "dateTimeProperty": {
@@ -4076,8 +4067,7 @@
                                                 "nullable": true
                                             }
                                         },
-                                        "type": "object",
-                                        "nullable": true
+                                        "type": "object"
                                     }
                                 }
                             }
@@ -7288,8 +7278,7 @@
                                     "nullable": true
                                 }
                             },
-                            "type": "object",
-                            "nullable": true
+                            "type": "object"
                         }
                     },
                     "dateTimeProperty": {
