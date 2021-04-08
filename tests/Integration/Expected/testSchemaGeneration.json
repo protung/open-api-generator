@@ -6724,17 +6724,9 @@
                                                         "paramText": {
                                                             "type": "string"
                                                         }
-                                                    },
-                                                    "required": [
-                                                        "paramText"
-                                                    ]
+                                                    }
                                                 }
-                                            },
-                                            "required": [
-                                                "paramInt",
-                                                "paramText",
-                                                "paramInnerCustom"
-                                            ]
+                                            }
                                         }
                                     },
                                     "paramCustom": {
@@ -6905,17 +6897,9 @@
                                                         "paramText": {
                                                             "type": "string"
                                                         }
-                                                    },
-                                                    "required": [
-                                                        "paramText"
-                                                    ]
+                                                    }
                                                 }
-                                            },
-                                            "required": [
-                                                "paramInt",
-                                                "paramText",
-                                                "paramInnerCustom"
-                                            ]
+                                            }
                                         }
                                     },
                                     "paramCustom[paramInt]": {

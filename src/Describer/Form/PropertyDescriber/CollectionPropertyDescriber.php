@@ -30,11 +30,12 @@ final class CollectionPropertyDescriber implements PropertyDescriber
             new FormDefinition(
                 $formConfig->getOption('entry_type'),
                 (array) $formConfig->getOption('validation_groups')
-            )
+            ),
+            $form->getRoot()->getConfig()->getMethod()
         );
 
         $schema->type  = Type::ARRAY;
-        $schema->items = $formDescriber->addDeepSchema($subForm, new FormName(), $formConfig->getMethod());
+        $schema->items = $formDescriber->addDeepSchema($subForm, new FormName());
     }
 
     public function supports(FormInterface $form): bool

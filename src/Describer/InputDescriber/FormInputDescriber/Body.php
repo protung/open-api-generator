@@ -38,11 +38,13 @@ final class Body
      *
      * @return array<string,MediaType>
      */
-    public function describe(FormInterface $form, string $httpMethod): array
+    public function describe(FormInterface $form): array
     {
-        $jsonSchema = $this->formDescriber->addDeepSchema($form, new NameResolver\FormName(), $httpMethod);
+        $jsonSchema = $this->formDescriber->addDeepSchema($form, new NameResolver\FormName());
 
-        $formDataSchema = $this->formDescriber->addFlattenSchema($form, new NameResolver\FlatArray(), $httpMethod);
+        $httpMethod = $form->getRoot()->getConfig()->getMethod();
+
+        $formDataSchema = $this->formDescriber->addFlattenSchema($form, new NameResolver\FlatArray());
 
         $content = [];
 
