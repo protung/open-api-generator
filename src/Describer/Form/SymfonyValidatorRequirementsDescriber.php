@@ -121,31 +121,12 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         return [];
     }
 
-    private function isDescribingClass(FormInterface $form): bool
-    {
-        $formConfig = $form->getConfig();
-        if ($formConfig->getOption('data_class') !== null) {
-            return true;
-        }
-
-        $parent = $form->getParent();
-        if ($parent !== null) {
-            return $this->isDescribingClass($parent);
-        }
-
-        return false;
-    }
-
     /**
      * @param Constraint[] $constraints
      */
     private function handleNullability(Schema $schema, FormInterface $form, array $constraints): void
     {
         if ($form->isRoot()) {
-            return;
-        }
-
-        if (! $this->isDescribingClass($form)) {
             return;
         }
 
@@ -179,6 +160,11 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         foreach ($constraints as $constraint) {
             switch (true) {
                 case $constraint instanceof NotBlank:
+                    if ($constraint->allowNull === true) {
+                        $schema->nullable = true;
+                    }
+
+                    break;
                 case $constraint instanceof NotNull:
                     // We handle nullability using $this->handleNullability method.
                     break;

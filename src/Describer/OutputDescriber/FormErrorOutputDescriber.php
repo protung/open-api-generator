@@ -27,7 +27,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
     {
         Assert::isInstanceOf($output, FormErrorOutput::class);
 
-        $form = $this->formFactory->create($output->formDefinition());
+        $form = $this->formFactory->create($output->formDefinition(), null);
 
         return new Schema(
             [

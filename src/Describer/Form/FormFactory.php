@@ -17,12 +17,15 @@ final class FormFactory
         $this->formFactory = $formFactory;
     }
 
-    public function create(FormDefinition $formDefinition): FormInterface
+    public function create(FormDefinition $formDefinition, ?string $httpMethod): FormInterface
     {
         return $this->formFactory->create(
             $formDefinition->formClass(),
             null,
-            ['validation_groups' => $formDefinition->validationGroups()]
+            [
+                'validation_groups' => $formDefinition->validationGroups(),
+                'method' => $httpMethod ?? 'POST', // POST is a default value from Symfony.
+            ]
         );
     }
 }

@@ -525,6 +525,17 @@ return new Model\Specification(
                 ),
             ],
         ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_nullability',
+            'Test',
+            'Test nullability',
+            null,
+            [
+                FormInput::inQuery(new FormDefinition(TestSchemaGeneration\Form\TestNullabilityType::class)),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestNullabilityType::class)),
+            ],
+            [],
+        ),
     ],
     [
         Input\HeaderInput::withName('X-ALWAYS'),

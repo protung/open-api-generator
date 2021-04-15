@@ -98,62 +98,75 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "paramNoType": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramBoolean": {
-                                                        "type": "boolean"
+                                                        "type": "boolean",
+                                                        "nullable": true
                                                     },
                                                     "paramCheckbox": {
-                                                        "type": "boolean"
+                                                        "type": "boolean",
+                                                        "nullable": true
                                                     },
                                                     "paramInt": {
                                                         "maximum": 13,
                                                         "exclusiveMaximum": true,
                                                         "minimum": 7,
                                                         "exclusiveMinimum": true,
-                                                        "type": "integer"
+                                                        "type": "integer",
+                                                        "nullable": true
                                                     },
                                                     "paramText": {
                                                         "maxLength": 6,
                                                         "minLength": 4,
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramHidden": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramNumber": {
                                                         "maximum": 9.9,
                                                         "minimum": 3.14,
-                                                        "type": "number"
+                                                        "type": "number",
+                                                        "nullable": true
                                                     },
                                                     "paramNumberDivisibleBy": {
                                                         "multipleOf": 0.5,
-                                                        "type": "number"
+                                                        "type": "number",
+                                                        "nullable": true
                                                     },
                                                     "paramInRange": {
                                                         "maximum": -4,
                                                         "minimum": -20,
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramDate": {
                                                         "type": "string",
-                                                        "format": "date"
+                                                        "format": "date",
+                                                        "nullable": true
                                                     },
                                                     "paramDateTime": {
                                                         "type": "string",
-                                                        "format": "date-time"
+                                                        "format": "date-time",
+                                                        "nullable": true
                                                     },
                                                     "paramEmail": {
                                                         "uniqueItems": true,
                                                         "type": "string",
-                                                        "format": "email"
+                                                        "format": "email",
+                                                        "nullable": true
                                                     },
                                                     "paramChoice": {
                                                         "enum": [
                                                             "a",
                                                             "b"
                                                         ],
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramChoiceWithLoader": {
                                                         "enum": [
@@ -161,14 +174,16 @@
                                                             "2",
                                                             "3"
                                                         ],
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramChoiceWithChoiceValueCallable": {
                                                         "enum": [
                                                             "choice_value_with_callable: a",
                                                             "choice_value_with_callable: b"
                                                         ],
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramChoiceWithLoaderAndChoiceValueCallable": {
                                                         "enum": [
@@ -176,11 +191,13 @@
                                                             "choice_value_with_loader_and_callable: 2",
                                                             "choice_value_with_loader_and_callable: 3"
                                                         ],
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramPassword": {
                                                         "type": "string",
-                                                        "format": "password"
+                                                        "format": "password",
+                                                        "nullable": true
                                                     },
                                                     "paramCollection": {
                                                         "maxItems": 44,
@@ -188,7 +205,8 @@
                                                         "type": "array",
                                                         "items": {
                                                             "type": "string"
-                                                        }
+                                                        },
+                                                        "nullable": true
                                                     },
                                                     "paramCustomCollection": {
                                                         "type": "array",
@@ -201,10 +219,12 @@
                                                             "type": "object",
                                                             "properties": {
                                                                 "paramInt": {
-                                                                    "type": "integer"
+                                                                    "type": "integer",
+                                                                    "nullable": true
                                                                 },
                                                                 "paramText": {
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "nullable": true
                                                                 },
                                                                 "paramInnerCustom": {
                                                                     "required": [
@@ -213,12 +233,15 @@
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "paramText": {
-                                                                            "type": "string"
+                                                                            "type": "string",
+                                                                            "nullable": true
                                                                         }
-                                                                    }
+                                                                    },
+                                                                    "nullable": true
                                                                 }
                                                             }
-                                                        }
+                                                        },
+                                                        "nullable": true
                                                     },
                                                     "paramCustom": {
                                                         "required": [
@@ -229,10 +252,12 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "paramInt": {
-                                                                "type": "integer"
+                                                                "type": "integer",
+                                                                "nullable": true
                                                             },
                                                             "paramText": {
-                                                                "type": "string"
+                                                                "type": "string",
+                                                                "nullable": true
                                                             },
                                                             "paramInnerCustom": {
                                                                 "required": [
@@ -241,23 +266,29 @@
                                                                 "type": "object",
                                                                 "properties": {
                                                                     "paramText": {
-                                                                        "type": "string"
+                                                                        "type": "string",
+                                                                        "nullable": true
                                                                     }
-                                                                }
+                                                                },
+                                                                "nullable": true
                                                             }
-                                                        }
+                                                        },
+                                                        "nullable": true
                                                     },
                                                     "paramExtended": {
                                                         "type": "string",
-                                                        "format": "email"
+                                                        "format": "email",
+                                                        "nullable": true
                                                     },
                                                     "paramExtendedExtended": {
                                                         "type": "string",
-                                                        "format": "email"
+                                                        "format": "email",
+                                                        "nullable": true
                                                     },
                                                     "paramWithExampleAndDescription": {
                                                         "type": "string",
                                                         "description": "Custom description.",
+                                                        "nullable": true,
                                                         "example": "my-example"
                                                     },
                                                     "paramWithDataClassRequired": {
@@ -321,62 +352,75 @@
                                                 "type": "object",
                                                 "properties": {
                                                     "paramNoType": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramBoolean": {
-                                                        "type": "boolean"
+                                                        "type": "boolean",
+                                                        "nullable": true
                                                     },
                                                     "paramCheckbox": {
-                                                        "type": "boolean"
+                                                        "type": "boolean",
+                                                        "nullable": true
                                                     },
                                                     "paramInt": {
                                                         "maximum": 13,
                                                         "exclusiveMaximum": true,
                                                         "minimum": 7,
                                                         "exclusiveMinimum": true,
-                                                        "type": "integer"
+                                                        "type": "integer",
+                                                        "nullable": true
                                                     },
                                                     "paramText": {
                                                         "maxLength": 6,
                                                         "minLength": 4,
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramHidden": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramNumber": {
                                                         "maximum": 9.9,
                                                         "minimum": 3.14,
-                                                        "type": "number"
+                                                        "type": "number",
+                                                        "nullable": true
                                                     },
                                                     "paramNumberDivisibleBy": {
                                                         "multipleOf": 0.5,
-                                                        "type": "number"
+                                                        "type": "number",
+                                                        "nullable": true
                                                     },
                                                     "paramInRange": {
                                                         "maximum": -4,
                                                         "minimum": -20,
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramDate": {
                                                         "type": "string",
-                                                        "format": "date"
+                                                        "format": "date",
+                                                        "nullable": true
                                                     },
                                                     "paramDateTime": {
                                                         "type": "string",
-                                                        "format": "date-time"
+                                                        "format": "date-time",
+                                                        "nullable": true
                                                     },
                                                     "paramEmail": {
                                                         "uniqueItems": true,
                                                         "type": "string",
-                                                        "format": "email"
+                                                        "format": "email",
+                                                        "nullable": true
                                                     },
                                                     "paramChoice": {
                                                         "enum": [
                                                             "a",
                                                             "b"
                                                         ],
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramChoiceWithLoader": {
                                                         "enum": [
@@ -384,14 +428,16 @@
                                                             "2",
                                                             "3"
                                                         ],
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramChoiceWithChoiceValueCallable": {
                                                         "enum": [
                                                             "choice_value_with_callable: a",
                                                             "choice_value_with_callable: b"
                                                         ],
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramChoiceWithLoaderAndChoiceValueCallable": {
                                                         "enum": [
@@ -399,11 +445,13 @@
                                                             "choice_value_with_loader_and_callable: 2",
                                                             "choice_value_with_loader_and_callable: 3"
                                                         ],
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramPassword": {
                                                         "type": "string",
-                                                        "format": "password"
+                                                        "format": "password",
+                                                        "nullable": true
                                                     },
                                                     "paramCollection[]": {
                                                         "maxItems": 44,
@@ -411,7 +459,8 @@
                                                         "type": "array",
                                                         "items": {
                                                             "type": "string"
-                                                        }
+                                                        },
+                                                        "nullable": true
                                                     },
                                                     "paramCustomCollection": {
                                                         "type": "array",
@@ -424,10 +473,12 @@
                                                             "type": "object",
                                                             "properties": {
                                                                 "paramInt": {
-                                                                    "type": "integer"
+                                                                    "type": "integer",
+                                                                    "nullable": true
                                                                 },
                                                                 "paramText": {
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "nullable": true
                                                                 },
                                                                 "paramInnerCustom": {
                                                                     "required": [
@@ -436,33 +487,42 @@
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "paramText": {
-                                                                            "type": "string"
+                                                                            "type": "string",
+                                                                            "nullable": true
                                                                         }
-                                                                    }
+                                                                    },
+                                                                    "nullable": true
                                                                 }
                                                             }
-                                                        }
+                                                        },
+                                                        "nullable": true
                                                     },
                                                     "paramCustom[paramInt]": {
-                                                        "type": "integer"
+                                                        "type": "integer",
+                                                        "nullable": true
                                                     },
                                                     "paramCustom[paramText]": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramCustom[paramInnerCustom][paramText]": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     },
                                                     "paramExtended": {
                                                         "type": "string",
-                                                        "format": "email"
+                                                        "format": "email",
+                                                        "nullable": true
                                                     },
                                                     "paramExtendedExtended": {
                                                         "type": "string",
-                                                        "format": "email"
+                                                        "format": "email",
+                                                        "nullable": true
                                                     },
                                                     "paramWithExampleAndDescription": {
                                                         "type": "string",
                                                         "description": "Custom description.",
+                                                        "nullable": true,
                                                         "example": "my-example"
                                                     },
                                                     "paramWithDataClassRequired[stringProperty]": {
@@ -714,7 +774,8 @@
                         "name": "paramNoType",
                         "in": "query",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -725,7 +786,8 @@
                         "schema": {
                             "type": "string",
                             "example": "my-query-example",
-                            "description": "customLabel"
+                            "description": "customLabel",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -733,7 +795,8 @@
                         "name": "innerForm[paramNoType]",
                         "in": "query",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -741,7 +804,8 @@
                         "name": "innerForm[paramBoolean]",
                         "in": "query",
                         "schema": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -749,7 +813,8 @@
                         "name": "innerForm[paramCheckbox]",
                         "in": "query",
                         "schema": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -758,6 +823,7 @@
                         "in": "query",
                         "schema": {
                             "type": "integer",
+                            "nullable": true,
                             "minimum": 7,
                             "exclusiveMinimum": true,
                             "maximum": 13,
@@ -770,6 +836,7 @@
                         "in": "query",
                         "schema": {
                             "type": "string",
+                            "nullable": true,
                             "minLength": 4,
                             "maxLength": 6
                         },
@@ -779,7 +846,8 @@
                         "name": "innerForm[paramHidden]",
                         "in": "query",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable": true
                         },
                         "required": false
                     },
@@ -788,6 +856,7 @@
                         "in": "query",
                         "schema": {
                             "type": "number",
+                            "nullable": true,
                             "minimum": 3.14,
                             "maximum": 9.9
                         },
@@ -798,6 +867,7 @@
                         "in": "query",
                         "schema": {
                             "type": "number",
+                            "nullable": true,
                             "multipleOf": 0.5
                         },
                         "required": true
@@ -807,6 +877,7 @@
                         "in": "query",
                         "schema": {
                             "type": "string",
+                            "nullable": true,
                             "minimum": -20,
                             "maximum": -4
                         },
@@ -817,7 +888,8 @@
                         "in": "query",
                         "schema": {
                             "type": "string",
-                            "format": "date"
+                            "format": "date",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -838,7 +910,8 @@
                                 "2023",
                                 "2024",
                                 "2025"
-                            ]
+                            ],
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -860,7 +933,8 @@
                                 "10",
                                 "11",
                                 "12"
-                            ]
+                            ],
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -901,7 +975,8 @@
                                 "29",
                                 "30",
                                 "31"
-                            ]
+                            ],
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -935,7 +1010,8 @@
                                 "21",
                                 "22",
                                 "23"
-                            ]
+                            ],
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1005,7 +1081,8 @@
                                 "57",
                                 "58",
                                 "59"
-                            ]
+                            ],
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1015,6 +1092,7 @@
                         "schema": {
                             "type": "string",
                             "format": "email",
+                            "nullable": true,
                             "uniqueItems": true
                         },
                         "required": true
@@ -1027,7 +1105,8 @@
                             "enum": [
                                 "a",
                                 "b"
-                            ]
+                            ],
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1040,7 +1119,8 @@
                                 "1",
                                 "2",
                                 "3"
-                            ]
+                            ],
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1052,7 +1132,8 @@
                             "enum": [
                                 "choice_value_with_callable: a",
                                 "choice_value_with_callable: b"
-                            ]
+                            ],
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1065,7 +1146,8 @@
                                 "choice_value_with_loader_and_callable: 1",
                                 "choice_value_with_loader_and_callable: 2",
                                 "choice_value_with_loader_and_callable: 3"
-                            ]
+                            ],
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1074,7 +1156,8 @@
                         "in": "query",
                         "schema": {
                             "type": "string",
-                            "format": "password"
+                            "format": "password",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1086,6 +1169,7 @@
                             "items": {
                                 "type": "string"
                             },
+                            "nullable": true,
                             "minItems": 3,
                             "maxItems": 44
                         },
@@ -1100,16 +1184,20 @@
                                 "type": "object",
                                 "properties": {
                                     "paramInt": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "nullable": true
                                     },
                                     "paramText": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramInnerCustom": {
                                         "type": "object",
+                                        "nullable": true,
                                         "properties": {
                                             "paramText": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             }
                                         },
                                         "required": [
@@ -1122,7 +1210,8 @@
                                     "paramText",
                                     "paramInnerCustom"
                                 ]
-                            }
+                            },
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1130,7 +1219,8 @@
                         "name": "innerForm[paramCustom][paramInt]",
                         "in": "query",
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1138,7 +1228,8 @@
                         "name": "innerForm[paramCustom][paramText]",
                         "in": "query",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1146,7 +1237,8 @@
                         "name": "innerForm[paramCustom][paramInnerCustom][paramText]",
                         "in": "query",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1155,7 +1247,8 @@
                         "in": "query",
                         "schema": {
                             "type": "string",
-                            "format": "email"
+                            "format": "email",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1164,7 +1257,8 @@
                         "in": "query",
                         "schema": {
                             "type": "string",
-                            "format": "email"
+                            "format": "email",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1175,7 +1269,8 @@
                         "schema": {
                             "type": "string",
                             "example": "my-example",
-                            "description": "Custom description."
+                            "description": "Custom description.",
+                            "nullable": true
                         },
                         "required": true
                     },
@@ -1202,6 +1297,7 @@
                         "in": "query",
                         "schema": {
                             "type": "string",
+                            "nullable": true,
                             "description": "Field required for paramRequiredChildren"
                         },
                         "required": false,
@@ -1213,7 +1309,8 @@
                         "description": "My Description<br>\nField required for paramRequiredChildren",
                         "schema": {
                             "type": "string",
-                            "description": "My Description<br>\nField required for paramRequiredChildren"
+                            "description": "My Description<br>\nField required for paramRequiredChildren",
+                            "nullable": true
                         },
                         "required": false
                     },
@@ -1221,7 +1318,8 @@
                         "name": "paramRequiredChildren[paramOptional]",
                         "in": "query",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable": true
                         },
                         "required": false
                     },
@@ -2079,6 +2177,422 @@
                     }
                 },
                 "security": []
+            }
+        },
+        "\/api\/test\/nullability": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test nullability",
+                "parameters": [
+                    {
+                        "name": "paramNotNullable1",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramNotNullable2",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramNullable1",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramNullable2",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNotNullable1": {
+                                        "type": "string"
+                                    },
+                                    "paramNotNullable2": {
+                                        "type": "string"
+                                    },
+                                    "paramNullable1": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramNullable2": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "paramNotNullable1",
+                                    "paramNotNullable2",
+                                    "paramNullable1",
+                                    "paramNullable2"
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNotNullable1": {
+                                        "type": "string"
+                                    },
+                                    "paramNotNullable2": {
+                                        "type": "string"
+                                    },
+                                    "paramNullable1": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramNullable2": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "paramNotNullable1",
+                                    "paramNotNullable2",
+                                    "paramNullable1",
+                                    "paramNullable2"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            },
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test nullability",
+                "parameters": [
+                    {
+                        "name": "paramNotNullable1",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramNotNullable2",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramNullable1",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramNullable2",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNotNullable1": {
+                                        "type": "string"
+                                    },
+                                    "paramNotNullable2": {
+                                        "type": "string"
+                                    },
+                                    "paramNullable1": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramNullable2": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "paramNotNullable1",
+                                    "paramNotNullable2",
+                                    "paramNullable1",
+                                    "paramNullable2"
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNotNullable1": {
+                                        "type": "string"
+                                    },
+                                    "paramNotNullable2": {
+                                        "type": "string"
+                                    },
+                                    "paramNullable1": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramNullable2": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "paramNotNullable1",
+                                    "paramNotNullable2",
+                                    "paramNullable1",
+                                    "paramNullable2"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test nullability",
+                "parameters": [
+                    {
+                        "name": "paramNotNullable1",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramNotNullable2",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramNullable1",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramNullable2",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNotNullable1": {
+                                        "type": "string"
+                                    },
+                                    "paramNotNullable2": {
+                                        "type": "string"
+                                    },
+                                    "paramNullable1": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramNullable2": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                }
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramNotNullable1": {
+                                        "type": "string"
+                                    },
+                                    "paramNotNullable2": {
+                                        "type": "string"
+                                    },
+                                    "paramNullable1": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramNullable2": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                }
             }
         },
         "\/api\/test\/output\/object\/example": {
@@ -4914,15 +5428,18 @@
                                     "paramFile": {
                                         "type": "string",
                                         "format": "binary",
+                                        "nullable": true,
                                         "description": "Allowed mime types: image\/*<br>\nAllowed max file size: 1.205 KB<br>\nAllowed minimum width is 100px<br>\nAllowed minimum height is 300px<br>\nAllowed maximum width is 200px<br>\nAllowed maximum height is 400px"
                                     },
                                     "paramFileOptional": {
                                         "type": "string",
                                         "format": "binary",
+                                        "nullable": true,
                                         "description": "Allowed mime types: application\/pdf, image\/png, image\/jpeg<br>\nAllowed max file size: 5 MB"
                                     },
                                     "paramExtra": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -5058,7 +5575,8 @@
                                 "type": "object",
                                 "properties": {
                                     "paramExtra": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -5071,7 +5589,8 @@
                                 "type": "object",
                                 "properties": {
                                     "paramExtra": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -5086,10 +5605,12 @@
                                     "paramFileOptional": {
                                         "type": "string",
                                         "format": "binary",
+                                        "nullable": true,
                                         "description": "Allowed max file size: 1023 bytes"
                                     },
                                     "paramExtra": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -5655,16 +6176,20 @@
                                 "type": "object",
                                 "properties": {
                                     "paramNoType": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramBoolean": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "nullable": true
                                     },
                                     "paramCheckbox": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "nullable": true
                                     },
                                     "paramInt": {
                                         "type": "integer",
+                                        "nullable": true,
                                         "minimum": 7,
                                         "exclusiveMinimum": true,
                                         "maximum": 13,
@@ -5672,37 +6197,45 @@
                                     },
                                     "paramText": {
                                         "type": "string",
+                                        "nullable": true,
                                         "minLength": 4,
                                         "maxLength": 6
                                     },
                                     "paramHidden": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramNumber": {
                                         "type": "number",
+                                        "nullable": true,
                                         "minimum": 3.14,
                                         "maximum": 9.9
                                     },
                                     "paramNumberDivisibleBy": {
                                         "type": "number",
+                                        "nullable": true,
                                         "multipleOf": 0.5
                                     },
                                     "paramInRange": {
                                         "type": "string",
+                                        "nullable": true,
                                         "minimum": -20,
                                         "maximum": -4
                                     },
                                     "paramDate": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "nullable": true
                                     },
                                     "paramDateTime": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "nullable": true
                                     },
                                     "paramEmail": {
                                         "type": "string",
                                         "format": "email",
+                                        "nullable": true,
                                         "uniqueItems": true
                                     },
                                     "paramChoice": {
@@ -5710,7 +6243,8 @@
                                         "enum": [
                                             "a",
                                             "b"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithLoader": {
                                         "type": "string",
@@ -5718,14 +6252,16 @@
                                             "1",
                                             "2",
                                             "3"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithChoiceValueCallable": {
                                         "type": "string",
                                         "enum": [
                                             "choice_value_with_callable: a",
                                             "choice_value_with_callable: b"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithLoaderAndChoiceValueCallable": {
                                         "type": "string",
@@ -5733,17 +6269,20 @@
                                             "choice_value_with_loader_and_callable: 1",
                                             "choice_value_with_loader_and_callable: 2",
                                             "choice_value_with_loader_and_callable: 3"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramPassword": {
                                         "type": "string",
-                                        "format": "password"
+                                        "format": "password",
+                                        "nullable": true
                                     },
                                     "paramCollection": {
                                         "type": "array",
                                         "items": {
                                             "type": "string"
                                         },
+                                        "nullable": true,
                                         "minItems": 3,
                                         "maxItems": 44
                                     },
@@ -5753,16 +6292,20 @@
                                             "type": "object",
                                             "properties": {
                                                 "paramInt": {
-                                                    "type": "integer"
+                                                    "type": "integer",
+                                                    "nullable": true
                                                 },
                                                 "paramText": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "nullable": true
                                                 },
                                                 "paramInnerCustom": {
                                                     "type": "object",
+                                                    "nullable": true,
                                                     "properties": {
                                                         "paramText": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "nullable": true
                                                         }
                                                     },
                                                     "required": [
@@ -5775,22 +6318,28 @@
                                                 "paramText",
                                                 "paramInnerCustom"
                                             ]
-                                        }
+                                        },
+                                        "nullable": true
                                     },
                                     "paramCustom": {
                                         "type": "object",
+                                        "nullable": true,
                                         "properties": {
                                             "paramInt": {
-                                                "type": "integer"
+                                                "type": "integer",
+                                                "nullable": true
                                             },
                                             "paramText": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             },
                                             "paramInnerCustom": {
                                                 "type": "object",
+                                                "nullable": true,
                                                 "properties": {
                                                     "paramText": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     }
                                                 },
                                                 "required": [
@@ -5806,16 +6355,19 @@
                                     },
                                     "paramExtended": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "nullable": true
                                     },
                                     "paramExtendedExtended": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "nullable": true
                                     },
                                     "paramWithExampleAndDescription": {
                                         "type": "string",
                                         "example": "my-example",
-                                        "description": "Custom description."
+                                        "description": "Custom description.",
+                                        "nullable": true
                                     },
                                     "paramWithDataClassRequired": {
                                         "type": "object",
@@ -5876,16 +6428,20 @@
                                 "type": "object",
                                 "properties": {
                                     "paramNoType": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramBoolean": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "nullable": true
                                     },
                                     "paramCheckbox": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "nullable": true
                                     },
                                     "paramInt": {
                                         "type": "integer",
+                                        "nullable": true,
                                         "minimum": 7,
                                         "exclusiveMinimum": true,
                                         "maximum": 13,
@@ -5893,37 +6449,45 @@
                                     },
                                     "paramText": {
                                         "type": "string",
+                                        "nullable": true,
                                         "minLength": 4,
                                         "maxLength": 6
                                     },
                                     "paramHidden": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramNumber": {
                                         "type": "number",
+                                        "nullable": true,
                                         "minimum": 3.14,
                                         "maximum": 9.9
                                     },
                                     "paramNumberDivisibleBy": {
                                         "type": "number",
+                                        "nullable": true,
                                         "multipleOf": 0.5
                                     },
                                     "paramInRange": {
                                         "type": "string",
+                                        "nullable": true,
                                         "minimum": -20,
                                         "maximum": -4
                                     },
                                     "paramDate": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "nullable": true
                                     },
                                     "paramDateTime": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "nullable": true
                                     },
                                     "paramEmail": {
                                         "type": "string",
                                         "format": "email",
+                                        "nullable": true,
                                         "uniqueItems": true
                                     },
                                     "paramChoice": {
@@ -5931,7 +6495,8 @@
                                         "enum": [
                                             "a",
                                             "b"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithLoader": {
                                         "type": "string",
@@ -5939,14 +6504,16 @@
                                             "1",
                                             "2",
                                             "3"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithChoiceValueCallable": {
                                         "type": "string",
                                         "enum": [
                                             "choice_value_with_callable: a",
                                             "choice_value_with_callable: b"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithLoaderAndChoiceValueCallable": {
                                         "type": "string",
@@ -5954,17 +6521,20 @@
                                             "choice_value_with_loader_and_callable: 1",
                                             "choice_value_with_loader_and_callable: 2",
                                             "choice_value_with_loader_and_callable: 3"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramPassword": {
                                         "type": "string",
-                                        "format": "password"
+                                        "format": "password",
+                                        "nullable": true
                                     },
                                     "paramCollection[]": {
                                         "type": "array",
                                         "items": {
                                             "type": "string"
                                         },
+                                        "nullable": true,
                                         "minItems": 3,
                                         "maxItems": 44
                                     },
@@ -5974,16 +6544,20 @@
                                             "type": "object",
                                             "properties": {
                                                 "paramInt": {
-                                                    "type": "integer"
+                                                    "type": "integer",
+                                                    "nullable": true
                                                 },
                                                 "paramText": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "nullable": true
                                                 },
                                                 "paramInnerCustom": {
                                                     "type": "object",
+                                                    "nullable": true,
                                                     "properties": {
                                                         "paramText": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "nullable": true
                                                         }
                                                     },
                                                     "required": [
@@ -5996,29 +6570,36 @@
                                                 "paramText",
                                                 "paramInnerCustom"
                                             ]
-                                        }
+                                        },
+                                        "nullable": true
                                     },
                                     "paramCustom[paramInt]": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "nullable": true
                                     },
                                     "paramCustom[paramText]": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramCustom[paramInnerCustom][paramText]": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramExtended": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "nullable": true
                                     },
                                     "paramExtendedExtended": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "nullable": true
                                     },
                                     "paramWithExampleAndDescription": {
                                         "type": "string",
                                         "example": "my-example",
-                                        "description": "Custom description."
+                                        "description": "Custom description.",
+                                        "nullable": true
                                     },
                                     "paramWithDataClassRequired[stringProperty]": {
                                         "type": "string",
@@ -6615,16 +7196,20 @@
                                 "type": "object",
                                 "properties": {
                                     "paramNoType": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramBoolean": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "nullable": true
                                     },
                                     "paramCheckbox": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "nullable": true
                                     },
                                     "paramInt": {
                                         "type": "integer",
+                                        "nullable": true,
                                         "minimum": 7,
                                         "exclusiveMinimum": true,
                                         "maximum": 13,
@@ -6632,37 +7217,45 @@
                                     },
                                     "paramText": {
                                         "type": "string",
+                                        "nullable": true,
                                         "minLength": 4,
                                         "maxLength": 6
                                     },
                                     "paramHidden": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramNumber": {
                                         "type": "number",
+                                        "nullable": true,
                                         "minimum": 3.14,
                                         "maximum": 9.9
                                     },
                                     "paramNumberDivisibleBy": {
                                         "type": "number",
+                                        "nullable": true,
                                         "multipleOf": 0.5
                                     },
                                     "paramInRange": {
                                         "type": "string",
+                                        "nullable": true,
                                         "minimum": -20,
                                         "maximum": -4
                                     },
                                     "paramDate": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "nullable": true
                                     },
                                     "paramDateTime": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "nullable": true
                                     },
                                     "paramEmail": {
                                         "type": "string",
                                         "format": "email",
+                                        "nullable": true,
                                         "uniqueItems": true
                                     },
                                     "paramChoice": {
@@ -6670,7 +7263,8 @@
                                         "enum": [
                                             "a",
                                             "b"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithLoader": {
                                         "type": "string",
@@ -6678,14 +7272,16 @@
                                             "1",
                                             "2",
                                             "3"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithChoiceValueCallable": {
                                         "type": "string",
                                         "enum": [
                                             "choice_value_with_callable: a",
                                             "choice_value_with_callable: b"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithLoaderAndChoiceValueCallable": {
                                         "type": "string",
@@ -6693,17 +7289,20 @@
                                             "choice_value_with_loader_and_callable: 1",
                                             "choice_value_with_loader_and_callable: 2",
                                             "choice_value_with_loader_and_callable: 3"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramPassword": {
                                         "type": "string",
-                                        "format": "password"
+                                        "format": "password",
+                                        "nullable": true
                                     },
                                     "paramCollection": {
                                         "type": "array",
                                         "items": {
                                             "type": "string"
                                         },
+                                        "nullable": true,
                                         "minItems": 3,
                                         "maxItems": 44
                                     },
@@ -6713,44 +7312,46 @@
                                             "type": "object",
                                             "properties": {
                                                 "paramInt": {
-                                                    "type": "integer"
+                                                    "type": "integer",
+                                                    "nullable": true
                                                 },
                                                 "paramText": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "nullable": true
                                                 },
                                                 "paramInnerCustom": {
                                                     "type": "object",
+                                                    "nullable": true,
                                                     "properties": {
                                                         "paramText": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "nullable": true
                                                         }
-                                                    },
-                                                    "required": [
-                                                        "paramText"
-                                                    ]
+                                                    }
                                                 }
-                                            },
-                                            "required": [
-                                                "paramInt",
-                                                "paramText",
-                                                "paramInnerCustom"
-                                            ]
-                                        }
+                                            }
+                                        },
+                                        "nullable": true
                                     },
                                     "paramCustom": {
                                         "type": "object",
+                                        "nullable": true,
                                         "properties": {
                                             "paramInt": {
-                                                "type": "integer"
+                                                "type": "integer",
+                                                "nullable": true
                                             },
                                             "paramText": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             },
                                             "paramInnerCustom": {
                                                 "type": "object",
+                                                "nullable": true,
                                                 "properties": {
                                                     "paramText": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     }
                                                 }
                                             }
@@ -6758,16 +7359,19 @@
                                     },
                                     "paramExtended": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "nullable": true
                                     },
                                     "paramExtendedExtended": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "nullable": true
                                     },
                                     "paramWithExampleAndDescription": {
                                         "type": "string",
                                         "example": "my-example",
-                                        "description": "Custom description."
+                                        "description": "Custom description.",
+                                        "nullable": true
                                     },
                                     "paramWithDataClassRequired": {
                                         "type": "object",
@@ -6796,16 +7400,20 @@
                                 "type": "object",
                                 "properties": {
                                     "paramNoType": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramBoolean": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "nullable": true
                                     },
                                     "paramCheckbox": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "nullable": true
                                     },
                                     "paramInt": {
                                         "type": "integer",
+                                        "nullable": true,
                                         "minimum": 7,
                                         "exclusiveMinimum": true,
                                         "maximum": 13,
@@ -6813,37 +7421,45 @@
                                     },
                                     "paramText": {
                                         "type": "string",
+                                        "nullable": true,
                                         "minLength": 4,
                                         "maxLength": 6
                                     },
                                     "paramHidden": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramNumber": {
                                         "type": "number",
+                                        "nullable": true,
                                         "minimum": 3.14,
                                         "maximum": 9.9
                                     },
                                     "paramNumberDivisibleBy": {
                                         "type": "number",
+                                        "nullable": true,
                                         "multipleOf": 0.5
                                     },
                                     "paramInRange": {
                                         "type": "string",
+                                        "nullable": true,
                                         "minimum": -20,
                                         "maximum": -4
                                     },
                                     "paramDate": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "nullable": true
                                     },
                                     "paramDateTime": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "nullable": true
                                     },
                                     "paramEmail": {
                                         "type": "string",
                                         "format": "email",
+                                        "nullable": true,
                                         "uniqueItems": true
                                     },
                                     "paramChoice": {
@@ -6851,7 +7467,8 @@
                                         "enum": [
                                             "a",
                                             "b"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithLoader": {
                                         "type": "string",
@@ -6859,14 +7476,16 @@
                                             "1",
                                             "2",
                                             "3"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithChoiceValueCallable": {
                                         "type": "string",
                                         "enum": [
                                             "choice_value_with_callable: a",
                                             "choice_value_with_callable: b"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramChoiceWithLoaderAndChoiceValueCallable": {
                                         "type": "string",
@@ -6874,17 +7493,20 @@
                                             "choice_value_with_loader_and_callable: 1",
                                             "choice_value_with_loader_and_callable: 2",
                                             "choice_value_with_loader_and_callable: 3"
-                                        ]
+                                        ],
+                                        "nullable": true
                                     },
                                     "paramPassword": {
                                         "type": "string",
-                                        "format": "password"
+                                        "format": "password",
+                                        "nullable": true
                                     },
                                     "paramCollection[]": {
                                         "type": "array",
                                         "items": {
                                             "type": "string"
                                         },
+                                        "nullable": true,
                                         "minItems": 3,
                                         "maxItems": 44
                                     },
@@ -6894,51 +7516,54 @@
                                             "type": "object",
                                             "properties": {
                                                 "paramInt": {
-                                                    "type": "integer"
+                                                    "type": "integer",
+                                                    "nullable": true
                                                 },
                                                 "paramText": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "nullable": true
                                                 },
                                                 "paramInnerCustom": {
                                                     "type": "object",
+                                                    "nullable": true,
                                                     "properties": {
                                                         "paramText": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "nullable": true
                                                         }
-                                                    },
-                                                    "required": [
-                                                        "paramText"
-                                                    ]
+                                                    }
                                                 }
-                                            },
-                                            "required": [
-                                                "paramInt",
-                                                "paramText",
-                                                "paramInnerCustom"
-                                            ]
-                                        }
+                                            }
+                                        },
+                                        "nullable": true
                                     },
                                     "paramCustom[paramInt]": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "nullable": true
                                     },
                                     "paramCustom[paramText]": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramCustom[paramInnerCustom][paramText]": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "paramExtended": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "nullable": true
                                     },
                                     "paramExtendedExtended": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "nullable": true
                                     },
                                     "paramWithExampleAndDescription": {
                                         "type": "string",
                                         "example": "my-example",
-                                        "description": "Custom description."
+                                        "description": "Custom description.",
+                                        "nullable": true
                                     },
                                     "paramWithDataClassRequired[stringProperty]": {
                                         "type": "string",
@@ -7014,16 +7639,20 @@
                                         "type": "object",
                                         "properties": {
                                             "paramInt": {
-                                                "type": "integer"
+                                                "type": "integer",
+                                                "nullable": true
                                             },
                                             "paramText": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             },
                                             "paramInnerCustom": {
                                                 "type": "object",
+                                                "nullable": true,
                                                 "properties": {
                                                     "paramText": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "nullable": true
                                                     }
                                                 },
                                                 "required": [
@@ -7053,7 +7682,8 @@
                                         "type": "object",
                                         "properties": {
                                             "paramExtra": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             }
                                         },
                                         "required": [
@@ -7070,13 +7700,16 @@
                                         "type": "object",
                                         "properties": {
                                             "paramInt": {
-                                                "type": "integer"
+                                                "type": "integer",
+                                                "nullable": true
                                             },
                                             "paramText": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             },
                                             "paramInnerCustom[paramText]": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             }
                                         },
                                         "required": [
@@ -7101,7 +7734,8 @@
                                         "type": "object",
                                         "properties": {
                                             "paramExtra": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             }
                                         },
                                         "required": [
@@ -7120,15 +7754,18 @@
                                             "paramFile": {
                                                 "type": "string",
                                                 "format": "binary",
+                                                "nullable": true,
                                                 "description": "Allowed mime types: image\/*<br>\nAllowed max file size: 1.205 KB<br>\nAllowed minimum width is 100px<br>\nAllowed minimum height is 300px<br>\nAllowed maximum width is 200px<br>\nAllowed maximum height is 400px"
                                             },
                                             "paramFileOptional": {
                                                 "type": "string",
                                                 "format": "binary",
+                                                "nullable": true,
                                                 "description": "Allowed mime types: application\/pdf, image\/png, image\/jpeg<br>\nAllowed max file size: 5 MB"
                                             },
                                             "paramExtra": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             }
                                         },
                                         "required": [
@@ -7142,10 +7779,12 @@
                                             "paramFileOptional": {
                                                 "type": "string",
                                                 "format": "binary",
+                                                "nullable": true,
                                                 "description": "Allowed max file size: 1023 bytes"
                                             },
                                             "paramExtra": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "nullable": true
                                             }
                                         },
                                         "required": [

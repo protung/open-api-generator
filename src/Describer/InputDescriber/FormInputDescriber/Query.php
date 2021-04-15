@@ -64,7 +64,7 @@ final class Query
             $parameter->description = $description;
         }
 
-        $parameter->schema = $this->formDescriber->addDeepSchema($form, new NameResolver\FlatArray(), 'GET');
+        $parameter->schema = $this->formDescriber->addDeepSchema($form, new NameResolver\FlatArray());
 
         $parameter->required = $formConfig->getRequired();
 

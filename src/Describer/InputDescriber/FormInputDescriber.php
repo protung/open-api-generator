@@ -37,7 +37,7 @@ final class FormInputDescriber implements InputDescriber
     {
         Assert::isInstanceOf($input, Input\FormInput::class);
 
-        $form = $this->formFactory->create($input->formDefinition());
+        $form = $this->formFactory->create($input->formDefinition(), $httpMethod);
 
         if ($form->count() === 0) {
             return;
@@ -46,7 +46,7 @@ final class FormInputDescriber implements InputDescriber
         if ($input->isInQuery()) {
             $operation->parameters = array_merge($operation->parameters, $this->queryDescriber->describe($form));
         } elseif ($input->isInBody()) {
-            $this->describeRequestBody($operation, $form, $httpMethod);
+            $this->describeRequestBody($operation, $form);
         }
     }
 
@@ -55,9 +55,9 @@ final class FormInputDescriber implements InputDescriber
         return $input instanceof Input\FormInput;
     }
 
-    private function describeRequestBody(Operation $operation, FormInterface $form, string $httpMethod): void
+    private function describeRequestBody(Operation $operation, FormInterface $form): void
     {
-        $mediaTypes = $this->bodyDescriber->describe($form, $httpMethod);
+        $mediaTypes = $this->bodyDescriber->describe($form);
 
         if ($operation->requestBody === null) {
             $operation->requestBody = new RequestBody(

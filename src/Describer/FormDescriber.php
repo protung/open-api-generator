@@ -37,7 +37,7 @@ final class FormDescriber
         $this->requirementsDescriber = $requirementsDescriber;
     }
 
-    public function addDeepSchema(FormInterface $form, NameResolver $nameResolver, string $httpMethod): Schema
+    public function addDeepSchema(FormInterface $form, NameResolver $nameResolver): Schema
     {
         $schema = $this->createSchema($form);
         $this->handleRequiredForParent($schema, $form, $nameResolver);
@@ -45,16 +45,16 @@ final class FormDescriber
             $type = $child->getConfig()->getType();
 
             if ($this->isBuiltinType($type->getInnerType())) {
-                $this->addParameterToSchema($schema, $nameResolver, $child, $httpMethod);
+                $this->addParameterToSchema($schema, $nameResolver, $child);
             } else {
-                $childSchema = $this->addDeepSchema($child, $nameResolver, $httpMethod);
+                $childSchema = $this->addDeepSchema($child, $nameResolver);
 
                 $name                    = $nameResolver->getPropertyName($child);
                 $schemaProperties        = $schema->properties;
                 $schemaProperties[$name] = $childSchema;
                 $schema->properties      = $schemaProperties;
 
-                $this->handleRequiredProperty($schema, $name, $child, $httpMethod);
+                $this->handleRequiredProperty($schema, $name, $child);
             }
         }
 
@@ -65,51 +65,50 @@ final class FormDescriber
         return $schema;
     }
 
-    public function addFlattenSchema(FormInterface $form, FlatNameResolver $nameResolver, string $httpMethod): Schema
+    public function addFlattenSchema(FormInterface $form, FlatNameResolver $nameResolver): Schema
     {
         $schema = new Schema(['type' => Type::OBJECT]);
 
-        return $this->addParametersToFlattenSchema($schema, $form, $nameResolver, $httpMethod);
+        return $this->addParametersToFlattenSchema($schema, $form, $nameResolver);
     }
 
     private function addParametersToFlattenSchema(
         Schema $schema,
         FormInterface $form,
-        FlatNameResolver $nameResolver,
-        string $httpMethod
+        FlatNameResolver $nameResolver
     ): Schema {
         if ($form->count() === 0) {
-            $this->addParameterToSchema($schema, $nameResolver, $form, $httpMethod);
+            $this->addParameterToSchema($schema, $nameResolver, $form);
         } else {
             foreach ($form->all() as $child) {
                 $childConfig = $child->getConfig();
                 $childType   = $childConfig->getType();
 
                 if (! $this->isBuiltinType($childType->getInnerType())) {
-                    $this->addParametersToFlattenSchema($schema, $child, $nameResolver, $httpMethod);
+                    $this->addParametersToFlattenSchema($schema, $child, $nameResolver);
                 } elseif ($childType->getBlockPrefix() === 'collection') {
                     $subForm = $this->formFactory->create(
                         new FormDefinition(
                             $childConfig->getOption('entry_type'),
                             (array) $childConfig->getOption('validation_groups')
-                        )
+                        ),
+                        $form->getRoot()->getConfig()->getMethod()
                     );
 
                     // Primitive type so we add array normally.
                     if ($subForm->count() === 0) {
-                        $this->addParameterToSchema($schema, $nameResolver, $child, $httpMethod);
+                        $this->addParameterToSchema($schema, $nameResolver, $child);
                     } else {
                         $prefix = $nameResolver->getPropertyName($child);
 
                         $this->addParametersToFlattenSchema(
                             $schema,
                             $subForm,
-                            new NameResolver\PrefixedFlatArray($prefix),
-                            $httpMethod
+                            new NameResolver\PrefixedFlatArray($prefix)
                         );
                     }
                 } else {
-                    $this->addParameterToSchema($schema, $nameResolver, $child, $httpMethod);
+                    $this->addParameterToSchema($schema, $nameResolver, $child);
                 }
             }
         }
@@ -124,8 +123,7 @@ final class FormDescriber
     private function addParameterToSchema(
         Schema $schema,
         NameResolver $nameResolver,
-        FormInterface $form,
-        string $httpMethod
+        FormInterface $form
     ): void {
         $childSchema = $this->createSchema($form);
         $this->handleRequiredForParent($childSchema, $form, $nameResolver);
@@ -135,7 +133,7 @@ final class FormDescriber
         $schemaProperties[$name] = $childSchema;
         $schema->properties      = $schemaProperties;
 
-        $this->handleRequiredProperty($schema, $name, $form, $httpMethod);
+        $this->handleRequiredProperty($schema, $name, $form);
     }
 
     private function createSchema(FormInterface $form): Schema
@@ -178,9 +176,9 @@ final class FormDescriber
         );
     }
 
-    private function handleRequiredProperty(Schema $schema, string $name, FormInterface $form, string $httpMethod): void
+    private function handleRequiredProperty(Schema $schema, string $name, FormInterface $form): void
     {
-        if ($this->isFormPropertyRequired($form, $httpMethod) !== true) {
+        if ($this->isFormPropertyRequired($form) !== true) {
             return;
         }
 
@@ -189,8 +187,10 @@ final class FormDescriber
         $schema->required = $schemaRequired;
     }
 
-    private function isFormPropertyRequired(FormInterface $form, string $httpMethod): bool
+    private function isFormPropertyRequired(FormInterface $form): bool
     {
+        $httpMethod = $form->getRoot()->getConfig()->getMethod();
+
         // For PATCH endpoints all properties are optional.
         if ($httpMethod === 'PATCH') {
             return false;
