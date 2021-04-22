@@ -9,6 +9,7 @@ use Closure;
 use Speicher210\OpenApiGenerator\Describer\SpecificationDescriber;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\ResolvedFormTypeInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\Composite;
 use Symfony\Component\Validator\Constraints\Count;
@@ -157,6 +158,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
      */
     private function describeConstraints(array $constraints, Schema $schema, FormInterface $form): void
     {
+        $formIsCollection = $this->isCollection($form->getConfig()->getType());
         foreach ($constraints as $constraint) {
             switch (true) {
                 case $constraint instanceof NotBlank:
@@ -171,13 +173,23 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                 case $constraint instanceof Composite:
                     $this->describeComposite($constraint, $schema, $form);
                     break;
-                case $constraint instanceof Count:
+                case $constraint instanceof Count && $formIsCollection:
                     if ($constraint->min !== null) {
                         $schema->minItems = $constraint->min;
                     }
 
                     if ($constraint->max !== null) {
                         $schema->maxItems = $constraint->max;
+                    }
+
+                    break;
+                case $constraint instanceof Count && ! $formIsCollection:
+                    if ($constraint->min !== null) {
+                        $schema->minProperties = $constraint->min;
+                    }
+
+                    if ($constraint->max !== null) {
+                        $schema->maxProperties = $constraint->max;
                     }
 
                     break;
@@ -282,5 +294,19 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         }
 
         return sprintf('%d bytes', $size);
+    }
+
+    private function isCollection(ResolvedFormTypeInterface $formType): bool
+    {
+        if ($formType->getBlockPrefix() === 'collection') {
+            return true;
+        }
+
+        $parentType = $formType->getParent();
+        if ($parentType !== null) {
+            return $this->isCollection($parentType);
+        }
+
+        return false;
     }
 }

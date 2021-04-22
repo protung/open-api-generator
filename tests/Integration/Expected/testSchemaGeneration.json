@@ -244,6 +244,8 @@
                                                         "nullable": true
                                                     },
                                                     "paramCustom": {
+                                                        "maxProperties": 44,
+                                                        "minProperties": 3,
                                                         "required": [
                                                             "paramInt",
                                                             "paramText",
@@ -6324,6 +6326,8 @@
                                     "paramCustom": {
                                         "type": "object",
                                         "nullable": true,
+                                        "minProperties": 3,
+                                        "maxProperties": 44,
                                         "properties": {
                                             "paramInt": {
                                                 "type": "integer",
@@ -7336,6 +7340,8 @@
                                     "paramCustom": {
                                         "type": "object",
                                         "nullable": true,
+                                        "minProperties": 3,
+                                        "maxProperties": 44,
                                         "properties": {
                                             "paramInt": {
                                                 "type": "integer",
