@@ -31,6 +31,11 @@ final class PropertyAnalysisSingleType implements PropertyAnalysisType
         return new self($type, $nullable, $parameters);
     }
 
+    public static function forSingleMixedValue(): self
+    {
+        return new self('mixed', true, []);
+    }
+
     public function type(): string
     {
         return $this->type;

@@ -556,7 +556,8 @@
                                                             "type": "string"
                                                         },
                                                         "unknownProperty": {
-                                                            "type": "string"
+                                                            "type": "any",
+                                                            "nullable": true
                                                         },
                                                         "stringProperty": {
                                                             "type": "string"
@@ -1813,7 +1814,8 @@
                                             "type": "string"
                                         },
                                         "unknownProperty": {
-                                            "type": "string"
+                                            "type": "any",
+                                            "nullable": true
                                         },
                                         "stringProperty": {
                                             "type": "string"
@@ -2627,7 +2629,8 @@
                                             "type": "string"
                                         },
                                         "unknownProperty": {
-                                            "type": "string"
+                                            "type": "any",
+                                            "nullable": true
                                         },
                                         "stringProperty": {
                                             "type": "string"
@@ -2799,7 +2802,8 @@
                                             "type": "string"
                                         },
                                         "unknownProperty": {
-                                            "type": "string"
+                                            "type": "any",
+                                            "nullable": true
                                         },
                                         "stringProperty": {
                                             "type": "string"
@@ -2988,7 +2992,8 @@
                                                 "type": "string"
                                             },
                                             "unknownProperty": {
-                                                "type": "string"
+                                                "type": "any",
+                                                "nullable": true
                                             },
                                             "stringProperty": {
                                                 "type": "string"
@@ -3317,7 +3322,8 @@
                                                                         "type": "string"
                                                                     },
                                                                     "unknownProperty": {
-                                                                        "type": "string"
+                                                                        "type": "any",
+                                                                        "nullable": true
                                                                     },
                                                                     "stringProperty": {
                                                                         "type": "string"
@@ -3449,7 +3455,8 @@
                                                                         "type": "string"
                                                                     },
                                                                     "unknownProperty": {
-                                                                        "type": "string"
+                                                                        "type": "any",
+                                                                        "nullable": true
                                                                     },
                                                                     "stringProperty": {
                                                                         "type": "string"
@@ -4294,7 +4301,8 @@
                                             "type": "string"
                                         },
                                         "unknownProperty": {
-                                            "type": "string"
+                                            "type": "any",
+                                            "nullable": true
                                         },
                                         "stringProperty": {
                                             "type": "string"
@@ -4435,7 +4443,8 @@
                                                 "type": "string"
                                             },
                                             "unknownProperty": {
-                                                "type": "string"
+                                                "type": "any",
+                                                "nullable": true
                                             },
                                             "stringProperty": {
                                                 "type": "string"
@@ -7836,7 +7845,8 @@
                         "type": "string"
                     },
                     "unknownProperty": {
-                        "type": "string"
+                        "type": "any",
+                        "nullable": true
                     },
                     "stringProperty": {
                         "type": "string"

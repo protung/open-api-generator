@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Tests\Analyser\Fixtures;
 
 use DateTime;
+use Generator;
 
 final class PropertyAnalyserClassWithProperties
 {
@@ -23,6 +24,18 @@ final class PropertyAnalyserClassWithProperties
     public ?object $typeHintedObjectNullable;
     /** @var string */
     public $typeHintedStringDocBlocks;
+    /** @var string<class-string> */
+    public $typeHintedStringGenericsDocBlocks;
+    /** @var class-string<DateTime> */
+    public $typeHintedClassStringGenericsDocBlocks;
+    /** @var Generator<string> */
+    public $typeHintedClassGeneratorOfScalarGenericDocBlocks;
+    /** @var Generator<DateTime> */
+    public $typeHintedClassGeneratorOfObjectGenericDocBlocks;
+    /** @var iterable<string> */
+    public $typeHintedClassIterableOfScalarGenericDocBlocks;
+    /** @var iterable<DateTime> */
+    public $typeHintedClassIterableOfObjectGenericDocBlocks;
     /** @var int */
     public $typeHintedIntDocBlocks;
     /** @var float */
@@ -67,8 +80,6 @@ final class PropertyAnalyserClassWithProperties
     public $typeHintedUnionDocBlocks;
     /** @var string|int|float|null */
     public $typeHintedUnionDocBlocksNullable;
-    /** @var ?string|int|float */
-    public $typeHintedUnionDocBlocksSelectiveNullable;
     /** @var array<string> */
     public $typeHintedArrayOfScalars1;
     /** @var string[] */
@@ -79,4 +90,13 @@ final class PropertyAnalyserClassWithProperties
     public $typeHintedArrayOfObjects2;
     /** @var array<DateTime> */
     public array $typeHintedArrayOfObjects3;
+
+    /**
+     * @var int
+     * @var string
+     */
+    public $multipleVarAnnotations;
+
+    /** @psalm-immutable */
+    public $nonVarAnnotation;
 }

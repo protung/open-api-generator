@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+			count: 1
+			path: src/Analyser/PropertyAnalyser.php
+
+		-
 			message: "#^Variable property access on Symfony\\\\Component\\\\Validator\\\\Constraints\\\\Composite\\.$#"
 			count: 1
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
@@ -14,3 +19,4 @@ parameters:
 			message: "#^Property Speicher210\\\\OpenApiGenerator\\\\Tests\\\\Integration\\\\Fixtures\\\\TestSchemaGeneration\\\\Model\\\\JMS\\\\ComplexObject\\:\\:\\$unknownProperty has no typehint specified\\.$#"
 			count: 1
 			path: tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php
+
