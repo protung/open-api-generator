@@ -8,7 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-final class QueryRequiredChildType extends AbstractType
+final class TestRequiredType extends AbstractType
 {
     /**
      * {@inheritDoc}
@@ -18,6 +18,7 @@ final class QueryRequiredChildType extends AbstractType
         $builder
             ->add('paramRequired', TextType::class, ['required' => true])
             ->add('paramRequiredWithCustomDescription', TextType::class, ['required' => true, 'help' => 'My Description'])
-            ->add('paramOptional', TextType::class, ['required' => false]);
+            ->add('paramOptional', TextType::class, ['required' => false])
+            ->add('paramRequiredChildren', RequiredChildType::class, ['required' => false]);
     }
 }

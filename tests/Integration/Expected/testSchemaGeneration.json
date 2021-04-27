@@ -4158,6 +4158,593 @@
                 "security": []
             }
         },
+        "\/api\/test\/required": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test required params",
+                "parameters": [
+                    {
+                        "name": "paramRequired",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramRequiredWithCustomDescription",
+                        "in": "query",
+                        "description": "My Description",
+                        "schema": {
+                            "type": "string",
+                            "description": "My Description",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramOptional",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramRequired]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Field required for paramRequiredChildren"
+                        },
+                        "required": false,
+                        "description": "Field required for paramRequiredChildren"
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramRequiredWithCustomDescription]",
+                        "in": "query",
+                        "description": "My Description<br>\nField required for paramRequiredChildren",
+                        "schema": {
+                            "type": "string",
+                            "description": "My Description<br>\nField required for paramRequiredChildren",
+                            "nullable": true
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramOptional]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramRequired": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredWithCustomDescription": {
+                                        "type": "string",
+                                        "description": "My Description",
+                                        "nullable": true
+                                    },
+                                    "paramOptional": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredChildren": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "paramRequired": {
+                                                "type": "string",
+                                                "nullable": true
+                                            },
+                                            "paramRequiredWithCustomDescription": {
+                                                "type": "string",
+                                                "description": "My Description",
+                                                "nullable": true
+                                            },
+                                            "paramOptional": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "paramRequired",
+                                            "paramRequiredWithCustomDescription"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "paramRequired",
+                                    "paramRequiredWithCustomDescription"
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramRequired": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredWithCustomDescription": {
+                                        "type": "string",
+                                        "description": "My Description",
+                                        "nullable": true
+                                    },
+                                    "paramOptional": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredChildren[paramRequired]": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Field required for paramRequiredChildren"
+                                    },
+                                    "paramRequiredChildren[paramRequiredWithCustomDescription]": {
+                                        "type": "string",
+                                        "description": "My Description<br>\nField required for paramRequiredChildren",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredChildren[paramOptional]": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "paramRequired",
+                                    "paramRequiredWithCustomDescription"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            },
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test required params",
+                "parameters": [
+                    {
+                        "name": "paramRequired",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramRequiredWithCustomDescription",
+                        "in": "query",
+                        "description": "My Description",
+                        "schema": {
+                            "type": "string",
+                            "description": "My Description",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramOptional",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramRequired]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Field required for paramRequiredChildren"
+                        },
+                        "required": false,
+                        "description": "Field required for paramRequiredChildren"
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramRequiredWithCustomDescription]",
+                        "in": "query",
+                        "description": "My Description<br>\nField required for paramRequiredChildren",
+                        "schema": {
+                            "type": "string",
+                            "description": "My Description<br>\nField required for paramRequiredChildren",
+                            "nullable": true
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramOptional]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramRequired": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredWithCustomDescription": {
+                                        "type": "string",
+                                        "description": "My Description",
+                                        "nullable": true
+                                    },
+                                    "paramOptional": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredChildren": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "paramRequired": {
+                                                "type": "string",
+                                                "nullable": true
+                                            },
+                                            "paramRequiredWithCustomDescription": {
+                                                "type": "string",
+                                                "description": "My Description",
+                                                "nullable": true
+                                            },
+                                            "paramOptional": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "paramRequired",
+                                            "paramRequiredWithCustomDescription"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "paramRequired",
+                                    "paramRequiredWithCustomDescription"
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramRequired": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredWithCustomDescription": {
+                                        "type": "string",
+                                        "description": "My Description",
+                                        "nullable": true
+                                    },
+                                    "paramOptional": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredChildren[paramRequired]": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Field required for paramRequiredChildren"
+                                    },
+                                    "paramRequiredChildren[paramRequiredWithCustomDescription]": {
+                                        "type": "string",
+                                        "description": "My Description<br>\nField required for paramRequiredChildren",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredChildren[paramOptional]": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "paramRequired",
+                                    "paramRequiredWithCustomDescription"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test required params",
+                "parameters": [
+                    {
+                        "name": "paramRequired",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramRequiredWithCustomDescription",
+                        "in": "query",
+                        "description": "My Description",
+                        "schema": {
+                            "type": "string",
+                            "description": "My Description",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "paramOptional",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramRequired]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "Field required for paramRequiredChildren"
+                        },
+                        "required": false,
+                        "description": "Field required for paramRequiredChildren"
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramRequiredWithCustomDescription]",
+                        "in": "query",
+                        "description": "My Description<br>\nField required for paramRequiredChildren",
+                        "schema": {
+                            "type": "string",
+                            "description": "My Description<br>\nField required for paramRequiredChildren",
+                            "nullable": true
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "paramRequiredChildren[paramOptional]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramRequired": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredWithCustomDescription": {
+                                        "type": "string",
+                                        "description": "My Description",
+                                        "nullable": true
+                                    },
+                                    "paramOptional": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredChildren": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "paramRequired": {
+                                                "type": "string",
+                                                "nullable": true
+                                            },
+                                            "paramRequiredWithCustomDescription": {
+                                                "type": "string",
+                                                "description": "My Description",
+                                                "nullable": true
+                                            },
+                                            "paramOptional": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paramRequired": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredWithCustomDescription": {
+                                        "type": "string",
+                                        "description": "My Description",
+                                        "nullable": true
+                                    },
+                                    "paramOptional": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredChildren[paramRequired]": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "description": "Field required for paramRequiredChildren"
+                                    },
+                                    "paramRequiredChildren[paramRequiredWithCustomDescription]": {
+                                        "type": "string",
+                                        "description": "My Description<br>\nField required for paramRequiredChildren",
+                                        "nullable": true
+                                    },
+                                    "paramRequiredChildren[paramOptional]": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
         "\/api\/test\/responses": {
             "post": {
                 "tags": [

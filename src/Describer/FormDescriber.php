@@ -54,7 +54,7 @@ final class FormDescriber
                 $schemaProperties[$name] = $childSchema;
                 $schema->properties      = $schemaProperties;
 
-                $this->handleRequiredProperty($schema, $name, $child);
+                $this->handleRequiredProperty($schema, $child, $nameResolver);
             }
         }
 
@@ -133,7 +133,7 @@ final class FormDescriber
         $schemaProperties[$name] = $childSchema;
         $schema->properties      = $schemaProperties;
 
-        $this->handleRequiredProperty($schema, $name, $form);
+        $this->handleRequiredProperty($schema, $form, $nameResolver);
     }
 
     private function createSchema(FormInterface $form): Schema
@@ -161,6 +161,10 @@ final class FormDescriber
 
     private function handleRequiredForParent(Schema $schema, FormInterface $form, NameResolver $nameResolver): void
     {
+        if (! $nameResolver instanceof FlatNameResolver) {
+            return;
+        }
+
         if ($form->getConfig()->getRequired() !== true) {
             return;
         }
@@ -176,18 +180,18 @@ final class FormDescriber
         );
     }
 
-    private function handleRequiredProperty(Schema $schema, string $name, FormInterface $form): void
+    private function handleRequiredProperty(Schema $schema, FormInterface $form, NameResolver $nameResolver): void
     {
-        if ($this->isFormPropertyRequired($form) !== true) {
+        if ($this->isFormPropertyRequired($form, $nameResolver) !== true) {
             return;
         }
 
         $schemaRequired   = $schema->required;
-        $schemaRequired[] = $name;
+        $schemaRequired[] = $nameResolver->getPropertyName($form);
         $schema->required = $schemaRequired;
     }
 
-    private function isFormPropertyRequired(FormInterface $form): bool
+    private function isFormPropertyRequired(FormInterface $form, NameResolver $nameResolver): bool
     {
         $httpMethod = $form->getRoot()->getConfig()->getMethod();
 
@@ -200,8 +204,12 @@ final class FormDescriber
             return false;
         }
 
-        $parentForm = $form->getParent();
+        if ($nameResolver instanceof FlatNameResolver) {
+            $parentForm = $form->getParent();
 
-        return ! ($parentForm !== null && ! $parentForm->isRoot() && $parentForm->isRequired() === false);
+            return ! ($parentForm !== null && ! $parentForm->isRoot() && $parentForm->isRequired() === false);
+        }
+
+        return true;
     }
 }

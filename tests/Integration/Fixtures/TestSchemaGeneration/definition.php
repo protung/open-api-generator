@@ -536,6 +536,17 @@ return new Model\Specification(
             ],
             [],
         ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_required',
+            'Test',
+            'Test required params',
+            null,
+            [
+                FormInput::inQuery(new FormDefinition(TestSchemaGeneration\Form\TestRequiredType::class)),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestRequiredType::class)),
+            ],
+            [],
+        ),
     ],
     [
         Input\HeaderInput::withName('X-ALWAYS'),

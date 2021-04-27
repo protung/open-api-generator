@@ -23,6 +23,6 @@ final class QueryType extends AbstractType
                 ['help' => 'customLabel', 'attr' => ['placeholder' => 'my-query-example']]
             )
             ->add('innerForm', TestType::class)
-            ->add('paramRequiredChildren', QueryRequiredChildType::class, ['required' => false]);
+            ->add('paramRequiredChildren', RequiredChildType::class, ['required' => false]);
     }
 }
