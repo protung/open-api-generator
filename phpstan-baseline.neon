@@ -1,9 +1,9 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+			message: "#^Only iterables can be unpacked, array\\<int, string\\>\\|false given.$#"
 			count: 1
-			path: src/Analyser/PropertyAnalyser.php
+			path: src/Describer/SpecificationDescriber.php
 
 		-
 			message: "#^Variable property access on Symfony\\\\Component\\\\Validator\\\\Constraints\\\\Composite\\.$#"

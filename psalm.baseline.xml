@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.7.1@cd53e047a58f71f646dd6bf45476076ab07b5d44">
-  <file src="src/Analyser/PropertyAnalyser.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>$class</code>
-    </ArgumentTypeCoercion>
-  </file>
   <file src="src/Describer/Form/SymfonyValidatorRequirementsDescriber.php">
     <PossiblyInvalidFunctionCall occurrences="1"/>
     <RedundantConditionGivenDocblockType occurrences="1">
@@ -39,10 +34,5 @@
       <code>$metadata-&gt;discriminatorValue !== null</code>
       <code>$propertyMetadata-&gt;type !== null</code>
     </RedundantConditionGivenDocblockType>
-  </file>
-  <file src="src/Describer/SpecificationDescriber.php">
-    <RedundantCondition occurrences="1">
-      <code>isArray</code>
-    </RedundantCondition>
   </file>
 </files>

@@ -14,7 +14,7 @@ jobs:
         dependencies: [lowest, highest]
         php-versions:
           - 7.4
-#          - 8.0
+          - 8.0
     name: PHP ${{ matrix.php-versions }} checks with ${{ matrix.dependencies }} dependencies
     steps:
       - name: Checkout code
@@ -45,5 +45,10 @@ jobs:
         if: ${{ matrix.dependencies == 'highest' }}
         run: composer update --prefer-dist --no-progress --no-suggest
 
-      - name: Run checks
-        run: composer check
+      - name: Run checks PHP 7.4
+        if: ${{ matrix.php-versions == '7.4' }}
+        run: composer check-74
+
+      - name: Run checks PHP 8.0
+        if: ${{ matrix.php-versions == '8.0' }}
+        run: composer check-80
