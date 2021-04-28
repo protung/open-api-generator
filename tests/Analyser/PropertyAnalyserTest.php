@@ -25,13 +25,24 @@ final class PropertyAnalyserTest extends TestCase
         $propertyAnalyser->getTypes(stdClass::class, 'test');
     }
 
+    public function testGetPropertyTypeThrowsExceptionIfPropertyHasMultipleVarAnnotations(): void
+    {
+        $propertyAnalyser = new PropertyAnalyser();
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Doc comment cannot have more than one @var annotation.');
+
+        $propertyAnalyser->getTypes(PropertyAnalyserClassWithProperties::class, 'multipleVarAnnotations');
+    }
+
     /**
      * @return mixed[]
      */
     public static function dataProviderTestGetPropertyType(): array
     {
         return [
-            ['nonDocumented', []],
+            ['nonDocumented', [PropertyAnalysisSingleType::forSingleValue('mixed', true, [])]],
+            ['nonVarAnnotation', [PropertyAnalysisSingleType::forSingleValue('mixed', true, [])]],
             ['typeHintedString', [PropertyAnalysisSingleType::forSingleValue('string', false, [])]],
             ['typeHintedInt', [PropertyAnalysisSingleType::forSingleValue('int', false, [])]],
             ['typeHintedFloat', [PropertyAnalysisSingleType::forSingleValue('float', false, [])]],
@@ -45,6 +56,8 @@ final class PropertyAnalyserTest extends TestCase
             ['typeHintedArrayNullable', [PropertyAnalysisCollectionType::forCollection('array', true, null)]],
             ['typeHintedObjectNullable', [PropertyAnalysisSingleType::forSingleValue('object', true, [])]],
             ['typeHintedStringDocBlocks', [PropertyAnalysisSingleType::forSingleValue('string', false, [])]],
+            ['typeHintedStringGenericsDocBlocks', [PropertyAnalysisSingleType::forSingleValue('string', false, [])]],
+            ['typeHintedClassStringGenericsDocBlocks', [PropertyAnalysisSingleType::forSingleValue('string', false, [])]],
             ['typeHintedIntDocBlocks', [PropertyAnalysisSingleType::forSingleValue('int', false, [])]],
             ['typeHintedFloatDocBlocks', [PropertyAnalysisSingleType::forSingleValue('float', false, [])]],
             ['typeHintedBoolDocBlocks', [PropertyAnalysisSingleType::forSingleValue('bool', false, [])]],
@@ -82,15 +95,6 @@ final class PropertyAnalyserTest extends TestCase
                 ],
             ],
             [
-                'typeHintedUnionDocBlocksSelectiveNullable',
-                [
-                    PropertyAnalysisSingleType::forSingleValue('string', true, []),
-                    PropertyAnalysisSingleType::forSingleValue('int', false, []),
-                    PropertyAnalysisSingleType::forSingleValue('float', false, []),
-                ],
-            ],
-
-            [
                 'typeHintedArrayOfScalars1',
                 [
                     PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('string', false, [])),
@@ -105,19 +109,43 @@ final class PropertyAnalyserTest extends TestCase
             [
                 'typeHintedArrayOfObjects1',
                 [
-                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('\DateTime', false, [])),
+                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('DateTime', false, [])),
                 ],
             ],
             [
                 'typeHintedArrayOfObjects2',
                 [
-                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('\DateTime', false, [])),
+                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('DateTime', false, [])),
                 ],
             ],
             [
                 'typeHintedArrayOfObjects3',
                 [
-                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('\DateTime', false, [])),
+                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('DateTime', false, [])),
+                ],
+            ],
+            [
+                'typeHintedClassGeneratorOfScalarGenericDocBlocks',
+                [
+                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('string', false, [])),
+                ],
+            ],
+            [
+                'typeHintedClassGeneratorOfObjectGenericDocBlocks',
+                [
+                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('DateTime', false, [])),
+                ],
+            ],
+            [
+                'typeHintedClassIterableOfScalarGenericDocBlocks',
+                [
+                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('string', false, [])),
+                ],
+            ],
+            [
+                'typeHintedClassIterableOfObjectGenericDocBlocks',
+                [
+                    PropertyAnalysisCollectionType::forCollection('array', false, PropertyAnalysisSingleType::forSingleValue('DateTime', false, [])),
                 ],
             ],
         ];

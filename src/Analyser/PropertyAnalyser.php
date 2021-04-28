@@ -5,18 +5,25 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Analyser;
 
 use InvalidArgumentException;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Array_;
-use phpDocumentor\Reflection\Types\Mixed_;
-use phpDocumentor\Reflection\Types\Null_;
-use phpDocumentor\Reflection\Types\Nullable;
-use Roave\BetterReflection\BetterReflection;
-use Roave\BetterReflection\Reflection\ReflectionProperty;
+use PHPStan\PhpDocParser\Ast\Type\ArrayTypeNode;
+use PHPStan\PhpDocParser\Ast\Type\GenericTypeNode;
+use PHPStan\PhpDocParser\Ast\Type\IdentifierTypeNode;
+use PHPStan\PhpDocParser\Ast\Type\NullableTypeNode;
+use PHPStan\PhpDocParser\Ast\Type\UnionTypeNode;
+use PHPStan\PhpDocParser\Lexer\Lexer;
+use PHPStan\PhpDocParser\Parser\ConstExprParser;
+use PHPStan\PhpDocParser\Parser\PhpDocParser;
+use PHPStan\PhpDocParser\Parser\TokenIterator;
+use PHPStan\PhpDocParser\Parser\TypeParser;
+use ReflectionClass;
+use ReflectionNamedType;
+use Speicher210\OpenApiGenerator\Assert\Assert;
 
-use function array_filter;
-use function array_map;
-use function array_reduce;
-use function array_values;
+use function count;
+use function in_array;
+use function Psl\Iter\any;
+use function Psl\Vec\filter;
+use function Psl\Vec\map;
 use function sprintf;
 
 final class PropertyAnalyser
@@ -39,10 +46,9 @@ final class PropertyAnalyser
      */
     public function getTypes(string $class, string $propertyName): array
     {
-        $classInfo    = (new BetterReflection())->classReflector()->reflect($class);
-        $propertyInfo = $classInfo->getProperty($propertyName);
+        $reflection = new ReflectionClass($class);
 
-        if ($propertyInfo === null) {
+        if (! $reflection->hasProperty($propertyName)) {
             throw new InvalidArgumentException(
                 sprintf(
                     'Property "%s" does not exist in class "%s".',
@@ -52,79 +58,156 @@ final class PropertyAnalyser
             );
         }
 
-        $propertyType = $propertyInfo->getType();
-        if ($propertyType === null) {
-            return $this->getTypesFromDocBlock($propertyInfo);
+        $property = $reflection->getProperty($propertyName);
+
+        // Property has no native type
+        if ($property->getType() === null) {
+            if ($property->getDocComment() !== false) {
+                return $this->parseDocType($property->getDocComment());
+            }
+
+            return [PropertyAnalysisSingleType::forSingleMixedValue()];
         }
 
+        $propertyType = $property->getType();
+        Assert::isInstanceOf($propertyType, ReflectionNamedType::class);
+
+        // Property has scalar native type
         if ($propertyType->getName() !== 'array') {
+            return [PropertyAnalysisSingleType::forSingleValue($propertyType->getName(), $propertyType->allowsNull(), [])];
+        }
+
+        // Property has doc comment
+        if ($property->getDocComment() !== false) {
+            return $this->parseDocType($property->getDocComment());
+        }
+
+        // Property has native array type
+        return [PropertyAnalysisCollectionType::forCollection('array', $propertyType->allowsNull(), null)];
+    }
+
+    /**
+     * @return array<PropertyAnalysisType>
+     */
+    private function parseDocType(string $docComment): array
+    {
+        $parser    = $this->getParser();
+        $lexer     = new Lexer();
+        $comment   = $parser->parse(new TokenIterator($lexer->tokenize($docComment)));
+        $varValues = $comment->getVarTagValues();
+        if (count($varValues) > 1) {
+            throw new InvalidArgumentException('Doc comment cannot have more than one @var annotation.');
+        }
+
+        // docblock without @var annotation
+        if (count($varValues) === 0) {
+            return [PropertyAnalysisSingleType::forSingleMixedValue()];
+        }
+
+        $value    = $varValues[0];
+        $type     = $value->type;
+        $nullable = false;
+
+        // Nullable type
+        if ($type instanceof NullableTypeNode) {
+            $nullable = true;
+            $type     = $type->type;
+        }
+
+        // generic <> docblock
+        if ($type instanceof GenericTypeNode) {
+            return $this->parseGenericTypeNode($type, $nullable);
+        }
+
+        // array[] docblock
+        if ($type instanceof ArrayTypeNode) {
+            return $this->parseArrayTypeNode($type, $nullable);
+        }
+
+        // Union or nullable
+        if ($type instanceof UnionTypeNode) {
+            return $this->parseUnionType($type);
+        }
+
+        Assert::isInstanceOf($type, IdentifierTypeNode::class);
+
+        if ($type->name === 'array') {
             return [
-                PropertyAnalysisSingleType::forSingleValue($propertyType->getName(), $propertyType->allowsNull(), []),
+                PropertyAnalysisCollectionType::forCollection(
+                    'array',
+                    $nullable,
+                    null
+                ),
             ];
         }
 
-        $docBlockTypes = $this->getTypesFromDocBlock($propertyInfo);
-        if ($docBlockTypes !== []) {
-            return $docBlockTypes;
+        return [PropertyAnalysisSingleType::forSingleValue($type->name, $nullable, [])];
+    }
+
+    /**
+     * @return array<PropertyAnalysisType>
+     */
+    private function parseGenericTypeNode(GenericTypeNode $type, bool $nullable): array
+    {
+        Assert::isInstanceOf($type->genericTypes[0], IdentifierTypeNode::class);
+
+        if (in_array($type->type->name, ['array', 'Generator', 'iterable'], true)) {
+            return [
+                PropertyAnalysisCollectionType::forCollection(
+                    'array',
+                    $nullable,
+                    PropertyAnalysisSingleType::forSingleValue($type->genericTypes[0]->name, $nullable, [])
+                ),
+            ];
         }
 
+        return [PropertyAnalysisSingleType::forSingleValue('string', $nullable, [])];
+    }
+
+    /**
+     * @return array<PropertyAnalysisType>
+     */
+    private function parseArrayTypeNode(ArrayTypeNode $type, bool $nullable): array
+    {
+        Assert::isInstanceOf($type->type, IdentifierTypeNode::class);
+
         return [
-            PropertyAnalysisCollectionType::forCollection($propertyType->getName(), $propertyType->allowsNull(), null),
+            PropertyAnalysisCollectionType::forCollection(
+                'array',
+                $nullable,
+                PropertyAnalysisSingleType::forSingleValue($type->type->name, $nullable, [])
+            ),
         ];
     }
 
     /**
-     * @return PropertyAnalysisType[]
+     * @return array<PropertyAnalysisType>
      */
-    private function getTypesFromDocBlock(ReflectionProperty $propertyInfo): array
+    private function parseUnionType(UnionTypeNode $type): array
     {
-        try {
-            $docBlockTypes = $propertyInfo->getDocBlockTypes();
-        } catch (InvalidArgumentException $throwable) {
-            // This might be thrown by the doc block parser.
-            return [];
-        }
+        Assert::allIsInstanceOf($type->types, IdentifierTypeNode::class);
+        $nullable   = any($type->types, static fn (IdentifierTypeNode $type): bool => $type->name === 'null');
+        $unionTypes = filter($type->types, static fn (IdentifierTypeNode $type): bool => $type->name !== 'null');
 
-        $alwaysNullable = array_reduce(
-            $docBlockTypes,
-            static fn (bool $carry, Type $type) => $carry || $type instanceof Null_,
-            false
-        );
-
-        $docBlockTypes = array_filter(
-            $docBlockTypes,
-            static fn (Type $type) => ! $type instanceof Null_
-        );
-
-        return array_map(
-            static function (Type $type) use ($alwaysNullable): PropertyAnalysisType {
-                $actualType = $type instanceof Nullable ? $type->getActualType() : $type;
-
-                if ($actualType instanceof Array_) {
-                    if ($actualType->getValueType() instanceof Mixed_) {
-                        $elementsType = null;
-                    } else {
-                        $elementsType = PropertyAnalysisSingleType::forSingleValue(
-                            (string) $actualType->getValueType(),
-                            false,
-                            []
-                        );
-                    }
-
-                    return PropertyAnalysisCollectionType::forCollection(
-                        'array',
-                        $alwaysNullable || $type instanceof Nullable,
-                        $elementsType
-                    );
+        return map(
+            $unionTypes,
+            static function (IdentifierTypeNode $type) use ($nullable) {
+                if ($type->name === 'array') {
+                    return PropertyAnalysisCollectionType::forCollection('array', $nullable, null);
                 }
 
-                return PropertyAnalysisSingleType::forSingleValue(
-                    (string) $actualType,
-                    $alwaysNullable || $type instanceof Nullable,
-                    []
-                );
-            },
-            array_values($docBlockTypes)
+                return PropertyAnalysisSingleType::forSingleValue($type->name, $nullable, []);
+            }
+        );
+    }
+
+    private function getParser(): PhpDocParser
+    {
+        return new PhpDocParser(
+            new TypeParser(
+                new ConstExprParser()
+            ),
+            new ConstExprParser()
         );
     }
 }

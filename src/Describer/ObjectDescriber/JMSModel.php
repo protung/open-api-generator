@@ -178,6 +178,8 @@ final class JMSModel implements Describer
                     $property->enum = array_keys($metadata->discriminatorMap);
                 }
             }
+        } elseif ($propertyType->type() === 'mixed') {
+            $property->type = Type::ANY;
         } elseif ($propertyType->type() === Type::ARRAY) {
             $property->type  = Type::ARRAY;
             $property->items = new Schema(['type' => Type::STRING]);
