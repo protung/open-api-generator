@@ -307,17 +307,20 @@ final class JMSModel implements Describer
             ];
         }
 
+        $propertyClass = $propertyMetadata->class;
+        Assert::classExists($propertyClass);
+
         if ($propertyMetadata->type !== null) {
             return [
                 PropertyAnalysisSingleType::forSingleValue(
                     $propertyMetadata->type['name'],
-                    $this->propertyAnalyser->canBeNull($propertyMetadata->class, $propertyMetadata->name),
+                    $this->propertyAnalyser->canBeNull($propertyClass, $propertyMetadata->name),
                     $propertyMetadata->type['params']
                 ),
             ];
         }
 
-        $types = $this->propertyAnalyser->getTypes($propertyMetadata->class, $propertyMetadata->name);
+        $types = $this->propertyAnalyser->getTypes($propertyClass, $propertyMetadata->name);
         if (count($types) > 0) {
             return $types;
         }

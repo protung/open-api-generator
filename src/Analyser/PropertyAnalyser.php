@@ -28,6 +28,9 @@ use function sprintf;
 
 final class PropertyAnalyser
 {
+    /**
+     * @param class-string $class
+     */
     public function canBeNull(string $class, string $propertyName): bool
     {
         $types = $this->getTypes($class, $propertyName);
@@ -42,6 +45,8 @@ final class PropertyAnalyser
     }
 
     /**
+     * @param class-string $class
+     *
      * @return array<PropertyAnalysisType>
      */
     public function getTypes(string $class, string $propertyName): array
