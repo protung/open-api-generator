@@ -341,7 +341,7 @@
                                                     "paramChoiceWithLoaderAndChoiceValueCallable",
                                                     "paramPassword",
                                                     "paramCollection[]",
-                                                    "paramCustomCollection",
+                                                    "paramCustomCollection[]",
                                                     "paramCustom[paramInt]",
                                                     "paramCustom[paramText]",
                                                     "paramCustom[paramInnerCustom][paramText]",
@@ -464,7 +464,7 @@
                                                         },
                                                         "nullable": true
                                                     },
-                                                    "paramCustomCollection": {
+                                                    "paramCustomCollection[]": {
                                                         "type": "array",
                                                         "items": {
                                                             "required": [
@@ -1179,7 +1179,7 @@
                         "required": true
                     },
                     {
-                        "name": "innerForm[paramCustomCollection]",
+                        "name": "innerForm[paramCustomCollection][]",
                         "in": "query",
                         "schema": {
                             "type": "array",
@@ -7138,7 +7138,7 @@
                                         "minItems": 3,
                                         "maxItems": 44
                                     },
-                                    "paramCustomCollection": {
+                                    "paramCustomCollection[]": {
                                         "type": "array",
                                         "items": {
                                             "type": "object",
@@ -7228,7 +7228,7 @@
                                     "paramChoiceWithLoaderAndChoiceValueCallable",
                                     "paramPassword",
                                     "paramCollection[]",
-                                    "paramCustomCollection",
+                                    "paramCustomCollection[]",
                                     "paramCustom[paramInt]",
                                     "paramCustom[paramText]",
                                     "paramCustom[paramInnerCustom][paramText]",
@@ -8112,7 +8112,7 @@
                                         "minItems": 3,
                                         "maxItems": 44
                                     },
-                                    "paramCustomCollection": {
+                                    "paramCustomCollection[]": {
                                         "type": "array",
                                         "items": {
                                             "type": "object",
