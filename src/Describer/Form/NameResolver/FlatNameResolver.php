@@ -6,10 +6,10 @@ namespace Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\ResolvedFormTypeInterface;
 
 use function array_pop;
 use function array_reverse;
-use function in_array;
 
 trait FlatNameResolver
 {
@@ -41,16 +41,30 @@ trait FlatNameResolver
             $name .= '[' . $subName . ']';
         }
 
-        $blockPrefix = $formConfig->getType()->getBlockPrefix();
+        $formType = $formConfig->getType();
 
-        if ($blockPrefix === 'collection') {
+        if ($this->hasBlockPrefix($formType, 'collection')) {
             $name .= '[]';
         }
 
-        if (in_array($blockPrefix, ['choice', 'entity'], true) === true && (bool) $formConfig->getOption('multiple')) {
+        if (($this->hasBlockPrefix($formType, 'choice') || $this->hasBlockPrefix($formType, 'entity')) && (bool) $formConfig->getOption('multiple')) {
             $name .= '[]';
         }
 
         return $name;
+    }
+
+    private function hasBlockPrefix(ResolvedFormTypeInterface $formType, string $blockPrefix): bool
+    {
+        if ($formType->getBlockPrefix() === $blockPrefix) {
+            return true;
+        }
+
+        $parentType = $formType->getParent();
+        if ($parentType !== null) {
+            return $this->hasBlockPrefix($parentType, $blockPrefix);
+        }
+
+        return false;
     }
 }
