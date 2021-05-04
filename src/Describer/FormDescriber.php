@@ -7,29 +7,23 @@ namespace Speicher210\OpenApiGenerator\Describer;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
 use Speicher210\OpenApiGenerator\Describer\Form\FlatNameResolver;
-use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Speicher210\OpenApiGenerator\Describer\Form\RequirementsDescriber;
 use Speicher210\OpenApiGenerator\Describer\Form\SymfonyFormPropertyDescriber;
-use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormInterface;
 
 use function sprintf;
 
 final class FormDescriber
 {
-    private FormFactory $formFactory;
-
     private SymfonyFormPropertyDescriber $propertyDescriber;
 
     private RequirementsDescriber $requirementsDescriber;
 
     public function __construct(
-        FormFactory $formFactory,
         SymfonyFormPropertyDescriber $propertyDescriber,
         RequirementsDescriber $requirementsDescriber
     ) {
-        $this->formFactory           = $formFactory;
         $this->propertyDescriber     = $propertyDescriber;
         $this->requirementsDescriber = $requirementsDescriber;
     }
@@ -76,34 +70,10 @@ final class FormDescriber
             $this->addParameterToSchema($schema, $nameResolver, $form);
         } else {
             foreach ($form->all() as $child) {
-                $childConfig = $child->getConfig();
-                $childType   = $childConfig->getType();
-
-                if ($child->count() > 0) {
-                    $this->addParametersToFlattenSchema($schema, $child, $nameResolver);
-                } elseif ($childType->getBlockPrefix() === 'collection') {
-                    $subForm = $this->formFactory->create(
-                        new FormDefinition(
-                            $childConfig->getOption('entry_type'),
-                            (array) $childConfig->getOption('validation_groups')
-                        ),
-                        $form->getRoot()->getConfig()->getMethod()
-                    );
-
-                    // Primitive type so we add array normally.
-                    if ($subForm->count() === 0) {
-                        $this->addParameterToSchema($schema, $nameResolver, $child);
-                    } else {
-                        $prefix = $nameResolver->getPropertyName($child);
-
-                        $this->addParametersToFlattenSchema(
-                            $schema,
-                            $subForm,
-                            new NameResolver\PrefixedFlatArray($prefix)
-                        );
-                    }
-                } else {
+                if ($child->count() === 0) {
                     $this->addParameterToSchema($schema, $nameResolver, $child);
+                } else {
+                    $this->addParametersToFlattenSchema($schema, $child, $nameResolver);
                 }
             }
         }
