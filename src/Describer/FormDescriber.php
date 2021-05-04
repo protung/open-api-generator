@@ -13,11 +13,8 @@ use Speicher210\OpenApiGenerator\Describer\Form\RequirementsDescriber;
 use Speicher210\OpenApiGenerator\Describer\Form\SymfonyFormPropertyDescriber;
 use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormTypeInterface;
 
-use function get_class;
 use function sprintf;
-use function strpos;
 
 final class FormDescriber
 {
@@ -42,9 +39,7 @@ final class FormDescriber
         $schema = $this->createSchema($form);
         $this->handleRequiredForParent($schema, $form, $nameResolver);
         foreach ($form->all() as $child) {
-            $type = $child->getConfig()->getType();
-
-            if ($this->isBuiltinType($type->getInnerType())) {
+            if ($child->count() === 0) {
                 $this->addParameterToSchema($schema, $nameResolver, $child);
             } else {
                 $childSchema = $this->addDeepSchema($child, $nameResolver);
@@ -84,7 +79,7 @@ final class FormDescriber
                 $childConfig = $child->getConfig();
                 $childType   = $childConfig->getType();
 
-                if (! $this->isBuiltinType($childType->getInnerType())) {
+                if ($child->count() > 0) {
                     $this->addParametersToFlattenSchema($schema, $child, $nameResolver);
                 } elseif ($childType->getBlockPrefix() === 'collection') {
                     $subForm = $this->formFactory->create(
@@ -138,25 +133,12 @@ final class FormDescriber
 
     private function createSchema(FormInterface $form): Schema
     {
-        $formConfig  = $form->getConfig();
-        $blockPrefix = $formConfig->getType()->getBlockPrefix();
-
         $schema = new Schema([]);
 
-        $this->propertyDescriber->describe($schema, $blockPrefix, $form, $this);
+        $this->propertyDescriber->describe($schema, $form, $this);
         $this->requirementsDescriber->describe($schema, $form);
 
         return $schema;
-    }
-
-    /**
-     * @psalm-pure
-     */
-    private function isBuiltinType(FormTypeInterface $formType): bool
-    {
-        $formClass = get_class($formType);
-
-        return strpos($formClass, 'Symfony\Component\Form\Extension\Core\Type') === 0;
     }
 
     private function handleRequiredForParent(Schema $schema, FormInterface $form, NameResolver $nameResolver): void

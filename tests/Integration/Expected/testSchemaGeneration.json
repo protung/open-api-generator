@@ -78,8 +78,10 @@
                                                     "paramNumber",
                                                     "paramNumberDivisibleBy",
                                                     "paramInRange",
-                                                    "paramDate",
-                                                    "paramDateTime",
+                                                    "paramDateSingleText",
+                                                    "paramDateChoice",
+                                                    "paramDateTimeSingleText",
+                                                    "paramDateTimeChoice",
                                                     "paramEmail",
                                                     "paramChoice",
                                                     "paramChoiceWithLoader",
@@ -144,14 +146,296 @@
                                                         "type": "string",
                                                         "nullable": true
                                                     },
-                                                    "paramDate": {
+                                                    "paramDateSingleText": {
                                                         "type": "string",
                                                         "format": "date",
                                                         "nullable": true
                                                     },
-                                                    "paramDateTime": {
+                                                    "paramDateChoice": {
+                                                        "required": [
+                                                            "year",
+                                                            "month",
+                                                            "day"
+                                                        ],
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "year": {
+                                                                "enum": [
+                                                                    "2016",
+                                                                    "2017",
+                                                                    "2018",
+                                                                    "2019",
+                                                                    "2020",
+                                                                    "2021",
+                                                                    "2022",
+                                                                    "2023",
+                                                                    "2024",
+                                                                    "2025",
+                                                                    "2026"
+                                                                ],
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "month": {
+                                                                "enum": [
+                                                                    "1",
+                                                                    "2",
+                                                                    "3",
+                                                                    "4",
+                                                                    "5",
+                                                                    "6",
+                                                                    "7",
+                                                                    "8",
+                                                                    "9",
+                                                                    "10",
+                                                                    "11",
+                                                                    "12"
+                                                                ],
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "day": {
+                                                                "enum": [
+                                                                    "1",
+                                                                    "2",
+                                                                    "3",
+                                                                    "4",
+                                                                    "5",
+                                                                    "6",
+                                                                    "7",
+                                                                    "8",
+                                                                    "9",
+                                                                    "10",
+                                                                    "11",
+                                                                    "12",
+                                                                    "13",
+                                                                    "14",
+                                                                    "15",
+                                                                    "16",
+                                                                    "17",
+                                                                    "18",
+                                                                    "19",
+                                                                    "20",
+                                                                    "21",
+                                                                    "22",
+                                                                    "23",
+                                                                    "24",
+                                                                    "25",
+                                                                    "26",
+                                                                    "27",
+                                                                    "28",
+                                                                    "29",
+                                                                    "30",
+                                                                    "31"
+                                                                ],
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            }
+                                                        },
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateTimeSingleText": {
                                                         "type": "string",
                                                         "format": "date-time",
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateTimeChoice": {
+                                                        "required": [
+                                                            "date",
+                                                            "time"
+                                                        ],
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "date": {
+                                                                "required": [
+                                                                    "year",
+                                                                    "month",
+                                                                    "day"
+                                                                ],
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "year": {
+                                                                        "enum": [
+                                                                            "2015",
+                                                                            "2016",
+                                                                            "2017",
+                                                                            "2018",
+                                                                            "2019",
+                                                                            "2020",
+                                                                            "2021",
+                                                                            "2022",
+                                                                            "2023",
+                                                                            "2024",
+                                                                            "2025"
+                                                                        ],
+                                                                        "type": "string",
+                                                                        "nullable": true
+                                                                    },
+                                                                    "month": {
+                                                                        "enum": [
+                                                                            "1",
+                                                                            "2",
+                                                                            "3",
+                                                                            "4",
+                                                                            "5",
+                                                                            "6",
+                                                                            "7",
+                                                                            "8",
+                                                                            "9",
+                                                                            "10",
+                                                                            "11",
+                                                                            "12"
+                                                                        ],
+                                                                        "type": "string",
+                                                                        "nullable": true
+                                                                    },
+                                                                    "day": {
+                                                                        "enum": [
+                                                                            "1",
+                                                                            "2",
+                                                                            "3",
+                                                                            "4",
+                                                                            "5",
+                                                                            "6",
+                                                                            "7",
+                                                                            "8",
+                                                                            "9",
+                                                                            "10",
+                                                                            "11",
+                                                                            "12",
+                                                                            "13",
+                                                                            "14",
+                                                                            "15",
+                                                                            "16",
+                                                                            "17",
+                                                                            "18",
+                                                                            "19",
+                                                                            "20",
+                                                                            "21",
+                                                                            "22",
+                                                                            "23",
+                                                                            "24",
+                                                                            "25",
+                                                                            "26",
+                                                                            "27",
+                                                                            "28",
+                                                                            "29",
+                                                                            "30",
+                                                                            "31"
+                                                                        ],
+                                                                        "type": "string",
+                                                                        "nullable": true
+                                                                    }
+                                                                },
+                                                                "nullable": true
+                                                            },
+                                                            "time": {
+                                                                "required": [
+                                                                    "hour",
+                                                                    "minute"
+                                                                ],
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "hour": {
+                                                                        "enum": [
+                                                                            "0",
+                                                                            "1",
+                                                                            "2",
+                                                                            "3",
+                                                                            "4",
+                                                                            "5",
+                                                                            "6",
+                                                                            "7",
+                                                                            "8",
+                                                                            "9",
+                                                                            "10",
+                                                                            "11",
+                                                                            "12",
+                                                                            "13",
+                                                                            "14",
+                                                                            "15",
+                                                                            "16",
+                                                                            "17",
+                                                                            "18",
+                                                                            "19",
+                                                                            "20",
+                                                                            "21",
+                                                                            "22",
+                                                                            "23"
+                                                                        ],
+                                                                        "type": "string",
+                                                                        "nullable": true
+                                                                    },
+                                                                    "minute": {
+                                                                        "enum": [
+                                                                            "0",
+                                                                            "1",
+                                                                            "2",
+                                                                            "3",
+                                                                            "4",
+                                                                            "5",
+                                                                            "6",
+                                                                            "7",
+                                                                            "8",
+                                                                            "9",
+                                                                            "10",
+                                                                            "11",
+                                                                            "12",
+                                                                            "13",
+                                                                            "14",
+                                                                            "15",
+                                                                            "16",
+                                                                            "17",
+                                                                            "18",
+                                                                            "19",
+                                                                            "20",
+                                                                            "21",
+                                                                            "22",
+                                                                            "23",
+                                                                            "24",
+                                                                            "25",
+                                                                            "26",
+                                                                            "27",
+                                                                            "28",
+                                                                            "29",
+                                                                            "30",
+                                                                            "31",
+                                                                            "32",
+                                                                            "33",
+                                                                            "34",
+                                                                            "35",
+                                                                            "36",
+                                                                            "37",
+                                                                            "38",
+                                                                            "39",
+                                                                            "40",
+                                                                            "41",
+                                                                            "42",
+                                                                            "43",
+                                                                            "44",
+                                                                            "45",
+                                                                            "46",
+                                                                            "47",
+                                                                            "48",
+                                                                            "49",
+                                                                            "50",
+                                                                            "51",
+                                                                            "52",
+                                                                            "53",
+                                                                            "54",
+                                                                            "55",
+                                                                            "56",
+                                                                            "57",
+                                                                            "58",
+                                                                            "59"
+                                                                        ],
+                                                                        "type": "string",
+                                                                        "nullable": true
+                                                                    }
+                                                                },
+                                                                "nullable": true
+                                                            }
+                                                        },
                                                         "nullable": true
                                                     },
                                                     "paramEmail": {
@@ -332,8 +616,16 @@
                                                     "paramNumber",
                                                     "paramNumberDivisibleBy",
                                                     "paramInRange",
-                                                    "paramDate",
-                                                    "paramDateTime",
+                                                    "paramDateSingleText",
+                                                    "paramDateChoice[year]",
+                                                    "paramDateChoice[month]",
+                                                    "paramDateChoice[day]",
+                                                    "paramDateTimeSingleText",
+                                                    "paramDateTimeChoice[date][year]",
+                                                    "paramDateTimeChoice[date][month]",
+                                                    "paramDateTimeChoice[date][day]",
+                                                    "paramDateTimeChoice[time][hour]",
+                                                    "paramDateTimeChoice[time][minute]",
                                                     "paramEmail",
                                                     "paramChoice",
                                                     "paramChoiceWithLoader",
@@ -400,14 +692,254 @@
                                                         "type": "string",
                                                         "nullable": true
                                                     },
-                                                    "paramDate": {
+                                                    "paramDateSingleText": {
                                                         "type": "string",
                                                         "format": "date",
                                                         "nullable": true
                                                     },
-                                                    "paramDateTime": {
+                                                    "paramDateChoice[year]": {
+                                                        "enum": [
+                                                            "2016",
+                                                            "2017",
+                                                            "2018",
+                                                            "2019",
+                                                            "2020",
+                                                            "2021",
+                                                            "2022",
+                                                            "2023",
+                                                            "2024",
+                                                            "2025",
+                                                            "2026"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateChoice[month]": {
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateChoice[day]": {
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23",
+                                                            "24",
+                                                            "25",
+                                                            "26",
+                                                            "27",
+                                                            "28",
+                                                            "29",
+                                                            "30",
+                                                            "31"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateTimeSingleText": {
                                                         "type": "string",
                                                         "format": "date-time",
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateTimeChoice[date][year]": {
+                                                        "enum": [
+                                                            "2015",
+                                                            "2016",
+                                                            "2017",
+                                                            "2018",
+                                                            "2019",
+                                                            "2020",
+                                                            "2021",
+                                                            "2022",
+                                                            "2023",
+                                                            "2024",
+                                                            "2025"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateTimeChoice[date][month]": {
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateTimeChoice[date][day]": {
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23",
+                                                            "24",
+                                                            "25",
+                                                            "26",
+                                                            "27",
+                                                            "28",
+                                                            "29",
+                                                            "30",
+                                                            "31"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateTimeChoice[time][hour]": {
+                                                        "enum": [
+                                                            "0",
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramDateTimeChoice[time][minute]": {
+                                                        "enum": [
+                                                            "0",
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23",
+                                                            "24",
+                                                            "25",
+                                                            "26",
+                                                            "27",
+                                                            "28",
+                                                            "29",
+                                                            "30",
+                                                            "31",
+                                                            "32",
+                                                            "33",
+                                                            "34",
+                                                            "35",
+                                                            "36",
+                                                            "37",
+                                                            "38",
+                                                            "39",
+                                                            "40",
+                                                            "41",
+                                                            "42",
+                                                            "43",
+                                                            "44",
+                                                            "45",
+                                                            "46",
+                                                            "47",
+                                                            "48",
+                                                            "49",
+                                                            "50",
+                                                            "51",
+                                                            "52",
+                                                            "53",
+                                                            "54",
+                                                            "55",
+                                                            "56",
+                                                            "57",
+                                                            "58",
+                                                            "59"
+                                                        ],
+                                                        "type": "string",
                                                         "nullable": true
                                                     },
                                                     "paramEmail": {
@@ -887,7 +1419,7 @@
                         "required": true
                     },
                     {
-                        "name": "innerForm[paramDate]",
+                        "name": "innerForm[paramDateSingleText]",
                         "in": "query",
                         "schema": {
                             "type": "string",
@@ -897,12 +1429,11 @@
                         "required": true
                     },
                     {
-                        "name": "innerForm[paramDateTime][date][year]",
+                        "name": "innerForm[paramDateChoice][year]",
                         "in": "query",
                         "schema": {
                             "type": "string",
                             "enum": [
-                                "2015",
                                 "2016",
                                 "2017",
                                 "2018",
@@ -912,14 +1443,15 @@
                                 "2022",
                                 "2023",
                                 "2024",
-                                "2025"
+                                "2025",
+                                "2026"
                             ],
                             "nullable": true
                         },
                         "required": true
                     },
                     {
-                        "name": "innerForm[paramDateTime][date][month]",
+                        "name": "innerForm[paramDateChoice][month]",
                         "in": "query",
                         "schema": {
                             "type": "string",
@@ -942,7 +1474,7 @@
                         "required": true
                     },
                     {
-                        "name": "innerForm[paramDateTime][date][day]",
+                        "name": "innerForm[paramDateChoice][day]",
                         "in": "query",
                         "schema": {
                             "type": "string",
@@ -984,7 +1516,104 @@
                         "required": true
                     },
                     {
-                        "name": "innerForm[paramDateTime][time][hour]",
+                        "name": "innerForm[paramDateTimeSingleText]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDateTimeChoice][date][year]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "2015",
+                                "2016",
+                                "2017",
+                                "2018",
+                                "2019",
+                                "2020",
+                                "2021",
+                                "2022",
+                                "2023",
+                                "2024",
+                                "2025"
+                            ],
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDateTimeChoice][date][month]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10",
+                                "11",
+                                "12"
+                            ],
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDateTimeChoice][date][day]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10",
+                                "11",
+                                "12",
+                                "13",
+                                "14",
+                                "15",
+                                "16",
+                                "17",
+                                "18",
+                                "19",
+                                "20",
+                                "21",
+                                "22",
+                                "23",
+                                "24",
+                                "25",
+                                "26",
+                                "27",
+                                "28",
+                                "29",
+                                "30",
+                                "31"
+                            ],
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDateTimeChoice][time][hour]",
                         "in": "query",
                         "schema": {
                             "type": "string",
@@ -1019,7 +1648,7 @@
                         "required": true
                     },
                     {
-                        "name": "innerForm[paramDateTime][time][minute]",
+                        "name": "innerForm[paramDateTimeChoice][time][minute]",
                         "in": "query",
                         "schema": {
                             "type": "string",
@@ -6368,7 +6997,7 @@
                                                                 }
                                                             }
                                                         },
-                                                        "paramDate": {
+                                                        "paramDateSingleText": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -6379,7 +7008,67 @@
                                                                 }
                                                             }
                                                         },
-                                                        "paramDateTime": {
+                                                        "paramDateChoice": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "year": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "month": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "day": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramDateTimeSingleText": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramDateTimeChoice": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -6820,15 +7509,297 @@
                                         "minimum": -20,
                                         "maximum": -4
                                     },
-                                    "paramDate": {
+                                    "paramDateSingleText": {
                                         "type": "string",
                                         "format": "date",
                                         "nullable": true
                                     },
-                                    "paramDateTime": {
+                                    "paramDateChoice": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "year": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "2016",
+                                                    "2017",
+                                                    "2018",
+                                                    "2019",
+                                                    "2020",
+                                                    "2021",
+                                                    "2022",
+                                                    "2023",
+                                                    "2024",
+                                                    "2025",
+                                                    "2026"
+                                                ],
+                                                "nullable": true
+                                            },
+                                            "month": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "1",
+                                                    "2",
+                                                    "3",
+                                                    "4",
+                                                    "5",
+                                                    "6",
+                                                    "7",
+                                                    "8",
+                                                    "9",
+                                                    "10",
+                                                    "11",
+                                                    "12"
+                                                ],
+                                                "nullable": true
+                                            },
+                                            "day": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "1",
+                                                    "2",
+                                                    "3",
+                                                    "4",
+                                                    "5",
+                                                    "6",
+                                                    "7",
+                                                    "8",
+                                                    "9",
+                                                    "10",
+                                                    "11",
+                                                    "12",
+                                                    "13",
+                                                    "14",
+                                                    "15",
+                                                    "16",
+                                                    "17",
+                                                    "18",
+                                                    "19",
+                                                    "20",
+                                                    "21",
+                                                    "22",
+                                                    "23",
+                                                    "24",
+                                                    "25",
+                                                    "26",
+                                                    "27",
+                                                    "28",
+                                                    "29",
+                                                    "30",
+                                                    "31"
+                                                ],
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "year",
+                                            "month",
+                                            "day"
+                                        ]
+                                    },
+                                    "paramDateTimeSingleText": {
                                         "type": "string",
                                         "format": "date-time",
                                         "nullable": true
+                                    },
+                                    "paramDateTimeChoice": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "date": {
+                                                "type": "object",
+                                                "nullable": true,
+                                                "properties": {
+                                                    "year": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "2015",
+                                                            "2016",
+                                                            "2017",
+                                                            "2018",
+                                                            "2019",
+                                                            "2020",
+                                                            "2021",
+                                                            "2022",
+                                                            "2023",
+                                                            "2024",
+                                                            "2025"
+                                                        ],
+                                                        "nullable": true
+                                                    },
+                                                    "month": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12"
+                                                        ],
+                                                        "nullable": true
+                                                    },
+                                                    "day": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23",
+                                                            "24",
+                                                            "25",
+                                                            "26",
+                                                            "27",
+                                                            "28",
+                                                            "29",
+                                                            "30",
+                                                            "31"
+                                                        ],
+                                                        "nullable": true
+                                                    }
+                                                },
+                                                "required": [
+                                                    "year",
+                                                    "month",
+                                                    "day"
+                                                ]
+                                            },
+                                            "time": {
+                                                "type": "object",
+                                                "nullable": true,
+                                                "properties": {
+                                                    "hour": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "0",
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23"
+                                                        ],
+                                                        "nullable": true
+                                                    },
+                                                    "minute": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "0",
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23",
+                                                            "24",
+                                                            "25",
+                                                            "26",
+                                                            "27",
+                                                            "28",
+                                                            "29",
+                                                            "30",
+                                                            "31",
+                                                            "32",
+                                                            "33",
+                                                            "34",
+                                                            "35",
+                                                            "36",
+                                                            "37",
+                                                            "38",
+                                                            "39",
+                                                            "40",
+                                                            "41",
+                                                            "42",
+                                                            "43",
+                                                            "44",
+                                                            "45",
+                                                            "46",
+                                                            "47",
+                                                            "48",
+                                                            "49",
+                                                            "50",
+                                                            "51",
+                                                            "52",
+                                                            "53",
+                                                            "54",
+                                                            "55",
+                                                            "56",
+                                                            "57",
+                                                            "58",
+                                                            "59"
+                                                        ],
+                                                        "nullable": true
+                                                    }
+                                                },
+                                                "required": [
+                                                    "hour",
+                                                    "minute"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "date",
+                                            "time"
+                                        ]
                                     },
                                     "paramEmail": {
                                         "type": "string",
@@ -7004,8 +7975,10 @@
                                     "paramNumber",
                                     "paramNumberDivisibleBy",
                                     "paramInRange",
-                                    "paramDate",
-                                    "paramDateTime",
+                                    "paramDateSingleText",
+                                    "paramDateChoice",
+                                    "paramDateTimeSingleText",
+                                    "paramDateTimeChoice",
                                     "paramEmail",
                                     "paramChoice",
                                     "paramChoiceWithLoader",
@@ -7074,14 +8047,254 @@
                                         "minimum": -20,
                                         "maximum": -4
                                     },
-                                    "paramDate": {
+                                    "paramDateSingleText": {
                                         "type": "string",
                                         "format": "date",
                                         "nullable": true
                                     },
-                                    "paramDateTime": {
+                                    "paramDateChoice[year]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "2016",
+                                            "2017",
+                                            "2018",
+                                            "2019",
+                                            "2020",
+                                            "2021",
+                                            "2022",
+                                            "2023",
+                                            "2024",
+                                            "2025",
+                                            "2026"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateChoice[month]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateChoice[day]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15",
+                                            "16",
+                                            "17",
+                                            "18",
+                                            "19",
+                                            "20",
+                                            "21",
+                                            "22",
+                                            "23",
+                                            "24",
+                                            "25",
+                                            "26",
+                                            "27",
+                                            "28",
+                                            "29",
+                                            "30",
+                                            "31"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeSingleText": {
                                         "type": "string",
                                         "format": "date-time",
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[date][year]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "2015",
+                                            "2016",
+                                            "2017",
+                                            "2018",
+                                            "2019",
+                                            "2020",
+                                            "2021",
+                                            "2022",
+                                            "2023",
+                                            "2024",
+                                            "2025"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[date][month]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[date][day]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15",
+                                            "16",
+                                            "17",
+                                            "18",
+                                            "19",
+                                            "20",
+                                            "21",
+                                            "22",
+                                            "23",
+                                            "24",
+                                            "25",
+                                            "26",
+                                            "27",
+                                            "28",
+                                            "29",
+                                            "30",
+                                            "31"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[time][hour]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "0",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15",
+                                            "16",
+                                            "17",
+                                            "18",
+                                            "19",
+                                            "20",
+                                            "21",
+                                            "22",
+                                            "23"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[time][minute]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "0",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15",
+                                            "16",
+                                            "17",
+                                            "18",
+                                            "19",
+                                            "20",
+                                            "21",
+                                            "22",
+                                            "23",
+                                            "24",
+                                            "25",
+                                            "26",
+                                            "27",
+                                            "28",
+                                            "29",
+                                            "30",
+                                            "31",
+                                            "32",
+                                            "33",
+                                            "34",
+                                            "35",
+                                            "36",
+                                            "37",
+                                            "38",
+                                            "39",
+                                            "40",
+                                            "41",
+                                            "42",
+                                            "43",
+                                            "44",
+                                            "45",
+                                            "46",
+                                            "47",
+                                            "48",
+                                            "49",
+                                            "50",
+                                            "51",
+                                            "52",
+                                            "53",
+                                            "54",
+                                            "55",
+                                            "56",
+                                            "57",
+                                            "58",
+                                            "59"
+                                        ],
                                         "nullable": true
                                     },
                                     "paramEmail": {
@@ -7219,8 +8432,16 @@
                                     "paramNumber",
                                     "paramNumberDivisibleBy",
                                     "paramInRange",
-                                    "paramDate",
-                                    "paramDateTime",
+                                    "paramDateSingleText",
+                                    "paramDateChoice[year]",
+                                    "paramDateChoice[month]",
+                                    "paramDateChoice[day]",
+                                    "paramDateTimeSingleText",
+                                    "paramDateTimeChoice[date][year]",
+                                    "paramDateTimeChoice[date][month]",
+                                    "paramDateTimeChoice[date][day]",
+                                    "paramDateTimeChoice[time][hour]",
+                                    "paramDateTimeChoice[time][minute]",
                                     "paramEmail",
                                     "paramChoice",
                                     "paramChoiceWithLoader",
@@ -7390,7 +8611,7 @@
                                                                 }
                                                             }
                                                         },
-                                                        "paramDate": {
+                                                        "paramDateSingleText": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -7401,7 +8622,67 @@
                                                                 }
                                                             }
                                                         },
-                                                        "paramDateTime": {
+                                                        "paramDateChoice": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "year": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "month": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "day": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramDateTimeSingleText": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramDateTimeChoice": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -7842,15 +9123,279 @@
                                         "minimum": -20,
                                         "maximum": -4
                                     },
-                                    "paramDate": {
+                                    "paramDateSingleText": {
                                         "type": "string",
                                         "format": "date",
                                         "nullable": true
                                     },
-                                    "paramDateTime": {
+                                    "paramDateChoice": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "year": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "2016",
+                                                    "2017",
+                                                    "2018",
+                                                    "2019",
+                                                    "2020",
+                                                    "2021",
+                                                    "2022",
+                                                    "2023",
+                                                    "2024",
+                                                    "2025",
+                                                    "2026"
+                                                ],
+                                                "nullable": true
+                                            },
+                                            "month": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "1",
+                                                    "2",
+                                                    "3",
+                                                    "4",
+                                                    "5",
+                                                    "6",
+                                                    "7",
+                                                    "8",
+                                                    "9",
+                                                    "10",
+                                                    "11",
+                                                    "12"
+                                                ],
+                                                "nullable": true
+                                            },
+                                            "day": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "1",
+                                                    "2",
+                                                    "3",
+                                                    "4",
+                                                    "5",
+                                                    "6",
+                                                    "7",
+                                                    "8",
+                                                    "9",
+                                                    "10",
+                                                    "11",
+                                                    "12",
+                                                    "13",
+                                                    "14",
+                                                    "15",
+                                                    "16",
+                                                    "17",
+                                                    "18",
+                                                    "19",
+                                                    "20",
+                                                    "21",
+                                                    "22",
+                                                    "23",
+                                                    "24",
+                                                    "25",
+                                                    "26",
+                                                    "27",
+                                                    "28",
+                                                    "29",
+                                                    "30",
+                                                    "31"
+                                                ],
+                                                "nullable": true
+                                            }
+                                        }
+                                    },
+                                    "paramDateTimeSingleText": {
                                         "type": "string",
                                         "format": "date-time",
                                         "nullable": true
+                                    },
+                                    "paramDateTimeChoice": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "date": {
+                                                "type": "object",
+                                                "nullable": true,
+                                                "properties": {
+                                                    "year": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "2015",
+                                                            "2016",
+                                                            "2017",
+                                                            "2018",
+                                                            "2019",
+                                                            "2020",
+                                                            "2021",
+                                                            "2022",
+                                                            "2023",
+                                                            "2024",
+                                                            "2025"
+                                                        ],
+                                                        "nullable": true
+                                                    },
+                                                    "month": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12"
+                                                        ],
+                                                        "nullable": true
+                                                    },
+                                                    "day": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23",
+                                                            "24",
+                                                            "25",
+                                                            "26",
+                                                            "27",
+                                                            "28",
+                                                            "29",
+                                                            "30",
+                                                            "31"
+                                                        ],
+                                                        "nullable": true
+                                                    }
+                                                }
+                                            },
+                                            "time": {
+                                                "type": "object",
+                                                "nullable": true,
+                                                "properties": {
+                                                    "hour": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "0",
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23"
+                                                        ],
+                                                        "nullable": true
+                                                    },
+                                                    "minute": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "0",
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15",
+                                                            "16",
+                                                            "17",
+                                                            "18",
+                                                            "19",
+                                                            "20",
+                                                            "21",
+                                                            "22",
+                                                            "23",
+                                                            "24",
+                                                            "25",
+                                                            "26",
+                                                            "27",
+                                                            "28",
+                                                            "29",
+                                                            "30",
+                                                            "31",
+                                                            "32",
+                                                            "33",
+                                                            "34",
+                                                            "35",
+                                                            "36",
+                                                            "37",
+                                                            "38",
+                                                            "39",
+                                                            "40",
+                                                            "41",
+                                                            "42",
+                                                            "43",
+                                                            "44",
+                                                            "45",
+                                                            "46",
+                                                            "47",
+                                                            "48",
+                                                            "49",
+                                                            "50",
+                                                            "51",
+                                                            "52",
+                                                            "53",
+                                                            "54",
+                                                            "55",
+                                                            "56",
+                                                            "57",
+                                                            "58",
+                                                            "59"
+                                                        ],
+                                                        "nullable": true
+                                                    }
+                                                }
+                                            }
+                                        }
                                     },
                                     "paramEmail": {
                                         "type": "string",
@@ -8048,14 +9593,254 @@
                                         "minimum": -20,
                                         "maximum": -4
                                     },
-                                    "paramDate": {
+                                    "paramDateSingleText": {
                                         "type": "string",
                                         "format": "date",
                                         "nullable": true
                                     },
-                                    "paramDateTime": {
+                                    "paramDateChoice[year]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "2016",
+                                            "2017",
+                                            "2018",
+                                            "2019",
+                                            "2020",
+                                            "2021",
+                                            "2022",
+                                            "2023",
+                                            "2024",
+                                            "2025",
+                                            "2026"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateChoice[month]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateChoice[day]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15",
+                                            "16",
+                                            "17",
+                                            "18",
+                                            "19",
+                                            "20",
+                                            "21",
+                                            "22",
+                                            "23",
+                                            "24",
+                                            "25",
+                                            "26",
+                                            "27",
+                                            "28",
+                                            "29",
+                                            "30",
+                                            "31"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeSingleText": {
                                         "type": "string",
                                         "format": "date-time",
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[date][year]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "2015",
+                                            "2016",
+                                            "2017",
+                                            "2018",
+                                            "2019",
+                                            "2020",
+                                            "2021",
+                                            "2022",
+                                            "2023",
+                                            "2024",
+                                            "2025"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[date][month]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[date][day]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15",
+                                            "16",
+                                            "17",
+                                            "18",
+                                            "19",
+                                            "20",
+                                            "21",
+                                            "22",
+                                            "23",
+                                            "24",
+                                            "25",
+                                            "26",
+                                            "27",
+                                            "28",
+                                            "29",
+                                            "30",
+                                            "31"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[time][hour]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "0",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15",
+                                            "16",
+                                            "17",
+                                            "18",
+                                            "19",
+                                            "20",
+                                            "21",
+                                            "22",
+                                            "23"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramDateTimeChoice[time][minute]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "0",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15",
+                                            "16",
+                                            "17",
+                                            "18",
+                                            "19",
+                                            "20",
+                                            "21",
+                                            "22",
+                                            "23",
+                                            "24",
+                                            "25",
+                                            "26",
+                                            "27",
+                                            "28",
+                                            "29",
+                                            "30",
+                                            "31",
+                                            "32",
+                                            "33",
+                                            "34",
+                                            "35",
+                                            "36",
+                                            "37",
+                                            "38",
+                                            "39",
+                                            "40",
+                                            "41",
+                                            "42",
+                                            "43",
+                                            "44",
+                                            "45",
+                                            "46",
+                                            "47",
+                                            "48",
+                                            "49",
+                                            "50",
+                                            "51",
+                                            "52",
+                                            "53",
+                                            "54",
+                                            "55",
+                                            "56",
+                                            "57",
+                                            "58",
+                                            "59"
+                                        ],
                                         "nullable": true
                                     },
                                     "paramEmail": {

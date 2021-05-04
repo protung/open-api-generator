@@ -63,11 +63,17 @@ final class TestType extends AbstractType
             )
             ->add('paramInRange', RangeType::class, ['constraints' => [new Range(['min' => -20, 'max' => -4])]])
             ->add(
-                'paramDate',
+                'paramDateSingleText',
                 DateType::class,
                 ['widget' => 'single_text']
             )
-            ->add('paramDateTime', DateTimeType::class, ['years' => range(2015, 2025)])
+            ->add(
+                'paramDateChoice',
+                DateType::class,
+                ['widget' => 'choice']
+            )
+            ->add('paramDateTimeSingleText', DateTimeType::class, ['widget' => 'single_text', 'years' => range(2015, 2025)])
+            ->add('paramDateTimeChoice', DateTimeType::class, ['years' => range(2015, 2025)])
             ->add('paramEmail', EmailType::class, ['constraints' => [new Unique()]])
             ->add('paramChoice', ChoiceType::class, ['choices' => ['a', 'b']])
             ->add('paramChoiceWithLoader', ChoiceType::class, ['choice_loader' => new CallbackChoiceLoader(static fn (): array => [1, 2, 3])])
