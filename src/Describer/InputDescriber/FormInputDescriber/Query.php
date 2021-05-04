@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Describer\InputDescriber\FormInputDescriber;
 
 use cebe\openapi\spec\Parameter;
+use cebe\openapi\spec\Schema;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Speicher210\OpenApiGenerator\Describer\SpecificationDescriber;
@@ -64,7 +65,7 @@ final class Query
             $parameter->description = $description;
         }
 
-        $parameter->schema = $this->formDescriber->addDeepSchema($form, new NameResolver\FlatArray());
+        $parameter->schema = $this->formDescriber->describeSchema(new Schema([]), $form, new NameResolver\FlatArray());
 
         $parameter->required = $formConfig->getRequired();
 

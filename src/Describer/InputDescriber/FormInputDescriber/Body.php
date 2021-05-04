@@ -40,11 +40,11 @@ final class Body
      */
     public function describe(FormInterface $form): array
     {
-        $jsonSchema = $this->formDescriber->addDeepSchema($form, new NameResolver\FormName());
+        $jsonSchema = $this->formDescriber->describeSchema(new Schema([]), $form, new NameResolver\FormName());
 
         $httpMethod = $form->getRoot()->getConfig()->getMethod();
 
-        $formDataSchema = $this->formDescriber->addFlattenSchema($form, new NameResolver\FlatArray());
+        $formDataSchema = $this->formDescriber->describeSchema(new Schema([]), $form, new NameResolver\FlatArray());
 
         $content = [];
 
