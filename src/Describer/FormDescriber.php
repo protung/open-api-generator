@@ -31,25 +31,38 @@ final class FormDescriber
     public function addDeepSchema(FormInterface $form, NameResolver $nameResolver): Schema
     {
         $schema = $this->createSchema($form);
-        $this->handleRequiredForParent($schema, $form, $nameResolver);
-        foreach ($form->all() as $child) {
-            if ($child->count() === 0) {
-                $this->addParameterToSchema($schema, $nameResolver, $child);
-            } else {
-                $childSchema = $this->addDeepSchema($child, $nameResolver);
 
-                $name                    = $nameResolver->getPropertyName($child);
-                $schemaProperties        = $schema->properties;
-                $schemaProperties[$name] = $childSchema;
-                $schema->properties      = $schemaProperties;
+        return $this->addParametersToDeepSchema($schema, $form, $nameResolver);
+    }
 
-                $this->handleRequiredProperty($schema, $child, $nameResolver);
+    public function addParametersToDeepSchema(Schema $schema, FormInterface $form, NameResolver $nameResolver): Schema
+    {
+        if ($form->count() === 0) {
+            $this->describeProperty($schema, $form);
+        } else {
+            $schema->type = Type::OBJECT;
+
+            foreach ($form->all() as $child) {
+                if ($child->count() === 0) {
+                    $this->addParameterToSchema($schema, $nameResolver, $child);
+                } else {
+                    $childSchema = $this->addDeepSchema($child, $nameResolver);
+
+                    $name                    = $nameResolver->getPropertyName($child);
+                    $schemaProperties        = $schema->properties;
+                    $schemaProperties[$name] = $childSchema;
+                    $schema->properties      = $schemaProperties;
+
+                    $this->handleRequiredProperty($schema, $child, $nameResolver);
+                }
+            }
+
+            if ($schema->required === []) {
+                unset($schema->required);
             }
         }
 
-        if ($schema->required === []) {
-            unset($schema->required);
-        }
+        $this->handleRequiredForParent($schema, $form, $nameResolver);
 
         return $schema;
     }
@@ -105,10 +118,15 @@ final class FormDescriber
     {
         $schema = new Schema([]);
 
-        $this->propertyDescriber->describe($schema, $form, $this);
-        $this->requirementsDescriber->describe($schema, $form);
+        $this->describeProperty($schema, $form);
 
         return $schema;
+    }
+
+    private function describeProperty(Schema $schema, FormInterface $form): void
+    {
+        $this->propertyDescriber->describe($schema, $form, $this);
+        $this->requirementsDescriber->describe($schema, $form);
     }
 
     private function handleRequiredForParent(Schema $schema, FormInterface $form, NameResolver $nameResolver): void
