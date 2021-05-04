@@ -35,7 +35,7 @@ final class CollectionPropertyDescriber implements PropertyDescriber
         );
 
         $schema->type  = Type::ARRAY;
-        $schema->items = $formDescriber->describeSchema(new Schema([]), $subForm, new FormName());
+        $schema->items = $formDescriber->addDeepSchema($subForm, new FormName());
     }
 
     public function supports(FormInterface $form): bool
