@@ -22,7 +22,7 @@ final class SymfonyFormPropertyDescriber
         $this->propertyDescribers = $propertyDescribers;
     }
 
-    public function describe(Schema $schema, string $blockPrefix, FormInterface $form, FormDescriber $formDescriber): void
+    public function describe(Schema $schema, FormInterface $form, FormDescriber $formDescriber): void
     {
         foreach ($this->propertyDescribers as $propertyDescriber) {
             if ($propertyDescriber->supports($form)) {
@@ -33,7 +33,7 @@ final class SymfonyFormPropertyDescriber
             }
         }
 
-        throw new RuntimeException('No property describer supports "' . $blockPrefix . '".');
+        throw new RuntimeException('No property describer supports "' . $form->getConfig()->getType()->getBlockPrefix() . '".');
     }
 
     private function describeHelp(Schema $schema, FormInterface $form): void

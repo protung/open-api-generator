@@ -51,13 +51,19 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
                 $schema->type = Type::NUMBER;
                 break;
             case 'date':
-                $schema->type   = Type::STRING;
-                $schema->format = 'date';
+                if ($formConfig->getOption('widget') === 'single_text') {
+                    $schema->type   = Type::STRING;
+                    $schema->format = 'date';
+                }
+
                 break;
             case 'datetime':
             case 'date_time':
-                $schema->type   = Type::STRING;
-                $schema->format = 'date-time';
+                if ($formConfig->getOption('widget') === 'single_text') {
+                    $schema->type   = Type::STRING;
+                    $schema->format = 'date-time';
+                }
+
                 break;
             case 'text':
             case 'hidden':
