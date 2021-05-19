@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Count;
@@ -74,6 +75,8 @@ final class TestType extends AbstractType
             )
             ->add('paramDateTimeSingleText', DateTimeType::class, ['widget' => 'single_text', 'years' => range(2015, 2025)])
             ->add('paramDateTimeChoice', DateTimeType::class, ['years' => range(2015, 2025)])
+            ->add('paramTimeSingleText', TimeType::class, ['widget' => 'single_text'])
+            ->add('paramTimeChoice', TimeType::class, ['widget' => 'choice', 'hours' => range(0, 15), 'minutes' => [10, 20, 50]])
             ->add('paramEmail', EmailType::class, ['constraints' => [new Unique()]])
             ->add('paramChoice', ChoiceType::class, ['choices' => ['a', 'b']])
             ->add('paramChoiceWithLoader', ChoiceType::class, ['choice_loader' => new CallbackChoiceLoader(static fn (): array => [1, 2, 3])])

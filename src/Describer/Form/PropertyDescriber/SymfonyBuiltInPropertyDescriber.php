@@ -65,6 +65,12 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
                 }
 
                 break;
+            case 'time':
+                if ($formConfig->getOption('widget') === 'single_text') {
+                    $schema->type = Type::STRING;
+                }
+
+                break;
             case 'text':
             case 'hidden':
             case 'string':

@@ -82,6 +82,8 @@
                                                     "paramDateChoice",
                                                     "paramDateTimeSingleText",
                                                     "paramDateTimeChoice",
+                                                    "paramTimeSingleText",
+                                                    "paramTimeChoice",
                                                     "paramEmail",
                                                     "paramChoice",
                                                     "paramChoiceWithLoader",
@@ -438,6 +440,51 @@
                                                         },
                                                         "nullable": true
                                                     },
+                                                    "paramTimeSingleText": {
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramTimeChoice": {
+                                                        "required": [
+                                                            "hour",
+                                                            "minute"
+                                                        ],
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "hour": {
+                                                                "enum": [
+                                                                    "0",
+                                                                    "1",
+                                                                    "2",
+                                                                    "3",
+                                                                    "4",
+                                                                    "5",
+                                                                    "6",
+                                                                    "7",
+                                                                    "8",
+                                                                    "9",
+                                                                    "10",
+                                                                    "11",
+                                                                    "12",
+                                                                    "13",
+                                                                    "14",
+                                                                    "15"
+                                                                ],
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "minute": {
+                                                                "enum": [
+                                                                    "10",
+                                                                    "20",
+                                                                    "50"
+                                                                ],
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            }
+                                                        },
+                                                        "nullable": true
+                                                    },
                                                     "paramEmail": {
                                                         "uniqueItems": true,
                                                         "type": "string",
@@ -626,6 +673,9 @@
                                                     "paramDateTimeChoice[date][day]",
                                                     "paramDateTimeChoice[time][hour]",
                                                     "paramDateTimeChoice[time][minute]",
+                                                    "paramTimeSingleText",
+                                                    "paramTimeChoice[hour]",
+                                                    "paramTimeChoice[minute]",
                                                     "paramEmail",
                                                     "paramChoice",
                                                     "paramChoiceWithLoader",
@@ -938,6 +988,41 @@
                                                             "57",
                                                             "58",
                                                             "59"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramTimeSingleText": {
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramTimeChoice[hour]": {
+                                                        "enum": [
+                                                            "0",
+                                                            "1",
+                                                            "2",
+                                                            "3",
+                                                            "4",
+                                                            "5",
+                                                            "6",
+                                                            "7",
+                                                            "8",
+                                                            "9",
+                                                            "10",
+                                                            "11",
+                                                            "12",
+                                                            "13",
+                                                            "14",
+                                                            "15"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramTimeChoice[minute]": {
+                                                        "enum": [
+                                                            "10",
+                                                            "20",
+                                                            "50"
                                                         ],
                                                         "type": "string",
                                                         "nullable": true
@@ -1713,6 +1798,56 @@
                                 "57",
                                 "58",
                                 "59"
+                            ],
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramTimeSingleText]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramTimeChoice][hour]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "0",
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10",
+                                "11",
+                                "12",
+                                "13",
+                                "14",
+                                "15"
+                            ],
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramTimeChoice][minute]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "10",
+                                "20",
+                                "50"
                             ],
                             "nullable": true
                         },
@@ -7171,6 +7306,55 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramTimeSingleText": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramTimeChoice": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "hour": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "minute": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramEmail": {
                                                             "type": "object",
                                                             "properties": {
@@ -7801,6 +7985,51 @@
                                             "time"
                                         ]
                                     },
+                                    "paramTimeSingleText": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramTimeChoice": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "hour": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "0",
+                                                    "1",
+                                                    "2",
+                                                    "3",
+                                                    "4",
+                                                    "5",
+                                                    "6",
+                                                    "7",
+                                                    "8",
+                                                    "9",
+                                                    "10",
+                                                    "11",
+                                                    "12",
+                                                    "13",
+                                                    "14",
+                                                    "15"
+                                                ],
+                                                "nullable": true
+                                            },
+                                            "minute": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "10",
+                                                    "20",
+                                                    "50"
+                                                ],
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "hour",
+                                            "minute"
+                                        ]
+                                    },
                                     "paramEmail": {
                                         "type": "string",
                                         "format": "email",
@@ -7979,6 +8208,8 @@
                                     "paramDateChoice",
                                     "paramDateTimeSingleText",
                                     "paramDateTimeChoice",
+                                    "paramTimeSingleText",
+                                    "paramTimeChoice",
                                     "paramEmail",
                                     "paramChoice",
                                     "paramChoiceWithLoader",
@@ -8297,6 +8528,41 @@
                                         ],
                                         "nullable": true
                                     },
+                                    "paramTimeSingleText": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramTimeChoice[hour]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "0",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramTimeChoice[minute]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "10",
+                                            "20",
+                                            "50"
+                                        ],
+                                        "nullable": true
+                                    },
                                     "paramEmail": {
                                         "type": "string",
                                         "format": "email",
@@ -8442,6 +8708,9 @@
                                     "paramDateTimeChoice[date][day]",
                                     "paramDateTimeChoice[time][hour]",
                                     "paramDateTimeChoice[time][minute]",
+                                    "paramTimeSingleText",
+                                    "paramTimeChoice[hour]",
+                                    "paramTimeChoice[minute]",
                                     "paramEmail",
                                     "paramChoice",
                                     "paramChoiceWithLoader",
@@ -8777,6 +9046,55 @@
                                                                                                 }
                                                                                             }
                                                                                         }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramTimeSingleText": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramTimeChoice": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "children": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "hour": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "minute": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "errors": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
                                                                                     }
                                                                                 }
                                                                             }
@@ -9397,6 +9715,47 @@
                                             }
                                         }
                                     },
+                                    "paramTimeSingleText": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramTimeChoice": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "hour": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "0",
+                                                    "1",
+                                                    "2",
+                                                    "3",
+                                                    "4",
+                                                    "5",
+                                                    "6",
+                                                    "7",
+                                                    "8",
+                                                    "9",
+                                                    "10",
+                                                    "11",
+                                                    "12",
+                                                    "13",
+                                                    "14",
+                                                    "15"
+                                                ],
+                                                "nullable": true
+                                            },
+                                            "minute": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "10",
+                                                    "20",
+                                                    "50"
+                                                ],
+                                                "nullable": true
+                                            }
+                                        }
+                                    },
                                     "paramEmail": {
                                         "type": "string",
                                         "format": "email",
@@ -9840,6 +10199,41 @@
                                             "57",
                                             "58",
                                             "59"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramTimeSingleText": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramTimeChoice[hour]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "0",
+                                            "1",
+                                            "2",
+                                            "3",
+                                            "4",
+                                            "5",
+                                            "6",
+                                            "7",
+                                            "8",
+                                            "9",
+                                            "10",
+                                            "11",
+                                            "12",
+                                            "13",
+                                            "14",
+                                            "15"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramTimeChoice[minute]": {
+                                        "type": "string",
+                                        "enum": [
+                                            "10",
+                                            "20",
+                                            "50"
                                         ],
                                         "nullable": true
                                     },
