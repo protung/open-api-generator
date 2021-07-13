@@ -29,6 +29,7 @@ final class CollectionPropertyDescriber implements PropertyDescriber
         $subForm = $this->formFactory->create(
             new FormDefinition(
                 $formConfig->getOption('entry_type'),
+                [],
                 (array) $formConfig->getOption('validation_groups')
             ),
             $form->getRoot()->getConfig()->getMethod()

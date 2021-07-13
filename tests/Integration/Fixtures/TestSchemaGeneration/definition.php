@@ -547,6 +547,17 @@ return new Model\Specification(
             ],
             [],
         ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_form_definition_options',
+            'Test',
+            'Test forms with definition options',
+            null,
+            [
+                FormInput::inQuery(new FormDefinition(TestSchemaGeneration\Form\TestFormDefinitionOptions::class, ['form_option' => 42])),
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestFormDefinitionOptions::class, ['form_option' => 42])),
+            ],
+            [],
+        ),
     ],
     [
         Input\HeaderInput::withName('X-ALWAYS'),

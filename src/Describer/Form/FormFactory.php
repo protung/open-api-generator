@@ -8,6 +8,8 @@ use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 
+use function array_merge;
+
 final class FormFactory
 {
     private FormFactoryInterface $formFactory;
@@ -22,10 +24,13 @@ final class FormFactory
         return $this->formFactory->create(
             $formDefinition->formClass(),
             null,
-            [
-                'validation_groups' => $formDefinition->validationGroups(),
-                'method' => $httpMethod ?? 'POST', // POST is a default value from Symfony.
-            ]
+            array_merge(
+                $formDefinition->formOptions(),
+                [
+                    'validation_groups' => $formDefinition->validationGroups(),
+                    'method' => $httpMethod ?? 'POST', // POST is a default value from Symfony.
+                ]
+            )
         );
     }
 }

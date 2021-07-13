@@ -2481,6 +2481,190 @@
                 ]
             }
         },
+        "\/api\/test\/form-definition-options": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test forms with definition options",
+                "parameters": [
+                    {
+                        "name": "child",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "child": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "child"
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "child": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "child"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            },
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test forms with definition options",
+                "parameters": [
+                    {
+                        "name": "child",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "child": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "child"
+                                ]
+                            }
+                        },
+                        "application\/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "child": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "child"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
         "\/api\/test\/headers": {
             "get": {
                 "tags": [

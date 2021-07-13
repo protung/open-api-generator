@@ -55,4 +55,6 @@
     <route id="api_test_nullability" methods="GET|POST|PATCH" path="/api/test/nullability"/>
 
     <route id="api_test_required" methods="GET|POST|PATCH" path="/api/test/required"/>
+
+    <route id="api_test_form_definition_options" methods="GET|POST" path="/api/test/form-definition-options"/>
 </routes>

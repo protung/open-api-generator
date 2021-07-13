@@ -66,7 +66,7 @@ final class Response
     public static function for400WithForm(string $formType, array $validationGroups = []): self
     {
         return self::for400(
-            new FormErrorOutput(new FormDefinition($formType, $validationGroups))
+            new FormErrorOutput(new FormDefinition($formType, [], $validationGroups))
         );
     }
 
