@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Describer;
 
-use function explode;
-use function implode;
+use Psl\Str;
+
 use function nl2br;
 
 use const PHP_EOL;
@@ -21,8 +21,8 @@ final class SpecificationDescriber
             return $newText;
         }
 
-        $existingLines = explode('<br>' . PHP_EOL, $existingText);
+        $existingLines = Str\split($existingText, '<br>' . PHP_EOL);
 
-        return nl2br(implode(PHP_EOL, [...$existingLines, $newText]), false);
+        return nl2br(Str\join([...$existingLines, $newText], PHP_EOL), false);
     }
 }

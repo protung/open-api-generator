@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Only iterables can be unpacked, array\\<int, string\\>\\|false given.$#"
-			count: 1
-			path: src/Describer/SpecificationDescriber.php
-
-		-
 			message: "#^Variable property access on Symfony\\\\Component\\\\Validator\\\\Constraints\\\\Composite\\.$#"
 			count: 1
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
