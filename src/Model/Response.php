@@ -61,12 +61,12 @@ final class Response
 
     /**
      * @param class-string<FormTypeInterface> $formType
-     * @param string[]                        $validationGroups
+     * @param array<mixed>                    $formOptions
      */
-    public static function for400WithForm(string $formType, array $validationGroups = []): self
+    public static function for400WithForm(string $formType, array $formOptions = []): self
     {
         return self::for400(
-            new FormErrorOutput(new FormDefinition($formType, [], $validationGroups))
+            new FormErrorOutput(new FormDefinition($formType, $formOptions))
         );
     }
 

@@ -27,7 +27,6 @@ final class FormFactory
             array_merge(
                 $formDefinition->formOptions(),
                 [
-                    'validation_groups' => $formDefinition->validationGroups(),
                     'method' => $httpMethod ?? 'POST', // POST is a default value from Symfony.
                 ]
             )

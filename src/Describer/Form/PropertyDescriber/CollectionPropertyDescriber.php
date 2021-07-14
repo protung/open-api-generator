@@ -13,6 +13,8 @@ use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\ResolvedFormTypeInterface;
 
+use function array_merge;
+
 final class CollectionPropertyDescriber implements PropertyDescriber
 {
     private FormFactory $formFactory;
@@ -29,8 +31,12 @@ final class CollectionPropertyDescriber implements PropertyDescriber
         $subForm = $this->formFactory->create(
             new FormDefinition(
                 $formConfig->getOption('entry_type'),
-                [],
-                (array) $formConfig->getOption('validation_groups')
+                array_merge(
+                    [
+                        'validation_groups' => (array) $formConfig->getOption('validation_groups'),
+                    ],
+                    $formConfig->getOption('entry_options')
+                )
             ),
             $form->getRoot()->getConfig()->getMethod()
         );

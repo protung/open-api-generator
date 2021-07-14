@@ -17,19 +17,14 @@ final class FormDefinition
     /** @var array<mixed> */
     private array $formOptions;
 
-    /** @var array<string> */
-    private array $validationGroups;
-
     /**
      * @param class-string<FormTypeInterface> $formClass
      * @param array<mixed>                    $formOptions
-     * @param array<string>                   $validationGroups
      */
-    public function __construct(string $formClass, array $formOptions = [], array $validationGroups = [])
+    public function __construct(string $formClass, array $formOptions = [])
     {
-        $this->formClass        = $formClass;
-        $this->formOptions      = $formOptions;
-        $this->validationGroups = $validationGroups;
+        $this->formClass   = $formClass;
+        $this->formOptions = $formOptions;
     }
 
     /**
@@ -46,13 +41,5 @@ final class FormDefinition
     public function formOptions(): array
     {
         return $this->formOptions;
-    }
-
-    /**
-     * @return array<string>
-     */
-    public function validationGroups(): array
-    {
-        return $this->validationGroups;
     }
 }
