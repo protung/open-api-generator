@@ -12,15 +12,28 @@ final class ScalarOutput implements Output
 {
     private string $type;
 
+    private string $contentType;
+
     /** @var bool|float|int|string|null */
     private $example;
 
-    public function __construct(string $type)
+    private function __construct(string $type, string $contentType)
     {
         Assert::inArray($type, Type::SCALAR_TYPES);
 
-        $this->type    = $type;
-        $this->example = Type::example($type);
+        $this->type        = $type;
+        $this->contentType = $contentType;
+        $this->example     = Type::example($type);
+    }
+
+    public static function json(string $type): self
+    {
+        return new self($type, Output::CONTENT_TYPE_APPLICATION_JSON);
+    }
+
+    public static function plainText(string $type): self
+    {
+        return new self($type, Output::CONTENT_TYPE_TEXT_PLAIN);
     }
 
     public function type(): string
@@ -51,6 +64,6 @@ final class ScalarOutput implements Output
      */
     public function contentTypes(): array
     {
-        return [Output::CONTENT_TYPE_APPLICATION_JSON];
+        return [$this->contentType];
     }
 }

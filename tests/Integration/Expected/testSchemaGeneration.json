@@ -4957,6 +4957,20 @@
                     "400": {
                         "description": "Returned when there is a validation error",
                         "content": {
+                            "text\/plain": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        {
+                                            "type": "integer",
+                                            "example": 123
+                                        }
+                                    ]
+                                }
+                            },
                             "application\/json": {
                                 "schema": {
                                     "oneOf": [
@@ -5721,7 +5735,7 @@
                     "200": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "text\/plain": {
                                 "schema": {
                                     "type": "string",
                                     "example": "string"
@@ -5812,7 +5826,7 @@
                     "206": {
                         "description": "",
                         "content": {
-                            "application\/json": {
+                            "text\/plain": {
                                 "schema": {
                                     "type": "array",
                                     "items": {

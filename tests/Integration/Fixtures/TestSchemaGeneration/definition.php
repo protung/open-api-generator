@@ -80,11 +80,11 @@ return new Model\Specification(
             'There are a lot of possible responses but no security',
             [],
             [
-                Response::for200(new Model\Path\Output\ScalarOutput(Type::STRING)),
-                Response::for201(new Model\Path\Output\ScalarOutput(Type::INTEGER)),
+                Response::for200(Model\Path\Output\ScalarOutput::plainText(Type::STRING)),
+                Response::for201(Model\Path\Output\ScalarOutput::json(Type::INTEGER)),
                 Response::for202(),
-                new Response(203, [], new Model\Path\Output\ScalarOutput(Type::NUMBER)),
-                new Response(204, [], (new Model\Path\Output\ScalarOutput(Type::BOOLEAN))->withExample(false)),
+                new Response(203, [], Model\Path\Output\ScalarOutput::json(Type::NUMBER)),
+                new Response(204, [], Model\Path\Output\ScalarOutput::json(Type::BOOLEAN)->withExample(false)),
                 new Response(
                     205,
                     [],
@@ -100,7 +100,7 @@ return new Model\Specification(
                 new Response(
                     206,
                     [],
-                    Model\Path\Output\CollectionOutput::forOutput(new Model\Path\Output\ScalarOutput(Type::STRING))
+                    Model\Path\Output\CollectionOutput::forOutput(Model\Path\Output\ScalarOutput::plainText(Type::STRING))
                 ),
                 new Response(207, [], ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)),
                 new Response(
@@ -122,7 +122,7 @@ return new Model\Specification(
                     Model\Path\Output\FileOutput::forPlainText(),
                     Model\Path\Output\FileOutput::forPng(),
                     Model\Path\Output\FileOutput::forZip(),
-                    new Model\Path\Output\ScalarOutput(Type::INTEGER)
+                    Model\Path\Output\ScalarOutput::json(Type::INTEGER)
                 ),
                 new Response(
                     211,
@@ -204,8 +204,10 @@ return new Model\Specification(
             [],
             [
                 Response::for400(
-                    new Model\Path\Output\ScalarOutput(Type::STRING),
-                    new Model\Path\Output\ScalarOutput(Type::INTEGER),
+                    Model\Path\Output\ScalarOutput::plainText(Type::STRING),
+                    Model\Path\Output\ScalarOutput::plainText(Type::INTEGER),
+                    Model\Path\Output\ScalarOutput::json(Type::STRING),
+                    Model\Path\Output\ScalarOutput::json(Type::INTEGER),
                     RFC7807ErrorOutput::create(400, 'Test')
                 ),
             ],

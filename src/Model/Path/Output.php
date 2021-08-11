@@ -10,6 +10,8 @@ interface Output
 
     public const CONTENT_TYPE_APPLICATION_PROBLEM_JSON = 'application/problem+json';
 
+    public const CONTENT_TYPE_TEXT_PLAIN = 'text/plain';
+
     /**
      * @return mixed
      */
