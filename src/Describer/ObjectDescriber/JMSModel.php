@@ -10,6 +10,7 @@ use InvalidArgumentException;
 use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
 use JMS\Serializer\Exclusion\VersionExclusionStrategy;
 use JMS\Serializer\Metadata\ClassMetadata;
+use JMS\Serializer\Metadata\ExpressionPropertyMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use JMS\Serializer\Metadata\StaticPropertyMetadata;
 use JMS\Serializer\Metadata\VirtualPropertyMetadata;
@@ -293,7 +294,7 @@ final class JMSModel implements Describer
             ),
         ];
 
-        if ($propertyMetadata instanceof VirtualPropertyMetadata || $propertyMetadata instanceof StaticPropertyMetadata) {
+        if ($propertyMetadata instanceof VirtualPropertyMetadata || $propertyMetadata instanceof StaticPropertyMetadata || $propertyMetadata instanceof ExpressionPropertyMetadata) {
             if ($propertyMetadata->type === null) {
                 return $defaultTypes;
             }
