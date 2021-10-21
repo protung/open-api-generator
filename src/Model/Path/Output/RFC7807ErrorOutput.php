@@ -72,6 +72,11 @@ final class RFC7807ErrorOutput extends SimpleOutput
         return new self(415, 'Unsupported Media Type');
     }
 
+    public static function for423(): self
+    {
+        return new self(423, 'Locked');
+    }
+
     public static function for428(): self
     {
         return new self(428, 'Precondition Required');

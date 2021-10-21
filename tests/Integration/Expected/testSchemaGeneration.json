@@ -2422,6 +2422,36 @@
                             }
                         }
                     },
+                    "423": {
+                        "description": "Returned when resource is locked",
+                        "content": {
+                            "application\/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 423,
+                                        "detail": "Locked"
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "418": {
                         "description": "Teapot without output"
                     },

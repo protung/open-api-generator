@@ -117,6 +117,15 @@ final class Response
         );
     }
 
+    public static function for423(): self
+    {
+        return new self(
+            423,
+            ['Returned when resource is locked'],
+            RFC7807ErrorOutput::for423()
+        );
+    }
+
     public static function for500(): self
     {
         return new self(

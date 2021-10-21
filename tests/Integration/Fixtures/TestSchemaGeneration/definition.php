@@ -187,6 +187,7 @@ return new Model\Specification(
                 Response::for406(),
                 Response::for409(),
                 Response::for415(),
+                Response::for423(),
                 new Response(418, ['Teapot without output']),
                 new Response(
                     428,
