@@ -3,7 +3,8 @@
     "type": "library",
     "description": "Open Api specification generator.",
     "keywords": [
-        "openapi"
+        "openapi",
+        "swagger"
     ],
     "license": "MIT",
     "authors": [
@@ -21,11 +22,11 @@
         "ext-json": "*",
         "azjezz/psl": "^1.6",
         "cebe/php-openapi": "^1.5",
-        "jms/serializer": "^3.12",
+        "jms/serializer": "^3.15",
         "myclabs/deep-copy": "^1.10",
-        "phpstan/phpdoc-parser": "^0.5.4",
+        "phpstan/phpdoc-parser": "^1.2",
         "symfony/form": "^4.4 || ^5.3",
-        "symfony/polyfill-php81": "^1.22",
+        "symfony/polyfill-php81": "^1.23",
         "symfony/routing": "^4.4 || ^5.3",
         "symfony/validator": "^4.4 || ^5.3",
         "webmozart/assert": "^1.10"
@@ -34,19 +35,19 @@
     "require-dev": {
         "doctrine/coding-standard": "^9.0.0",
         "ergebnis/composer-normalize": "^2.15.0",
-        "phpstan/phpstan": "^0.12.94",
+        "phpstan/phpstan": "^0.12.99",
         "phpstan/phpstan-deprecation-rules": "^0.12.6",
-        "phpstan/phpstan-phpunit": "^0.12.21",
-        "phpstan/phpstan-strict-rules": "^0.12.10",
-        "phpstan/phpstan-symfony": "^0.12.41",
-        "phpstan/phpstan-webmozart-assert": "^0.12.15",
-        "phpunit/phpunit": "^9.5.8",
-        "psalm/plugin-phpunit": "^0.15.2",
+        "phpstan/phpstan-phpunit": "^0.12.22",
+        "phpstan/phpstan-strict-rules": "^0.12.11",
+        "phpstan/phpstan-symfony": "^0.12.44",
+        "phpstan/phpstan-webmozart-assert": "^0.12.16",
+        "phpunit/phpunit": "^9.5.10",
+        "psalm/plugin-phpunit": "^0.16.1",
         "roave/security-advisories": "dev-master",
         "symfony/config": "^4.4 || ^5.3",
         "symfony/var-dumper": "4.4 || ^5.3",
         "thecodingmachine/phpstan-strict-rules": "^0.12.1",
-        "vimeo/psalm": "^4.9.2"
+        "vimeo/psalm": "^4.11.1"
     },
     "config": {
         "preferred-install": {
