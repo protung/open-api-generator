@@ -181,6 +181,7 @@ return new Model\Specification(
                     'something custom'
                 ))->withDescription(['Custom message 400']),
                 Response::for401(),
+                Response::for402(),
                 Response::for403()->withDescription(['Custom message 403']),
                 Response::for404()->withDescription(['Custom message 404', 'Another custom message 404']),
                 Response::for405(),

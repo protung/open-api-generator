@@ -75,6 +75,11 @@ final class Response
         return new self(401, ['Authentication is missing, invalid or expired'], RFC7807ErrorOutput::for401());
     }
 
+    public static function for402(): self
+    {
+        return new self(402, ['Returned when payment is required'], RFC7807ErrorOutput::for402());
+    }
+
     public static function for403(): self
     {
         return new self(403, ['Returned when operation is prohibited'], RFC7807ErrorOutput::for403());
