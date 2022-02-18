@@ -35,9 +35,10 @@ final class PaginatedOutput implements Output
         return $this->embedded;
     }
 
-    public function example(): void
+    public function example(): mixed
     {
-        // TODO: Implement example() method.
+        // @todo implement
+        return null;
     }
 
     /**

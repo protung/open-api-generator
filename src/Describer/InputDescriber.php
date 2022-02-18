@@ -6,10 +6,8 @@ namespace Speicher210\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Operation;
 use InvalidArgumentException;
+use Psl;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
-
-use function get_class;
-use function sprintf;
 
 final class InputDescriber
 {
@@ -32,7 +30,7 @@ final class InputDescriber
         }
 
         throw new InvalidArgumentException(
-            sprintf('Can not handle object to describe of type "%s"', get_class($input))
+            Psl\Str\format('Can not handle object to describe of type "%s"', $input::class)
         );
     }
 }

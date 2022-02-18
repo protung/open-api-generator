@@ -5,13 +5,9 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Callback as SpecCallback;
+use Psl\Json;
 use Speicher210\OpenApiGenerator\Model\Callback as CallbackModel;
 use Speicher210\OpenApiGenerator\Model\Path\PathOperation;
-
-use function json_decode;
-use function json_encode;
-
-use const JSON_THROW_ON_ERROR;
 
 final class CallbackDescriber
 {
@@ -45,11 +41,9 @@ final class CallbackDescriber
         return new SpecCallback(
             [
                 $pathOperation->path() => [
-                    $pathOperation->operationMethod() => json_decode(
-                        json_encode($pathOperation->operation()->getSerializableData(), JSON_THROW_ON_ERROR),
-                        true,
-                        512,
-                        JSON_THROW_ON_ERROR
+                    $pathOperation->operationMethod() => Json\decode(
+                        Json\encode($pathOperation->operation()->getSerializableData()),
+                        true
                     ),
                 ],
             ]

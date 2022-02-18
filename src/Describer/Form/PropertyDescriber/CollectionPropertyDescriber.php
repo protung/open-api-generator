@@ -6,14 +6,15 @@ namespace Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Psl;
+use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver\FormName;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\ResolvedFormTypeInterface;
-
-use function array_merge;
 
 final class CollectionPropertyDescriber implements PropertyDescriber
 {
@@ -28,14 +29,17 @@ final class CollectionPropertyDescriber implements PropertyDescriber
     {
         $formConfig = $form->getConfig();
 
+        $entryType = Psl\Type\string()->coerce($formConfig->getOption('entry_type'));
+        Assert::implementsInterface($entryType, FormTypeInterface::class);
+
         $subForm = $this->formFactory->create(
             new FormDefinition(
-                $formConfig->getOption('entry_type'),
-                array_merge(
+                $entryType,
+                Psl\Dict\merge(
                     [
                         'validation_groups' => (array) $formConfig->getOption('validation_groups'),
                     ],
-                    $formConfig->getOption('entry_options')
+                    Psl\Type\dict(Psl\Type\string(), Psl\Type\mixed())->coerce($formConfig->getOption('entry_options'))
                 )
             ),
             $form->getRoot()->getConfig()->getMethod()
@@ -56,7 +60,7 @@ final class CollectionPropertyDescriber implements PropertyDescriber
             return true;
         }
 
-        $parentType =  $formType->getParent();
+        $parentType = $formType->getParent();
         if ($parentType !== null) {
             return $this->isCollection($parentType);
         }

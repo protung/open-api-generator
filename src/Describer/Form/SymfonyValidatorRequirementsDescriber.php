@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Describer\Form;
 
 use cebe\openapi\spec\Schema;
 use Closure;
+use Psl;
 use Speicher210\OpenApiGenerator\Describer\SpecificationDescriber;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
@@ -26,15 +27,13 @@ use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Unique;
 use Symfony\Component\Validator\Mapping\ClassMetadataInterface;
+use Symfony\Component\Validator\Mapping\PropertyMetadataInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 use function array_map;
-use function array_merge;
-use function get_class;
 use function implode;
 use function in_array;
 use function number_format;
-use function sprintf;
 
 final class SymfonyValidatorRequirementsDescriber implements RequirementsDescriber
 {
@@ -55,21 +54,21 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     }
 
     /**
-     * @return Constraint[]
+     * @return list<Constraint>
      */
     private function getConstraints(FormInterface $form): array
     {
         $formConfig = $form->getConfig();
 
-        return array_merge(
-            $formConfig->getOption('constraints', []),
+        return Psl\Vec\concat(
+            Psl\Type\vec(Psl\Type\object(Constraint::class))->coerce($formConfig->getOption('constraints', [])),
             $this->getConstraintsForClass($formConfig),
             $this->getConstraintsForClassProperty($form)
         );
     }
 
     /**
-     * @return Constraint[]
+     * @return list<Constraint>
      */
     private function getConstraintsForClass(FormConfigInterface $formConfig): array
     {
@@ -82,7 +81,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     }
 
     /**
-     * @return Constraint[]
+     * @return list<Constraint>
      */
     private function getConstraintsForClassProperty(FormInterface $form): array
     {
@@ -106,17 +105,13 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
             return [];
         }
 
-        $propertyName = $formConfig->getOption('property_path') ?? $form->getName();
+        $propertyName = Psl\Type\string()->coerce($formConfig->getOption('property_path') ?? $form->getName());
 
         if ($parentMetadata->hasPropertyMetadata($propertyName)) {
-            $propertyConstraints = [];
-            foreach ($parentMetadata->getPropertyMetadata($propertyName) as $propertyMetadata) {
-                $propertyConstraints[] = $propertyMetadata->getConstraints();
-            }
-
-            $propertyConstraints = array_merge(...$propertyConstraints);
-
-            return $propertyConstraints;
+            return Psl\Vec\flat_map(
+                $parentMetadata->getPropertyMetadata($propertyName),
+                static fn (PropertyMetadataInterface $propertyMetadata) => $propertyMetadata->getConstraints()
+            );
         }
 
         return [];
@@ -131,7 +126,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
             return;
         }
 
-        $constraintClasses = array_map(static fn ($constraint) => get_class($constraint), $constraints);
+        $constraintClasses = array_map(static fn ($constraint) => $constraint::class, $constraints);
 
         if (in_array(NotNull::class, $constraintClasses, true) || in_array(NotBlank::class, $constraintClasses, true)) {
             return;
@@ -237,14 +232,14 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                     if ($constraint->mimeTypes !== null && $constraint->mimeTypes !== []) {
                         $schema->description = SpecificationDescriber::updateDescription(
                             $schema->description,
-                            sprintf('Allowed mime types: %s', implode(', ', (array) $constraint->mimeTypes))
+                            Psl\Str\format('Allowed mime types: %s', implode(', ', (array) $constraint->mimeTypes))
                         );
                     }
 
                     if ($constraint->maxSize !== null) {
                         $schema->description = SpecificationDescriber::updateDescription(
                             $schema->description,
-                            sprintf('Allowed max file size: %s', $this->humanReadableFileSize($constraint->maxSize))
+                            Psl\Str\format('Allowed max file size: %s', $this->humanReadableFileSize($constraint->maxSize))
                         );
                     }
 
@@ -252,28 +247,28 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                         if ($constraint->minWidth !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                sprintf('Allowed minimum width is %dpx', $constraint->minWidth)
+                                Psl\Str\format('Allowed minimum width is %dpx', $constraint->minWidth)
                             );
                         }
 
                         if ($constraint->minHeight !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                sprintf('Allowed minimum height is %dpx', $constraint->minHeight)
+                                Psl\Str\format('Allowed minimum height is %dpx', $constraint->minHeight)
                             );
                         }
 
                         if ($constraint->maxWidth !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                sprintf('Allowed maximum width is %dpx', $constraint->maxWidth)
+                                Psl\Str\format('Allowed maximum width is %dpx', $constraint->maxWidth)
                             );
                         }
 
                         if ($constraint->maxHeight !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                sprintf('Allowed maximum height is %dpx', $constraint->maxHeight)
+                                Psl\Str\format('Allowed maximum height is %dpx', $constraint->maxHeight)
                             );
                         }
                     }
@@ -286,14 +281,14 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     private function humanReadableFileSize(int $size): string
     {
         if ($size >= 1048576) {
-            return sprintf('%s MB', number_format($size / 1048576, $size % 1048576 === 0 ? 0 : 3));
+            return Psl\Str\format('%s MB', number_format($size / 1048576, $size % 1048576 === 0 ? 0 : 3));
         }
 
         if ($size >= 1024) {
-            return sprintf('%s KB', number_format($size / 1024, $size % 1024 === 0 ? 0 : 3));
+            return Psl\Str\format('%s KB', number_format($size / 1024, $size % 1024 === 0 ? 0 : 3));
         }
 
-        return sprintf('%d bytes', $size);
+        return Psl\Str\format('%d bytes', $size);
     }
 
     private function isCollection(ResolvedFormTypeInterface $formType): bool

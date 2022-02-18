@@ -6,7 +6,7 @@
         "version": "0.0.1"
     },
     "paths": {
-        "\/api\/test\/callbacks": {
+        "/api/test/callbacks": {
             "get": {
                 "tags": [
                     "Test"
@@ -26,7 +26,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -44,7 +44,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -57,7 +57,7 @@
                 "security": [],
                 "callbacks": {
                     "eventName": {
-                        "{$request.body#\/callbackUrl}": {
+                        "{$request.body#/callbackUrl}": {
                             "get": {
                                 "tags": [
                                     "Callback tag"
@@ -67,7 +67,7 @@
                                 "parameters": [],
                                 "requestBody": {
                                     "content": {
-                                        "application\/json": {
+                                        "application/json": {
                                             "schema": {
                                                 "required": [
                                                     "paramNoType",
@@ -652,7 +652,7 @@
                                                 }
                                             }
                                         },
-                                        "application\/x-www-form-urlencoded": {
+                                        "application/x-www-form-urlencoded": {
                                             "schema": {
                                                 "required": [
                                                     "paramNoType",
@@ -1162,7 +1162,7 @@
                                     "200": {
                                         "description": "Returned on success",
                                         "content": {
-                                            "application\/json": {
+                                            "application/json": {
                                                 "schema": {
                                                     "type": "object",
                                                     "properties": {
@@ -1307,7 +1307,7 @@
                 }
             }
         },
-        "\/api\/test\/custom-path-params\/{enum}\/{pattern}": {
+        "/api/test/custom-path-params/{enum}/{pattern}": {
             "get": {
                 "tags": [
                     "Test"
@@ -1348,7 +1348,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -1366,7 +1366,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -1383,7 +1383,7 @@
                 ]
             }
         },
-        "\/api\/test\/custom-query-params": {
+        "/api/test/custom-query-params": {
             "get": {
                 "tags": [
                     "Test"
@@ -2130,7 +2130,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2148,7 +2148,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -2165,7 +2165,7 @@
                 ]
             }
         },
-        "\/api\/test\/error-responses": {
+        "/api/test/error-responses": {
             "put": {
                 "tags": [
                     "Test"
@@ -2185,7 +2185,7 @@
                     "400": {
                         "description": "Custom message 400",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2203,7 +2203,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 400,
                                         "detail": "something custom"
@@ -2215,7 +2215,7 @@
                     "401": {
                         "description": "Authentication is missing, invalid or expired",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2233,7 +2233,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 401,
                                         "detail": "Unauthorized"
@@ -2245,7 +2245,7 @@
                     "402": {
                         "description": "Returned when payment is required",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2263,7 +2263,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 402,
                                         "detail": "Payment Required"
@@ -2275,7 +2275,7 @@
                     "403": {
                         "description": "Custom message 403",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2293,7 +2293,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 403,
                                         "detail": "Forbidden"
@@ -2305,7 +2305,7 @@
                     "404": {
                         "description": "Custom message 404<br>\nAnother custom message 404",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2323,7 +2323,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 404,
                                         "detail": "Not Found"
@@ -2335,7 +2335,7 @@
                     "405": {
                         "description": "Returned when HTTP method is not allowed",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2353,7 +2353,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 405,
                                         "detail": "Method Not Allowed"
@@ -2365,7 +2365,7 @@
                     "406": {
                         "description": "Returned when response content type expected is not supported",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2383,7 +2383,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 406,
                                         "detail": "Not Acceptable"
@@ -2395,7 +2395,7 @@
                     "409": {
                         "description": "Returned when conflict with current state of the server occurred.",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2413,7 +2413,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 409,
                                         "detail": "Conflict"
@@ -2425,7 +2425,7 @@
                     "415": {
                         "description": "Returned when request payload format is not supported",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2443,7 +2443,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 415,
                                         "detail": "Unsupported Media Type"
@@ -2455,7 +2455,7 @@
                     "423": {
                         "description": "Returned when resource is locked",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2473,7 +2473,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 423,
                                         "detail": "Locked"
@@ -2488,7 +2488,7 @@
                     "428": {
                         "description": "Custom precondition",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2506,7 +2506,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2524,7 +2524,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -2541,7 +2541,7 @@
                 ]
             }
         },
-        "\/api\/test\/form-definition-options": {
+        "/api/test/form-definition-options": {
             "get": {
                 "tags": [
                     "Test"
@@ -2570,7 +2570,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2588,7 +2588,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -2601,7 +2601,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -2615,7 +2615,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -2661,7 +2661,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2679,7 +2679,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -2692,7 +2692,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -2706,7 +2706,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -2725,7 +2725,7 @@
                 }
             }
         },
-        "\/api\/test\/headers": {
+        "/api/test/headers": {
             "get": {
                 "tags": [
                     "Test"
@@ -2753,7 +2753,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2771,7 +2771,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -2784,7 +2784,7 @@
                 "security": []
             }
         },
-        "\/api\/test\/item\/{id}": {
+        "/api/test/item/{id}": {
             "get": {
                 "tags": [
                     "Test"
@@ -2812,7 +2812,7 @@
                     "200": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "properties": {
                                         "virtualProperty": {
@@ -2952,7 +2952,7 @@
                     "401": {
                         "description": "Authentication is missing, invalid or expired",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -2970,7 +2970,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 401,
                                         "detail": "Unauthorized"
@@ -2982,7 +2982,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -3000,7 +3000,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -3017,7 +3017,7 @@
                 ]
             }
         },
-        "\/api\/test\/multiple\/methods": {
+        "/api/test/multiple/methods": {
             "get": {
                 "tags": [
                     "Test"
@@ -3037,7 +3037,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -3055,7 +3055,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -3090,7 +3090,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -3108,7 +3108,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -3125,7 +3125,7 @@
                 ]
             }
         },
-        "\/api\/test\/not-described-object": {
+        "/api/test/not-described-object": {
             "get": {
                 "tags": [
                     "Test"
@@ -3145,7 +3145,7 @@
                     "200": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "properties": {
                                         "stringProperty": {
@@ -3160,7 +3160,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -3178,7 +3178,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -3191,7 +3191,7 @@
                 "security": []
             }
         },
-        "\/api\/test\/nullability": {
+        "/api/test/nullability": {
             "get": {
                 "tags": [
                     "Test"
@@ -3245,7 +3245,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -3263,7 +3263,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -3276,7 +3276,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -3303,7 +3303,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -3387,7 +3387,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -3405,7 +3405,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -3418,7 +3418,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -3445,7 +3445,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -3529,7 +3529,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -3547,7 +3547,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -3560,7 +3560,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -3581,7 +3581,7 @@
                                 }
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -3607,7 +3607,7 @@
                 }
             }
         },
-        "\/api\/test\/output\/object\/example": {
+        "/api/test/output/object/example": {
             "get": {
                 "tags": [
                     "Test"
@@ -3627,7 +3627,7 @@
                     "200": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "properties": {
                                         "virtualProperty": {
@@ -3800,7 +3800,7 @@
                     "201": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "properties": {
                                         "virtualProperty": {
@@ -3988,7 +3988,7 @@
                     "202": {
                         "description": "",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -4199,7 +4199,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -4217,7 +4217,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -4230,7 +4230,7 @@
                 "security": []
             }
         },
-        "\/api\/test\/paginated-response": {
+        "/api/test/paginated-response": {
             "get": {
                 "tags": [
                     "Test"
@@ -4250,7 +4250,7 @@
                     "200": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "properties": {
                                         "page": {
@@ -4620,7 +4620,7 @@
                     "201": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "properties": {
                                         "page": {
@@ -4711,7 +4711,7 @@
                     "202": {
                         "description": "Children with discriminator",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "properties": {
                                         "page": {
@@ -4835,7 +4835,7 @@
                     "203": {
                         "description": "Parent class with discriminator",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "properties": {
                                         "page": {
@@ -4962,7 +4962,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -4980,7 +4980,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -4997,7 +4997,7 @@
                 ]
             }
         },
-        "\/api\/test\/polymorphic-responses": {
+        "/api/test/polymorphic-responses": {
             "post": {
                 "tags": [
                     "Test"
@@ -5017,7 +5017,7 @@
                     "400": {
                         "description": "Returned when there is a validation error",
                         "content": {
-                            "text\/plain": {
+                            "text/plain": {
                                 "schema": {
                                     "oneOf": [
                                         {
@@ -5031,7 +5031,7 @@
                                     ]
                                 }
                             },
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "oneOf": [
                                         {
@@ -5045,7 +5045,7 @@
                                     ]
                                 }
                             },
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -5063,7 +5063,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 400,
                                         "detail": "Test"
@@ -5075,7 +5075,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -5093,7 +5093,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -5106,7 +5106,7 @@
                 "security": []
             }
         },
-        "\/api\/test\/referenced-response": {
+        "/api/test/referenced-response": {
             "get": {
                 "tags": [
                     "Test"
@@ -5126,9 +5126,9 @@
                     "200": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
-                                    "$ref": "#\/components\/schemas\/ComplexObject"
+                                    "$ref": "#/components/schemas/ComplexObject"
                                 }
                             }
                         }
@@ -5136,9 +5136,9 @@
                     "201": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
-                                    "$ref": "#\/components\/schemas\/JMSObjectDescribedOnlyAsReferenceCustomName"
+                                    "$ref": "#/components/schemas/JMSObjectDescribedOnlyAsReferenceCustomName"
                                 }
                             }
                         }
@@ -5146,9 +5146,9 @@
                     "400": {
                         "description": "Returned when there is a validation error",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
-                                    "$ref": "#\/components\/schemas\/JMSObjectDescribedOnlyAsReferenceCustomName"
+                                    "$ref": "#/components/schemas/JMSObjectDescribedOnlyAsReferenceCustomName"
                                 }
                             }
                         }
@@ -5156,7 +5156,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -5174,7 +5174,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -5187,7 +5187,7 @@
                 "security": []
             }
         },
-        "\/api\/test\/required": {
+        "/api/test/required": {
             "get": {
                 "tags": [
                     "Test"
@@ -5267,7 +5267,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -5285,7 +5285,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -5298,7 +5298,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -5345,7 +5345,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -5466,7 +5466,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -5484,7 +5484,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -5497,7 +5497,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -5544,7 +5544,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -5665,7 +5665,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -5683,7 +5683,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -5696,7 +5696,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -5735,7 +5735,7 @@
                                 }
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -5774,7 +5774,7 @@
                 }
             }
         },
-        "\/api\/test\/responses": {
+        "/api/test/responses": {
             "post": {
                 "tags": [
                     "Test"
@@ -5795,7 +5795,7 @@
                     "200": {
                         "description": "Returned on success",
                         "content": {
-                            "text\/plain": {
+                            "text/plain": {
                                 "schema": {
                                     "type": "string",
                                     "example": "string"
@@ -5806,7 +5806,7 @@
                     "201": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "integer",
                                     "example": 123
@@ -5820,7 +5820,7 @@
                     "203": {
                         "description": "",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "number",
                                     "example": 3.14
@@ -5831,7 +5831,7 @@
                     "204": {
                         "description": "",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "boolean",
                                     "example": false
@@ -5842,7 +5842,7 @@
                     "205": {
                         "description": "",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -5886,7 +5886,7 @@
                     "206": {
                         "description": "",
                         "content": {
-                            "text\/plain": {
+                            "text/plain": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -5900,7 +5900,7 @@
                     "207": {
                         "description": "",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "properties": {
                                         "virtualProperty": {
@@ -6040,7 +6040,7 @@
                     "208": {
                         "description": "",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -6183,7 +6183,7 @@
                     "209": {
                         "description": "",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -6210,43 +6210,43 @@
                     "210": {
                         "description": "multiple outputs",
                         "content": {
-                            "text\/html": {
+                            "text/html": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
                                 }
                             },
-                            "image\/jpeg": {
+                            "image/jpeg": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
                                 }
                             },
-                            "application\/pdf": {
+                            "application/pdf": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
                                 }
                             },
-                            "text\/plain": {
+                            "text/plain": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
                                 }
                             },
-                            "image\/png": {
+                            "image/png": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
                                 }
                             },
-                            "application\/zip": {
+                            "application/zip": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
                                 }
                             },
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "integer",
                                     "example": 123
@@ -6257,7 +6257,7 @@
                     "211": {
                         "description": "output with discriminator",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "oneOf": [
                                         {
@@ -6308,7 +6308,7 @@
                     "212": {
                         "description": "from example data",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -6455,7 +6455,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -6473,7 +6473,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -6487,7 +6487,7 @@
                 "security": []
             }
         },
-        "\/api\/test\/simple-object-input-output": {
+        "/api/test/simple-object-input-output": {
             "post": {
                 "tags": [
                     "Test"
@@ -6507,7 +6507,7 @@
                     "200": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -6569,7 +6569,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -6587,7 +6587,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -6600,7 +6600,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -6712,7 +6712,7 @@
                 }
             }
         },
-        "\/api\/test\/with-data-class-form": {
+        "/api/test/with-data-class-form": {
             "post": {
                 "tags": [
                     "Test"
@@ -6732,7 +6732,7 @@
                     "400": {
                         "description": "Returned when there is a validation error",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -6783,7 +6783,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -6801,7 +6801,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -6818,7 +6818,7 @@
                 ],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -6832,7 +6832,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -6851,7 +6851,7 @@
                 }
             }
         },
-        "\/api\/test\/with-file-output": {
+        "/api/test/with-file-output": {
             "get": {
                 "tags": [
                     "Test"
@@ -6871,7 +6871,7 @@
                     "200": {
                         "description": "Returned on success",
                         "content": {
-                            "application\/pdf": {
+                            "application/pdf": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
@@ -6882,7 +6882,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -6900,7 +6900,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -6913,7 +6913,7 @@
                 "security": []
             }
         },
-        "\/api\/test\/with-file-upload": {
+        "/api/test/with-file-upload": {
             "post": {
                 "tags": [
                     "Test"
@@ -6933,7 +6933,7 @@
                     "400": {
                         "description": "Returned when there is a validation error",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -7006,7 +7006,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -7024,7 +7024,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -7041,7 +7041,7 @@
                 ],
                 "requestBody": {
                     "content": {
-                        "multipart\/form-data": {
+                        "multipart/form-data": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -7049,13 +7049,13 @@
                                         "type": "string",
                                         "format": "binary",
                                         "nullable": true,
-                                        "description": "Allowed mime types: image\/*<br>\nAllowed max file size: 1.205 KB<br>\nAllowed minimum width is 100px<br>\nAllowed minimum height is 300px<br>\nAllowed maximum width is 200px<br>\nAllowed maximum height is 400px"
+                                        "description": "Allowed mime types: image/*<br>\nAllowed max file size: 1.205 KB<br>\nAllowed minimum width is 100px<br>\nAllowed minimum height is 300px<br>\nAllowed maximum width is 200px<br>\nAllowed maximum height is 400px"
                                     },
                                     "paramFileOptional": {
                                         "type": "string",
                                         "format": "binary",
                                         "nullable": true,
-                                        "description": "Allowed mime types: application\/pdf, image\/png, image\/jpeg<br>\nAllowed max file size: 5 MB"
+                                        "description": "Allowed mime types: application/pdf, image/png, image/jpeg<br>\nAllowed max file size: 5 MB"
                                     },
                                     "paramExtra": {
                                         "type": "string",
@@ -7073,7 +7073,7 @@
                 }
             }
         },
-        "\/api\/test\/with-file-upload-optional": {
+        "/api/test/with-file-upload-optional": {
             "post": {
                 "tags": [
                     "Test"
@@ -7093,7 +7093,7 @@
                     "400": {
                         "description": "Returned when there is a validation error",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -7155,7 +7155,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -7173,7 +7173,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -7190,7 +7190,7 @@
                 ],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -7204,7 +7204,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -7218,7 +7218,7 @@
                                 ]
                             }
                         },
-                        "multipart\/form-data": {
+                        "multipart/form-data": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -7243,7 +7243,7 @@
                 }
             }
         },
-        "\/api\/test\/with-form": {
+        "/api/test/with-form": {
             "post": {
                 "tags": [
                     "Test"
@@ -7263,7 +7263,7 @@
                     "400": {
                         "description": "Returned when there is a validation error",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -7865,7 +7865,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -7883,7 +7883,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -7900,7 +7900,7 @@
                 ],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -8485,7 +8485,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -9011,7 +9011,7 @@
                     "400": {
                         "description": "Returned when there is a validation error",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -9613,7 +9613,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -9631,7 +9631,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -9648,7 +9648,7 @@
                 ],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -10159,7 +10159,7 @@
                                 }
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -10620,7 +10620,7 @@
                 }
             }
         },
-        "\/api\/test\/with-multiple-form-inputs": {
+        "/api/test/with-multiple-form-inputs": {
             "post": {
                 "tags": [
                     "Test"
@@ -10640,7 +10640,7 @@
                     "500": {
                         "description": "Returned on server error",
                         "content": {
-                            "application\/problem+json": {
+                            "application/problem+json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
@@ -10658,7 +10658,7 @@
                                         }
                                     },
                                     "example": {
-                                        "type": "https:\/\/tools.ietf.org\/html\/rfc2616#section-10",
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
                                         "title": "An error occurred",
                                         "status": 500,
                                         "detail": "Internal Server Error"
@@ -10671,7 +10671,7 @@
                 "security": [],
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
                                 "oneOf": [
                                     {
@@ -10732,7 +10732,7 @@
                                 ]
                             }
                         },
-                        "application\/x-www-form-urlencoded": {
+                        "application/x-www-form-urlencoded": {
                             "schema": {
                                 "oneOf": [
                                     {
@@ -10784,7 +10784,7 @@
                                 ]
                             }
                         },
-                        "multipart\/form-data": {
+                        "multipart/form-data": {
                             "schema": {
                                 "oneOf": [
                                     {
@@ -10794,13 +10794,13 @@
                                                 "type": "string",
                                                 "format": "binary",
                                                 "nullable": true,
-                                                "description": "Allowed mime types: image\/*<br>\nAllowed max file size: 1.205 KB<br>\nAllowed minimum width is 100px<br>\nAllowed minimum height is 300px<br>\nAllowed maximum width is 200px<br>\nAllowed maximum height is 400px"
+                                                "description": "Allowed mime types: image/*<br>\nAllowed max file size: 1.205 KB<br>\nAllowed minimum width is 100px<br>\nAllowed minimum height is 300px<br>\nAllowed maximum width is 200px<br>\nAllowed maximum height is 400px"
                                             },
                                             "paramFileOptional": {
                                                 "type": "string",
                                                 "format": "binary",
                                                 "nullable": true,
-                                                "description": "Allowed mime types: application\/pdf, image\/png, image\/jpeg<br>\nAllowed max file size: 5 MB"
+                                                "description": "Allowed mime types: application/pdf, image/png, image/jpeg<br>\nAllowed max file size: 5 MB"
                                             },
                                             "paramExtra": {
                                                 "type": "string",

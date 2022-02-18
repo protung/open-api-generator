@@ -143,7 +143,7 @@ final class Response
     /**
      * @param string[]|string $description
      */
-    public function withDescription($description): self
+    public function withDescription(array|string $description): self
     {
         $this->description = (array) $description;
 

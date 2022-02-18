@@ -10,6 +10,7 @@ use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 use Metadata\MetadataFactory;
 use PHPUnit\Framework\TestCase;
+use Psl\Json;
 use Speicher210\OpenApiGenerator\Describer;
 use Speicher210\OpenApiGenerator\Generator;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
@@ -20,10 +21,6 @@ use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactoryBuilder;
 use Symfony\Component\Routing\Loader\XmlFileLoader;
 use Symfony\Component\Validator\ValidatorBuilder;
-
-use function json_encode;
-
-use const JSON_THROW_ON_ERROR;
 
 final class GenerateSchemaTest extends TestCase
 {
@@ -115,13 +112,13 @@ final class GenerateSchemaTest extends TestCase
 
 //        file_put_contents(
 //            __DIR__ . '/Expected/testSchemaGeneration.json',
-//            json_encode($openApiSpec->getSerializableData(), JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT)
+//            Json\encode($openApiSpec->getSerializableData(), true)
 //        );
 
         self::assertTrue($openApiSpec->validate());
         self::assertJsonStringEqualsJsonFile(
             __DIR__ . '/Expected/testSchemaGeneration.json',
-            json_encode($openApiSpec->getSerializableData(), JSON_THROW_ON_ERROR)
+            Json\encode($openApiSpec->getSerializableData())
         );
     }
 }

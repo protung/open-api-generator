@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Describer\InputDescriber\FormInputDescriber;
 
 use cebe\openapi\spec\Parameter;
+use Psl;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Speicher210\OpenApiGenerator\Describer\SpecificationDescriber;
 use Symfony\Component\Form\FormInterface;
-
-use function array_merge;
-use function sprintf;
 
 final class Query
 {
@@ -25,7 +23,7 @@ final class Query
     }
 
     /**
-     * @return Parameter[]
+     * @return list<Parameter>
      */
     public function describe(FormInterface $form): array
     {
@@ -33,23 +31,18 @@ final class Query
     }
 
     /**
-     * @return Parameter[]
+     * @return list<Parameter>
      */
     private function processParametersFromForm(FormInterface $form, NameResolver $nameResolver): array
     {
-        $parameters = [];
         if ($form->count() === 0) {
-            $parameters[] = $this->createParameter($form, $nameResolver);
-
-            return $parameters;
+            return [$this->createParameter($form, $nameResolver)];
         }
 
-        $childParameters = [];
-        foreach ($form->all() as $child) {
-            $childParameters[] = $this->processParametersFromForm($child, $nameResolver);
-        }
-
-        return array_merge($parameters, ...$childParameters);
+        return Psl\Vec\flat_map(
+            $form->all(),
+            fn (FormInterface $child) => $this->processParametersFromForm($child, $nameResolver)
+        );
     }
 
     private function createParameter(FormInterface $form, NameResolver $nameResolver): Parameter
@@ -61,7 +54,7 @@ final class Query
         $parameter   = new Parameter(['name' => $name, 'in' => self::PARAMETER_LOCATION_QUERY]);
         $description = $form->getConfig()->getOption('help');
         if ($description !== null) {
-            $parameter->description = $description;
+            $parameter->description = Psl\Type\string()->coerce($description);
         }
 
         $parameter->schema = $this->formDescriber->addDeepSchema($form, new NameResolver\FlatArray());
@@ -74,7 +67,7 @@ final class Query
                 $parameter->required    = false;
                 $parameter->description = SpecificationDescriber::updateDescription(
                     $parameter->description,
-                    sprintf('Field required for %s', $nameResolver->getPropertyName($parentForm))
+                    Psl\Str\format('Field required for %s', $nameResolver->getPropertyName($parentForm))
                 );
             }
         }

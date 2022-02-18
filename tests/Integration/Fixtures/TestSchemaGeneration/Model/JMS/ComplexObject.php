@@ -47,7 +47,11 @@ final class ComplexObject
 
     public ?DateTimeInterface $dateProperty = null;
 
-    /** @var int|string */
+    /**
+     * @todo add test with actual union type
+     * @var int|string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     public $scalarUnionProperty;
 
     public function getVirtualProperty(): int

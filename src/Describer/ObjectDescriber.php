@@ -6,20 +6,19 @@ namespace Speicher210\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
+use Psl;
 use RuntimeException;
 use Speicher210\OpenApiGenerator\Describer\ObjectDescriber\Describer;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 
 use function DeepCopy\deep_copy;
-use function implode;
-use function sprintf;
 
 final class ObjectDescriber
 {
     private ModelRegistry $modelRegistry;
 
-    /** @var Describer[] */
+    /** @var array<Describer> */
     private array $describers;
 
     public function __construct(ModelRegistry $modelRegistry, Describer ...$describers)
@@ -37,7 +36,7 @@ final class ObjectDescriber
             );
         }
 
-        return deep_copy($this->modelRegistry->getSchema($definition));
+        return Psl\Type\object(Schema::class)->coerce(deep_copy($this->modelRegistry->getSchema($definition)));
     }
 
     public function describeAsReference(Definition $definition, string $referencePath): Reference
@@ -59,10 +58,10 @@ final class ObjectDescriber
         }
 
         throw new RuntimeException(
-            sprintf(
+            Psl\Str\format(
                 'Definition with class name "%s" and serialization groups "%s" can not be described.',
                 $definition->className(),
-                implode(', ', $definition->serializationGroups())
+                Psl\Str\join($definition->serializationGroups(), ', ')
             )
         );
     }

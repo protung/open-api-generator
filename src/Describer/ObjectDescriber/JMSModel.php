@@ -16,6 +16,7 @@ use JMS\Serializer\Metadata\StaticPropertyMetadata;
 use JMS\Serializer\Metadata\VirtualPropertyMetadata;
 use JMS\Serializer\SerializationContext;
 use Metadata\MetadataFactoryInterface;
+use Psl;
 use RuntimeException;
 use Speicher210\OpenApiGenerator\Analyser\PropertyAnalyser;
 use Speicher210\OpenApiGenerator\Analyser\PropertyAnalysisSingleType;
@@ -27,12 +28,8 @@ use Speicher210\OpenApiGenerator\Model\Definition;
 use function array_filter;
 use function array_key_exists;
 use function array_keys;
-use function array_map;
 use function count;
-use function get_class;
 use function in_array;
-use function reset;
-use function sprintf;
 
 final class JMSModel implements Describer
 {
@@ -74,9 +71,9 @@ final class JMSModel implements Describer
             return;
         }
 
-        $propertyMetadata = $metadata->propertyMetadata;
-        Assert::allIsInstanceOf($propertyMetadata, PropertyMetadata::class);
-        $metadataProperties = array_filter(
+        $propertyMetadata = Psl\Type\vec(Psl\Type\object(PropertyMetadata::class))->coerce($metadata->propertyMetadata);
+
+        $metadataProperties = Psl\Vec\filter(
             $this->getPropertiesInSerializationGroups($propertyMetadata, $serializationGroups),
             function (PropertyMetadata $metadataProperty): bool {
                 // filter properties for not current version
@@ -109,14 +106,13 @@ final class JMSModel implements Describer
                 $this->describeInSchema(
                     $inlineModel,
                     new Definition(
-                        $metadataProperty->type['name'],
+                        Psl\Type\shape(['name' => Psl\Type\string()])->coerce($metadataProperty->type)['name'],
                         $serializationGroups
                     ),
                     $objectDescriber
                 );
                 foreach ($inlineModel->properties as $name => $property) {
-                    Assert::isInstanceOf($property, Schema::class);
-                    $properties[$name] = $property;
+                    $properties[$name] = Psl\Type\object(Schema::class)->coerce($property);
                 }
 
                 continue;
@@ -128,27 +124,25 @@ final class JMSModel implements Describer
                 $property->type  = Type::ARRAY;
                 $property->items = $objectDescriber->describe(new Definition($type, $serializationGroups));
             } else {
-                $propertiesSchemas = array_map(
-                    fn ($type) => $this->describePropertyInSchema(
+                $propertiesSchemas = Psl\Vec\map(
+                    $this->getPropertyTypes($metadataProperty),
+                    fn (PropertyAnalysisType $type) => $this->describePropertyInSchema(
                         $type,
                         $metadata,
                         $metadataProperty,
                         $objectDescriber,
                         $serializationGroups
-                    ),
-                    $this->getPropertyTypes($metadataProperty)
+                    )
                 );
 
                 if (count($propertiesSchemas) > 1) {
                     $property = new Schema(['oneOf' => $propertiesSchemas]);
                 } else {
-                    $property = reset($propertiesSchemas);
-                    Assert::isInstanceOf($property, Schema::class);
+                    $property = Psl\Type\object(Schema::class)->coerce(Psl\Iter\first($propertiesSchemas));
                 }
             }
 
-            $name              = $metadataProperty->serializedName;
-            $properties[$name] = $property;
+            $properties[Psl\Type\string()->coerce($metadataProperty->serializedName)] = $property;
         }
 
         $schema->properties = $properties;
@@ -250,7 +244,7 @@ final class JMSModel implements Describer
      * @param PropertyMetadata[] $metadataProperties
      * @param string[]           $serializationGroups
      *
-     * @return PropertyMetadata[]
+     * @return list<PropertyMetadata>
      */
     private function getPropertiesInSerializationGroups(array $metadataProperties, array $serializationGroups): array
     {
@@ -269,12 +263,12 @@ final class JMSModel implements Describer
     {
         $metadata = $this->metadataFactory->getMetadataForClass($className);
         if ($metadata === null) {
-            throw new InvalidArgumentException(sprintf('No metadata found for class %s.', $className));
+            throw new InvalidArgumentException(Psl\Str\format('No metadata found for class %s.', $className));
         }
 
         if (! $metadata instanceof ClassMetadata) {
             throw new InvalidArgumentException(
-                sprintf('Expected "%s" class. Got "%s".', ClassMetadata::class, get_class($metadata))
+                Psl\Str\format('Expected "%s" class. Got "%s".', ClassMetadata::class, $metadata::class)
             );
         }
 
