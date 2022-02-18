@@ -24,9 +24,10 @@ final class FormErrorOutput implements Output
         return $this->formDefinition;
     }
 
-    public function example(): void
+    public function example(): mixed
     {
-        // TODO implement
+        // @todo implement
+        return null;
     }
 
     /**

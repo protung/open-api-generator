@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Security;
 
-use function array_map;
+use Psl\Vec;
 
 final class Reference
 {
-    /** @var array<string,array<mixed>> */
+    /** @var list<array<string, array<mixed>>> */
     private array $references;
 
     /**
-     * @param array<string,array<mixed>> $references
+     * @param list<array<string, array<mixed>>> $references
      */
     private function __construct(array $references)
     {
@@ -30,17 +30,20 @@ final class Reference
     }
 
     /**
-     * @param string[] $references
+     * @param list<string> $references
      */
     public static function fromReferences(array $references): self
     {
         return new self(
-            array_map(static fn ($value) => [$value => []], $references)
+            Vec\map(
+                $references,
+                static fn (string $value): array => [$value => []]
+            )
         );
     }
 
     /**
-     * @return array<string,mixed[]>
+     * @return list<array<string, array<mixed>>>
      */
     public function references(): array
     {

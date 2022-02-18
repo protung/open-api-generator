@@ -6,12 +6,11 @@ namespace Speicher210\OpenApiGenerator\Describer\InputDescriber\FormInputDescrib
 
 use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Schema;
-use Speicher210\OpenApiGenerator\Assert\Assert;
+use Psl;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\FormInterface;
 
-use function array_filter;
 use function array_intersect;
 use function array_merge;
 
@@ -81,9 +80,8 @@ final class Body
             return;
         }
 
-        $properties         = $schema->properties;
-        $properties         = array_filter(
-            $properties,
+        $schema->properties = Psl\Dict\filter(
+            Psl\Type\dict(Psl\Type\string(), Psl\Type\object(Schema::class))->coerce($schema->properties),
             static function (Schema $property): bool {
                 if ($property->format === 'binary') {
                     return false;
@@ -92,10 +90,8 @@ final class Body
                 return $property->type !== 'array' || $property->items === null || ($property->items instanceof Schema && $property->items->format !== 'binary');
             }
         );
-        $schema->properties = $properties;
 
-        foreach ($schema->properties as $name => $property) {
-            Assert::isInstanceOf($property, Schema::class);
+        foreach ($schema->properties as $property) {
             if ($property->type !== 'array') {
                 continue;
             }

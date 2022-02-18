@@ -14,12 +14,12 @@ final class FormDefinition
     /** @var class-string<FormTypeInterface> */
     private string $formClass;
 
-    /** @var array<mixed> */
+    /** @var array<string, mixed> */
     private array $formOptions;
 
     /**
      * @param class-string<FormTypeInterface> $formClass
-     * @param array<mixed>                    $formOptions
+     * @param array<string, mixed>            $formOptions
      */
     public function __construct(string $formClass, array $formOptions = [])
     {
@@ -36,7 +36,7 @@ final class FormDefinition
     }
 
     /**
-     * @return array<mixed>
+     * @return array<string, mixed>
      */
     public function formOptions(): array
     {

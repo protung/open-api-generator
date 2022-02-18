@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
+use Psl;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Type;
@@ -14,8 +15,7 @@ final class ScalarOutput implements Output
 
     private string $contentType;
 
-    /** @var bool|float|int|string|null */
-    private $example;
+    private bool|float|int|string|null $example;
 
     private function __construct(string $type, string $contentType)
     {
@@ -23,7 +23,7 @@ final class ScalarOutput implements Output
 
         $this->type        = $type;
         $this->contentType = $contentType;
-        $this->example     = Type::example($type);
+        $this->example     = Psl\Type\nullable(Psl\Type\scalar())->coerce(Type::example($type));
     }
 
     public static function json(string $type): self
@@ -41,20 +41,14 @@ final class ScalarOutput implements Output
         return $this->type;
     }
 
-    /**
-     * @param bool|float|int|string|null $example
-     */
-    public function withExample($example): self
+    public function withExample(bool|float|int|string|null $example): self
     {
         $this->example = $example;
 
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function example()
+    public function example(): bool|float|int|string|null
     {
         return $this->example;
     }

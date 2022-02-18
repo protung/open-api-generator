@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Resolver;
 
 use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
+use Psl;
 use Speicher210\OpenApiGenerator\Model\Definition;
 
 use function array_filter;
-use function array_key_last;
 use function array_map;
 use function explode;
 use function implode;
-use function sprintf;
 
 final class DefinitionName
 {
@@ -22,26 +21,18 @@ final class DefinitionName
     {
     }
 
-    /**
-     * @psalm-pure
-     */
     public static function getName(Definition $definition): string
     {
-        return sprintf(
+        return Psl\Str\format(
             '%s%s',
             self::getNameForClass($definition->className()),
             self::getGroupsSuffix($definition->serializationGroups())
         );
     }
 
-    /**
-     * @psalm-pure
-     */
     private static function getNameForClass(string $class): string
     {
-        $classParts = explode(self::NAMESPACE_SEPARATOR, $class);
-
-        return $classParts[array_key_last($classParts)];
+        return Psl\Type\string()->coerce(Psl\Iter\last(Psl\Str\split($class, self::NAMESPACE_SEPARATOR)));
     }
 
     /**

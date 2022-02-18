@@ -6,13 +6,12 @@ namespace Speicher210\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Psl;
 use Speicher210\OpenApiGenerator\Describer\Form\FlatNameResolver;
 use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
 use Speicher210\OpenApiGenerator\Describer\Form\RequirementsDescriber;
 use Speicher210\OpenApiGenerator\Describer\Form\SymfonyFormPropertyDescriber;
 use Symfony\Component\Form\FormInterface;
-
-use function sprintf;
 
 final class FormDescriber
 {
@@ -146,7 +145,7 @@ final class FormDescriber
 
         $schema->description = SpecificationDescriber::updateDescription(
             $schema->description,
-            sprintf('Field required for %s', $nameResolver->getPropertyName($parentForm))
+            Psl\Str\format('Field required for %s', $nameResolver->getPropertyName($parentForm))
         );
     }
 

@@ -7,16 +7,14 @@ namespace Speicher210\OpenApiGenerator\Describer;
 use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\Response;
 use cebe\openapi\spec\Responses;
+use Psl;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Callback as ModelCallback;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
 use Speicher210\OpenApiGenerator\Model\Path\Path;
 use Speicher210\OpenApiGenerator\Model\Response as ModelResponse;
 
-use function array_filter;
 use function count;
-
-use const ARRAY_FILTER_USE_BOTH;
 
 final class OperationDescriber
 {
@@ -36,7 +34,7 @@ final class OperationDescriber
     public function describe(string $method, Path $path): Operation
     {
         $operation = new Operation(
-            array_filter(
+            Psl\Dict\filter_with_key(
                 [
                     'summary' => $path->summary(),
                     'description' => $path->description(),
@@ -46,17 +44,13 @@ final class OperationDescriber
                     'parameters' => [],
                     'responses' => new Responses([]),
                 ],
-                /**
-                 * @param mixed $value
-                 */
-                static function ($value, string $key): bool {
+                static function (string $key, mixed $value): bool {
                     if ($key === 'deprecated' && $value === false) {
                         return false;
                     }
 
                     return $value !== null;
-                },
-                ARRAY_FILTER_USE_BOTH
+                }
             )
         );
 

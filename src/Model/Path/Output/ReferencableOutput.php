@@ -39,10 +39,7 @@ final class ReferencableOutput implements ReferencableOutputInterface
         return $this->output;
     }
 
-    /**
-     * @return mixed
-     */
-    public function example()
+    public function example(): mixed
     {
         return $this->output->example();
     }

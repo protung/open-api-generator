@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
 use InvalidArgumentException;
+use Psl;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
@@ -18,7 +19,6 @@ use function is_float;
 use function is_int;
 use function is_string;
 use function reset;
-use function sprintf;
 
 /**
  * @todo rename class, give it a better name
@@ -92,7 +92,7 @@ class SimpleOutput implements Output
                 }
             } else {
                 throw new InvalidArgumentException(
-                    sprintf(
+                    Psl\Str\format(
                         'Only scalars or arrays can be used as example value for building SimpleOutput, "%s" given.',
                         gettype($fieldValue)
                     )
@@ -132,9 +132,10 @@ class SimpleOutput implements Output
             if ($field->children() !== null) {
                 $example[$field->name()] = self::exampleFromFields($field->children());
             } else {
-                $possibleValues = $field->possibleValues();
-                if ($possibleValues !== null && $possibleValues !== []) {
-                    $example[$field->name()] = reset($possibleValues);
+                $exampleValue = Psl\Iter\first($field->possibleValues() ?? []);
+
+                if ($exampleValue !== null) {
+                    $example[$field->name()] = $exampleValue;
                 } else {
                     $example[$field->name()] = Type::example($field->type());
                 }

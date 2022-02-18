@@ -25,8 +25,7 @@ final class IOField
 
     private bool $nullable = false;
 
-    /** @var mixed|null */
-    private $example = null;
+    private mixed $example = null;
 
     private function __construct(string $name, string $type)
     {
@@ -154,20 +153,14 @@ final class IOField
         return $this->possibleValues;
     }
 
-    /**
-     * @param mixed|null $example
-     */
-    public function withExample($example): self
+    public function withExample(mixed $example): self
     {
         $this->example = $example;
 
         return $this;
     }
 
-    /**
-     * @return mixed|null
-     */
-    public function example()
+    public function example(): mixed
     {
         return $this->example;
     }

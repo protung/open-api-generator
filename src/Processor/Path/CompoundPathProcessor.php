@@ -7,8 +7,6 @@ namespace Speicher210\OpenApiGenerator\Processor\Path;
 use RuntimeException;
 use Speicher210\OpenApiGenerator\Model\Path\Path;
 
-use function get_class;
-
 final class CompoundPathProcessor implements PathProcessor
 {
     /** @var PathProcessor[] */
@@ -30,7 +28,7 @@ final class CompoundPathProcessor implements PathProcessor
             }
         }
 
-        throw new RuntimeException('Can not process path of type ' . get_class($path));
+        throw new RuntimeException('Can not process path of type ' . $path::class);
     }
 
     public function canProcess(Path $path): bool

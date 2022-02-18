@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Model;
 
 use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
+use Psl;
 use RuntimeException;
 
 use function array_key_exists;
@@ -13,7 +14,6 @@ use function implode;
 use function md5;
 use function serialize;
 use function spl_object_hash;
-use function sprintf;
 
 final class ModelRegistry
 {
@@ -38,7 +38,7 @@ final class ModelRegistry
         }
 
         throw new RuntimeException(
-            sprintf(
+            Psl\Str\format(
                 'Model with class name "%s" and serialization groups "%s" does not exist.',
                 $definition->className(),
                 implode(', ', $definition->serializationGroups())
@@ -55,7 +55,7 @@ final class ModelRegistry
     {
         if ($this->schemaExistsForDefinition($definition)) {
             throw new RuntimeException(
-                sprintf(
+                Psl\Str\format(
                     'Model with class name "%s" and serialization groups "%s" already exists.',
                     $definition->className(),
                     implode(', ', $definition->serializationGroups())
@@ -73,7 +73,7 @@ final class ModelRegistry
         foreach ($this->referencedModels as $referencedModel) {
             if ($referencedModel->referencePath() === $referencePath && ! $referencedModel->definition()->equals($definition)) {
                 throw new RuntimeException(
-                    sprintf(
+                    Psl\Str\format(
                         'Reference path "%s" for definition with class name "%s" and serialization groups "%s" is already taken.',
                         $referencePath,
                         $definition->className(),

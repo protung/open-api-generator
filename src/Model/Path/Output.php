@@ -12,10 +12,7 @@ interface Output
 
     public const CONTENT_TYPE_TEXT_PLAIN = 'text/plain';
 
-    /**
-     * @return mixed
-     */
-    public function example();
+    public function example(): mixed;
 
     /**
      * @return string[]

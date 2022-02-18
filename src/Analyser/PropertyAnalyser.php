@@ -15,6 +15,7 @@ use PHPStan\PhpDocParser\Parser\ConstExprParser;
 use PHPStan\PhpDocParser\Parser\PhpDocParser;
 use PHPStan\PhpDocParser\Parser\TokenIterator;
 use PHPStan\PhpDocParser\Parser\TypeParser;
+use Psl;
 use ReflectionClass;
 use ReflectionNamedType;
 use Speicher210\OpenApiGenerator\Assert\Assert;
@@ -24,7 +25,6 @@ use function in_array;
 use function Psl\Iter\any;
 use function Psl\Vec\filter;
 use function Psl\Vec\map;
-use function sprintf;
 
 final class PropertyAnalyser
 {
@@ -55,7 +55,7 @@ final class PropertyAnalyser
 
         if (! $reflection->hasProperty($propertyName)) {
             throw new InvalidArgumentException(
-                sprintf(
+                Psl\Str\format(
                     'Property "%s" does not exist in class "%s".',
                     $propertyName,
                     $class

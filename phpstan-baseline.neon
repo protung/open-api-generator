@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Call to static method Webmozart\\\\Assert\\\\Assert\\:\\:implementsInterface\\(\\) with string and 'Symfony\\\\\\\\Component\\\\\\\\Form\\\\\\\\FormTypeInterface' will always evaluate to false\\.$#"
+			count: 1
+			path: src/Describer/Form/PropertyDescriber/CollectionPropertyDescriber.php
+
+		-
 			message: "#^Variable property access on Symfony\\\\Component\\\\Validator\\\\Constraints\\\\Composite\\.$#"
 			count: 1
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
@@ -11,7 +16,7 @@ parameters:
 			path: src/Processor/PathsProcessor.php
 
 		-
-			message: "#^Property Speicher210\\\\OpenApiGenerator\\\\Tests\\\\Integration\\\\Fixtures\\\\TestSchemaGeneration\\\\Model\\\\JMS\\\\ComplexObject\\:\\:\\$unknownProperty has no typehint specified\\.$#"
+			message: "#^Property Speicher210\\\\OpenApiGenerator\\\\Tests\\\\Integration\\\\Fixtures\\\\TestSchemaGeneration\\\\Model\\\\JMS\\\\ComplexObject\\:\\:\\$unknownProperty has no type specified\\.$#"
 			count: 1
 			path: tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php
 

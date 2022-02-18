@@ -53,8 +53,9 @@ final class FileOutput implements Output
         return [$this->contentType];
     }
 
-    public function example(): void
+    public function example(): mixed
     {
-        // TODO: Implement example() method.
+        // @todo implement
+        return null;
     }
 }

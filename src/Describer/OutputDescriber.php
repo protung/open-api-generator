@@ -8,14 +8,12 @@ use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\SpecObjectInterface;
 use InvalidArgumentException;
+use Psl;
 use Speicher210\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Model\Definition;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\ReferencableOutput;
-
-use function get_class;
-use function sprintf;
 
 final class OutputDescriber
 {
@@ -60,7 +58,7 @@ final class OutputDescriber
         }
 
         throw new InvalidArgumentException(
-            sprintf('Can not handle object to describe of type "%s"', get_class($output))
+            Psl\Str\format('Can not handle object to describe of type "%s"', $output::class)
         );
     }
 }

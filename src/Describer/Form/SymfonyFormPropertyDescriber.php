@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Describer\Form;
 
 use cebe\openapi\spec\Schema;
+use Psl;
 use RuntimeException;
 use Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber\PropertyDescriber;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
@@ -48,6 +49,6 @@ final class SymfonyFormPropertyDescriber
             return;
         }
 
-        $schema->description = $description;
+        $schema->description = Psl\Type\string()->coerce($description);
     }
 }

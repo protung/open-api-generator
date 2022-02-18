@@ -44,35 +44,22 @@ final class Type
     ];
 
     /**
-     * @return mixed
+     * @return stdClass|string|list<string>|bool|int|float|null
      *
      * @psalm-pure
      */
-    public static function example(string $type)
+    public static function example(string $type): stdClass|string|array|bool|int|float|null
     {
         Assert::inArray($type, self::TYPES);
 
-        switch ($type) {
-            case self::INTEGER:
-                return 123;
-
-            case self::NUMBER:
-                return 3.14;
-
-            case self::STRING:
-                return 'string';
-
-            case self::BOOLEAN:
-                return true;
-
-            case self::OBJECT:
-                return new stdClass();
-
-            case self::ARRAY:
-                return ['array'];
-
-            default:
-                return null;
-        }
+        return match ($type) {
+            self::INTEGER => 123,
+            self::NUMBER => 3.14,
+            self::STRING => 'string',
+            self::BOOLEAN => true,
+            self::OBJECT => new stdClass(),
+            self::ARRAY => ['array'],
+            default => null,
+        };
     }
 }

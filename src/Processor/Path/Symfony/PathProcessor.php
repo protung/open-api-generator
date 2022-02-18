@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Processor\Path\Symfony;
 
 use InvalidArgumentException;
+use Psl;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\OperationDescriber;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
@@ -16,8 +17,7 @@ use Symfony\Component\Routing\Route as SymfonyRoute;
 use Symfony\Component\Routing\RouteCollection;
 
 use function explode;
-use function sprintf;
-use function strpos;
+use function str_contains;
 
 final class PathProcessor implements PathProcessorInterface
 {
@@ -42,7 +42,7 @@ final class PathProcessor implements PathProcessorInterface
 
         if ($symfonyRoute === null) {
             throw new InvalidArgumentException(
-                sprintf('Defined "%s" route in API doc configuration does not exist.', $path->routeName())
+                Psl\Str\format('Defined "%s" route in API doc configuration does not exist.', $path->routeName())
             );
         }
 
@@ -78,7 +78,7 @@ final class PathProcessor implements PathProcessorInterface
 
             $requirement = $route->getRequirement($pathVariable);
             if ($requirement !== null) {
-                if (strpos($requirement, '|') !== false) {
+                if (str_contains($requirement, '|')) {
                     $field->withPossibleValues(explode('|', $requirement));
                 } else {
                     $field->withPattern($requirement);
