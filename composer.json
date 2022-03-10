@@ -22,13 +22,13 @@
         "ext-json": "*",
         "azjezz/psl": "^1.9.3",
         "cebe/php-openapi": "^1.6",
-        "jms/serializer": "^3.15",
+        "jms/serializer": "^3.17.1",
         "myclabs/deep-copy": "^1.10",
         "phpstan/phpdoc-parser": "^1.2",
-        "symfony/form": "^5.4",
+        "symfony/form": "^5.4 || ^6.0",
         "symfony/polyfill-php81": "^1.23",
-        "symfony/routing": "^5.4",
-        "symfony/validator": "^5.4",
+        "symfony/routing": "^5.4 || ^6.0",
+        "symfony/validator": "^5.4 || ^6.0",
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
