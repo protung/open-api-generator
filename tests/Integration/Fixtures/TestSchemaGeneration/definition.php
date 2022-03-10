@@ -176,10 +176,13 @@ return new Model\Specification(
             null,
             [],
             [
-                Response::for400(RFC7807ErrorOutput::create(
-                    400,
-                    'something custom'
-                ))->withDescription(['Custom message 400']),
+                Response::for400(
+                    RFC7807ErrorOutput::create(
+                        400,
+                        'something custom'
+                    )
+                )
+                    ->withDescription(['Custom message 400']),
                 Response::for401(),
                 Response::for402(),
                 Response::for403()->withDescription(['Custom message 403']),

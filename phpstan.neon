@@ -6,7 +6,7 @@ parameters:
     excludePaths:
         - tests/Analyser/Fixtures/PropertyAnalyserClassWithProperties.php
     treatPhpDocTypesAsCertain: false
-    reportUnmatchedIgnoredErrors: false
+    reportUnmatchedIgnoredErrors: false # we might run the check against different versions of PHP or libraries that might have / not have reported errors
 
 includes:
     - phpstan-baseline.neon

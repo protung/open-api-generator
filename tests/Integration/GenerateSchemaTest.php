@@ -16,6 +16,7 @@ use Speicher210\OpenApiGenerator\Generator;
 use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 use Speicher210\OpenApiGenerator\Processor;
 use Speicher210\OpenApiGenerator\Processor\Path;
+use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form\TestDictionaryType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactoryBuilder;
@@ -55,6 +56,7 @@ final class GenerateSchemaTest extends TestCase
 
         $formDescriber = new Describer\FormDescriber(
             new Describer\Form\SymfonyFormPropertyDescriber(
+                new Describer\Form\PropertyDescriber\DictionaryPropertyDescriber($describerFormFactory, TestDictionaryType::class),
                 new Describer\Form\PropertyDescriber\CollectionPropertyDescriber($describerFormFactory),
                 new Describer\Form\PropertyDescriber\SymfonyBuiltInPropertyDescriber()
             ),

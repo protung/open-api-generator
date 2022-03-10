@@ -92,6 +92,7 @@
                                                     "paramPassword",
                                                     "paramCollection",
                                                     "paramCustomCollection",
+                                                    "paramDictionaryType",
                                                     "paramCustom",
                                                     "paramExtended",
                                                     "paramExtendedExtended",
@@ -574,6 +575,42 @@
                                                         },
                                                         "nullable": true
                                                     },
+                                                    "paramDictionaryType": {
+                                                        "maxItems": 5,
+                                                        "type": "object",
+                                                        "nullable": true,
+                                                        "additionalProperties": {
+                                                            "required": [
+                                                                "paramInt",
+                                                                "paramText",
+                                                                "paramInnerCustom"
+                                                            ],
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "paramInt": {
+                                                                    "type": "integer",
+                                                                    "nullable": true
+                                                                },
+                                                                "paramText": {
+                                                                    "type": "string",
+                                                                    "nullable": true
+                                                                },
+                                                                "paramInnerCustom": {
+                                                                    "required": [
+                                                                        "paramText"
+                                                                    ],
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "paramText": {
+                                                                            "type": "string",
+                                                                            "nullable": true
+                                                                        }
+                                                                    },
+                                                                    "nullable": true
+                                                                }
+                                                            }
+                                                        }
+                                                    },
                                                     "paramCustom": {
                                                         "maxProperties": 44,
                                                         "minProperties": 3,
@@ -684,6 +721,7 @@
                                                     "paramPassword",
                                                     "paramCollection[]",
                                                     "paramCustomCollection[]",
+                                                    "paramDictionaryType[]",
                                                     "paramCustom[paramInt]",
                                                     "paramCustom[paramText]",
                                                     "paramCustom[paramInnerCustom][paramText]",
@@ -1115,6 +1153,42 @@
                                                             }
                                                         },
                                                         "nullable": true
+                                                    },
+                                                    "paramDictionaryType[]": {
+                                                        "maxItems": 5,
+                                                        "type": "object",
+                                                        "nullable": true,
+                                                        "additionalProperties": {
+                                                            "required": [
+                                                                "paramInt",
+                                                                "paramText",
+                                                                "paramInnerCustom"
+                                                            ],
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "paramInt": {
+                                                                    "type": "integer",
+                                                                    "nullable": true
+                                                                },
+                                                                "paramText": {
+                                                                    "type": "string",
+                                                                    "nullable": true
+                                                                },
+                                                                "paramInnerCustom": {
+                                                                    "required": [
+                                                                        "paramText"
+                                                                    ],
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "paramText": {
+                                                                            "type": "string",
+                                                                            "nullable": true
+                                                                        }
+                                                                    },
+                                                                    "nullable": true
+                                                                }
+                                                            }
+                                                        }
                                                     },
                                                     "paramCustom[paramInt]": {
                                                         "type": "integer",
@@ -1979,6 +2053,47 @@
                                 ]
                             },
                             "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramDictionaryType][]",
+                        "in": "query",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "paramInt": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "paramText": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramInnerCustom": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "paramText": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "paramText"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "paramInt",
+                                    "paramText",
+                                    "paramInnerCustom"
+                                ]
+                            },
+                            "nullable": true,
+                            "maxItems": 5
                         },
                         "required": true
                     },
@@ -7701,6 +7816,17 @@
                                                                 }
                                                             }
                                                         },
+                                                        "paramDictionaryType": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
                                                         "paramCustom": {
                                                             "type": "object",
                                                             "properties": {
@@ -8377,6 +8503,42 @@
                                         },
                                         "nullable": true
                                     },
+                                    "paramDictionaryType": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "object",
+                                            "properties": {
+                                                "paramInt": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "paramText": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "paramInnerCustom": {
+                                                    "type": "object",
+                                                    "nullable": true,
+                                                    "properties": {
+                                                        "paramText": {
+                                                            "type": "string",
+                                                            "nullable": true
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "paramText"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "paramInt",
+                                                "paramText",
+                                                "paramInnerCustom"
+                                            ]
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 5
+                                    },
                                     "paramCustom": {
                                         "type": "object",
                                         "nullable": true,
@@ -8476,6 +8638,7 @@
                                     "paramPassword",
                                     "paramCollection",
                                     "paramCustomCollection",
+                                    "paramDictionaryType",
                                     "paramCustom",
                                     "paramExtended",
                                     "paramExtendedExtended",
@@ -8910,6 +9073,42 @@
                                         },
                                         "nullable": true
                                     },
+                                    "paramDictionaryType[]": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "object",
+                                            "properties": {
+                                                "paramInt": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "paramText": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "paramInnerCustom": {
+                                                    "type": "object",
+                                                    "nullable": true,
+                                                    "properties": {
+                                                        "paramText": {
+                                                            "type": "string",
+                                                            "nullable": true
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "paramText"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "paramInt",
+                                                "paramText",
+                                                "paramInnerCustom"
+                                            ]
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 5
+                                    },
                                     "paramCustom[paramInt]": {
                                         "type": "integer",
                                         "nullable": true
@@ -8977,6 +9176,7 @@
                                     "paramPassword",
                                     "paramCollection[]",
                                     "paramCustomCollection[]",
+                                    "paramDictionaryType[]",
                                     "paramCustom[paramInt]",
                                     "paramCustom[paramText]",
                                     "paramCustom[paramInnerCustom][paramText]",
@@ -9439,6 +9639,17 @@
                                                             }
                                                         },
                                                         "paramCustomCollection": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramDictionaryType": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -10095,6 +10306,34 @@
                                         },
                                         "nullable": true
                                     },
+                                    "paramDictionaryType": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "object",
+                                            "properties": {
+                                                "paramInt": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "paramText": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "paramInnerCustom": {
+                                                    "type": "object",
+                                                    "nullable": true,
+                                                    "properties": {
+                                                        "paramText": {
+                                                            "type": "string",
+                                                            "nullable": true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 5
+                                    },
                                     "paramCustom": {
                                         "type": "object",
                                         "nullable": true,
@@ -10575,6 +10814,34 @@
                                             }
                                         },
                                         "nullable": true
+                                    },
+                                    "paramDictionaryType[]": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "object",
+                                            "properties": {
+                                                "paramInt": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "paramText": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "paramInnerCustom": {
+                                                    "type": "object",
+                                                    "nullable": true,
+                                                    "properties": {
+                                                        "paramText": {
+                                                            "type": "string",
+                                                            "nullable": true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 5
                                     },
                                     "paramCustom[paramInt]": {
                                         "type": "integer",

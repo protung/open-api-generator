@@ -6,6 +6,11 @@ parameters:
 			path: src/Describer/Form/PropertyDescriber/CollectionPropertyDescriber.php
 
 		-
+			message: "#^Call to static method Webmozart\\\\Assert\\\\Assert\\:\\:implementsInterface\\(\\) with string and 'Symfony\\\\\\\\Component\\\\\\\\Form\\\\\\\\FormTypeInterface' will always evaluate to false\\.$#"
+			count: 1
+			path: src/Describer/Form/PropertyDescriber/DictionaryPropertyDescriber.php
+
+		-
 			message: "#^Variable property access on Symfony\\\\Component\\\\Validator\\\\Constraints\\\\Composite\\.$#"
 			count: 1
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php

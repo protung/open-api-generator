@@ -106,6 +106,7 @@ final class TestType extends AbstractType
                 ]
             )
             ->add('paramCustomCollection', TestCustomCollectionType::class)
+            ->add('paramDictionaryType', TestDictionaryType::class)
             ->add(
                 'paramCustom',
                 TestInnerType::class,
