@@ -57,4 +57,8 @@
     <route id="api_test_required" methods="GET|POST|PATCH" path="/api/test/required"/>
 
     <route id="api_test_form_definition_options" methods="GET|POST" path="/api/test/form-definition-options"/>
+
+    <route id="api_test_form_root_dictionary_type_body" methods="POST" path="/api/test/root-dictionary-type"/>
+
+    <route id="api_test_form_root_dictionary_type_query" methods="GET" path="/api/test/root-dictionary-type"/>
 </routes>

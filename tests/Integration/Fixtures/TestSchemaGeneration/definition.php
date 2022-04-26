@@ -16,6 +16,7 @@ use Speicher210\OpenApiGenerator\Model\Response;
 use Speicher210\OpenApiGenerator\Model\Type;
 use Speicher210\OpenApiGenerator\Processor\Path;
 use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration;
+use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form\TestDictionaryType;
 
 return new Model\Specification(
     new Info(
@@ -562,6 +563,26 @@ return new Model\Specification(
             [
                 FormInput::inQuery(new FormDefinition(TestSchemaGeneration\Form\TestFormDefinitionOptions::class, ['form_option' => 42])),
                 FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestFormDefinitionOptions::class, ['form_option' => 42])),
+            ],
+            [],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_form_root_dictionary_type_body',
+            'Test',
+            'Test form with root dictionary type in body',
+            null,
+            [
+                FormInput::inBody(new FormDefinition(TestDictionaryType::class)),
+            ],
+            [],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_form_root_dictionary_type_query',
+            'Test',
+            'Test form with root dictionary type in query',
+            null,
+            [
+                FormInput::inQuery(new FormDefinition(TestDictionaryType::class)),
             ],
             [],
         ),

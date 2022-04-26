@@ -27,7 +27,13 @@ final class Query
      */
     public function describe(FormInterface $form): array
     {
-        return $this->processParametersFromForm($form, new NameResolver\FlatArray());
+        if ($form->isRoot() && $form->count() === 0) {
+            $nameResolver = new NameResolver\PrefixedFlatArray('additionalProp');
+        } else {
+            $nameResolver = new NameResolver\FlatArray();
+        }
+
+        return $this->processParametersFromForm($form, $nameResolver);
     }
 
     /**

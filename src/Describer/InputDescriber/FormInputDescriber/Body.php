@@ -43,7 +43,13 @@ final class Body
 
         $httpMethod = $form->getRoot()->getConfig()->getMethod();
 
-        $formDataSchema = $this->formDescriber->addFlattenSchema($form, new NameResolver\FlatArray());
+        if ($form->isRoot() && $form->count() === 0) {
+            $nameResolver = new NameResolver\PrefixedFlatArray('additionalProp');
+        } else {
+            $nameResolver = new NameResolver\FlatArray();
+        }
+
+        $formDataSchema = $this->formDescriber->addFlattenSchema($form, $nameResolver);
 
         $content = [];
 

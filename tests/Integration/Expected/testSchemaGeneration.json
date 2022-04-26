@@ -6602,6 +6602,233 @@
                 "security": []
             }
         },
+        "/api/test/root-dictionary-type": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test form with root dictionary type in body",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paramInt": {
+                                            "type": "integer",
+                                            "nullable": true
+                                        },
+                                        "paramText": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "paramInnerCustom": {
+                                            "type": "object",
+                                            "nullable": true,
+                                            "properties": {
+                                                "paramText": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "required": [
+                                                "paramText"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "paramInt",
+                                        "paramText",
+                                        "paramInnerCustom"
+                                    ]
+                                },
+                                "maxItems": 5
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "additionalProp[]": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "object",
+                                            "properties": {
+                                                "paramInt": {
+                                                    "type": "integer",
+                                                    "nullable": true
+                                                },
+                                                "paramText": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "paramInnerCustom": {
+                                                    "type": "object",
+                                                    "nullable": true,
+                                                    "properties": {
+                                                        "paramText": {
+                                                            "type": "string",
+                                                            "nullable": true
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "paramText"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "paramInt",
+                                                "paramText",
+                                                "paramInnerCustom"
+                                            ]
+                                        },
+                                        "maxItems": 5
+                                    }
+                                },
+                                "required": [
+                                    "additionalProp[]"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            },
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test form with root dictionary type in query",
+                "parameters": [
+                    {
+                        "name": "additionalProp[]",
+                        "in": "query",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "paramInt": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "paramText": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramInnerCustom": {
+                                        "type": "object",
+                                        "nullable": true,
+                                        "properties": {
+                                            "paramText": {
+                                                "type": "string",
+                                                "nullable": true
+                                            }
+                                        },
+                                        "required": [
+                                            "paramText"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "paramInt",
+                                    "paramText",
+                                    "paramInnerCustom"
+                                ]
+                            },
+                            "maxItems": 5
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
         "/api/test/simple-object-input-output": {
             "post": {
                 "tags": [

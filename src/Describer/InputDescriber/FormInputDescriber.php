@@ -39,10 +39,6 @@ final class FormInputDescriber implements InputDescriber
 
         $form = $this->formFactory->create($input->formDefinition(), $httpMethod);
 
-        if ($form->count() === 0) {
-            return;
-        }
-
         if ($input->isInQuery()) {
             $operation->parameters = array_merge($operation->parameters, $this->queryDescriber->describe($form));
         } elseif ($input->isInBody()) {
