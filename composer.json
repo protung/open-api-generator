@@ -48,7 +48,9 @@
         "thecodingmachine/phpstan-strict-rules": "^1.0.0",
         "vimeo/psalm": "^4.23.0"
     },
-    "conflict": {},
+    "conflict": {
+        "nikic/php-parser": "<4.13.2"
+    },
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
