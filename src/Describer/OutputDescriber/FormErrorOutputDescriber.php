@@ -6,7 +6,7 @@ namespace Speicher210\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
-use Speicher210\OpenApiGenerator\Assert\Assert;
+use Psl;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
@@ -25,7 +25,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
 
     public function describe(Output $output): Schema
     {
-        Assert::isInstanceOf($output, FormErrorOutput::class);
+        $output = Psl\Type\instance_of(FormErrorOutput::class)->coerce($output);
 
         $form = $this->formFactory->create($output->formDefinition(), null);
 

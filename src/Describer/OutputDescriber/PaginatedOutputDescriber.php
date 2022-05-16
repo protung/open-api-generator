@@ -6,6 +6,7 @@ namespace Speicher210\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Psl;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
@@ -25,7 +26,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
 
     public function describe(Output $output): Schema
     {
-        Assert::isInstanceOf($output, PaginatedOutput::class);
+        $output = Psl\Type\instance_of(PaginatedOutput::class)->coerce($output);
 
         return new Schema(
             [

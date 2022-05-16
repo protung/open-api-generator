@@ -61,7 +61,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         $formConfig = $form->getConfig();
 
         return Psl\Vec\concat(
-            Psl\Type\vec(Psl\Type\object(Constraint::class))->coerce($formConfig->getOption('constraints', [])),
+            Psl\Type\vec(Psl\Type\instance_of(Constraint::class))->coerce($formConfig->getOption('constraints', [])),
             $this->getConstraintsForClass($formConfig),
             $this->getConstraintsForClassProperty($form)
         );

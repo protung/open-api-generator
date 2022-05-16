@@ -71,7 +71,7 @@ final class JMSModel implements Describer
             return;
         }
 
-        $propertyMetadata = Psl\Type\vec(Psl\Type\object(PropertyMetadata::class))->coerce($metadata->propertyMetadata);
+        $propertyMetadata = Psl\Type\vec(Psl\Type\instance_of(PropertyMetadata::class))->coerce($metadata->propertyMetadata);
 
         $metadataProperties = Psl\Vec\filter(
             $this->getPropertiesInSerializationGroups($propertyMetadata, $serializationGroups),
@@ -112,7 +112,7 @@ final class JMSModel implements Describer
                     $objectDescriber
                 );
                 foreach ($inlineModel->properties as $name => $property) {
-                    $properties[$name] = Psl\Type\object(Schema::class)->coerce($property);
+                    $properties[$name] = Psl\Type\instance_of(Schema::class)->coerce($property);
                 }
 
                 continue;
@@ -138,7 +138,7 @@ final class JMSModel implements Describer
                 if (count($propertiesSchemas) > 1) {
                     $property = new Schema(['oneOf' => $propertiesSchemas]);
                 } else {
-                    $property = Psl\Type\object(Schema::class)->coerce(Psl\Iter\first($propertiesSchemas));
+                    $property = Psl\Type\instance_of(Schema::class)->coerce(Psl\Iter\first($propertiesSchemas));
                 }
             }
 

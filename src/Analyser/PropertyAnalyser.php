@@ -18,7 +18,6 @@ use PHPStan\PhpDocParser\Parser\TypeParser;
 use Psl;
 use ReflectionClass;
 use ReflectionNamedType;
-use Speicher210\OpenApiGenerator\Assert\Assert;
 
 use function count;
 use function in_array;
@@ -74,8 +73,7 @@ final class PropertyAnalyser
             return [PropertyAnalysisSingleType::forSingleMixedValue()];
         }
 
-        $propertyType = $property->getType();
-        Assert::isInstanceOf($propertyType, ReflectionNamedType::class);
+        $propertyType = Psl\Type\instance_of(ReflectionNamedType::class)->coerce($property->getType());
 
         // Property has scalar native type
         if ($propertyType->getName() !== 'array') {
@@ -134,7 +132,7 @@ final class PropertyAnalyser
             return $this->parseUnionType($type);
         }
 
-        Assert::isInstanceOf($type, IdentifierTypeNode::class);
+        $type = Psl\Type\instance_of(IdentifierTypeNode::class)->coerce($type);
 
         if ($type->name === 'array') {
             return [
@@ -154,14 +152,14 @@ final class PropertyAnalyser
      */
     private function parseGenericTypeNode(GenericTypeNode $type, bool $nullable): array
     {
-        Assert::isInstanceOf($type->genericTypes[0], IdentifierTypeNode::class);
+        $genericType = Psl\Type\instance_of(IdentifierTypeNode::class)->coerce($type->genericTypes[0]);
 
         if (in_array($type->type->name, ['array', 'Generator', 'iterable'], true)) {
             return [
                 PropertyAnalysisCollectionType::forCollection(
                     'array',
                     $nullable,
-                    PropertyAnalysisSingleType::forSingleValue($type->genericTypes[0]->name, $nullable, [])
+                    PropertyAnalysisSingleType::forSingleValue($genericType->name, $nullable, [])
                 ),
             ];
         }
@@ -174,13 +172,13 @@ final class PropertyAnalyser
      */
     private function parseArrayTypeNode(ArrayTypeNode $type, bool $nullable): array
     {
-        Assert::isInstanceOf($type->type, IdentifierTypeNode::class);
+        $identifierType = Psl\Type\instance_of(IdentifierTypeNode::class)->coerce($type->type);
 
         return [
             PropertyAnalysisCollectionType::forCollection(
                 'array',
                 $nullable,
-                PropertyAnalysisSingleType::forSingleValue($type->type->name, $nullable, [])
+                PropertyAnalysisSingleType::forSingleValue($identifierType->name, $nullable, [])
             ),
         ];
     }
@@ -190,9 +188,10 @@ final class PropertyAnalyser
      */
     private function parseUnionType(UnionTypeNode $type): array
     {
-        Assert::allIsInstanceOf($type->types, IdentifierTypeNode::class);
-        $nullable   = any($type->types, static fn (IdentifierTypeNode $type): bool => $type->name === 'null');
-        $unionTypes = filter($type->types, static fn (IdentifierTypeNode $type): bool => $type->name !== 'null');
+        $types = Psl\Type\vec(Psl\Type\instance_of(IdentifierTypeNode::class))->coerce($type->types);
+
+        $nullable   = any($types, static fn (IdentifierTypeNode $type): bool => $type->name === 'null');
+        $unionTypes = filter($types, static fn (IdentifierTypeNode $type): bool => $type->name !== 'null');
 
         return map(
             $unionTypes,

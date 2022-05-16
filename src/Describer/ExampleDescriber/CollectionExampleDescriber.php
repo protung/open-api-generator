@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Speicher210\OpenApiGenerator\Describer\ExampleDescriber;
 
 use cebe\openapi\spec\Schema;
-use Speicher210\OpenApiGenerator\Assert\Assert;
+use Psl;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 
 final class CollectionExampleDescriber implements ExampleDescriber
@@ -20,7 +20,7 @@ final class CollectionExampleDescriber implements ExampleDescriber
 
     public function describe(Schema $schema, Output $output): void
     {
-        Assert::isInstanceOf($output, Output\CollectionOutput::class);
+        $output = Psl\Type\instance_of(Output\CollectionOutput::class)->coerce($output);
 
         $innerOutput = $output->output();
 

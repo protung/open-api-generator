@@ -8,7 +8,6 @@ use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\Response;
 use cebe\openapi\spec\Responses;
 use Psl;
-use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Callback as ModelCallback;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
 use Speicher210\OpenApiGenerator\Model\Path\Path;
@@ -84,7 +83,7 @@ final class OperationDescriber
 
     private function describeResponses(Operation $operation, ModelResponse ...$responsesConfig): void
     {
-        Assert::isInstanceOf($operation->responses, Responses::class);
+        $responses = Psl\Type\instance_of(Responses::class)->coerce($operation->responses);
 
         foreach ($responsesConfig as $response) {
             $responseData = [
@@ -107,7 +106,7 @@ final class OperationDescriber
                 }
             }
 
-            $operation->responses->addResponse(
+            $responses->addResponse(
                 (string) $response->statusCode(),
                 new Response($responseData)
             );

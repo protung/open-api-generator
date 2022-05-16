@@ -9,6 +9,7 @@ use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\Parameter;
 use cebe\openapi\spec\RequestBody;
 use cebe\openapi\spec\Schema;
+use Psl;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\IOFieldDescriber;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
@@ -28,7 +29,7 @@ final class SimpleInputDescriber implements InputDescriber
 
     public function describe(Input $input, Operation $operation, string $httpMethod): void
     {
-        Assert::isInstanceOf($input, Input\SimpleInput::class);
+        $input = Psl\Type\instance_of(Input\SimpleInput::class)->coerce($input);
 
         if ($input->isInBody()) {
             Assert::notSame($httpMethod, 'GET', 'Body input is not allowed in GET requests.');
