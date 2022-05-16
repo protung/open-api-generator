@@ -8,6 +8,7 @@ use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\RequestBody;
 use cebe\openapi\spec\Schema;
+use Psl;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
 use Speicher210\OpenApiGenerator\Describer\FormDescriber;
@@ -35,7 +36,7 @@ final class FormInputDescriber implements InputDescriber
 
     public function describe(Input $input, Operation $operation, string $httpMethod): void
     {
-        Assert::isInstanceOf($input, Input\FormInput::class);
+        $input = Psl\Type\instance_of(Input\FormInput::class)->coerce($input);
 
         $form = $this->formFactory->create($input->formDefinition(), $httpMethod);
 
@@ -66,10 +67,10 @@ final class FormInputDescriber implements InputDescriber
             return;
         }
 
-        Assert::isInstanceOf($operation->requestBody, RequestBody::class, 'Reference request body is not supported.');
+        $requestBody = Psl\Type\instance_of(RequestBody::class)->coerce($operation->requestBody);
 
-        $operation->requestBody->content = $this->mergeRequestBodyContent(
-            $operation->requestBody->content,
+        $requestBody->content = $this->mergeRequestBodyContent(
+            $requestBody->content,
             $mediaTypes
         );
     }
@@ -89,8 +90,7 @@ final class FormInputDescriber implements InputDescriber
                 continue;
             }
 
-            $existingMediaTypeSchema = $requestBodyContent[$contentType]->schema;
-            Assert::isInstanceOf($existingMediaTypeSchema, Schema::class);
+            $existingMediaTypeSchema = Psl\Type\instance_of(Schema::class)->coerce($requestBodyContent[$contentType]->schema);
 
             if ($existingMediaTypeSchema->oneOf === null) {
                 $mediaTypes = [

@@ -36,7 +36,7 @@ final class ObjectDescriber
             );
         }
 
-        return Psl\Type\object(Schema::class)->coerce(deep_copy($this->modelRegistry->getSchema($definition)));
+        return Psl\Type\instance_of(Schema::class)->coerce(deep_copy($this->modelRegistry->getSchema($definition)));
     }
 
     public function describeAsReference(Definition $definition, string $referencePath): Reference

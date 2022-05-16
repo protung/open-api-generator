@@ -6,7 +6,6 @@ namespace Speicher210\OpenApiGenerator\Processor\Path\Symfony;
 
 use InvalidArgumentException;
 use Psl;
-use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Describer\OperationDescriber;
 use Speicher210\OpenApiGenerator\Model\Path\Input;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
@@ -36,7 +35,7 @@ final class PathProcessor implements PathProcessorInterface
      */
     public function process(Path $path): array
     {
-        Assert::isInstanceOf($path, SymfonyRoutePath::class);
+        $path = Psl\Type\instance_of(SymfonyRoutePath::class)->coerce($path);
 
         $symfonyRoute = $this->routeCollection->get($path->routeName());
 

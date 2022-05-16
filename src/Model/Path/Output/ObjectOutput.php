@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path\Output;
 
+use Psl;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 use Speicher210\OpenApiGenerator\Model\Path\SerializationGroupAwareOutput;
@@ -68,7 +69,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
 
     public function withExample(object $exampleObject): self
     {
-        Assert::isInstanceOf($exampleObject, $this->className);
+        $exampleObject = Psl\Type\instance_of($this->className)->coerce($exampleObject);
 
         $this->exampleObject = $exampleObject;
 

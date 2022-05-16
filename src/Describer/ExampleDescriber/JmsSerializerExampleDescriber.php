@@ -7,7 +7,7 @@ namespace Speicher210\OpenApiGenerator\Describer\ExampleDescriber;
 use cebe\openapi\spec\Schema;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Serializer;
-use Speicher210\OpenApiGenerator\Assert\Assert;
+use Psl;
 use Speicher210\OpenApiGenerator\Model\Path\Output;
 
 final class JmsSerializerExampleDescriber implements ExampleDescriber
@@ -21,7 +21,7 @@ final class JmsSerializerExampleDescriber implements ExampleDescriber
 
     public function describe(Schema $schema, Output $output): void
     {
-        Assert::isInstanceOf($output, Output\ObjectOutput::class);
+        $output = Psl\Type\instance_of(Output\ObjectOutput::class)->coerce($output);
 
         $serializationContext = new SerializationContext();
         $serializationContext->setGroups($output->serializationGroups());

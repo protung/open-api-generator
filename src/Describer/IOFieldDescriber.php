@@ -6,7 +6,7 @@ namespace Speicher210\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
-use Speicher210\OpenApiGenerator\Assert\Assert;
+use Psl;
 use Speicher210\OpenApiGenerator\Model\Path\IOField;
 use Speicher210\OpenApiGenerator\Model\Type as ModelType;
 
@@ -26,8 +26,7 @@ final class IOFieldDescriber
             $fieldName = $field->name();
 
             if ($field->type() === ModelType::ARRAY) {
-                Assert::notNull($children);
-                Assert::count($children, 1);
+                $children               = Psl\Type\non_empty_vec(Psl\Type\instance_of(IOField::class))->coerce($children);
                 $properties[$fieldName] = new Schema(['type' => Type::ARRAY, 'items' => $this->describeField($children[0])]);
                 if ($field->isNullable()) {
                     $properties[$fieldName]->nullable = true;

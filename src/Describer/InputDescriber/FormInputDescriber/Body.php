@@ -87,7 +87,7 @@ final class Body
         }
 
         $schema->properties = Psl\Dict\filter(
-            Psl\Type\dict(Psl\Type\string(), Psl\Type\object(Schema::class))->coerce($schema->properties),
+            Psl\Type\dict(Psl\Type\string(), Psl\Type\instance_of(Schema::class))->coerce($schema->properties),
             static function (Schema $property): bool {
                 if ($property->format === 'binary') {
                     return false;
