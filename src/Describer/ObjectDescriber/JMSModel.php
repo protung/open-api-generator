@@ -39,11 +39,14 @@ final class JMSModel implements Describer
 
     private PropertyAnalyser $propertyAnalyser;
 
-    public function __construct(MetadataFactoryInterface $metadataFactory, string $apiVersion)
+    private bool $serializeNull;
+
+    public function __construct(MetadataFactoryInterface $metadataFactory, string $apiVersion, bool $serializeNull = true)
     {
         $this->metadataFactory          = $metadataFactory;
         $this->versionExclusionStrategy = new VersionExclusionStrategy($apiVersion);
         $this->propertyAnalyser         = new PropertyAnalyser();
+        $this->serializeNull            = $serializeNull;
     }
 
     public function describeInSchema(Schema $schema, Definition $definition, ObjectDescriber $objectDescriber): void
@@ -146,6 +149,12 @@ final class JMSModel implements Describer
         }
 
         $schema->properties = $properties;
+        $schema->required   = Psl\Vec\keys(
+            Psl\Dict\filter(
+                $properties,
+                fn (Schema $schema): bool => $this->serializeNull || $schema->nullable !== true // 'nullable' might be `null` as well (docs are wrong)
+            )
+        );
         $schema->type       = Type::OBJECT;
     }
 

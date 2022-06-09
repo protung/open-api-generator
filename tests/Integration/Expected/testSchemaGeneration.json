@@ -28,6 +28,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -1238,6 +1244,20 @@
                                         "content": {
                                             "application/json": {
                                                 "schema": {
+                                                    "required": [
+                                                        "virtualProperty",
+                                                        "virtualPropertyWithCustomName",
+                                                        "stringProperty",
+                                                        "propertyWithCustomName",
+                                                        "intProperty",
+                                                        "floatProperty",
+                                                        "boolProperty",
+                                                        "arrayProperty",
+                                                        "inlineObjectStringProperty",
+                                                        "inlineObjectIntProperty",
+                                                        "arrayOfChildObjectsProperty",
+                                                        "scalarUnionProperty"
+                                                    ],
                                                     "type": "object",
                                                     "properties": {
                                                         "virtualProperty": {
@@ -1277,12 +1297,18 @@
                                                             }
                                                         },
                                                         "childObjectProperty": {
+                                                            "required": [
+                                                                "stringProperty"
+                                                            ],
                                                             "type": "object",
                                                             "properties": {
                                                                 "stringProperty": {
                                                                     "type": "string"
                                                                 },
                                                                 "innerChildProperty": {
+                                                                    "required": [
+                                                                        "stringProperty"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "stringProperty": {
@@ -1301,12 +1327,18 @@
                                                             "type": "integer"
                                                         },
                                                         "inlineObjectChildObjectProperty": {
+                                                            "required": [
+                                                                "stringProperty"
+                                                            ],
                                                             "type": "object",
                                                             "properties": {
                                                                 "stringProperty": {
                                                                     "type": "string"
                                                                 },
                                                                 "innerChildProperty": {
+                                                                    "required": [
+                                                                        "stringProperty"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "stringProperty": {
@@ -1321,12 +1353,18 @@
                                                         "arrayOfChildObjectsProperty": {
                                                             "type": "array",
                                                             "items": {
+                                                                "required": [
+                                                                    "stringProperty"
+                                                                ],
                                                                 "type": "object",
                                                                 "properties": {
                                                                     "stringProperty": {
                                                                         "type": "string"
                                                                     },
                                                                     "innerChildProperty": {
+                                                                        "required": [
+                                                                            "stringProperty"
+                                                                        ],
                                                                         "type": "object",
                                                                         "properties": {
                                                                             "stringProperty": {
@@ -1424,6 +1462,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2247,6 +2291,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2302,6 +2352,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2332,6 +2388,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2362,6 +2424,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2392,6 +2460,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2422,6 +2496,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2452,6 +2532,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2482,6 +2568,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2512,6 +2604,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2542,6 +2640,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2572,6 +2676,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2605,6 +2715,9 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "precondition"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "precondition": {
@@ -2623,6 +2736,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2687,6 +2806,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2778,6 +2903,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2870,6 +3001,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -2977,10 +3114,16 @@
                                                             "type": "string"
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object",
                                                     "nullable": true
                                                 }
                                             },
+                                            "required": [
+                                                "stringProperty"
+                                            ],
                                             "type": "object",
                                             "nullable": true
                                         },
@@ -3001,10 +3144,16 @@
                                                             "type": "string"
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object",
                                                     "nullable": true
                                                 }
                                             },
+                                            "required": [
+                                                "stringProperty"
+                                            ],
                                             "type": "object",
                                             "nullable": true
                                         },
@@ -3021,10 +3170,16 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
                                                         "type": "object",
                                                         "nullable": true
                                                     }
                                                 },
+                                                "required": [
+                                                    "stringProperty"
+                                                ],
                                                 "type": "object"
                                             }
                                         },
@@ -3059,6 +3214,20 @@
                                             ]
                                         }
                                     },
+                                    "required": [
+                                        "virtualProperty",
+                                        "virtualPropertyWithCustomName",
+                                        "stringProperty",
+                                        "propertyWithCustomName",
+                                        "intProperty",
+                                        "floatProperty",
+                                        "boolProperty",
+                                        "arrayProperty",
+                                        "inlineObjectStringProperty",
+                                        "inlineObjectIntProperty",
+                                        "arrayOfChildObjectsProperty",
+                                        "scalarUnionProperty"
+                                    ],
                                     "type": "object"
                                 }
                             }
@@ -3069,6 +3238,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -3099,6 +3274,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -3154,6 +3335,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -3207,6 +3394,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -3267,6 +3460,9 @@
                                             "type": "string"
                                         }
                                     },
+                                    "required": [
+                                        "stringProperty"
+                                    ],
                                     "type": "object"
                                 }
                             }
@@ -3277,6 +3473,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -3362,6 +3564,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -3504,6 +3712,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -3646,6 +3860,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -3792,10 +4012,16 @@
                                                             "type": "string"
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object",
                                                     "nullable": true
                                                 }
                                             },
+                                            "required": [
+                                                "stringProperty"
+                                            ],
                                             "type": "object",
                                             "nullable": true
                                         },
@@ -3816,10 +4042,16 @@
                                                             "type": "string"
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object",
                                                     "nullable": true
                                                 }
                                             },
+                                            "required": [
+                                                "stringProperty"
+                                            ],
                                             "type": "object",
                                             "nullable": true
                                         },
@@ -3836,10 +4068,16 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
                                                         "type": "object",
                                                         "nullable": true
                                                     }
                                                 },
+                                                "required": [
+                                                    "stringProperty"
+                                                ],
                                                 "type": "object"
                                             }
                                         },
@@ -3874,6 +4112,20 @@
                                             ]
                                         }
                                     },
+                                    "required": [
+                                        "virtualProperty",
+                                        "virtualPropertyWithCustomName",
+                                        "stringProperty",
+                                        "propertyWithCustomName",
+                                        "intProperty",
+                                        "floatProperty",
+                                        "boolProperty",
+                                        "arrayProperty",
+                                        "inlineObjectStringProperty",
+                                        "inlineObjectIntProperty",
+                                        "arrayOfChildObjectsProperty",
+                                        "scalarUnionProperty"
+                                    ],
                                     "type": "object",
                                     "example": {
                                         "virtual_property": 123,
@@ -3971,10 +4223,17 @@
                                                             "type": "string"
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object",
                                                     "nullable": true
                                                 }
                                             },
+                                            "required": [
+                                                "stringProperty",
+                                                "stringPropertyWithCustomGroup"
+                                            ],
                                             "type": "object",
                                             "nullable": true
                                         },
@@ -3998,10 +4257,17 @@
                                                             "type": "string"
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object",
                                                     "nullable": true
                                                 }
                                             },
+                                            "required": [
+                                                "stringProperty",
+                                                "stringPropertyWithCustomGroup"
+                                            ],
                                             "type": "object",
                                             "nullable": true
                                         },
@@ -4021,10 +4287,17 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
                                                         "type": "object",
                                                         "nullable": true
                                                     }
                                                 },
+                                                "required": [
+                                                    "stringProperty",
+                                                    "stringPropertyWithCustomGroup"
+                                                ],
                                                 "type": "object"
                                             }
                                         },
@@ -4059,6 +4332,21 @@
                                             ]
                                         }
                                     },
+                                    "required": [
+                                        "virtualProperty",
+                                        "virtualPropertyWithCustomName",
+                                        "stringProperty",
+                                        "stringPropertyWithCustomGroup",
+                                        "propertyWithCustomName",
+                                        "intProperty",
+                                        "floatProperty",
+                                        "boolProperty",
+                                        "arrayProperty",
+                                        "inlineObjectStringProperty",
+                                        "inlineObjectIntProperty",
+                                        "arrayOfChildObjectsProperty",
+                                        "scalarUnionProperty"
+                                    ],
                                     "type": "object",
                                     "example": {
                                         "virtual_property": 123,
@@ -4155,10 +4443,16 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
                                                         "type": "object",
                                                         "nullable": true
                                                     }
                                                 },
+                                                "required": [
+                                                    "stringProperty"
+                                                ],
                                                 "type": "object",
                                                 "nullable": true
                                             },
@@ -4179,10 +4473,16 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
                                                         "type": "object",
                                                         "nullable": true
                                                     }
                                                 },
+                                                "required": [
+                                                    "stringProperty"
+                                                ],
                                                 "type": "object",
                                                 "nullable": true
                                             },
@@ -4199,10 +4499,16 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "required": [
+                                                                "stringProperty"
+                                                            ],
                                                             "type": "object",
                                                             "nullable": true
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object"
                                                 }
                                             },
@@ -4237,6 +4543,20 @@
                                                 ]
                                             }
                                         },
+                                        "required": [
+                                            "virtualProperty",
+                                            "virtualPropertyWithCustomName",
+                                            "stringProperty",
+                                            "propertyWithCustomName",
+                                            "intProperty",
+                                            "floatProperty",
+                                            "boolProperty",
+                                            "arrayProperty",
+                                            "inlineObjectStringProperty",
+                                            "inlineObjectIntProperty",
+                                            "arrayOfChildObjectsProperty",
+                                            "scalarUnionProperty"
+                                        ],
                                         "type": "object",
                                         "example": {
                                             "virtual_property": 123,
@@ -4316,6 +4636,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -4367,6 +4693,14 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "page",
+                                        "limit",
+                                        "pages",
+                                        "total",
+                                        "_links",
+                                        "_embedded"
+                                    ],
                                     "properties": {
                                         "page": {
                                             "type": "integer"
@@ -4430,6 +4764,9 @@
                                             }
                                         },
                                         "_embedded": {
+                                            "required": [
+                                                "multiple_types"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "multiple_types": {
@@ -4485,10 +4822,16 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "required": [
+                                                                                    "stringProperty"
+                                                                                ],
                                                                                 "type": "object",
                                                                                 "nullable": true
                                                                             }
                                                                         },
+                                                                        "required": [
+                                                                            "stringProperty"
+                                                                        ],
                                                                         "type": "object",
                                                                         "nullable": true
                                                                     },
@@ -4509,10 +4852,16 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "required": [
+                                                                                    "stringProperty"
+                                                                                ],
                                                                                 "type": "object",
                                                                                 "nullable": true
                                                                             }
                                                                         },
+                                                                        "required": [
+                                                                            "stringProperty"
+                                                                        ],
                                                                         "type": "object",
                                                                         "nullable": true
                                                                     },
@@ -4529,10 +4878,16 @@
                                                                                             "type": "string"
                                                                                         }
                                                                                     },
+                                                                                    "required": [
+                                                                                        "stringProperty"
+                                                                                    ],
                                                                                     "type": "object",
                                                                                     "nullable": true
                                                                                 }
                                                                             },
+                                                                            "required": [
+                                                                                "stringProperty"
+                                                                            ],
                                                                             "type": "object"
                                                                         }
                                                                     },
@@ -4567,6 +4922,20 @@
                                                                         ]
                                                                     }
                                                                 },
+                                                                "required": [
+                                                                    "virtualProperty",
+                                                                    "virtualPropertyWithCustomName",
+                                                                    "stringProperty",
+                                                                    "propertyWithCustomName",
+                                                                    "intProperty",
+                                                                    "floatProperty",
+                                                                    "boolProperty",
+                                                                    "arrayProperty",
+                                                                    "inlineObjectStringProperty",
+                                                                    "inlineObjectIntProperty",
+                                                                    "arrayOfChildObjectsProperty",
+                                                                    "scalarUnionProperty"
+                                                                ],
                                                                 "type": "object"
                                                             },
                                                             {
@@ -4624,10 +4993,17 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "required": [
+                                                                                    "stringProperty"
+                                                                                ],
                                                                                 "type": "object",
                                                                                 "nullable": true
                                                                             }
                                                                         },
+                                                                        "required": [
+                                                                            "stringProperty",
+                                                                            "stringPropertyWithCustomGroup"
+                                                                        ],
                                                                         "type": "object",
                                                                         "nullable": true
                                                                     },
@@ -4651,10 +5027,17 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "required": [
+                                                                                    "stringProperty"
+                                                                                ],
                                                                                 "type": "object",
                                                                                 "nullable": true
                                                                             }
                                                                         },
+                                                                        "required": [
+                                                                            "stringProperty",
+                                                                            "stringPropertyWithCustomGroup"
+                                                                        ],
                                                                         "type": "object",
                                                                         "nullable": true
                                                                     },
@@ -4674,10 +5057,17 @@
                                                                                             "type": "string"
                                                                                         }
                                                                                     },
+                                                                                    "required": [
+                                                                                        "stringProperty"
+                                                                                    ],
                                                                                     "type": "object",
                                                                                     "nullable": true
                                                                                 }
                                                                             },
+                                                                            "required": [
+                                                                                "stringProperty",
+                                                                                "stringPropertyWithCustomGroup"
+                                                                            ],
                                                                             "type": "object"
                                                                         }
                                                                     },
@@ -4712,6 +5102,21 @@
                                                                         ]
                                                                     }
                                                                 },
+                                                                "required": [
+                                                                    "virtualProperty",
+                                                                    "virtualPropertyWithCustomName",
+                                                                    "stringProperty",
+                                                                    "stringPropertyWithCustomGroup",
+                                                                    "propertyWithCustomName",
+                                                                    "intProperty",
+                                                                    "floatProperty",
+                                                                    "boolProperty",
+                                                                    "arrayProperty",
+                                                                    "inlineObjectStringProperty",
+                                                                    "inlineObjectIntProperty",
+                                                                    "arrayOfChildObjectsProperty",
+                                                                    "scalarUnionProperty"
+                                                                ],
                                                                 "type": "object"
                                                             },
                                                             {
@@ -4720,6 +5125,9 @@
                                                                         "type": "string"
                                                                     }
                                                                 },
+                                                                "required": [
+                                                                    "stringProperty"
+                                                                ],
                                                                 "type": "object"
                                                             }
                                                         ]
@@ -4737,6 +5145,14 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "page",
+                                        "limit",
+                                        "pages",
+                                        "total",
+                                        "_links",
+                                        "_embedded"
+                                    ],
                                     "properties": {
                                         "page": {
                                             "type": "integer"
@@ -4800,11 +5216,17 @@
                                             }
                                         },
                                         "_embedded": {
+                                            "required": [
+                                                "one_type"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "one_type": {
                                                     "type": "array",
                                                     "items": {
+                                                        "required": [
+                                                            "someField"
+                                                        ],
                                                         "type": "object",
                                                         "properties": {
                                                             "someField": {
@@ -4828,6 +5250,14 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "page",
+                                        "limit",
+                                        "pages",
+                                        "total",
+                                        "_links",
+                                        "_embedded"
+                                    ],
                                     "properties": {
                                         "page": {
                                             "type": "integer"
@@ -4891,6 +5321,9 @@
                                             }
                                         },
                                         "_embedded": {
+                                            "required": [
+                                                "children_with_discriminator"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "children_with_discriminator": {
@@ -4915,6 +5348,12 @@
                                                                         ]
                                                                     }
                                                                 },
+                                                                "required": [
+                                                                    "propertyInParent",
+                                                                    "propertyInFirstChild",
+                                                                    "childPropertyWithDifferentType",
+                                                                    "discriminator"
+                                                                ],
                                                                 "type": "object"
                                                             },
                                                             {
@@ -4935,6 +5374,12 @@
                                                                         ]
                                                                     }
                                                                 },
+                                                                "required": [
+                                                                    "propertyInParent",
+                                                                    "propertyInSecondChild",
+                                                                    "childPropertyWithDifferentType",
+                                                                    "discriminator"
+                                                                ],
                                                                 "type": "object"
                                                             }
                                                         ]
@@ -4952,6 +5397,14 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "page",
+                                        "limit",
+                                        "pages",
+                                        "total",
+                                        "_links",
+                                        "_embedded"
+                                    ],
                                     "properties": {
                                         "page": {
                                             "type": "integer"
@@ -5015,6 +5468,9 @@
                                             }
                                         },
                                         "_embedded": {
+                                            "required": [
+                                                "parent_with_discriminator"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "parent_with_discriminator": {
@@ -5039,6 +5495,12 @@
                                                                         ]
                                                                     }
                                                                 },
+                                                                "required": [
+                                                                    "propertyInParent",
+                                                                    "propertyInFirstChild",
+                                                                    "childPropertyWithDifferentType",
+                                                                    "discriminator"
+                                                                ],
                                                                 "type": "object"
                                                             },
                                                             {
@@ -5059,6 +5521,12 @@
                                                                         ]
                                                                     }
                                                                 },
+                                                                "required": [
+                                                                    "propertyInParent",
+                                                                    "propertyInSecondChild",
+                                                                    "childPropertyWithDifferentType",
+                                                                    "discriminator"
+                                                                ],
                                                                 "type": "object"
                                                             }
                                                         ]
@@ -5079,6 +5547,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -5162,6 +5636,12 @@
                             },
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -5192,6 +5672,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -5273,6 +5759,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -5384,6 +5876,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -5583,6 +6081,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -5782,6 +6286,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -5959,6 +6469,14 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "myUnknown",
+                                        "myAnything",
+                                        "myInt",
+                                        "myString",
+                                        "myBoolean",
+                                        "myChoice"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "myUnknown": {},
@@ -5984,6 +6502,9 @@
                                                 3
                                             ],
                                             "type": "number"
+                                        },
+                                        "optional": {
+                                            "type": "any"
                                         }
                                     },
                                     "example": {
@@ -5992,7 +6513,8 @@
                                         "myInt": 123,
                                         "myString": "string",
                                         "myBoolean": true,
-                                        "myChoice": 1
+                                        "myChoice": 1,
+                                        "optional": null
                                     }
                                 }
                             }
@@ -6065,10 +6587,16 @@
                                                             "type": "string"
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object",
                                                     "nullable": true
                                                 }
                                             },
+                                            "required": [
+                                                "stringProperty"
+                                            ],
                                             "type": "object",
                                             "nullable": true
                                         },
@@ -6089,10 +6617,16 @@
                                                             "type": "string"
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object",
                                                     "nullable": true
                                                 }
                                             },
+                                            "required": [
+                                                "stringProperty"
+                                            ],
                                             "type": "object",
                                             "nullable": true
                                         },
@@ -6109,10 +6643,16 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
                                                         "type": "object",
                                                         "nullable": true
                                                     }
                                                 },
+                                                "required": [
+                                                    "stringProperty"
+                                                ],
                                                 "type": "object"
                                             }
                                         },
@@ -6147,6 +6687,20 @@
                                             ]
                                         }
                                     },
+                                    "required": [
+                                        "virtualProperty",
+                                        "virtualPropertyWithCustomName",
+                                        "stringProperty",
+                                        "propertyWithCustomName",
+                                        "intProperty",
+                                        "floatProperty",
+                                        "boolProperty",
+                                        "arrayProperty",
+                                        "inlineObjectStringProperty",
+                                        "inlineObjectIntProperty",
+                                        "arrayOfChildObjectsProperty",
+                                        "scalarUnionProperty"
+                                    ],
                                     "type": "object"
                                 }
                             }
@@ -6207,10 +6761,16 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
                                                         "type": "object",
                                                         "nullable": true
                                                     }
                                                 },
+                                                "required": [
+                                                    "stringProperty"
+                                                ],
                                                 "type": "object",
                                                 "nullable": true
                                             },
@@ -6231,10 +6791,16 @@
                                                                 "type": "string"
                                                             }
                                                         },
+                                                        "required": [
+                                                            "stringProperty"
+                                                        ],
                                                         "type": "object",
                                                         "nullable": true
                                                     }
                                                 },
+                                                "required": [
+                                                    "stringProperty"
+                                                ],
                                                 "type": "object",
                                                 "nullable": true
                                             },
@@ -6251,10 +6817,16 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "required": [
+                                                                "stringProperty"
+                                                            ],
                                                             "type": "object",
                                                             "nullable": true
                                                         }
                                                     },
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object"
                                                 }
                                             },
@@ -6289,6 +6861,20 @@
                                                 ]
                                             }
                                         },
+                                        "required": [
+                                            "virtualProperty",
+                                            "virtualPropertyWithCustomName",
+                                            "stringProperty",
+                                            "propertyWithCustomName",
+                                            "intProperty",
+                                            "floatProperty",
+                                            "boolProperty",
+                                            "arrayProperty",
+                                            "inlineObjectStringProperty",
+                                            "inlineObjectIntProperty",
+                                            "arrayOfChildObjectsProperty",
+                                            "scalarUnionProperty"
+                                        ],
                                         "type": "object"
                                     }
                                 }
@@ -6312,10 +6898,16 @@
                                                         "type": "string"
                                                     }
                                                 },
+                                                "required": [
+                                                    "stringProperty"
+                                                ],
                                                 "type": "object",
                                                 "nullable": true
                                             }
                                         },
+                                        "required": [
+                                            "stringProperty"
+                                        ],
                                         "type": "object"
                                     }
                                 }
@@ -6393,6 +6985,12 @@
                                                     ]
                                                 }
                                             },
+                                            "required": [
+                                                "propertyInParent",
+                                                "propertyInFirstChild",
+                                                "childPropertyWithDifferentType",
+                                                "discriminator"
+                                            ],
                                             "type": "object"
                                         },
                                         {
@@ -6413,6 +7011,12 @@
                                                     ]
                                                 }
                                             },
+                                            "required": [
+                                                "propertyInParent",
+                                                "propertyInSecondChild",
+                                                "childPropertyWithDifferentType",
+                                                "discriminator"
+                                            ],
                                             "type": "object"
                                         }
                                     ]
@@ -6425,6 +7029,20 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "myUnknown",
+                                        "myInt",
+                                        "myFloat",
+                                        "myString",
+                                        "myBoolean",
+                                        "myObject",
+                                        "myIntegerCollection",
+                                        "myFloatCollection",
+                                        "myBooleanCollection",
+                                        "myStringCollection",
+                                        "myObjectCollection",
+                                        "myArrayCollection"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "myUnknown": {
@@ -6443,6 +7061,13 @@
                                             "type": "boolean"
                                         },
                                         "myObject": {
+                                            "required": [
+                                                "myUnknown",
+                                                "myInt",
+                                                "myFloat",
+                                                "myString",
+                                                "myBoolean"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "myUnknown": {
@@ -6489,6 +7114,13 @@
                                         "myObjectCollection": {
                                             "type": "array",
                                             "items": {
+                                                "required": [
+                                                    "myUnknown",
+                                                    "myInt",
+                                                    "myFloat",
+                                                    "myString",
+                                                    "myBoolean"
+                                                ],
                                                 "type": "object",
                                                 "properties": {
                                                     "myUnknown": {
@@ -6572,6 +7204,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -6624,6 +7262,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -6800,6 +7444,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -6851,6 +7501,12 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "simpleUnknown",
+                                        "simpleAnything",
+                                        "simpleString",
+                                        "simpleObject"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "simpleUnknown": {},
@@ -6861,6 +7517,12 @@
                                             "type": "string"
                                         },
                                         "simpleObject": {
+                                            "required": [
+                                                "simpleBoolean",
+                                                "simpleString",
+                                                "simpleInteger",
+                                                "simpleInnerObject"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "simpleBoolean": {
@@ -6873,6 +7535,11 @@
                                                     "type": "integer"
                                                 },
                                                 "simpleInnerObject": {
+                                                    "required": [
+                                                        "simpleBoolean",
+                                                        "simpleString",
+                                                        "simpleInteger"
+                                                    ],
                                                     "type": "object",
                                                     "properties": {
                                                         "simpleBoolean": {
@@ -6913,6 +7580,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -6944,6 +7617,14 @@
                     "content": {
                         "application/json": {
                             "schema": {
+                                "required": [
+                                    "simpleString",
+                                    "simpleArrayOfStrings",
+                                    "simpleNullableArrayOfStrings",
+                                    "simpleArrayOfObjects",
+                                    "simpleObject",
+                                    "simpleNullableObjectWithChildren"
+                                ],
                                 "type": "object",
                                 "properties": {
                                     "simpleString": {
@@ -6965,6 +7646,12 @@
                                     "simpleArrayOfObjects": {
                                         "type": "array",
                                         "items": {
+                                            "required": [
+                                                "simpleBoolean",
+                                                "simpleString",
+                                                "simpleInteger",
+                                                "simpleInnerObject"
+                                            ],
                                             "type": "object",
                                             "properties": {
                                                 "simpleBoolean": {
@@ -6977,6 +7664,11 @@
                                                     "type": "integer"
                                                 },
                                                 "simpleInnerObject": {
+                                                    "required": [
+                                                        "simpleBoolean",
+                                                        "simpleString",
+                                                        "simpleInteger"
+                                                    ],
                                                     "type": "object",
                                                     "properties": {
                                                         "simpleBoolean": {
@@ -6994,6 +7686,16 @@
                                         }
                                     },
                                     "simpleObject": {
+                                        "required": [
+                                            "simpleBoolean",
+                                            "simpleNullableBoolean",
+                                            "simpleString",
+                                            "simpleNullableString",
+                                            "simpleInteger",
+                                            "simpleNullableInteger",
+                                            "simpleInnerObject",
+                                            "simpleNullableObjectWithoutChildren"
+                                        ],
                                         "type": "object",
                                         "properties": {
                                             "simpleBoolean": {
@@ -7018,6 +7720,11 @@
                                                 "nullable": true
                                             },
                                             "simpleInnerObject": {
+                                                "required": [
+                                                    "simpleBoolean",
+                                                    "simpleString",
+                                                    "simpleInteger"
+                                                ],
                                                 "type": "object",
                                                 "properties": {
                                                     "simpleBoolean": {
@@ -7038,6 +7745,9 @@
                                         }
                                     },
                                     "simpleNullableObjectWithChildren": {
+                                        "required": [
+                                            "simpleBoolean"
+                                        ],
                                         "type": "object",
                                         "properties": {
                                             "simpleBoolean": {
@@ -7076,6 +7786,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail",
+                                        "violations"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -7100,6 +7817,9 @@
                                                     }
                                                 },
                                                 "children": {
+                                                    "required": [
+                                                        "stringProperty"
+                                                    ],
                                                     "type": "object",
                                                     "properties": {
                                                         "stringProperty": {
@@ -7127,6 +7847,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -7226,6 +7952,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -7277,6 +8009,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail",
+                                        "violations"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -7301,6 +8040,11 @@
                                                     }
                                                 },
                                                 "children": {
+                                                    "required": [
+                                                        "paramFile",
+                                                        "paramFileOptional",
+                                                        "paramExtra"
+                                                    ],
                                                     "type": "object",
                                                     "properties": {
                                                         "paramFile": {
@@ -7350,6 +8094,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -7437,6 +8187,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail",
+                                        "violations"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -7461,6 +8218,10 @@
                                                     }
                                                 },
                                                 "children": {
+                                                    "required": [
+                                                        "paramFileOptional",
+                                                        "paramExtra"
+                                                    ],
                                                     "type": "object",
                                                     "properties": {
                                                         "paramFileOptional": {
@@ -7499,6 +8260,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -7607,6 +8374,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail",
+                                        "violations"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -7631,6 +8405,38 @@
                                                     }
                                                 },
                                                 "children": {
+                                                    "required": [
+                                                        "paramNoType",
+                                                        "paramBoolean",
+                                                        "paramCheckbox",
+                                                        "paramInt",
+                                                        "paramText",
+                                                        "paramHidden",
+                                                        "paramNumber",
+                                                        "paramNumberDivisibleBy",
+                                                        "paramInRange",
+                                                        "paramDateSingleText",
+                                                        "paramDateChoice",
+                                                        "paramDateTimeSingleText",
+                                                        "paramDateTimeChoice",
+                                                        "paramTimeSingleText",
+                                                        "paramTimeChoice",
+                                                        "paramEmail",
+                                                        "paramChoice",
+                                                        "paramChoiceWithLoader",
+                                                        "paramChoiceWithChoiceValueCallable",
+                                                        "paramChoiceWithLoaderAndChoiceValueCallable",
+                                                        "paramPassword",
+                                                        "paramCollection",
+                                                        "paramCustomCollection",
+                                                        "paramDictionaryType",
+                                                        "paramCustom",
+                                                        "paramExtended",
+                                                        "paramExtendedExtended",
+                                                        "paramWithExampleAndDescription",
+                                                        "paramWithDataClassRequired",
+                                                        "paramWithDataClassOptional"
+                                                    ],
                                                     "type": "object",
                                                     "properties": {
                                                         "paramNoType": {
@@ -7753,6 +8559,11 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "year",
+                                                                        "month",
+                                                                        "day"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "year": {
@@ -7813,6 +8624,10 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "date",
+                                                                        "time"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "date": {
@@ -7825,6 +8640,11 @@
                                                                                     }
                                                                                 },
                                                                                 "children": {
+                                                                                    "required": [
+                                                                                        "year",
+                                                                                        "month",
+                                                                                        "day"
+                                                                                    ],
                                                                                     "type": "object",
                                                                                     "properties": {
                                                                                         "year": {
@@ -7874,6 +8694,10 @@
                                                                                     }
                                                                                 },
                                                                                 "children": {
+                                                                                    "required": [
+                                                                                        "hour",
+                                                                                        "minute"
+                                                                                    ],
                                                                                     "type": "object",
                                                                                     "properties": {
                                                                                         "hour": {
@@ -7927,6 +8751,10 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "hour",
+                                                                        "minute"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "hour": {
@@ -8064,6 +8892,11 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "paramInt",
+                                                                        "paramText",
+                                                                        "paramInnerCustom"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "paramInt": {
@@ -8098,6 +8931,9 @@
                                                                                     }
                                                                                 },
                                                                                 "children": {
+                                                                                    "required": [
+                                                                                        "paramText"
+                                                                                    ],
                                                                                     "type": "object",
                                                                                     "properties": {
                                                                                         "paramText": {
@@ -8162,6 +8998,9 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "stringProperty"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "stringProperty": {
@@ -8189,6 +9028,9 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "stringProperty"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "stringProperty": {
@@ -8220,6 +9062,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -9440,6 +10288,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail",
+                                        "violations"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -9464,6 +10319,38 @@
                                                     }
                                                 },
                                                 "children": {
+                                                    "required": [
+                                                        "paramNoType",
+                                                        "paramBoolean",
+                                                        "paramCheckbox",
+                                                        "paramInt",
+                                                        "paramText",
+                                                        "paramHidden",
+                                                        "paramNumber",
+                                                        "paramNumberDivisibleBy",
+                                                        "paramInRange",
+                                                        "paramDateSingleText",
+                                                        "paramDateChoice",
+                                                        "paramDateTimeSingleText",
+                                                        "paramDateTimeChoice",
+                                                        "paramTimeSingleText",
+                                                        "paramTimeChoice",
+                                                        "paramEmail",
+                                                        "paramChoice",
+                                                        "paramChoiceWithLoader",
+                                                        "paramChoiceWithChoiceValueCallable",
+                                                        "paramChoiceWithLoaderAndChoiceValueCallable",
+                                                        "paramPassword",
+                                                        "paramCollection",
+                                                        "paramCustomCollection",
+                                                        "paramDictionaryType",
+                                                        "paramCustom",
+                                                        "paramExtended",
+                                                        "paramExtendedExtended",
+                                                        "paramWithExampleAndDescription",
+                                                        "paramWithDataClassRequired",
+                                                        "paramWithDataClassOptional"
+                                                    ],
                                                     "type": "object",
                                                     "properties": {
                                                         "paramNoType": {
@@ -9586,6 +10473,11 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "year",
+                                                                        "month",
+                                                                        "day"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "year": {
@@ -9646,6 +10538,10 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "date",
+                                                                        "time"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "date": {
@@ -9658,6 +10554,11 @@
                                                                                     }
                                                                                 },
                                                                                 "children": {
+                                                                                    "required": [
+                                                                                        "year",
+                                                                                        "month",
+                                                                                        "day"
+                                                                                    ],
                                                                                     "type": "object",
                                                                                     "properties": {
                                                                                         "year": {
@@ -9707,6 +10608,10 @@
                                                                                     }
                                                                                 },
                                                                                 "children": {
+                                                                                    "required": [
+                                                                                        "hour",
+                                                                                        "minute"
+                                                                                    ],
                                                                                     "type": "object",
                                                                                     "properties": {
                                                                                         "hour": {
@@ -9760,6 +10665,10 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "hour",
+                                                                        "minute"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "hour": {
@@ -9897,6 +10806,11 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "paramInt",
+                                                                        "paramText",
+                                                                        "paramInnerCustom"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "paramInt": {
@@ -9931,6 +10845,9 @@
                                                                                     }
                                                                                 },
                                                                                 "children": {
+                                                                                    "required": [
+                                                                                        "paramText"
+                                                                                    ],
                                                                                     "type": "object",
                                                                                     "properties": {
                                                                                         "paramText": {
@@ -9995,6 +10912,9 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "stringProperty"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "stringProperty": {
@@ -10022,6 +10942,9 @@
                                                                     }
                                                                 },
                                                                 "children": {
+                                                                    "required": [
+                                                                        "stringProperty"
+                                                                    ],
                                                                     "type": "object",
                                                                     "properties": {
                                                                         "stringProperty": {
@@ -10053,6 +10976,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -11136,6 +12065,12 @@
                         "content": {
                             "application/problem+json": {
                                 "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
                                     "type": "object",
                                     "properties": {
                                         "type": {
@@ -11403,10 +12338,16 @@
                                         "type": "string"
                                     }
                                 },
+                                "required": [
+                                    "stringProperty"
+                                ],
                                 "type": "object",
                                 "nullable": true
                             }
                         },
+                        "required": [
+                            "stringProperty"
+                        ],
                         "type": "object",
                         "nullable": true
                     },
@@ -11427,10 +12368,16 @@
                                         "type": "string"
                                     }
                                 },
+                                "required": [
+                                    "stringProperty"
+                                ],
                                 "type": "object",
                                 "nullable": true
                             }
                         },
+                        "required": [
+                            "stringProperty"
+                        ],
                         "type": "object",
                         "nullable": true
                     },
@@ -11447,10 +12394,16 @@
                                             "type": "string"
                                         }
                                     },
+                                    "required": [
+                                        "stringProperty"
+                                    ],
                                     "type": "object",
                                     "nullable": true
                                 }
                             },
+                            "required": [
+                                "stringProperty"
+                            ],
                             "type": "object"
                         }
                     },
@@ -11485,6 +12438,20 @@
                         ]
                     }
                 },
+                "required": [
+                    "virtualProperty",
+                    "virtualPropertyWithCustomName",
+                    "stringProperty",
+                    "propertyWithCustomName",
+                    "intProperty",
+                    "floatProperty",
+                    "boolProperty",
+                    "arrayProperty",
+                    "inlineObjectStringProperty",
+                    "inlineObjectIntProperty",
+                    "arrayOfChildObjectsProperty",
+                    "scalarUnionProperty"
+                ],
                 "type": "object"
             },
             "JMSObjectDescribedOnlyAsReferenceCustomName": {
@@ -11493,6 +12460,9 @@
                         "type": "integer"
                     }
                 },
+                "required": [
+                    "intProperty"
+                ],
                 "type": "object"
             }
         }

@@ -20,12 +20,14 @@ final class IOField
     /** @var mixed[]|null */
     private ?array $possibleValues = null;
 
-    /** @var IOField[]|null */
+    /** @var list<IOField>|null */
     private ?array $children = null;
 
     private bool $nullable = false;
 
     private mixed $example = null;
+
+    private bool $required = true;
 
     private function __construct(string $name, string $type)
     {
@@ -104,7 +106,7 @@ final class IOField
     }
 
     /**
-     * @return IOField[]|null
+     * @return list<IOField>|null
      */
     public function children(): ?array
     {
@@ -121,6 +123,25 @@ final class IOField
     public function isNullable(): bool
     {
         return $this->nullable;
+    }
+
+    public function asRequired(): self
+    {
+        $this->required = true;
+
+        return $this;
+    }
+
+    public function asOptional(): self
+    {
+        $this->required = false;
+
+        return $this;
+    }
+
+    public function isRequired(): bool
+    {
+        return $this->required;
     }
 
     public function withPattern(string $pattern): self
