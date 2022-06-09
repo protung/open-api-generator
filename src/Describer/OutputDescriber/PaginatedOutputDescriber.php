@@ -38,6 +38,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
                     '_links' => $this->createLinksSchema(),
                     '_embedded' => $this->createEmbeddedSchema($output),
                 ],
+                'required' => ['page', 'limit', 'pages', 'total', '_links', '_embedded'],
             ]
         );
     }
@@ -87,6 +88,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
             [
                 'type' => Type::OBJECT,
                 'properties' => [$output->resourcesKey() => $resourcesSchema],
+                'required' => [$output->resourcesKey()],
             ]
         );
     }

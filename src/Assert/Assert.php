@@ -14,7 +14,7 @@ final class Assert extends \Webmozart\Assert\Assert
      * @psalm-pure
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    protected static function reportInvalidArgument($message): void
+    protected static function reportInvalidArgument($message): never
     {
         throw new InvalidArgument($message);
     }

@@ -96,6 +96,7 @@ return new Model\Specification(
                         IOField::stringField('myString')->withExample('ms'),
                         IOField::booleanField('myBoolean')->withExample(false),
                         IOField::numberField('myChoice')->withPossibleValues([1, 2, 3]),
+                        IOField::anything('optional')->asOptional(),
                     )
                 ),
                 new Response(

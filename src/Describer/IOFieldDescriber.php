@@ -33,7 +33,8 @@ final class IOFieldDescriber
                 }
             } elseif ($field->type() === ModelType::OBJECT) {
                 if ($children !== null) {
-                    $properties[$fieldName] = $this->describeFields($children);
+                    $properties[$fieldName]           = $this->describeFields($children);
+                    $properties[$fieldName]->required = $this->extractRequiredFields(...$children);
                 } else {
                     $properties[$fieldName] = new Schema(['type' => Type::OBJECT]);
                 }
@@ -46,7 +47,9 @@ final class IOFieldDescriber
             }
         }
 
-        return new Schema(['type' => Type::OBJECT, 'properties' => $properties]);
+        $required = $this->extractRequiredFields(...$fields);
+
+        return new Schema(['type' => Type::OBJECT, 'properties' => $properties, 'required' => $required]);
     }
 
     private function describeField(IOField $field): Schema
@@ -83,5 +86,19 @@ final class IOFieldDescriber
         }
 
         return new Schema($schema);
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function extractRequiredFields(IOField ...$fields): array
+    {
+        return Psl\Vec\map(
+            Psl\Vec\filter(
+                $fields,
+                static fn (IOField $child): bool => $child->isRequired()
+            ),
+            static fn (IOField $child): string => $child->name()
+        );
     }
 }

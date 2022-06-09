@@ -44,9 +44,17 @@ final class FormErrorOutputDescriber implements OutputDescriber
                             'children' => [
                                 'type' => Type::OBJECT,
                                 'properties' => $this->describeFormProperties($form),
+                                'required' => $this->extractChildrenNames($form),
                             ],
                         ],
                     ],
+                ],
+                'required' => [
+                    'type',
+                    'title',
+                    'status',
+                    'detail',
+                    'violations',
                 ],
             ]
         );
@@ -73,10 +81,19 @@ final class FormErrorOutputDescriber implements OutputDescriber
             $properties[$child->getName()]['properties']['children'] = [
                 'type' => Type::OBJECT,
                 'properties' => $this->describeFormProperties($child),
+                'required' => $this->extractChildrenNames($child),
             ];
         }
 
         return $properties;
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function extractChildrenNames(FormInterface $form): array
+    {
+        return Psl\Vec\map($form, static fn (FormInterface $child): string => $child->getName());
     }
 
     public function supports(Output $output): bool

@@ -90,7 +90,8 @@ final class GenerateSchemaTest extends TestCase
                                                 new AnnotationReader()
                                             )
                                         ),
-                                        $apiVersion
+                                        $apiVersion,
+                                        false
                                     ),
                                 ),
                                 $describerFormFactory,
