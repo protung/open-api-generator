@@ -16,6 +16,16 @@ parameters:
 			path: src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
 
 		-
+			message: "#^Call to an undefined method ReflectionType\\:\\:getName\\(\\)\\.$#"
+			count: 1
+			path: src/Describer/ObjectDescriber/PHPBackedEnum.php
+
+		-
+			message: "#^Call to an undefined method ReflectionType\\:\\:getName\\(\\)\\.$#"
+			count: 1
+			path: src/Model/Path/IOField.php
+
+		-
 			message: "#^Variable property access on cebe\\\\openapi\\\\spec\\\\PathItem\\.$#"
 			count: 1
 			path: src/Processor/PathsProcessor.php

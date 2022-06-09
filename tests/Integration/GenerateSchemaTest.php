@@ -83,6 +83,7 @@ final class GenerateSchemaTest extends TestCase
                             new Describer\OutputDescriber(
                                 new Describer\ObjectDescriber(
                                     $modelRegistry,
+                                    new Describer\ObjectDescriber\PHPBackedEnum(),
                                     new Describer\ObjectDescriber\JMSModel(
                                         new MetadataFactory(
                                             (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver(

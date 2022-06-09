@@ -535,6 +535,38 @@ return new Model\Specification(
             ],
         ),
         new Path\Symfony\SymfonyRoutePath(
+            'api_test_post_enums_input_and_output',
+            'Test',
+            'Test post with enum input and output',
+            null,
+            [
+                Input\HeaderInput::withIOField(
+                    IOField::backedEnum('string', TestSchemaGeneration\Model\Enum\StringBackedEnum::class),
+                ),
+                Input\PathInput::withIOFields(
+                    IOField::backedEnum('integer', TestSchemaGeneration\Model\Enum\IntegerBackedEnum::class),
+                    IOField::backedEnum('string', TestSchemaGeneration\Model\Enum\StringBackedEnum::class),
+                ),
+                Input\QueryInput::withIOField(
+                    IOField::backedEnum('integer', TestSchemaGeneration\Model\Enum\IntegerBackedEnum::class),
+                ),
+                Input\QueryInput::withIOField(
+                    IOField::backedEnum('string', TestSchemaGeneration\Model\Enum\StringBackedEnum::class),
+                ),
+                Input\BodyInput::withIOFields(
+                    IOField::backedEnum('integer', TestSchemaGeneration\Model\Enum\IntegerBackedEnum::class),
+                    IOField::backedEnum('string', TestSchemaGeneration\Model\Enum\StringBackedEnum::class),
+                ),
+            ],
+            [
+                new Response(
+                    200,
+                    ['backed enums'],
+                    Model\Path\Output\ObjectOutput::forClass(TestSchemaGeneration\Model\Enum\BackedEnum::class)
+                ),
+            ],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
             'api_test_nullability',
             'Test',
             'Test nullability',

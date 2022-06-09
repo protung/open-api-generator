@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Model\Path;
 
+use BackedEnum;
+use InvalidArgumentException;
+use Psl\Vec;
+use ReflectionEnum;
 use Speicher210\OpenApiGenerator\Assert\Assert;
 use Speicher210\OpenApiGenerator\Model\Type;
 
 use function count;
+use function is_subclass_of;
 
 final class IOField
 {
@@ -65,6 +70,34 @@ final class IOField
     public static function booleanField(string $name): self
     {
         return new self($name, Type::BOOLEAN);
+    }
+
+    /**
+     * @param class-string<BackedEnum> $backedEnumClass
+     */
+    public static function backedEnum(string $name, string $backedEnumClass): self
+    {
+        if (! is_subclass_of($backedEnumClass, BackedEnum::class)) {
+            throw new InvalidArgumentException('The class must be a subclass of BackedEnum.');
+        }
+
+        $reflection = new ReflectionEnum($backedEnumClass);
+
+        $type = match ($reflection->getProperty('value')->getType()?->getName()) {
+            'int' => Type::INTEGER,
+            'string' => Type::STRING,
+            default => Type::STRING,
+        };
+
+        $self = new self($name, $type);
+        $self->withPossibleValues(
+            Vec\map(
+                $backedEnumClass::cases(),
+                static fn (BackedEnum $value): int|string => $value->value
+            )
+        );
+
+        return $self;
     }
 
     public static function arrayField(string $name, IOField $element): self

@@ -52,6 +52,8 @@
 
     <route id="api_test_post_simple_object_input_and_output" methods="POST" path="/api/test/simple-object-input-output"/>
 
+    <route id="api_test_post_enums_input_and_output" methods="POST" path="/api/test/enums-input-output"/>
+
     <route id="api_test_nullability" methods="GET|POST|PATCH" path="/api/test/nullability"/>
 
     <route id="api_test_required" methods="GET|POST|PATCH" path="/api/test/required"/>
