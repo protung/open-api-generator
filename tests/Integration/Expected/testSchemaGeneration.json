@@ -104,7 +104,9 @@
                                                     "paramExtendedExtended",
                                                     "paramWithExampleAndDescription",
                                                     "paramWithDataClassRequired",
-                                                    "paramWithDataClassOptional"
+                                                    "paramWithDataClassOptional",
+                                                    "paramStringBackedEnum",
+                                                    "paramIntegerBackedEnum"
                                                 ],
                                                 "type": "object",
                                                 "properties": {
@@ -691,6 +693,24 @@
                                                             }
                                                         },
                                                         "nullable": true
+                                                    },
+                                                    "paramStringBackedEnum": {
+                                                        "enum": [
+                                                            "A",
+                                                            "B",
+                                                            "C"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramIntegerBackedEnum": {
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
                                                     }
                                                 }
                                             }
@@ -735,7 +755,9 @@
                                                     "paramExtendedExtended",
                                                     "paramWithExampleAndDescription",
                                                     "paramWithDataClassRequired[stringProperty]",
-                                                    "paramWithDataClassOptional[stringProperty]"
+                                                    "paramWithDataClassOptional[stringProperty]",
+                                                    "paramStringBackedEnum",
+                                                    "paramIntegerBackedEnum"
                                                 ],
                                                 "type": "object",
                                                 "properties": {
@@ -1229,6 +1251,24 @@
                                                         "nullable": true
                                                     },
                                                     "paramWithDataClassOptional[stringProperty]": {
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramStringBackedEnum": {
+                                                        "enum": [
+                                                            "A",
+                                                            "B",
+                                                            "C"
+                                                        ],
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramIntegerBackedEnum": {
+                                                        "enum": [
+                                                            "1",
+                                                            "2",
+                                                            "3"
+                                                        ],
                                                         "type": "string",
                                                         "nullable": true
                                                     }
@@ -2214,6 +2254,34 @@
                         "in": "query",
                         "schema": {
                             "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramStringBackedEnum]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "A",
+                                "B",
+                                "C"
+                            ],
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramIntegerBackedEnum]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1",
+                                "2",
+                                "3"
+                            ],
                             "nullable": true
                         },
                         "required": true
@@ -8621,7 +8689,9 @@
                                                         "paramExtendedExtended",
                                                         "paramWithExampleAndDescription",
                                                         "paramWithDataClassRequired",
-                                                        "paramWithDataClassOptional"
+                                                        "paramWithDataClassOptional",
+                                                        "paramStringBackedEnum",
+                                                        "paramIntegerBackedEnum"
                                                     ],
                                                     "type": "object",
                                                     "properties": {
@@ -9230,6 +9300,28 @@
                                                                                 }
                                                                             }
                                                                         }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramStringBackedEnum": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramIntegerBackedEnum": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
                                                                     }
                                                                 }
                                                             }
@@ -9874,6 +9966,24 @@
                                         "required": [
                                             "stringProperty"
                                         ]
+                                    },
+                                    "paramStringBackedEnum": {
+                                        "type": "string",
+                                        "enum": [
+                                            "A",
+                                            "B",
+                                            "C"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramIntegerBackedEnum": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3"
+                                        ],
+                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -9905,7 +10015,9 @@
                                     "paramExtendedExtended",
                                     "paramWithExampleAndDescription",
                                     "paramWithDataClassRequired",
-                                    "paramWithDataClassOptional"
+                                    "paramWithDataClassOptional",
+                                    "paramStringBackedEnum",
+                                    "paramIntegerBackedEnum"
                                 ]
                             }
                         },
@@ -10405,6 +10517,24 @@
                                     "paramWithDataClassOptional[stringProperty]": {
                                         "type": "string",
                                         "nullable": true
+                                    },
+                                    "paramStringBackedEnum": {
+                                        "type": "string",
+                                        "enum": [
+                                            "A",
+                                            "B",
+                                            "C"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramIntegerBackedEnum": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3"
+                                        ],
+                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -10445,7 +10575,9 @@
                                     "paramExtendedExtended",
                                     "paramWithExampleAndDescription",
                                     "paramWithDataClassRequired[stringProperty]",
-                                    "paramWithDataClassOptional[stringProperty]"
+                                    "paramWithDataClassOptional[stringProperty]",
+                                    "paramStringBackedEnum",
+                                    "paramIntegerBackedEnum"
                                 ]
                             }
                         }
@@ -10535,7 +10667,9 @@
                                                         "paramExtendedExtended",
                                                         "paramWithExampleAndDescription",
                                                         "paramWithDataClassRequired",
-                                                        "paramWithDataClassOptional"
+                                                        "paramWithDataClassOptional",
+                                                        "paramStringBackedEnum",
+                                                        "paramIntegerBackedEnum"
                                                     ],
                                                     "type": "object",
                                                     "properties": {
@@ -11147,6 +11281,28 @@
                                                                     }
                                                                 }
                                                             }
+                                                        },
+                                                        "paramStringBackedEnum": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramIntegerBackedEnum": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -11736,6 +11892,24 @@
                                                 "nullable": true
                                             }
                                         }
+                                    },
+                                    "paramStringBackedEnum": {
+                                        "type": "string",
+                                        "enum": [
+                                            "A",
+                                            "B",
+                                            "C"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramIntegerBackedEnum": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3"
+                                        ],
+                                        "nullable": true
                                     }
                                 }
                             }
@@ -12219,6 +12393,24 @@
                                     },
                                     "paramWithDataClassOptional[stringProperty]": {
                                         "type": "string",
+                                        "nullable": true
+                                    },
+                                    "paramStringBackedEnum": {
+                                        "type": "string",
+                                        "enum": [
+                                            "A",
+                                            "B",
+                                            "C"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "paramIntegerBackedEnum": {
+                                        "type": "string",
+                                        "enum": [
+                                            "1",
+                                            "2",
+                                            "3"
+                                        ],
                                         "nullable": true
                                     }
                                 }

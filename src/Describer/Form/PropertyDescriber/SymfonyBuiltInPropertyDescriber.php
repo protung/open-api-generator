@@ -84,13 +84,10 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
                 $schema->type = Type::STRING;
 
                 $choices = $formConfig->getOption('choices');
-                if ($choices !== null && is_array($choices) === true && count($choices) > 0) {
+                if (is_array($choices) === true && count($choices) > 0) {
                     $choiceValue = $formConfig->getOption('choice_value');
                     if (is_callable($choiceValue)) {
-                        $schema->enum = array_map(
-                            $choiceValue,
-                            (new ArrayChoiceList($choices))->getValues()
-                        );
+                        $schema->enum = (new ArrayChoiceList($choices, $choiceValue))->getValues();
                     } else {
                         $schema->enum = (new ArrayChoiceList($choices))->getValues();
                     }

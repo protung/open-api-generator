@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form;
 
+use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\Enum\IntegerBackedEnum;
+use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\Enum\StringBackedEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -12,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -124,6 +127,8 @@ final class TestType extends AbstractType
                 ['help' => 'Custom description.', 'attr' => ['placeholder' => 'my-example']]
             )
             ->add('paramWithDataClassRequired', TestDataClassType::class, ['constraints' => [new NotBlank()]])
-            ->add('paramWithDataClassOptional', TestDataClassType::class);
+            ->add('paramWithDataClassOptional', TestDataClassType::class)
+            ->add('paramStringBackedEnum', EnumType::class, ['class' => StringBackedEnum::class])
+            ->add('paramIntegerBackedEnum', EnumType::class, ['class' => IntegerBackedEnum::class]);
     }
 }
