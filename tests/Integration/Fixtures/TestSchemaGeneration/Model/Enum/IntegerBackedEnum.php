@@ -6,7 +6,7 @@ namespace Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGene
 
 enum IntegerBackedEnum: int
 {
-case ONE = 1;
-case TWO = 2;
-case THREE = 3;
-    }
+    case ONE   = 1;
+    case TWO   = 2;
+    case THREE = 3;
+}

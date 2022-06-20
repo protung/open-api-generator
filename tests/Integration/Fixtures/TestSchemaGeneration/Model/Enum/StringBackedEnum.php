@@ -6,7 +6,7 @@ namespace Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGene
 
 enum StringBackedEnum: string
 {
-case A = 'A';
-case B = 'B';
-case C = 'C';
-    }
+    case A = 'A';
+    case B = 'B';
+    case C = 'C';
+}
