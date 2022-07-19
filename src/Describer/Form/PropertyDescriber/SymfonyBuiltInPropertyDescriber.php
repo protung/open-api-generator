@@ -81,31 +81,43 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
                 $schema->format = 'email';
                 break;
             case 'choice':
-                $schema->type = Type::STRING;
-
+                $enum    = [];
                 $choices = $formConfig->getOption('choices');
                 if (is_array($choices) === true && count($choices) > 0) {
                     $choiceValue = $formConfig->getOption('choice_value');
                     if (is_callable($choiceValue)) {
-                        $schema->enum = (new ArrayChoiceList($choices, $choiceValue))->getValues();
+                        $enum = (new ArrayChoiceList($choices, $choiceValue))->getValues();
                     } else {
-                        $schema->enum = (new ArrayChoiceList($choices))->getValues();
+                        $enum = (new ArrayChoiceList($choices))->getValues();
                     }
                 } else {
                     $choiceLoader = $formConfig->getOption('choice_loader');
                     if ($choiceLoader instanceof ChoiceLoaderInterface) {
                         $choiceValue = $formConfig->getOption('choice_value');
                         if (is_callable($choiceValue)) {
-                            $schema->enum = array_values(
+                            $enum = array_values(
                                 array_map(
                                     $choiceValue,
                                     $choiceLoader->loadChoiceList()->getChoices()
                                 )
                             );
                         } else {
-                            $schema->enum = $choiceLoader->loadChoiceList()->getValues();
+                            $enum = $choiceLoader->loadChoiceList()->getValues();
                         }
                     }
+                }
+
+                if ($formConfig->getOption('multiple') === true) {
+                    $schema->type  = Type::ARRAY;
+                    $schema->items = new Schema(
+                        [
+                            'type' => Type::STRING,
+                            'enum' => $enum,
+                        ]
+                    );
+                } else {
+                    $schema->type = Type::STRING;
+                    $schema->enum = $enum;
                 }
 
                 break;
