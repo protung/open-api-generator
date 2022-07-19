@@ -95,6 +95,7 @@
                                                     "paramChoiceWithLoader",
                                                     "paramChoiceWithChoiceValueCallable",
                                                     "paramChoiceWithLoaderAndChoiceValueCallable",
+                                                    "paramChoiceWithMultiple",
                                                     "paramPassword",
                                                     "paramCollection",
                                                     "paramCustomCollection",
@@ -534,6 +535,17 @@
                                                         "type": "string",
                                                         "nullable": true
                                                     },
+                                                    "paramChoiceWithMultiple": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "enum": [
+                                                                "a",
+                                                                "b"
+                                                            ],
+                                                            "type": "string"
+                                                        },
+                                                        "nullable": true
+                                                    },
                                                     "paramPassword": {
                                                         "type": "string",
                                                         "format": "password",
@@ -744,6 +756,7 @@
                                                     "paramChoiceWithLoader",
                                                     "paramChoiceWithChoiceValueCallable",
                                                     "paramChoiceWithLoaderAndChoiceValueCallable",
+                                                    "paramChoiceWithMultiple[]",
                                                     "paramPassword",
                                                     "paramCollection[]",
                                                     "paramCustomCollection[]",
@@ -1131,6 +1144,17 @@
                                                             "choice_value_with_loader_and_callable: 3"
                                                         ],
                                                         "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "paramChoiceWithMultiple[]": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "enum": [
+                                                                "a",
+                                                                "b"
+                                                            ],
+                                                            "type": "string"
+                                                        },
                                                         "nullable": true
                                                     },
                                                     "paramPassword": {
@@ -2072,6 +2096,22 @@
                                 "choice_value_with_loader_and_callable: 2",
                                 "choice_value_with_loader_and_callable: 3"
                             ],
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "innerForm[paramChoiceWithMultiple][]",
+                        "in": "query",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "enum": [
+                                    "a",
+                                    "b"
+                                ],
+                                "type": "string"
+                            },
                             "nullable": true
                         },
                         "required": true
@@ -8680,6 +8720,7 @@
                                                         "paramChoiceWithLoader",
                                                         "paramChoiceWithChoiceValueCallable",
                                                         "paramChoiceWithLoaderAndChoiceValueCallable",
+                                                        "paramChoiceWithMultiple",
                                                         "paramPassword",
                                                         "paramCollection",
                                                         "paramCustomCollection",
@@ -9084,6 +9125,17 @@
                                                             }
                                                         },
                                                         "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramChoiceWithMultiple": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -9807,6 +9859,17 @@
                                         ],
                                         "nullable": true
                                     },
+                                    "paramChoiceWithMultiple": {
+                                        "type": "array",
+                                        "items": {
+                                            "enum": [
+                                                "a",
+                                                "b"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "nullable": true
+                                    },
                                     "paramPassword": {
                                         "type": "string",
                                         "format": "password",
@@ -10006,6 +10069,7 @@
                                     "paramChoiceWithLoader",
                                     "paramChoiceWithChoiceValueCallable",
                                     "paramChoiceWithLoaderAndChoiceValueCallable",
+                                    "paramChoiceWithMultiple",
                                     "paramPassword",
                                     "paramCollection",
                                     "paramCustomCollection",
@@ -10397,6 +10461,17 @@
                                         ],
                                         "nullable": true
                                     },
+                                    "paramChoiceWithMultiple[]": {
+                                        "type": "array",
+                                        "items": {
+                                            "enum": [
+                                                "a",
+                                                "b"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "nullable": true
+                                    },
                                     "paramPassword": {
                                         "type": "string",
                                         "format": "password",
@@ -10564,6 +10639,7 @@
                                     "paramChoiceWithLoader",
                                     "paramChoiceWithChoiceValueCallable",
                                     "paramChoiceWithLoaderAndChoiceValueCallable",
+                                    "paramChoiceWithMultiple[]",
                                     "paramPassword",
                                     "paramCollection[]",
                                     "paramCustomCollection[]",
@@ -10658,6 +10734,7 @@
                                                         "paramChoiceWithLoader",
                                                         "paramChoiceWithChoiceValueCallable",
                                                         "paramChoiceWithLoaderAndChoiceValueCallable",
+                                                        "paramChoiceWithMultiple",
                                                         "paramPassword",
                                                         "paramCollection",
                                                         "paramCustomCollection",
@@ -11062,6 +11139,17 @@
                                                             }
                                                         },
                                                         "paramChoiceWithLoaderAndChoiceValueCallable": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "paramChoiceWithMultiple": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -11763,6 +11851,17 @@
                                         ],
                                         "nullable": true
                                     },
+                                    "paramChoiceWithMultiple": {
+                                        "type": "array",
+                                        "items": {
+                                            "enum": [
+                                                "a",
+                                                "b"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "nullable": true
+                                    },
                                     "paramPassword": {
                                         "type": "string",
                                         "format": "password",
@@ -12288,6 +12387,17 @@
                                             "choice_value_with_loader_and_callable: 2",
                                             "choice_value_with_loader_and_callable: 3"
                                         ],
+                                        "nullable": true
+                                    },
+                                    "paramChoiceWithMultiple[]": {
+                                        "type": "array",
+                                        "items": {
+                                            "enum": [
+                                                "a",
+                                                "b"
+                                            ],
+                                            "type": "string"
+                                        },
                                         "nullable": true
                                     },
                                     "paramPassword": {

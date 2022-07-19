@@ -99,6 +99,7 @@ final class TestType extends AbstractType
                     'choice_value' => static fn (?string $choice): string => 'choice_value_with_loader_and_callable: ' . $choice,
                 ]
             )
+            ->add('paramChoiceWithMultiple', ChoiceType::class, ['choices' => ['a', 'b'], 'multiple' => true])
             ->add('paramPassword', PasswordType::class)
             ->add(
                 'paramCollection',
