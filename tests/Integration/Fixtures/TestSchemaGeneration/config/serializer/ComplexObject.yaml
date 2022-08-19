@@ -1,4 +1,4 @@
-Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\ComplexObject:
+Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\ComplexObject:
   exclusion_policy: ALL
   properties:
     unknownProperty: ~
@@ -17,7 +17,7 @@ Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Mod
     inlineObjectProperty:
       inline: true
     arrayOfChildObjectsProperty:
-      type: array<Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\ChildObject>
+      type: array<Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\ChildObject>
     dateTimeProperty: ~
     dateTimeImmutableProperty: ~
     dateTimeInterfaceProperty: ~

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model;
+namespace Protung\OpenApiGenerator\Model;
 
-use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 
 use function sort;
 

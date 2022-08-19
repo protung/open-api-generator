@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-use Speicher210\OpenApiGenerator\Model;
-use Speicher210\OpenApiGenerator\Model\Callback;
-use Speicher210\OpenApiGenerator\Model\FormDefinition;
-use Speicher210\OpenApiGenerator\Model\Info\Info;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
-use Speicher210\OpenApiGenerator\Model\Path\Input\FormInput;
-use Speicher210\OpenApiGenerator\Model\Path\IOField;
-use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
-use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
-use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
-use Speicher210\OpenApiGenerator\Model\Response;
-use Speicher210\OpenApiGenerator\Model\Type;
-use Speicher210\OpenApiGenerator\Processor\Path;
-use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration;
-use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form\TestDictionaryType;
+use Protung\OpenApiGenerator\Model;
+use Protung\OpenApiGenerator\Model\Callback;
+use Protung\OpenApiGenerator\Model\FormDefinition;
+use Protung\OpenApiGenerator\Model\Info\Info;
+use Protung\OpenApiGenerator\Model\Path\Input;
+use Protung\OpenApiGenerator\Model\Path\Input\FormInput;
+use Protung\OpenApiGenerator\Model\Path\IOField;
+use Protung\OpenApiGenerator\Model\Path\Output\ObjectOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
+use Protung\OpenApiGenerator\Model\Response;
+use Protung\OpenApiGenerator\Model\Type;
+use Protung\OpenApiGenerator\Processor\Path;
+use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration;
+use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form\TestDictionaryType;
 
 return new Model\Specification(
     new Info(

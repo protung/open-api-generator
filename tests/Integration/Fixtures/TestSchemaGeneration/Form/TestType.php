@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form;
+namespace Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form;
 
-use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\Enum\IntegerBackedEnum;
-use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\Enum\StringBackedEnum;
+use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\Enum\IntegerBackedEnum;
+use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\Enum\StringBackedEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model;
+namespace Protung\OpenApiGenerator\Model;
 
 final class Callback
 {

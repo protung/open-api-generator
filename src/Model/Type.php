@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model;
+namespace Protung\OpenApiGenerator\Model;
 
-use Speicher210\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Assert\Assert;
 use stdClass;
 
 final class Type

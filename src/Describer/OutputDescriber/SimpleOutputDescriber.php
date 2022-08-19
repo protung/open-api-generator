@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\OutputDescriber;
+namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
+use Protung\OpenApiGenerator\Describer\IOFieldDescriber;
+use Protung\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Path\Output\SimpleOutput;
 use Psl;
-use Speicher210\OpenApiGenerator\Describer\IOFieldDescriber;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
-use Speicher210\OpenApiGenerator\Model\Path\Output\SimpleOutput;
 
 final class SimpleOutputDescriber implements OutputDescriber
 {

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Protung\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\SpecObjectInterface;
 use InvalidArgumentException;
+use Protung\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
+use Protung\OpenApiGenerator\Describer\Form\FormFactory;
+use Protung\OpenApiGenerator\Model\Definition;
+use Protung\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Path\ReferencableOutput;
 use Psl;
-use Speicher210\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
-use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
-use Speicher210\OpenApiGenerator\Model\Definition;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
-use Speicher210\OpenApiGenerator\Model\Path\ReferencableOutput;
 
 final class OutputDescriber
 {

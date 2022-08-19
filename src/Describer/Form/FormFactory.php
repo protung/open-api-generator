@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\Form;
+namespace Protung\OpenApiGenerator\Describer\Form;
 
-use Speicher210\OpenApiGenerator\Model\FormDefinition;
+use Protung\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 

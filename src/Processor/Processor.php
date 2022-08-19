@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor;
+namespace Protung\OpenApiGenerator\Processor;
 
 use cebe\openapi\spec\OpenApi;
-use Speicher210\OpenApiGenerator\Model\Specification;
+use Protung\OpenApiGenerator\Model\Specification;
 
 interface Processor
 {

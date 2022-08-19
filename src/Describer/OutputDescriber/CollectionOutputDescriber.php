@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\OutputDescriber;
+namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Protung\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
+use Protung\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Path\Output\CollectionOutput;
 use Psl;
-use Speicher210\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
-use Speicher210\OpenApiGenerator\Model\Path\Output\CollectionOutput;
 
 final class CollectionOutputDescriber implements OutputDescriber
 {
-    private \Speicher210\OpenApiGenerator\Describer\OutputDescriber $outputDescriber;
+    private \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber;
 
     private ExampleDescriber $exampleDescriber;
 
     public function __construct(
-        \Speicher210\OpenApiGenerator\Describer\OutputDescriber $outputDescriber,
+        \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber,
         ExampleDescriber $exampleDescriber
     ) {
         $this->outputDescriber  = $outputDescriber;

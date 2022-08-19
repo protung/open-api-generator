@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor\Path\Symfony;
+namespace Protung\OpenApiGenerator\Processor\Path\Symfony;
 
-use Speicher210\OpenApiGenerator\Model\Callback;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
-use Speicher210\OpenApiGenerator\Model\Path\Path;
-use Speicher210\OpenApiGenerator\Model\Response;
-use Speicher210\OpenApiGenerator\Model\Security\Reference;
+use Protung\OpenApiGenerator\Model\Callback;
+use Protung\OpenApiGenerator\Model\Path\Input;
+use Protung\OpenApiGenerator\Model\Path\Path;
+use Protung\OpenApiGenerator\Model\Response;
+use Protung\OpenApiGenerator\Model\Security\Reference;
 
 final class SymfonyRoutePath implements Path
 {

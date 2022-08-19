@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\InputDescriber\FormInputDescriber;
+namespace Protung\OpenApiGenerator\Describer\InputDescriber\FormInputDescriber;
 
 use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Schema;
+use Protung\OpenApiGenerator\Describer\Form\NameResolver;
+use Protung\OpenApiGenerator\Describer\FormDescriber;
 use Psl;
-use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
-use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\FormInterface;
 
 use function array_intersect;

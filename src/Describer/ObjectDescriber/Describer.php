@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
+namespace Protung\OpenApiGenerator\Describer\ObjectDescriber;
 
 use cebe\openapi\spec\Schema;
-use Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
-use Speicher210\OpenApiGenerator\Model\Definition;
+use Protung\OpenApiGenerator\Describer\ObjectDescriber;
+use Protung\OpenApiGenerator\Model\Definition;
 
 interface Describer
 {

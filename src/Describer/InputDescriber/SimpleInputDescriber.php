@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\InputDescriber;
+namespace Protung\OpenApiGenerator\Describer\InputDescriber;
 
 use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\Parameter;
 use cebe\openapi\spec\RequestBody;
 use cebe\openapi\spec\Schema;
+use Protung\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Describer\IOFieldDescriber;
+use Protung\OpenApiGenerator\Model\Path\Input;
 use Psl;
-use Speicher210\OpenApiGenerator\Assert\Assert;
-use Speicher210\OpenApiGenerator\Describer\IOFieldDescriber;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
 
 use function array_merge;
 

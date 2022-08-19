@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor\Path;
+namespace Protung\OpenApiGenerator\Processor\Path;
 
-use Speicher210\OpenApiGenerator\Model\Path\Path;
-use Speicher210\OpenApiGenerator\Model\Path\PathOperation;
+use Protung\OpenApiGenerator\Model\Path\Path;
+use Protung\OpenApiGenerator\Model\Path\PathOperation;
 
 interface PathProcessor
 {

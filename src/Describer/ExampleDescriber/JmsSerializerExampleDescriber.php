@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\ExampleDescriber;
+namespace Protung\OpenApiGenerator\Describer\ExampleDescriber;
 
 use cebe\openapi\spec\Schema;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Serializer;
+use Protung\OpenApiGenerator\Model\Path\Output;
 use Psl;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
 
 final class JmsSerializerExampleDescriber implements ExampleDescriber
 {

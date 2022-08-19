@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber;
+namespace Protung\OpenApiGenerator\Describer\Form\PropertyDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Protung\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Describer\Form\FormFactory;
+use Protung\OpenApiGenerator\Describer\Form\NameResolver\FormName;
+use Protung\OpenApiGenerator\Describer\FormDescriber;
+use Protung\OpenApiGenerator\Model\FormDefinition;
 use Psl;
-use Speicher210\OpenApiGenerator\Assert\Assert;
-use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
-use Speicher210\OpenApiGenerator\Describer\Form\NameResolver\FormName;
-use Speicher210\OpenApiGenerator\Describer\FormDescriber;
-use Speicher210\OpenApiGenerator\Model\FormDefinition;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\ResolvedFormTypeInterface;

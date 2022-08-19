@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Protung\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Protung\OpenApiGenerator\Describer\Form\FlatNameResolver;
+use Protung\OpenApiGenerator\Describer\Form\NameResolver;
+use Protung\OpenApiGenerator\Describer\Form\RequirementsDescriber;
+use Protung\OpenApiGenerator\Describer\Form\SymfonyFormPropertyDescriber;
 use Psl;
-use Speicher210\OpenApiGenerator\Describer\Form\FlatNameResolver;
-use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
-use Speicher210\OpenApiGenerator\Describer\Form\RequirementsDescriber;
-use Speicher210\OpenApiGenerator\Describer\Form\SymfonyFormPropertyDescriber;
 use Symfony\Component\Form\FormInterface;
 
 final class FormDescriber

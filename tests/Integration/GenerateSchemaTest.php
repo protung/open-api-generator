@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Tests\Integration;
+namespace Protung\OpenApiGenerator\Tests\Integration;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\Serializer\Builder\DefaultDriverFactory;
@@ -10,13 +10,13 @@ use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 use Metadata\MetadataFactory;
 use PHPUnit\Framework\TestCase;
+use Protung\OpenApiGenerator\Describer;
+use Protung\OpenApiGenerator\Generator;
+use Protung\OpenApiGenerator\Model\ModelRegistry;
+use Protung\OpenApiGenerator\Processor;
+use Protung\OpenApiGenerator\Processor\Path;
+use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form\TestDictionaryType;
 use Psl\Json;
-use Speicher210\OpenApiGenerator\Describer;
-use Speicher210\OpenApiGenerator\Generator;
-use Speicher210\OpenApiGenerator\Model\ModelRegistry;
-use Speicher210\OpenApiGenerator\Processor;
-use Speicher210\OpenApiGenerator\Processor\Path;
-use Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form\TestDictionaryType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactoryBuilder;
@@ -38,7 +38,7 @@ final class GenerateSchemaTest extends TestCase
             ->getFormFactory();
 
         $metadataDirs = [
-            'Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS' => __DIR__ . '/Fixtures/TestSchemaGeneration/config/serializer',
+            'Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS' => __DIR__ . '/Fixtures/TestSchemaGeneration/config/serializer',
         ];
 
         $jmsSerializer = SerializerBuilder::create()

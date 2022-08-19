@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Protung\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Operation;
 use InvalidArgumentException;
+use Protung\OpenApiGenerator\Model\Path\Input;
 use Psl;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
 
 final class InputDescriber
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Protung\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Callback as SpecCallback;
+use Protung\OpenApiGenerator\Model\Callback as CallbackModel;
+use Protung\OpenApiGenerator\Model\Path\PathOperation;
 use Psl\Json;
-use Speicher210\OpenApiGenerator\Model\Callback as CallbackModel;
-use Speicher210\OpenApiGenerator\Model\Path\PathOperation;
 
 final class CallbackDescriber
 {

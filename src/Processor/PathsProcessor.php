@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor;
+namespace Protung\OpenApiGenerator\Processor;
 
 use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\PathItem;
 use cebe\openapi\spec\Paths;
-use Speicher210\OpenApiGenerator\Model\Path\Path;
-use Speicher210\OpenApiGenerator\Model\Specification;
-use Speicher210\OpenApiGenerator\Processor\Path\PathProcessor;
+use Protung\OpenApiGenerator\Model\Path\Path;
+use Protung\OpenApiGenerator\Model\Specification;
+use Protung\OpenApiGenerator\Processor\Path\PathProcessor;
 
 use function ksort;
 

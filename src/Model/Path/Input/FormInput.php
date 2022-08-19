@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path\Input;
+namespace Protung\OpenApiGenerator\Model\Path\Input;
 
-use Speicher210\OpenApiGenerator\Model\FormDefinition;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
+use Protung\OpenApiGenerator\Model\FormDefinition;
+use Protung\OpenApiGenerator\Model\Path\Input;
 
 final class FormInput extends BaseInput
 {

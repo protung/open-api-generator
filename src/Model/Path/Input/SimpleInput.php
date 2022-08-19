@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path\Input;
+namespace Protung\OpenApiGenerator\Model\Path\Input;
 
-use Speicher210\OpenApiGenerator\Model\Path\IOField;
-use Speicher210\OpenApiGenerator\Model\Type;
+use Protung\OpenApiGenerator\Model\Path\IOField;
+use Protung\OpenApiGenerator\Model\Type;
 
 /**
  * @todo rename class, give it a better name

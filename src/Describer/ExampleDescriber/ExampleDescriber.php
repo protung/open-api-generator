@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\ExampleDescriber;
+namespace Protung\OpenApiGenerator\Describer\ExampleDescriber;
 
 use cebe\openapi\spec\Schema;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Path\Output;
 
 interface ExampleDescriber
 {

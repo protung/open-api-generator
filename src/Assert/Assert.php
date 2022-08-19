@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Assert;
+namespace Protung\OpenApiGenerator\Assert;
 
-use Speicher210\OpenApiGenerator\Assert\Exception\InvalidArgument;
+use Protung\OpenApiGenerator\Assert\Exception\InvalidArgument;
 
 final class Assert extends \Webmozart\Assert\Assert
 {

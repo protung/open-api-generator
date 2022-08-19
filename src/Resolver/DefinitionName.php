@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Resolver;
+namespace Protung\OpenApiGenerator\Resolver;
 
 use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
+use Protung\OpenApiGenerator\Model\Definition;
 use Psl;
-use Speicher210\OpenApiGenerator\Model\Definition;
 
 use function array_filter;
 use function array_map;

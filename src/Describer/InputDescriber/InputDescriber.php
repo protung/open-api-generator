@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\InputDescriber;
+namespace Protung\OpenApiGenerator\Describer\InputDescriber;
 
 use cebe\openapi\spec\Operation;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
+use Protung\OpenApiGenerator\Model\Path\Input;
 
 interface InputDescriber
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Tests\Model;
+namespace Protung\OpenApiGenerator\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
-use Speicher210\OpenApiGenerator\Model\Response;
+use Protung\OpenApiGenerator\Model\Response;
 
 final class ResponseTest extends TestCase
 {

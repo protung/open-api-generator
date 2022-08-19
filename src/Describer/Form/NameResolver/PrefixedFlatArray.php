@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
+namespace Protung\OpenApiGenerator\Describer\Form\NameResolver;
 
-use Speicher210\OpenApiGenerator\Describer\Form\FlatNameResolver;
-use Speicher210\OpenApiGenerator\Describer\Form\NameResolver\FlatNameResolver as FlatNameResolverTrait;
+use Protung\OpenApiGenerator\Describer\Form\FlatNameResolver;
+use Protung\OpenApiGenerator\Describer\Form\NameResolver\FlatNameResolver as FlatNameResolverTrait;
 use Symfony\Component\Form\FormInterface;
 
 final class PrefixedFlatArray implements FlatNameResolver

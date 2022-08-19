@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\OutputDescriber;
+namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
+use Protung\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
+use Protung\OpenApiGenerator\Describer\ObjectDescriber;
+use Protung\OpenApiGenerator\Model\Definition;
+use Protung\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 use Psl;
-use Speicher210\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
-use Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
-use Speicher210\OpenApiGenerator\Model\Definition;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
-use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 
 final class ObjectOutputDescriber implements OutputDescriber
 {

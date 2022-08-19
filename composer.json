@@ -1,11 +1,13 @@
 {
-    "name": "speicher210/open-api-generator",
+    "name": "protung/open-api-generator",
     "description": "Open Api specification generator.",
     "license": "MIT",
     "type": "library",
     "keywords": [
         "openapi",
-        "swagger"
+        "open api",
+        "swagger",
+        "generator"
     ],
     "authors": [
         {
@@ -55,12 +57,12 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Speicher210\\OpenApiGenerator\\": "src/"
+            "Protung\\OpenApiGenerator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Speicher210\\OpenApiGenerator\\Tests\\": "tests/"
+            "Protung\\OpenApiGenerator\\Tests\\": "tests/"
         }
     },
     "config": {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Tests\Resolver;
+namespace Protung\OpenApiGenerator\Tests\Resolver;
 
 use PHPUnit\Framework\TestCase;
-use Speicher210\OpenApiGenerator\Model\Definition;
-use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
+use Protung\OpenApiGenerator\Model\Definition;
+use Protung\OpenApiGenerator\Resolver\DefinitionName;
 use stdClass;
 
 final class DefinitionNameTest extends TestCase

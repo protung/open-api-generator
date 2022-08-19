@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path\Output;
+namespace Protung\OpenApiGenerator\Model\Path\Output;
 
 use InvalidArgumentException;
+use Protung\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Model\Path\IOField;
+use Protung\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Type;
 use Psl;
-use Speicher210\OpenApiGenerator\Assert\Assert;
-use Speicher210\OpenApiGenerator\Model\Path\IOField;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
-use Speicher210\OpenApiGenerator\Model\Type;
 
 use function array_is_list;
 use function gettype;

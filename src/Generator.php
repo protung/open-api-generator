@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator;
+namespace Protung\OpenApiGenerator;
 
 use cebe\openapi\spec\OpenApi;
-use Speicher210\OpenApiGenerator\Model\Specification;
-use Speicher210\OpenApiGenerator\Processor\Definitions;
-use Speicher210\OpenApiGenerator\Processor\InfoProcessor;
-use Speicher210\OpenApiGenerator\Processor\PathsProcessor;
-use Speicher210\OpenApiGenerator\Processor\SecurityDefinitions;
+use Protung\OpenApiGenerator\Model\Specification;
+use Protung\OpenApiGenerator\Processor\Definitions;
+use Protung\OpenApiGenerator\Processor\InfoProcessor;
+use Protung\OpenApiGenerator\Processor\PathsProcessor;
+use Protung\OpenApiGenerator\Processor\SecurityDefinitions;
 
 final class Generator
 {

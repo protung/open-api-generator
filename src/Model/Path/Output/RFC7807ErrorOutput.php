@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path\Output;
+namespace Protung\OpenApiGenerator\Model\Path\Output;
 
-use Speicher210\OpenApiGenerator\Model\Path\IOField;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Path\IOField;
+use Protung\OpenApiGenerator\Model\Path\Output;
 
 final class RFC7807ErrorOutput extends SimpleOutput
 {

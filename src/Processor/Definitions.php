@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor;
+namespace Protung\OpenApiGenerator\Processor;
 
 use cebe\openapi\spec\Components;
 use cebe\openapi\spec\OpenApi;
-use Speicher210\OpenApiGenerator\Model\ModelRegistry;
-use Speicher210\OpenApiGenerator\Model\Specification;
+use Protung\OpenApiGenerator\Model\ModelRegistry;
+use Protung\OpenApiGenerator\Model\Specification;
 
 use function count;
 use function ksort;

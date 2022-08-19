@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path\Output;
+namespace Protung\OpenApiGenerator\Model\Path\Output;
 
-use Speicher210\OpenApiGenerator\Model\Definition;
-use Speicher210\OpenApiGenerator\Model\Path\ReferencableOutput as ReferencableOutputInterface;
-use Speicher210\OpenApiGenerator\Resolver\DefinitionName;
+use Protung\OpenApiGenerator\Model\Definition;
+use Protung\OpenApiGenerator\Model\Path\ReferencableOutput as ReferencableOutputInterface;
+use Protung\OpenApiGenerator\Resolver\DefinitionName;
 
 final class ReferencableOutput implements ReferencableOutputInterface
 {

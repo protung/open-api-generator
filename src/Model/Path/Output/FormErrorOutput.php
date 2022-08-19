@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path\Output;
+namespace Protung\OpenApiGenerator\Model\Path\Output;
 
-use Speicher210\OpenApiGenerator\Model\FormDefinition;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\FormDefinition;
+use Protung\OpenApiGenerator\Model\Path\Output;
 
 /**
  * @psalm-immutable

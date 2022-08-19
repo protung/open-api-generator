@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\InputDescriber;
+namespace Protung\OpenApiGenerator\Describer\InputDescriber;
 
 use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\RequestBody;
 use cebe\openapi\spec\Schema;
+use Protung\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Describer\Form\FormFactory;
+use Protung\OpenApiGenerator\Describer\FormDescriber;
+use Protung\OpenApiGenerator\Model\Path\Input;
 use Psl;
-use Speicher210\OpenApiGenerator\Assert\Assert;
-use Speicher210\OpenApiGenerator\Describer\Form\FormFactory;
-use Speicher210\OpenApiGenerator\Describer\FormDescriber;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
 use Symfony\Component\Form\FormInterface;
 
 use function array_key_exists;

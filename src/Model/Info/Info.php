@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Info;
+namespace Protung\OpenApiGenerator\Model\Info;
 
 /**
  * @psalm-immutable

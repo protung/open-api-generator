@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor\Path\Symfony;
+namespace Protung\OpenApiGenerator\Processor\Path\Symfony;
 
 use InvalidArgumentException;
+use Protung\OpenApiGenerator\Describer\OperationDescriber;
+use Protung\OpenApiGenerator\Model\Path\Input;
+use Protung\OpenApiGenerator\Model\Path\IOField;
+use Protung\OpenApiGenerator\Model\Path\Path;
+use Protung\OpenApiGenerator\Model\Path\PathOperation;
+use Protung\OpenApiGenerator\Processor\Path\PathProcessor as PathProcessorInterface;
 use Psl;
-use Speicher210\OpenApiGenerator\Describer\OperationDescriber;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
-use Speicher210\OpenApiGenerator\Model\Path\IOField;
-use Speicher210\OpenApiGenerator\Model\Path\Path;
-use Speicher210\OpenApiGenerator\Model\Path\PathOperation;
-use Speicher210\OpenApiGenerator\Processor\Path\PathProcessor as PathProcessorInterface;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 use Symfony\Component\Routing\RouteCollection;
 

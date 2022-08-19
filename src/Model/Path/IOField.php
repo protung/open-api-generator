@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path;
+namespace Protung\OpenApiGenerator\Model\Path;
 
 use BackedEnum;
 use InvalidArgumentException;
+use Protung\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Model\Type;
 use Psl\Vec;
 use ReflectionEnum;
-use Speicher210\OpenApiGenerator\Assert\Assert;
-use Speicher210\OpenApiGenerator\Model\Type;
 
 use function count;
 use function is_subclass_of;

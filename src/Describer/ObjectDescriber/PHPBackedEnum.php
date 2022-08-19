@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
+namespace Protung\OpenApiGenerator\Describer\ObjectDescriber;
 
 use BackedEnum;
 use cebe\openapi\spec\Schema;
+use Protung\OpenApiGenerator\Describer\ObjectDescriber;
+use Protung\OpenApiGenerator\Model\Definition;
 use Psl\Vec;
 use ReflectionEnum;
-use Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
-use Speicher210\OpenApiGenerator\Model\Definition;
 
 use function is_subclass_of;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
+namespace Protung\OpenApiGenerator\Describer\ObjectDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
@@ -16,14 +16,14 @@ use JMS\Serializer\Metadata\StaticPropertyMetadata;
 use JMS\Serializer\Metadata\VirtualPropertyMetadata;
 use JMS\Serializer\SerializationContext;
 use Metadata\MetadataFactoryInterface;
+use Protung\OpenApiGenerator\Analyser\PropertyAnalyser;
+use Protung\OpenApiGenerator\Analyser\PropertyAnalysisSingleType;
+use Protung\OpenApiGenerator\Analyser\PropertyAnalysisType;
+use Protung\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Describer\ObjectDescriber;
+use Protung\OpenApiGenerator\Model\Definition;
 use Psl;
 use RuntimeException;
-use Speicher210\OpenApiGenerator\Analyser\PropertyAnalyser;
-use Speicher210\OpenApiGenerator\Analyser\PropertyAnalysisSingleType;
-use Speicher210\OpenApiGenerator\Analyser\PropertyAnalysisType;
-use Speicher210\OpenApiGenerator\Assert\Assert;
-use Speicher210\OpenApiGenerator\Describer\ObjectDescriber;
-use Speicher210\OpenApiGenerator\Model\Definition;
 
 use function array_filter;
 use function array_key_exists;

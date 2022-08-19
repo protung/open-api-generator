@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Protung\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Protung\OpenApiGenerator\Model\Path\IOField;
+use Protung\OpenApiGenerator\Model\Type as ModelType;
 use Psl;
-use Speicher210\OpenApiGenerator\Model\Path\IOField;
-use Speicher210\OpenApiGenerator\Model\Type as ModelType;
 
 /**
  * @todo support array of arrays

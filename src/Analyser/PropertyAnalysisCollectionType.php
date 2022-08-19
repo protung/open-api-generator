@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Analyser;
+namespace Protung\OpenApiGenerator\Analyser;
 
 final class PropertyAnalysisCollectionType implements PropertyAnalysisType
 {

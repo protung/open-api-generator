@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Protung\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\Response;
 use cebe\openapi\spec\Responses;
+use Protung\OpenApiGenerator\Model\Callback as ModelCallback;
+use Protung\OpenApiGenerator\Model\Path\Input;
+use Protung\OpenApiGenerator\Model\Path\Path;
+use Protung\OpenApiGenerator\Model\Response as ModelResponse;
 use Psl;
-use Speicher210\OpenApiGenerator\Model\Callback as ModelCallback;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
-use Speicher210\OpenApiGenerator\Model\Path\Path;
-use Speicher210\OpenApiGenerator\Model\Response as ModelResponse;
 
 use function count;
 

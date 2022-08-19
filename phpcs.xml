@@ -22,8 +22,8 @@
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
             <property name="rootNamespaces" type="array">
-                <element key="src" value="Speicher210\OpenApiGenerator"/>
-                <element key="tests" value="Speicher210\OpenApiGenerator\Tests"/>
+                <element key="src" value="Protung\OpenApiGenerator"/>
+                <element key="tests" value="Protung\OpenApiGenerator\Tests"/>
             </property>
         </properties>
     </rule>

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path;
+namespace Protung\OpenApiGenerator\Model\Path;
 
-use Speicher210\OpenApiGenerator\Model\Path\Output\ObjectOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 
 interface ReferencableOutput extends Output
 {

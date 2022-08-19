@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\OutputDescriber;
+namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Protung\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
 use Psl;
-use Speicher210\OpenApiGenerator\Assert\Assert;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
-use Speicher210\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
 
 use function array_fill_keys;
 use function array_map;
@@ -17,9 +17,9 @@ use function count;
 
 final class PaginatedOutputDescriber implements OutputDescriber
 {
-    private \Speicher210\OpenApiGenerator\Describer\OutputDescriber $outputDescriber;
+    private \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber;
 
-    public function __construct(\Speicher210\OpenApiGenerator\Describer\OutputDescriber $outputDescriber)
+    public function __construct(\Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber)
     {
         $this->outputDescriber = $outputDescriber;
     }

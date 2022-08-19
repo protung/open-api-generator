@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\Form;
+namespace Protung\OpenApiGenerator\Describer\Form;
 
 use cebe\openapi\spec\Schema;
+use Protung\OpenApiGenerator\Describer\Form\PropertyDescriber\PropertyDescriber;
+use Protung\OpenApiGenerator\Describer\FormDescriber;
 use Psl;
 use RuntimeException;
-use Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber\PropertyDescriber;
-use Speicher210\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\FormInterface;
 
 use function is_array;

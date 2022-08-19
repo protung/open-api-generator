@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path\Input;
+namespace Protung\OpenApiGenerator\Model\Path\Input;
 
-use Speicher210\OpenApiGenerator\Assert\Assert;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
+use Protung\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Model\Path\Input;
 
 abstract class BaseInput implements Input
 {

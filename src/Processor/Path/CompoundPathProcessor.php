@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Processor\Path;
+namespace Protung\OpenApiGenerator\Processor\Path;
 
+use Protung\OpenApiGenerator\Model\Path\Path;
 use RuntimeException;
-use Speicher210\OpenApiGenerator\Model\Path\Path;
 
 final class CompoundPathProcessor implements PathProcessor
 {

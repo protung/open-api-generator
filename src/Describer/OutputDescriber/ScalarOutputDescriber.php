@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\OutputDescriber;
+namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
+use Protung\OpenApiGenerator\Model\Path\Output;
 use Psl;
-use Speicher210\OpenApiGenerator\Model\Path\Output;
 
 final class ScalarOutputDescriber implements OutputDescriber
 {

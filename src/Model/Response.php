@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model;
+namespace Protung\OpenApiGenerator\Model;
 
-use Speicher210\OpenApiGenerator\Model\Path\Output;
-use Speicher210\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
-use Speicher210\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
 use Symfony\Component\Form\FormTypeInterface;
 
 use function implode;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Assert\Exception;
+namespace Protung\OpenApiGenerator\Assert\Exception;
 
 use InvalidArgumentException;
 

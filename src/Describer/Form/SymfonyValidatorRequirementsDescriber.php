@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\Form;
+namespace Protung\OpenApiGenerator\Describer\Form;
 
 use cebe\openapi\spec\Schema;
 use Closure;
+use Protung\OpenApiGenerator\Describer\SpecificationDescriber;
 use Psl;
-use Speicher210\OpenApiGenerator\Describer\SpecificationDescriber;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\ResolvedFormTypeInterface;

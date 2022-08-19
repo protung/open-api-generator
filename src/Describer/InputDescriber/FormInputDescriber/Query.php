@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\InputDescriber\FormInputDescriber;
+namespace Protung\OpenApiGenerator\Describer\InputDescriber\FormInputDescriber;
 
 use cebe\openapi\spec\Parameter;
+use Protung\OpenApiGenerator\Describer\Form\NameResolver;
+use Protung\OpenApiGenerator\Describer\FormDescriber;
+use Protung\OpenApiGenerator\Describer\SpecificationDescriber;
 use Psl;
-use Speicher210\OpenApiGenerator\Describer\Form\NameResolver;
-use Speicher210\OpenApiGenerator\Describer\FormDescriber;
-use Speicher210\OpenApiGenerator\Describer\SpecificationDescriber;
 use Symfony\Component\Form\FormInterface;
 
 final class Query

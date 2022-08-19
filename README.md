@@ -1,7 +1,7 @@
 Open Api Generator
 ==================
 
-[![Build](https://github.com/Speicher210/open-api-generator/workflows/Build/badge.svg)](https://github.com/Speicher210/open-api-generator/actions?query=workflow%3ABuild+branch%3Amaster)
+[![Build](https://github.com/protung/open-api-generator/workflows/Build/badge.svg)](https://github.com/protung/open-api-generator/actions?query=workflow%3ABuild+branch%3Amain)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 
 ## Installation
@@ -9,7 +9,7 @@ Open Api Generator
 Require using composer:
 
 ```shell
-$ composer require speicher210/open-api-generator
+$ composer require protung/open-api-generator
 ```
 
 ## License

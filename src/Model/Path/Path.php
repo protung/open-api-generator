@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path;
+namespace Protung\OpenApiGenerator\Model\Path;
 
-use Speicher210\OpenApiGenerator\Model\Callback;
-use Speicher210\OpenApiGenerator\Model\Response;
-use Speicher210\OpenApiGenerator\Model\Security\Reference;
+use Protung\OpenApiGenerator\Model\Callback;
+use Protung\OpenApiGenerator\Model\Response;
+use Protung\OpenApiGenerator\Model\Security\Reference;
 
 interface Path
 {

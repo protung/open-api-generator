@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Tests\Analyser;
+namespace Protung\OpenApiGenerator\Tests\Analyser;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Speicher210\OpenApiGenerator\Analyser\PropertyAnalyser;
-use Speicher210\OpenApiGenerator\Analyser\PropertyAnalysisCollectionType;
-use Speicher210\OpenApiGenerator\Analyser\PropertyAnalysisSingleType;
-use Speicher210\OpenApiGenerator\Analyser\PropertyAnalysisType;
-use Speicher210\OpenApiGenerator\Tests\Analyser\Fixtures\PropertyAnalyserClassWithProperties;
+use Protung\OpenApiGenerator\Analyser\PropertyAnalyser;
+use Protung\OpenApiGenerator\Analyser\PropertyAnalysisCollectionType;
+use Protung\OpenApiGenerator\Analyser\PropertyAnalysisSingleType;
+use Protung\OpenApiGenerator\Analyser\PropertyAnalysisType;
+use Protung\OpenApiGenerator\Tests\Analyser\Fixtures\PropertyAnalyserClassWithProperties;
 use stdClass;
 
 final class PropertyAnalyserTest extends TestCase

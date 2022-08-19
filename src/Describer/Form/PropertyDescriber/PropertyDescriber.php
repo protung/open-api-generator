@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer\Form\PropertyDescriber;
+namespace Protung\OpenApiGenerator\Describer\Form\PropertyDescriber;
 
 use cebe\openapi\spec\Schema;
-use Speicher210\OpenApiGenerator\Describer\FormDescriber;
+use Protung\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\FormInterface;
 
 interface PropertyDescriber

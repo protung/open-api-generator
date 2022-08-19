@@ -1,4 +1,4 @@
-Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\InlineObject:
+Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\InlineObject:
   exclusion_policy: ALL
   properties:
     inlineObjectStringProperty: ~

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Tests\Describer;
+namespace Protung\OpenApiGenerator\Tests\Describer;
 
 use PHPUnit\Framework\TestCase;
-use Speicher210\OpenApiGenerator\Describer\SpecificationDescriber;
+use Protung\OpenApiGenerator\Describer\SpecificationDescriber;
 
 final class SpecificationDescriberTest extends TestCase
 {

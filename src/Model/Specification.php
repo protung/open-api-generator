@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model;
+namespace Protung\OpenApiGenerator\Model;
 
-use Speicher210\OpenApiGenerator\Model\Info\Info;
-use Speicher210\OpenApiGenerator\Model\Path\Input;
-use Speicher210\OpenApiGenerator\Model\Path\Path;
+use Protung\OpenApiGenerator\Model\Info\Info;
+use Protung\OpenApiGenerator\Model\Path\Input;
+use Protung\OpenApiGenerator\Model\Path\Path;
 
 final class Specification
 {

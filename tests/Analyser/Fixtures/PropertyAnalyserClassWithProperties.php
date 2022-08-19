@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Tests\Analyser\Fixtures;
+namespace Protung\OpenApiGenerator\Tests\Analyser\Fixtures;
 
 use DateTime;
 use Generator;

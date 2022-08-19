@@ -1,9 +1,9 @@
-Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\DiscriminatorParentObject:
+Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\DiscriminatorParentObject:
   exclusion_policy: ALL
   discriminator:
     field_name: discriminator
     map:
-      first: Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\DiscriminatorFirstChildObject
-      second: Speicher210\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\DiscriminatorSecondChildObject
+      first: Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\DiscriminatorFirstChildObject
+      second: Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\DiscriminatorSecondChildObject
   properties:
     propertyInParent: ~

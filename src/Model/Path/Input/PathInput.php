@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Model\Path\Input;
+namespace Protung\OpenApiGenerator\Model\Path\Input;
 
-use Speicher210\OpenApiGenerator\Model\Path\IOField;
+use Protung\OpenApiGenerator\Model\Path\IOField;
 
 final class PathInput extends SimpleInput
 {

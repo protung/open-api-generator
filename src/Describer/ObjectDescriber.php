@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Speicher210\OpenApiGenerator\Describer;
+namespace Protung\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\Schema;
+use Protung\OpenApiGenerator\Describer\ObjectDescriber\Describer;
+use Protung\OpenApiGenerator\Model\Definition;
+use Protung\OpenApiGenerator\Model\ModelRegistry;
 use Psl;
 use RuntimeException;
-use Speicher210\OpenApiGenerator\Describer\ObjectDescriber\Describer;
-use Speicher210\OpenApiGenerator\Model\Definition;
-use Speicher210\OpenApiGenerator\Model\ModelRegistry;
 
 use function DeepCopy\deep_copy;
 
