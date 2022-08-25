@@ -25,6 +25,7 @@ use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Unique;
 use Symfony\Component\Validator\Mapping\ClassMetadataInterface;
 use Symfony\Component\Validator\Mapping\PropertyMetadataInterface;
@@ -227,6 +228,13 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                     break;
                 case $constraint instanceof Unique:
                     $schema->uniqueItems = true;
+                    break;
+                case $constraint instanceof Regex:
+                    // we need to remove the delimiters but ignoring the modifiers
+                    $schema->pattern = Psl\Str\slice(
+                        Psl\Type\non_empty_string()->coerce(Psl\Str\before_last_ci($constraint->pattern, $constraint->pattern[0])),
+                        1
+                    );
                     break;
                 case $constraint instanceof File:
                     if ($constraint->mimeTypes !== null && $constraint->mimeTypes !== []) {

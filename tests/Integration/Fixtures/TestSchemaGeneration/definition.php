@@ -316,6 +316,18 @@ return new Model\Specification(
             Model\Security\Reference::fromString('ApiKey')
         ),
         new Path\Symfony\SymfonyRoutePath(
+            'api_test_post_with_form_with_constraints',
+            'Test',
+            'Test post with form with constraints',
+            null,
+            [
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestConstraintsType::class)),
+            ],
+            [
+                Response::for400WithForm(TestSchemaGeneration\Form\TestConstraintsType::class),
+            ]
+        ),
+        new Path\Symfony\SymfonyRoutePath(
             'api_test_patch_with_form',
             'Test',
             'Test patch with form',
@@ -327,6 +339,18 @@ return new Model\Specification(
                 Response::for400WithForm(TestSchemaGeneration\Form\TestType::class),
             ],
             Model\Security\Reference::fromString('ApiKey')
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_patch_with_form_with_constraints',
+            'Test',
+            'Test patch with form with constraints',
+            null,
+            [
+                FormInput::inBody(new FormDefinition(TestSchemaGeneration\Form\TestConstraintsType::class)),
+            ],
+            [
+                Response::for400WithForm(TestSchemaGeneration\Form\TestConstraintsType::class),
+            ]
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_post_with_file_upload',

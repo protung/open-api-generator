@@ -19,20 +19,17 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Count;
-use Symfony\Component\Validator\Constraints\DivisibleBy;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Unique;
 
 use function range;
@@ -58,14 +55,6 @@ final class TestType extends AbstractType
                     'constraints' => [new All([new GreaterThanOrEqual(3.14), new LessThanOrEqual(9.9)])],
                 ]
             )
-            ->add(
-                'paramNumberDivisibleBy',
-                NumberType::class,
-                [
-                    'constraints' => [new DivisibleBy(0.5)],
-                ]
-            )
-            ->add('paramInRange', RangeType::class, ['constraints' => [new Range(['min' => -20, 'max' => -4])]])
             ->add(
                 'paramDateSingleText',
                 DateType::class,

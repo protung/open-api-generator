@@ -32,7 +32,11 @@
 
     <route id="api_test_post_with_form" methods="POST" path="/api/test/with-form"/>
 
+    <route id="api_test_post_with_form_with_constraints" methods="POST" path="/api/test/with-form-with-constraints"/>
+
     <route id="api_test_patch_with_form" methods="PATCH" path="/api/test/with-form"/>
+
+    <route id="api_test_patch_with_form_with_constraints" methods="PATCH" path="/api/test/with-form-with-constraints"/>
 
     <route id="api_test_post_with_file_upload" methods="POST" path="/api/test/with-file-upload"/>
 
