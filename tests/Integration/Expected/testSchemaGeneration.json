@@ -82,8 +82,6 @@
                                                     "paramInt",
                                                     "paramText",
                                                     "paramNumber",
-                                                    "paramNumberDivisibleBy",
-                                                    "paramInRange",
                                                     "paramDateSingleText",
                                                     "paramDateChoice",
                                                     "paramDateTimeSingleText",
@@ -145,17 +143,6 @@
                                                         "maximum": 9.9,
                                                         "minimum": 3.14,
                                                         "type": "number",
-                                                        "nullable": true
-                                                    },
-                                                    "paramNumberDivisibleBy": {
-                                                        "multipleOf": 0.5,
-                                                        "type": "number",
-                                                        "nullable": true
-                                                    },
-                                                    "paramInRange": {
-                                                        "maximum": -4,
-                                                        "minimum": -20,
-                                                        "type": "string",
                                                         "nullable": true
                                                     },
                                                     "paramDateSingleText": {
@@ -736,8 +723,6 @@
                                                     "paramInt",
                                                     "paramText",
                                                     "paramNumber",
-                                                    "paramNumberDivisibleBy",
-                                                    "paramInRange",
                                                     "paramDateSingleText",
                                                     "paramDateChoice[year]",
                                                     "paramDateChoice[month]",
@@ -808,17 +793,6 @@
                                                         "maximum": 9.9,
                                                         "minimum": 3.14,
                                                         "type": "number",
-                                                        "nullable": true
-                                                    },
-                                                    "paramNumberDivisibleBy": {
-                                                        "multipleOf": 0.5,
-                                                        "type": "number",
-                                                        "nullable": true
-                                                    },
-                                                    "paramInRange": {
-                                                        "maximum": -4,
-                                                        "minimum": -20,
-                                                        "type": "string",
                                                         "nullable": true
                                                     },
                                                     "paramDateSingleText": {
@@ -1665,27 +1639,6 @@
                         "required": true
                     },
                     {
-                        "name": "innerForm[paramNumberDivisibleBy]",
-                        "in": "query",
-                        "schema": {
-                            "type": "number",
-                            "nullable": true,
-                            "multipleOf": 0.5
-                        },
-                        "required": true
-                    },
-                    {
-                        "name": "innerForm[paramInRange]",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "nullable": true,
-                            "minimum": -20,
-                            "maximum": -4
-                        },
-                        "required": true
-                    },
-                    {
                         "name": "innerForm[paramDateSingleText]",
                         "in": "query",
                         "schema": {
@@ -2356,6 +2309,70 @@
                             "nullable": true
                         },
                         "required": false
+                    },
+                    {
+                        "name": "constraintsForm[greaterThan]",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "nullable": true,
+                            "minimum": 7,
+                            "exclusiveMinimum": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[lessThan]",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "nullable": true,
+                            "maximum": 13,
+                            "exclusiveMaximum": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[length]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "minLength": 4,
+                            "maxLength": 6
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[divisibleBy]",
+                        "in": "query",
+                        "schema": {
+                            "type": "number",
+                            "nullable": true,
+                            "multipleOf": 0.5
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[range]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "minimum": -20,
+                            "maximum": -4
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[regex]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "pattern": "^[0-9]{1,5}$"
+                        },
+                        "required": true
                     },
                     {
                         "name": "custom_query_string_field",
@@ -8707,8 +8724,6 @@
                                                         "paramText",
                                                         "paramHidden",
                                                         "paramNumber",
-                                                        "paramNumberDivisibleBy",
-                                                        "paramInRange",
                                                         "paramDateSingleText",
                                                         "paramDateChoice",
                                                         "paramDateTimeSingleText",
@@ -8803,28 +8818,6 @@
                                                             }
                                                         },
                                                         "paramNumber": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "errors": {
-                                                                    "type": "array",
-                                                                    "items": {
-                                                                        "type": "string"
-                                                                    }
-                                                                }
-                                                            }
-                                                        },
-                                                        "paramNumberDivisibleBy": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "errors": {
-                                                                    "type": "array",
-                                                                    "items": {
-                                                                        "type": "string"
-                                                                    }
-                                                                }
-                                                            }
-                                                        },
-                                                        "paramInRange": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -9470,17 +9463,6 @@
                                         "nullable": true,
                                         "minimum": 3.14,
                                         "maximum": 9.9
-                                    },
-                                    "paramNumberDivisibleBy": {
-                                        "type": "number",
-                                        "nullable": true,
-                                        "multipleOf": 0.5
-                                    },
-                                    "paramInRange": {
-                                        "type": "string",
-                                        "nullable": true,
-                                        "minimum": -20,
-                                        "maximum": -4
                                     },
                                     "paramDateSingleText": {
                                         "type": "string",
@@ -10056,8 +10038,6 @@
                                     "paramInt",
                                     "paramText",
                                     "paramNumber",
-                                    "paramNumberDivisibleBy",
-                                    "paramInRange",
                                     "paramDateSingleText",
                                     "paramDateChoice",
                                     "paramDateTimeSingleText",
@@ -10124,17 +10104,6 @@
                                         "nullable": true,
                                         "minimum": 3.14,
                                         "maximum": 9.9
-                                    },
-                                    "paramNumberDivisibleBy": {
-                                        "type": "number",
-                                        "nullable": true,
-                                        "multipleOf": 0.5
-                                    },
-                                    "paramInRange": {
-                                        "type": "string",
-                                        "nullable": true,
-                                        "minimum": -20,
-                                        "maximum": -4
                                     },
                                     "paramDateSingleText": {
                                         "type": "string",
@@ -10619,8 +10588,6 @@
                                     "paramInt",
                                     "paramText",
                                     "paramNumber",
-                                    "paramNumberDivisibleBy",
-                                    "paramInRange",
                                     "paramDateSingleText",
                                     "paramDateChoice[year]",
                                     "paramDateChoice[month]",
@@ -10721,8 +10688,6 @@
                                                         "paramText",
                                                         "paramHidden",
                                                         "paramNumber",
-                                                        "paramNumberDivisibleBy",
-                                                        "paramInRange",
                                                         "paramDateSingleText",
                                                         "paramDateChoice",
                                                         "paramDateTimeSingleText",
@@ -10817,28 +10782,6 @@
                                                             }
                                                         },
                                                         "paramNumber": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "errors": {
-                                                                    "type": "array",
-                                                                    "items": {
-                                                                        "type": "string"
-                                                                    }
-                                                                }
-                                                            }
-                                                        },
-                                                        "paramNumberDivisibleBy": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "errors": {
-                                                                    "type": "array",
-                                                                    "items": {
-                                                                        "type": "string"
-                                                                    }
-                                                                }
-                                                            }
-                                                        },
-                                                        "paramInRange": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -11485,17 +11428,6 @@
                                         "minimum": 3.14,
                                         "maximum": 9.9
                                     },
-                                    "paramNumberDivisibleBy": {
-                                        "type": "number",
-                                        "nullable": true,
-                                        "multipleOf": 0.5
-                                    },
-                                    "paramInRange": {
-                                        "type": "string",
-                                        "nullable": true,
-                                        "minimum": -20,
-                                        "maximum": -4
-                                    },
                                     "paramDateSingleText": {
                                         "type": "string",
                                         "format": "date",
@@ -12053,17 +11985,6 @@
                                         "minimum": 3.14,
                                         "maximum": 9.9
                                     },
-                                    "paramNumberDivisibleBy": {
-                                        "type": "number",
-                                        "nullable": true,
-                                        "multipleOf": 0.5
-                                    },
-                                    "paramInRange": {
-                                        "type": "string",
-                                        "nullable": true,
-                                        "minimum": -20,
-                                        "maximum": -4
-                                    },
                                     "paramDateSingleText": {
                                         "type": "string",
                                         "format": "date",
@@ -12522,6 +12443,550 @@
                                             "3"
                                         ],
                                         "nullable": true
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/test/with-form-with-constraints": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test post with form with constraints",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail",
+                                        "violations"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
+                                            "type": "object",
+                                            "properties": {
+                                                "errors": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "children": {
+                                                    "required": [
+                                                        "greaterThan",
+                                                        "lessThan",
+                                                        "length",
+                                                        "divisibleBy",
+                                                        "range",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "greaterThan": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "lessThan": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "length": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "divisibleBy": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "range": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "regex": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "greaterThan": {
+                                        "type": "integer",
+                                        "nullable": true,
+                                        "minimum": 7,
+                                        "exclusiveMinimum": true
+                                    },
+                                    "lessThan": {
+                                        "type": "integer",
+                                        "nullable": true,
+                                        "maximum": 13,
+                                        "exclusiveMaximum": true
+                                    },
+                                    "length": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "minLength": 4,
+                                        "maxLength": 6
+                                    },
+                                    "divisibleBy": {
+                                        "type": "number",
+                                        "nullable": true,
+                                        "multipleOf": 0.5
+                                    },
+                                    "range": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "minimum": -20,
+                                        "maximum": -4
+                                    },
+                                    "regex": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "pattern": "^[0-9]{1,5}$"
+                                    }
+                                },
+                                "required": [
+                                    "greaterThan",
+                                    "lessThan",
+                                    "length",
+                                    "divisibleBy",
+                                    "range",
+                                    "regex"
+                                ]
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "greaterThan": {
+                                        "type": "integer",
+                                        "nullable": true,
+                                        "minimum": 7,
+                                        "exclusiveMinimum": true
+                                    },
+                                    "lessThan": {
+                                        "type": "integer",
+                                        "nullable": true,
+                                        "maximum": 13,
+                                        "exclusiveMaximum": true
+                                    },
+                                    "length": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "minLength": 4,
+                                        "maxLength": 6
+                                    },
+                                    "divisibleBy": {
+                                        "type": "number",
+                                        "nullable": true,
+                                        "multipleOf": 0.5
+                                    },
+                                    "range": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "minimum": -20,
+                                        "maximum": -4
+                                    },
+                                    "regex": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "pattern": "^[0-9]{1,5}$"
+                                    }
+                                },
+                                "required": [
+                                    "greaterThan",
+                                    "lessThan",
+                                    "length",
+                                    "divisibleBy",
+                                    "range",
+                                    "regex"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test patch with form with constraints",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail",
+                                        "violations"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
+                                            "type": "object",
+                                            "properties": {
+                                                "errors": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "children": {
+                                                    "required": [
+                                                        "greaterThan",
+                                                        "lessThan",
+                                                        "length",
+                                                        "divisibleBy",
+                                                        "range",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "greaterThan": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "lessThan": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "length": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "divisibleBy": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "range": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "regex": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "greaterThan": {
+                                        "type": "integer",
+                                        "nullable": true,
+                                        "minimum": 7,
+                                        "exclusiveMinimum": true
+                                    },
+                                    "lessThan": {
+                                        "type": "integer",
+                                        "nullable": true,
+                                        "maximum": 13,
+                                        "exclusiveMaximum": true
+                                    },
+                                    "length": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "minLength": 4,
+                                        "maxLength": 6
+                                    },
+                                    "divisibleBy": {
+                                        "type": "number",
+                                        "nullable": true,
+                                        "multipleOf": 0.5
+                                    },
+                                    "range": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "minimum": -20,
+                                        "maximum": -4
+                                    },
+                                    "regex": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "pattern": "^[0-9]{1,5}$"
+                                    }
+                                }
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "greaterThan": {
+                                        "type": "integer",
+                                        "nullable": true,
+                                        "minimum": 7,
+                                        "exclusiveMinimum": true
+                                    },
+                                    "lessThan": {
+                                        "type": "integer",
+                                        "nullable": true,
+                                        "maximum": 13,
+                                        "exclusiveMaximum": true
+                                    },
+                                    "length": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "minLength": 4,
+                                        "maxLength": 6
+                                    },
+                                    "divisibleBy": {
+                                        "type": "number",
+                                        "nullable": true,
+                                        "multipleOf": 0.5
+                                    },
+                                    "range": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "minimum": -20,
+                                        "maximum": -4
+                                    },
+                                    "regex": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "pattern": "^[0-9]{1,5}$"
                                     }
                                 }
                             }
