@@ -55,6 +55,22 @@ final class PropertyAnalyserTest extends TestCase
             ['typeHintedBoolNullable', [PropertyAnalysisSingleType::forSingleValue('bool', true, [])]],
             ['typeHintedArrayNullable', [PropertyAnalysisCollectionType::forCollection('array', true, null)]],
             ['typeHintedObjectNullable', [PropertyAnalysisSingleType::forSingleValue('object', true, [])]],
+            [
+                'typeHintedUnion',
+                [
+                    PropertyAnalysisSingleType::forSingleValue('string', false, []),
+                    PropertyAnalysisSingleType::forSingleValue('int', false, []),
+                    PropertyAnalysisSingleType::forSingleValue('float', false, []),
+                ],
+            ],
+            [
+                'typeHintedUnionNullable',
+                [
+                    PropertyAnalysisSingleType::forSingleValue('string', true, []),
+                    PropertyAnalysisSingleType::forSingleValue('int', true, []),
+                    PropertyAnalysisSingleType::forSingleValue('float', true, []),
+                ],
+            ],
             ['typeHintedStringDocBlocks', [PropertyAnalysisSingleType::forSingleValue('string', false, [])]],
             ['typeHintedStringGenericsDocBlocks', [PropertyAnalysisSingleType::forSingleValue('string', false, [])]],
             ['typeHintedClassStringGenericsDocBlocks', [PropertyAnalysisSingleType::forSingleValue('string', false, [])]],

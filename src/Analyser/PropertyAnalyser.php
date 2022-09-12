@@ -21,6 +21,7 @@ use Psl\Type;
 use Psl\Vec;
 use ReflectionClass;
 use ReflectionNamedType;
+use ReflectionUnionType;
 
 use function count;
 use function in_array;
@@ -71,6 +72,24 @@ final class PropertyAnalyser
             }
 
             return [PropertyAnalysisSingleType::forSingleMixedValue()];
+        }
+
+        if ($property->getType() instanceof ReflectionUnionType) {
+            $types = $property->getType()->getTypes();
+
+            $nullable   = Iter\any($types, static fn (ReflectionNamedType $type): bool => $type->getName() === 'null');
+            $unionTypes = Vec\filter($types, static fn (ReflectionNamedType $type): bool => $type->getName() !== 'null');
+
+            return Vec\map(
+                $unionTypes,
+                static function (ReflectionNamedType $type) use ($nullable) {
+                    if ($type->getName() === 'array') {
+                        return PropertyAnalysisCollectionType::forCollection('array', $nullable, null);
+                    }
+
+                    return PropertyAnalysisSingleType::forSingleValue($type->getName(), $nullable, []);
+                }
+            );
         }
 
         $propertyType = Type\instance_of(ReflectionNamedType::class)->coerce($property->getType());

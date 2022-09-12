@@ -16,6 +16,8 @@ final class PropertyAnalyserClassWithProperties
     public bool $typeHintedBool;
     public array $typeHintedArray;
     public object $typeHintedObject;
+    public string|int|float $typeHintedUnion;
+    public string|int|float|null $typeHintedUnionNullable;
     public ?string $typeHintedStringNullable;
     public ?int $typeHintedIntNullable;
     public ?float $typeHintedFloatNullable;
