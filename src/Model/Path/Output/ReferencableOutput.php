@@ -22,7 +22,7 @@ final class ReferencableOutput implements ReferencableOutputInterface
         $this->referencePath = $referencePath;
     }
 
-    public static function forSchema(ObjectOutput $output, ?string $name = null): self
+    public static function forSchema(ObjectOutput $output, string|null $name = null): self
     {
         $name ??= DefinitionName::getName(Definition::fromObjectOutput($output));
 

@@ -10,10 +10,10 @@ namespace Protung\OpenApiGenerator\Model\Info;
 final class Info
 {
     private string $title;
-    private ?string $description;
-    private ?string $apiVersion;
+    private string|null $description;
+    private string|null $apiVersion;
 
-    public function __construct(string $title, ?string $description = null, ?string $apiVersion = null)
+    public function __construct(string $title, string|null $description = null, string|null $apiVersion = null)
     {
         $this->title       = $title;
         $this->description = $description;
@@ -25,12 +25,12 @@ final class Info
         return $this->title;
     }
 
-    public function description(): ?string
+    public function description(): string|null
     {
         return $this->description;
     }
 
-    public function apiVersion(): ?string
+    public function apiVersion(): string|null
     {
         return $this->apiVersion;
     }

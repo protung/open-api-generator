@@ -41,7 +41,7 @@ final class PathProcessor implements PathProcessorInterface
 
         if ($symfonyRoute === null) {
             throw new InvalidArgumentException(
-                Psl\Str\format('Defined "%s" route in API doc configuration does not exist.', $path->routeName())
+                Psl\Str\format('Defined "%s" route in API doc configuration does not exist.', $path->routeName()),
             );
         }
 
@@ -62,7 +62,7 @@ final class PathProcessor implements PathProcessorInterface
             $operations[] = new PathOperation(
                 $method,
                 $route->getPath(),
-                $operation
+                $operation,
             );
         }
 

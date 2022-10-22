@@ -19,7 +19,7 @@ final class FormFactory
         $this->formFactory = $formFactory;
     }
 
-    public function create(FormDefinition $formDefinition, ?string $httpMethod): FormInterface
+    public function create(FormDefinition $formDefinition, string|null $httpMethod): FormInterface
     {
         return $this->formFactory->create(
             $formDefinition->formClass(),
@@ -28,8 +28,8 @@ final class FormFactory
                 $formDefinition->formOptions(),
                 [
                     'method' => $httpMethod ?? 'POST', // POST is a default value from Symfony.
-                ]
-            )
+                ],
+            ),
         );
     }
 }

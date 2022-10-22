@@ -33,7 +33,7 @@ final class GenerateSchemaTest extends TestCase
 
         $formFactory = (new FormFactoryBuilder())
             ->addExtensions(
-                [new ValidatorExtension($validator)]
+                [new ValidatorExtension($validator)],
             )
             ->getFormFactory();
 
@@ -51,16 +51,16 @@ final class GenerateSchemaTest extends TestCase
         $exampleDescriberCollection = new Describer\ExampleDescriber\CollectionExampleDescriber($exampleDescriberJms);
         $exampleDescriber           = new Describer\ExampleDescriber\CompoundExampleDescriber(
             $exampleDescriberJms,
-            $exampleDescriberCollection
+            $exampleDescriberCollection,
         );
 
         $formDescriber = new Describer\FormDescriber(
             new Describer\Form\SymfonyFormPropertyDescriber(
                 new Describer\Form\PropertyDescriber\DictionaryPropertyDescriber($describerFormFactory, TestDictionaryType::class),
                 new Describer\Form\PropertyDescriber\CollectionPropertyDescriber($describerFormFactory),
-                new Describer\Form\PropertyDescriber\SymfonyBuiltInPropertyDescriber()
+                new Describer\Form\PropertyDescriber\SymfonyBuiltInPropertyDescriber(),
             ),
-            new Describer\Form\SymfonyValidatorRequirementsDescriber($validator)
+            new Describer\Form\SymfonyValidatorRequirementsDescriber($validator),
         );
 
         $modelRegistry = new ModelRegistry();
@@ -77,7 +77,7 @@ final class GenerateSchemaTest extends TestCase
                                 new Describer\InputDescriber\SimpleInputDescriber(),
                                 new Describer\InputDescriber\FormInputDescriber(
                                     $formDescriber,
-                                    $describerFormFactory
+                                    $describerFormFactory,
                                 ),
                             ),
                             new Describer\OutputDescriber(
@@ -88,21 +88,21 @@ final class GenerateSchemaTest extends TestCase
                                         new MetadataFactory(
                                             (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver(
                                                 $metadataDirs,
-                                                new AnnotationReader()
-                                            )
+                                                new AnnotationReader(),
+                                            ),
                                         ),
                                         $apiVersion,
-                                        false
+                                        false,
                                     ),
                                 ),
                                 $describerFormFactory,
-                                $exampleDescriber
-                            )
-                        )
-                    )
-                )
+                                $exampleDescriber,
+                            ),
+                        ),
+                    ),
+                ),
             ),
-            new Processor\Definitions($modelRegistry)
+            new Processor\Definitions($modelRegistry),
         );
     }
 
@@ -122,7 +122,7 @@ final class GenerateSchemaTest extends TestCase
         self::assertTrue($openApiSpec->validate());
         self::assertJsonStringEqualsJsonFile(
             __DIR__ . '/Expected/testSchemaGeneration.json',
-            Json\encode($openApiSpec->getSerializableData())
+            Json\encode($openApiSpec->getSerializableData()),
         );
     }
 }

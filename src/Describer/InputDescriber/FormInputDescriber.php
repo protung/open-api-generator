@@ -61,7 +61,7 @@ final class FormInputDescriber implements InputDescriber
                 [
                     'required' => true,
                     'content' => $mediaTypes,
-                ]
+                ],
             );
 
             return;
@@ -71,7 +71,7 @@ final class FormInputDescriber implements InputDescriber
 
         $requestBody->content = $this->mergeRequestBodyContent(
             $requestBody->content,
-            $mediaTypes
+            $mediaTypes,
         );
     }
 
@@ -101,7 +101,7 @@ final class FormInputDescriber implements InputDescriber
                 Assert::minCount($existingMediaTypeSchema->oneOf, 1);
                 $mediaTypes = array_merge(
                     $existingMediaTypeSchema->oneOf,
-                    [$newMediaType->schema]
+                    [$newMediaType->schema],
                 );
             }
 

@@ -48,10 +48,10 @@ final class DictionaryPropertyDescriber implements PropertyDescriber
                     [
                         'validation_groups' => (array) $formConfig->getOption('validation_groups'),
                     ],
-                    Psl\Type\dict(Psl\Type\string(), Psl\Type\mixed())->coerce($formConfig->getOption('entry_options'))
-                )
+                    Psl\Type\dict(Psl\Type\string(), Psl\Type\mixed())->coerce($formConfig->getOption('entry_options')),
+                ),
             ),
-            $form->getRoot()->getConfig()->getMethod()
+            $form->getRoot()->getConfig()->getMethod(),
         );
 
         $schema->type                 = Type::OBJECT;

@@ -56,10 +56,10 @@ final class Body
         if ($this->schemaHasFileProperties($jsonSchema)) {
             if ($httpMethod === 'PATCH' || ! $this->schemaContainsRequiredFileProperties($jsonSchema)) {
                 $content[self::CONTENT_TYPE_APPLICATION_JSON] = new MediaType(
-                    ['schema' => $this->schemaWithoutFileProperties($jsonSchema)]
+                    ['schema' => $this->schemaWithoutFileProperties($jsonSchema)],
                 );
                 $content[self::CONTENT_TYPE_APPLICATION_FORM] = new MediaType(
-                    ['schema' => $this->schemaWithoutFileProperties($formDataSchema)]
+                    ['schema' => $this->schemaWithoutFileProperties($formDataSchema)],
                 );
             }
 
@@ -94,7 +94,7 @@ final class Body
                 }
 
                 return $property->type !== 'array' || $property->items === null || ($property->items instanceof Schema && $property->items->format !== 'binary');
-            }
+            },
         );
 
         foreach ($schema->properties as $property) {

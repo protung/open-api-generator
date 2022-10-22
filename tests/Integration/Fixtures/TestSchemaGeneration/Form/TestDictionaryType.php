@@ -21,7 +21,7 @@ final class TestDictionaryType extends AbstractType
                 'constraints' => [
                     new Count(max: 5),
                 ],
-            ]
+            ],
         );
     }
 

@@ -15,7 +15,7 @@ final class SpecificationDescriber
     /**
      * @psalm-pure
      */
-    public static function updateDescription(?string $existingText, string $newText): string
+    public static function updateDescription(string|null $existingText, string $newText): string
     {
         if ($existingText === null) {
             return $newText;

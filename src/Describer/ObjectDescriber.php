@@ -61,8 +61,8 @@ final class ObjectDescriber
             Psl\Str\format(
                 'Definition with class name "%s" and serialization groups "%s" can not be described.',
                 $definition->className(),
-                Psl\Str\join($definition->serializationGroups(), ', ')
-            )
+                Psl\Str\join($definition->serializationGroups(), ', '),
+            ),
         );
     }
 }

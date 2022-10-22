@@ -26,8 +26,8 @@ final class SecurityDefinitions implements Processor
                         'in' => $securityDefinition->in(),
                         'scheme' => $securityDefinition->scheme(),
                         'bearerFormat' => $securityDefinition->bearerFormat(),
-                    ]
-                )
+                    ],
+                ),
             );
         }
 

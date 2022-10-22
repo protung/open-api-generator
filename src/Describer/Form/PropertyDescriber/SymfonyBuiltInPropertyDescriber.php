@@ -35,7 +35,7 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
     private function describeProperty(
         Schema $schema,
         ResolvedFormTypeInterface $formType,
-        FormConfigInterface $formConfig
+        FormConfigInterface $formConfig,
     ): void {
         $blockPrefix = $formType->getBlockPrefix();
 
@@ -98,8 +98,8 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
                             $enum = array_values(
                                 array_map(
                                     $choiceValue,
-                                    $choiceLoader->loadChoiceList()->getChoices()
-                                )
+                                    $choiceLoader->loadChoiceList()->getChoices(),
+                                ),
                             );
                         } else {
                             $enum = $choiceLoader->loadChoiceList()->getValues();
@@ -113,7 +113,7 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
                         [
                             'type' => Type::STRING,
                             'enum' => $enum,
-                        ]
+                        ],
                     );
                 } else {
                     $schema->type = Type::STRING;

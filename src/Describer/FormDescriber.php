@@ -21,7 +21,7 @@ final class FormDescriber
 
     public function __construct(
         SymfonyFormPropertyDescriber $propertyDescriber,
-        RequirementsDescriber $requirementsDescriber
+        RequirementsDescriber $requirementsDescriber,
     ) {
         $this->propertyDescriber     = $propertyDescriber;
         $this->requirementsDescriber = $requirementsDescriber;
@@ -76,7 +76,7 @@ final class FormDescriber
     private function addParametersToFlattenSchema(
         Schema $schema,
         FormInterface $form,
-        FlatNameResolver $nameResolver
+        FlatNameResolver $nameResolver,
     ): Schema {
         if ($form->count() === 0) {
             $this->addParameterToSchema($schema, $nameResolver, $form);
@@ -100,7 +100,7 @@ final class FormDescriber
     private function addParameterToSchema(
         Schema $schema,
         NameResolver $nameResolver,
-        FormInterface $form
+        FormInterface $form,
     ): void {
         $childSchema = $this->createSchema($form);
         $this->handleRequiredForParent($childSchema, $form, $nameResolver);
@@ -145,7 +145,7 @@ final class FormDescriber
 
         $schema->description = SpecificationDescriber::updateDescription(
             $schema->description,
-            Psl\Str\format('Field required for %s', $nameResolver->getPropertyName($parentForm))
+            Psl\Str\format('Field required for %s', $nameResolver->getPropertyName($parentForm)),
         );
     }
 

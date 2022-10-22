@@ -53,17 +53,17 @@ final class TestType extends AbstractType
                 NumberType::class,
                 [
                     'constraints' => [new All([new GreaterThanOrEqual(3.14), new LessThanOrEqual(9.9)])],
-                ]
+                ],
             )
             ->add(
                 'paramDateSingleText',
                 DateType::class,
-                ['widget' => 'single_text']
+                ['widget' => 'single_text'],
             )
             ->add(
                 'paramDateChoice',
                 DateType::class,
-                ['widget' => 'choice']
+                ['widget' => 'choice'],
             )
             ->add('paramDateTimeSingleText', DateTimeType::class, ['widget' => 'single_text', 'years' => range(2015, 2025)])
             ->add('paramDateTimeChoice', DateTimeType::class, ['years' => range(2015, 2025)])
@@ -77,16 +77,16 @@ final class TestType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => ['a', 'b'],
-                    'choice_value' => static fn (?string $choice): string => 'choice_value_with_callable: ' . $choice,
-                ]
+                    'choice_value' => static fn (string|null $choice): string => 'choice_value_with_callable: ' . $choice,
+                ],
             )
             ->add(
                 'paramChoiceWithLoaderAndChoiceValueCallable',
                 ChoiceType::class,
                 [
                     'choice_loader' => new CallbackChoiceLoader(static fn (): array => [1, 2, 3]),
-                    'choice_value' => static fn (?string $choice): string => 'choice_value_with_loader_and_callable: ' . $choice,
-                ]
+                    'choice_value' => static fn (string|null $choice): string => 'choice_value_with_loader_and_callable: ' . $choice,
+                ],
             )
             ->add('paramChoiceWithMultiple', ChoiceType::class, ['choices' => ['a', 'b'], 'multiple' => true])
             ->add('paramPassword', PasswordType::class)
@@ -96,7 +96,7 @@ final class TestType extends AbstractType
                 [
                     'entry_type' => TextType::class,
                     'constraints' => [new Count(['min' => 3, 'max' => 44])],
-                ]
+                ],
             )
             ->add('paramCustomCollection', TestCustomCollectionType::class)
             ->add('paramDictionaryType', TestDictionaryType::class)
@@ -107,14 +107,14 @@ final class TestType extends AbstractType
                     'constraints' => [
                         new Count(['min' => 3, 'max' => 44]),
                     ],
-                ]
+                ],
             )
             ->add('paramExtended', TestExtendedType::class)
             ->add('paramExtendedExtended', TestExtendedExtendedType::class)
             ->add(
                 'paramWithExampleAndDescription',
                 TextType::class,
-                ['help' => 'Custom description.', 'attr' => ['placeholder' => 'my-example']]
+                ['help' => 'Custom description.', 'attr' => ['placeholder' => 'my-example']],
             )
             ->add('paramWithDataClassRequired', TestDataClassType::class, ['constraints' => [new NotBlank()]])
             ->add('paramWithDataClassOptional', TestDataClassType::class)

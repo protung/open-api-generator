@@ -55,7 +55,7 @@ class SimpleOutput implements Output
     {
         return new self(
             self::createIOFields($data),
-            $data
+            $data,
         );
     }
 
@@ -82,20 +82,20 @@ class SimpleOutput implements Output
                 if (array_is_list($fieldValue)) {
                     $fields[] = IOField::arrayField(
                         $fieldName,
-                        self::createIOFields([$fieldName => reset($fieldValue)])[0]
+                        self::createIOFields([$fieldName => reset($fieldValue)])[0],
                     );
                 } else {
                     $fields[] = IOField::objectField(
                         $fieldName,
-                        ...self::createIOFields($fieldValue)
+                        ...self::createIOFields($fieldValue),
                     );
                 }
             } else {
                 throw new InvalidArgumentException(
                     Psl\Str\format(
                         'Only scalars or arrays can be used as example value for building SimpleOutput, "%s" given.',
-                        gettype($fieldValue)
-                    )
+                        gettype($fieldValue),
+                    ),
                 );
             }
         }

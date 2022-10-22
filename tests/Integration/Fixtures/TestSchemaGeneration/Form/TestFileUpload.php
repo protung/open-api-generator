@@ -31,10 +31,10 @@ final class TestFileUpload extends AbstractType
                                 'maxWidth' => 200,
                                 'minHeight' => 300,
                                 'maxHeight' => 400,
-                            ]
+                            ],
                         ),
                     ],
-                ]
+                ],
             )
             ->add(
                 'paramFileOptional',
@@ -50,10 +50,10 @@ final class TestFileUpload extends AbstractType
                                     'image/jpeg',
                                 ],
                                 'maxSize' => '5Mi',
-                            ]
+                            ],
                         ),
                     ],
-                ]
+                ],
             )
             ->add('paramExtra', TextType::class);
     }

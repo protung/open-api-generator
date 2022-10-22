@@ -39,7 +39,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
                     '_embedded' => $this->createEmbeddedSchema($output),
                 ],
                 'required' => ['page', 'limit', 'pages', 'total', '_links', '_embedded'],
-            ]
+            ],
         );
     }
 
@@ -53,15 +53,15 @@ final class PaginatedOutputDescriber implements OutputDescriber
                         [
                             'properties' => ['href' => new Schema(['type' => Type::STRING])],
                             'type' => Type::OBJECT,
-                        ]
-                    )
+                        ],
+                    ),
                 ),
                 'type' => Type::OBJECT,
                 'required' => [
                     'self',
                     'first',
                 ],
-            ]
+            ],
         );
     }
 
@@ -73,7 +73,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
             function (Output $resource) {
                 return $this->outputDescriber->describe($resource);
             },
-            $output->embedded()
+            $output->embedded(),
         );
 
         Assert::minCount($resources, 1);
@@ -89,7 +89,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
                 'type' => Type::OBJECT,
                 'properties' => [$output->resourcesKey() => $resourcesSchema],
                 'required' => [$output->resourcesKey()],
-            ]
+            ],
         );
     }
 

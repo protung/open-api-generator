@@ -15,7 +15,7 @@ final class Path implements \Protung\OpenApiGenerator\Model\Path\Path
 
     private string $summary;
 
-    private ?string $description;
+    private string|null $description;
 
     /** @var Input[] */
     private array $input;
@@ -34,11 +34,11 @@ final class Path implements \Protung\OpenApiGenerator\Model\Path\Path
     public function __construct(
         string $tag,
         string $summary,
-        ?string $description,
+        string|null $description,
         array $input,
         array $responses,
-        ?Reference $security = null,
-        bool $deprecated = false
+        Reference|null $security = null,
+        bool $deprecated = false,
     ) {
         $this->tag         = $tag;
         $this->summary     = $summary;
@@ -59,7 +59,7 @@ final class Path implements \Protung\OpenApiGenerator\Model\Path\Path
         return $this->summary;
     }
 
-    public function description(): ?string
+    public function description(): string|null
     {
         return $this->description;
     }

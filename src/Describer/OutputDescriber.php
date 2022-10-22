@@ -25,7 +25,7 @@ final class OutputDescriber
     public function __construct(
         ObjectDescriber $objectDescriber,
         FormFactory $formFactory,
-        ExampleDescriber $exampleDescriber
+        ExampleDescriber $exampleDescriber,
     ) {
         $this->objectDescriber = $objectDescriber;
 
@@ -58,7 +58,7 @@ final class OutputDescriber
         }
 
         throw new InvalidArgumentException(
-            Psl\Str\format('Can not handle object to describe of type "%s"', $output::class)
+            Psl\Str\format('Can not handle object to describe of type "%s"', $output::class),
         );
     }
 }

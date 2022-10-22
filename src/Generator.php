@@ -27,7 +27,7 @@ final class Generator
         InfoProcessor $infoProcessor,
         SecurityDefinitions $securityDefinitionsProcessor,
         PathsProcessor $pathsProcessor,
-        Definitions $definitionsProcessor
+        Definitions $definitionsProcessor,
     ) {
         $this->infoProcessor                = $infoProcessor;
         $this->securityDefinitionsProcessor = $securityDefinitionsProcessor;
@@ -40,7 +40,7 @@ final class Generator
         $openApi = new OpenApi(
             [
                 'openapi' => self::OPEN_API_VERSION,
-            ]
+            ],
         );
 
         $this->infoProcessor->process($openApi, $specification);

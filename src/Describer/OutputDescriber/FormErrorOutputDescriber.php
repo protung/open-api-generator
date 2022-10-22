@@ -56,7 +56,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
                     'detail',
                     'violations',
                 ],
-            ]
+            ],
         );
     }
 

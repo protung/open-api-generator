@@ -18,7 +18,7 @@ final class SymfonyRoutePath implements Path
 
     private string $summary;
 
-    private ?string $description;
+    private string|null $description;
 
     /** @var Input[] */
     private array $input;
@@ -42,12 +42,12 @@ final class SymfonyRoutePath implements Path
         string $routeName,
         string $tag,
         string $summary,
-        ?string $description,
+        string|null $description,
         array $input,
         array $responses,
-        ?Reference $security = null,
+        Reference|null $security = null,
         bool $deprecated = false,
-        array $callbacks = []
+        array $callbacks = [],
     ) {
         $this->routeName   = $routeName;
         $this->tag         = $tag;
@@ -75,7 +75,7 @@ final class SymfonyRoutePath implements Path
         return $this->summary;
     }
 
-    public function description(): ?string
+    public function description(): string|null
     {
         return $this->description;
     }

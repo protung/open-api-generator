@@ -26,7 +26,7 @@ final class DefinitionName
         return Psl\Str\format(
             '%s%s',
             self::getNameForClass($definition->className()),
-            self::getGroupsSuffix($definition->serializationGroups())
+            self::getGroupsSuffix($definition->serializationGroups()),
         );
     }
 
@@ -48,8 +48,8 @@ final class DefinitionName
                 $groups,
                 static function ($group): bool {
                     return $group !== GroupsExclusionStrategy::DEFAULT_GROUP;
-                }
-            )
+                },
+            ),
         );
 
         return implode('', array_map('\ucfirst', explode('-', $groupString)));

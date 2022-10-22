@@ -39,10 +39,10 @@ final class SimpleInputDescriber implements InputDescriber
                     'required' => true,
                     'content' => [
                         self::CONTENT_TYPE_APPLICATION_JSON => new MediaType(
-                            ['schema' => $this->ioFieldDescriber->describeFields($input->fields())]
+                            ['schema' => $this->ioFieldDescriber->describeFields($input->fields())],
                         ),
                     ],
-                ]
+                ],
             );
         } else {
             $parameters = [];
@@ -54,7 +54,7 @@ final class SimpleInputDescriber implements InputDescriber
                 $parameterSchema = new Schema(
                     [
                         'type' => $field->type(),
-                    ]
+                    ],
                 );
                 $possibleValues  = $field->possibleValues();
                 $fieldPattern    = $field->pattern();

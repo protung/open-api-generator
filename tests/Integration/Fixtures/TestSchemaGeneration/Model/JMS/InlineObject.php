@@ -10,5 +10,5 @@ final class InlineObject
 
     public int $inlineObjectIntProperty = 1;
 
-    public ?ChildObject $inlineObjectChildObjectProperty = null;
+    public ChildObject|null $inlineObjectChildObjectProperty = null;
 }

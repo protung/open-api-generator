@@ -20,7 +20,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
     /** @var string[] */
     private array $serializationGroups;
 
-    private ?object $exampleObject = null;
+    private object|null $exampleObject = null;
 
     /**
      * @param class-string $className
@@ -52,8 +52,8 @@ final class ObjectOutput implements SerializationGroupAwareOutput
         $groups = array_unique(
             array_merge(
                 $groups,
-                SerializationGroupAwareOutput::DEFAULT_SERIALIZATION_GROUPS
-            )
+                SerializationGroupAwareOutput::DEFAULT_SERIALIZATION_GROUPS,
+            ),
         );
 
         return new self($className, $groups);
@@ -76,7 +76,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
         return $this;
     }
 
-    public function example(): ?object
+    public function example(): object|null
     {
         return $this->exampleObject;
     }

@@ -73,7 +73,7 @@ final class Query
                 $parameter->required    = false;
                 $parameter->description = SpecificationDescriber::updateDescription(
                     $parameter->description,
-                    Psl\Str\format('Field required for %s', $nameResolver->getPropertyName($parentForm))
+                    Psl\Str\format('Field required for %s', $nameResolver->getPropertyName($parentForm)),
                 );
             }
         }

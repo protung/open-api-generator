@@ -18,7 +18,7 @@ final class TestCustomCollectionType extends AbstractType
                 'entry_type' => TestInnerType::class,
                 'allow_add' => true,
                 'constraints' => [],
-            ]
+            ],
         );
     }
 
