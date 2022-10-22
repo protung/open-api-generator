@@ -3,9 +3,9 @@
 <ruleset
         name="Coding standard"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+        xsi:noNamespaceSchemaLocation="../vendor/squizlabs/php_codesniffer/phpcs.xsd">
 
-    <arg name="basepath" value="."/>
+    <arg name="basepath" value="../"/>
     <arg name="extensions" value="php"/>
     <arg name="parallel" value="80"/>
     <arg name="cache" value=".phpcs-cache"/>
@@ -29,7 +29,7 @@
     </rule>
 
     <!-- Paths to check -->
-    <file>src</file>
-    <file>tests</file>
-    <exclude-pattern>tests/Analyser/Fixtures/PropertyAnalyserClassWithProperties.php</exclude-pattern>
+    <file>../src</file>
+    <file>../tests</file>
+    <exclude-pattern>../tests/Analyser/Fixtures/PropertyAnalyserClassWithProperties.php</exclude-pattern>
 </ruleset>

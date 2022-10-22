@@ -1,0 +1,19 @@
+parameters:
+    level: max
+    paths:
+        - ../src
+        - ../tests
+    excludePaths:
+        - ../tests/Analyser/Fixtures/PropertyAnalyserClassWithProperties.php
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false # we might run the check against different versions of PHP or libraries that might have / not have reported errors
+
+includes:
+    - phpstan-baseline.neon
+    - ../vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - ../vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - ../vendor/phpstan/phpstan-phpunit/extension.neon
+    - ../vendor/phpstan/phpstan-strict-rules/rules.neon
+    - ../vendor/phpstan/phpstan-symfony/extension.neon
+    - ../vendor/phpstan/phpstan-webmozart-assert/extension.neon
+    - ../vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
