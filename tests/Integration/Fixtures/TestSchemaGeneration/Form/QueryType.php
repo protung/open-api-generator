@@ -20,7 +20,7 @@ final class QueryType extends AbstractType
             ->add(
                 'paramWithCustomDescriptionAndExample',
                 TextType::class,
-                ['help' => 'customLabel', 'attr' => ['placeholder' => 'my-query-example']]
+                ['help' => 'customLabel', 'attr' => ['placeholder' => 'my-query-example']],
             )
             ->add('innerForm', TestType::class)
             ->add('paramRequiredChildren', RequiredChildType::class, ['required' => false])

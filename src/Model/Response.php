@@ -66,7 +66,7 @@ final class Response
     public static function for400WithForm(string $formType, array $formOptions = []): self
     {
         return self::for400(
-            new FormErrorOutput(new FormDefinition($formType, $formOptions))
+            new FormErrorOutput(new FormDefinition($formType, $formOptions)),
         );
     }
 
@@ -100,7 +100,7 @@ final class Response
         return new self(
             406,
             ['Returned when response content type expected is not supported'],
-            RFC7807ErrorOutput::for406()
+            RFC7807ErrorOutput::for406(),
         );
     }
 
@@ -109,7 +109,7 @@ final class Response
         return new self(
             409,
             ['Returned when conflict with current state of the server occurred.'],
-            RFC7807ErrorOutput::for409()
+            RFC7807ErrorOutput::for409(),
         );
     }
 
@@ -118,7 +118,7 @@ final class Response
         return new self(
             415,
             ['Returned when request payload format is not supported'],
-            RFC7807ErrorOutput::for415()
+            RFC7807ErrorOutput::for415(),
         );
     }
 
@@ -127,7 +127,7 @@ final class Response
         return new self(
             423,
             ['Returned when resource is locked'],
-            RFC7807ErrorOutput::for423()
+            RFC7807ErrorOutput::for423(),
         );
     }
 
@@ -136,7 +136,7 @@ final class Response
         return new self(
             500,
             ['Returned on server error'],
-            RFC7807ErrorOutput::for500()
+            RFC7807ErrorOutput::for500(),
         );
     }
 

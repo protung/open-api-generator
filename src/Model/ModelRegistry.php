@@ -27,7 +27,7 @@ final class ModelRegistry
     {
         return array_key_exists(
             $this->definitionKey($definition),
-            $this->models
+            $this->models,
         );
     }
 
@@ -41,8 +41,8 @@ final class ModelRegistry
             Psl\Str\format(
                 'Model with class name "%s" and serialization groups "%s" does not exist.',
                 $definition->className(),
-                implode(', ', $definition->serializationGroups())
-            )
+                implode(', ', $definition->serializationGroups()),
+            ),
         );
     }
 
@@ -58,8 +58,8 @@ final class ModelRegistry
                 Psl\Str\format(
                     'Model with class name "%s" and serialization groups "%s" already exists.',
                     $definition->className(),
-                    implode(', ', $definition->serializationGroups())
-                )
+                    implode(', ', $definition->serializationGroups()),
+                ),
             );
         }
 
@@ -77,15 +77,15 @@ final class ModelRegistry
                         'Reference path "%s" for definition with class name "%s" and serialization groups "%s" is already taken.',
                         $referencePath,
                         $definition->className(),
-                        implode(', ', $definition->serializationGroups())
-                    )
+                        implode(', ', $definition->serializationGroups()),
+                    ),
                 );
             }
         }
 
         $this->referencedModels[$hash] = new ReferenceModel(
             $this->getModelWithDefinition($definition),
-            $referencePath
+            $referencePath,
         );
 
         return new Reference(['$ref' => $referencePath]);
@@ -113,8 +113,8 @@ final class ModelRegistry
                     $definition->className(),
                     $definition->serializationGroups(),
                     $objectHash,
-                ]
-            )
+                ],
+            ),
         );
     }
 }

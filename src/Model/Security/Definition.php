@@ -17,20 +17,20 @@ final class Definition
 
     private string $key;
     private string $type;
-    private ?string $in;
-    private ?string $description;
-    private ?string $name;
-    private ?string $scheme;
-    private ?string $bearerFormat;
+    private string|null $in;
+    private string|null $description;
+    private string|null $name;
+    private string|null $scheme;
+    private string|null $bearerFormat;
 
     private function __construct(
         string $key,
         string $type,
-        ?string $in,
-        ?string $name,
-        ?string $description = null,
-        ?string $scheme = null,
-        ?string $bearerFormat = null
+        string|null $in,
+        string|null $name,
+        string|null $description = null,
+        string|null $scheme = null,
+        string|null $bearerFormat = null,
     ) {
         $this->key          = $key;
         $this->type         = $type;
@@ -44,19 +44,19 @@ final class Definition
     public static function apiKey(
         string $key,
         string $name,
-        ?string $description = null,
-        ?string $in = self::IN_HEADER
+        string|null $description = null,
+        string|null $in = self::IN_HEADER,
     ): self {
         return new self(
             $key,
             self::TYPE_API_KEY,
             $in,
             $name,
-            $description
+            $description,
         );
     }
 
-    public static function basicAuth(string $key, ?string $description = null): self
+    public static function basicAuth(string $key, string|null $description = null): self
     {
         return new self(
             $key,
@@ -64,11 +64,11 @@ final class Definition
             null,
             null,
             $description,
-            self::SCHEME_HTTP_BASIC
+            self::SCHEME_HTTP_BASIC,
         );
     }
 
-    public static function bearerAuth(string $key, ?string $bearerFormat = null, ?string $description = null): self
+    public static function bearerAuth(string $key, string|null $bearerFormat = null, string|null $description = null): self
     {
         return new self(
             $key,
@@ -77,7 +77,7 @@ final class Definition
             null,
             $description,
             self::SCHEME_HTTP_BEARER,
-            $bearerFormat
+            $bearerFormat,
         );
     }
 
@@ -91,27 +91,27 @@ final class Definition
         return $this->type;
     }
 
-    public function in(): ?string
+    public function in(): string|null
     {
         return $this->in;
     }
 
-    public function description(): ?string
+    public function description(): string|null
     {
         return $this->description;
     }
 
-    public function name(): ?string
+    public function name(): string|null
     {
         return $this->name;
     }
 
-    public function scheme(): ?string
+    public function scheme(): string|null
     {
         return $this->scheme;
     }
 
-    public function bearerFormat(): ?string
+    public function bearerFormat(): string|null
     {
         return $this->bearerFormat;
     }

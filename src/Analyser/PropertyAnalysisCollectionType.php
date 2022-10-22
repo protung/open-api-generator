@@ -10,9 +10,9 @@ final class PropertyAnalysisCollectionType implements PropertyAnalysisType
 
     private bool $nullable;
 
-    private ?PropertyAnalysisType $collectionElementsType;
+    private PropertyAnalysisType|null $collectionElementsType;
 
-    private function __construct(string $type, bool $nullable, ?PropertyAnalysisType $collectionElementsType)
+    private function __construct(string $type, bool $nullable, PropertyAnalysisType|null $collectionElementsType)
     {
         $this->type                   = $type;
         $this->nullable               = $nullable;
@@ -22,7 +22,7 @@ final class PropertyAnalysisCollectionType implements PropertyAnalysisType
     public static function forCollection(
         string $type,
         bool $nullable,
-        ?PropertyAnalysisType $collectionElementsType
+        PropertyAnalysisType|null $collectionElementsType,
     ): self {
         return new self($type, $nullable, $collectionElementsType);
     }
@@ -37,7 +37,7 @@ final class PropertyAnalysisCollectionType implements PropertyAnalysisType
         return $this->nullable;
     }
 
-    public function collectionElementsType(): ?PropertyAnalysisType
+    public function collectionElementsType(): PropertyAnalysisType|null
     {
         return $this->collectionElementsType;
     }

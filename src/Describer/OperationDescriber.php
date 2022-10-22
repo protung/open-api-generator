@@ -49,14 +49,14 @@ final class OperationDescriber
                     }
 
                     return $value !== null;
-                }
-            )
+                },
+            ),
         );
 
         $this->describeInputs(
             $operation,
             $method,
-            ...$path->input()
+            ...$path->input(),
         );
         $this->describeResponses(
             $operation,
@@ -67,7 +67,7 @@ final class OperationDescriber
         if ($callbacks !== []) {
             $this->describeCallbacks(
                 $operation,
-                ...$callbacks
+                ...$callbacks,
             );
         }
 
@@ -108,7 +108,7 @@ final class OperationDescriber
 
             $responses->addResponse(
                 (string) $response->statusCode(),
-                new Response($responseData)
+                new Response($responseData),
             );
         }
     }

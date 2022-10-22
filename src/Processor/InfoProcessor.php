@@ -24,7 +24,7 @@ final class InfoProcessor implements Processor
                 'title' => $specification->info()->title(),
                 'description' => $specification->info()->description(),
                 'version' => $specification->info()->apiVersion() ?? $this->apiVersion,
-            ]
+            ],
         );
     }
 }

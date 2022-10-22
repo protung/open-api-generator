@@ -45,11 +45,11 @@ return new Model\Specification(
             [],
             [
                 Response::for200(
-                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class),
                 ),
                 Response::for401(),
             ],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_custom_query_params',
@@ -63,7 +63,7 @@ return new Model\Specification(
                 Input\QueryInput::withIOField(IOField::booleanField('custom_query_boolean_field')->withExample(true)),
             ],
             [],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_custom_path_params',
@@ -72,7 +72,7 @@ return new Model\Specification(
             null,
             [],
             [],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_custom_responses',
@@ -97,23 +97,23 @@ return new Model\Specification(
                         IOField::booleanField('myBoolean')->withExample(false),
                         IOField::numberField('myChoice')->withPossibleValues([1, 2, 3]),
                         IOField::anything('optional')->asOptional(),
-                    )
+                    ),
                 ),
                 new Response(
                     206,
                     [],
-                    Model\Path\Output\CollectionOutput::forOutput(Model\Path\Output\ScalarOutput::plainText(Type::STRING))
+                    Model\Path\Output\CollectionOutput::forOutput(Model\Path\Output\ScalarOutput::plainText(Type::STRING)),
                 ),
                 new Response(207, [], ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)),
                 new Response(
                     208,
                     [],
-                    Model\Path\Output\CollectionOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
+                    Model\Path\Output\CollectionOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class),
                 ),
                 new Response(
                     209,
                     [],
-                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\InlineArrayOfObjects::class)
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\InlineArrayOfObjects::class),
                 ),
                 new Response(
                     210,
@@ -124,7 +124,7 @@ return new Model\Specification(
                     Model\Path\Output\FileOutput::forPlainText(),
                     Model\Path\Output\FileOutput::forPng(),
                     Model\Path\Output\FileOutput::forZip(),
-                    Model\Path\Output\ScalarOutput::json(Type::INTEGER)
+                    Model\Path\Output\ScalarOutput::json(Type::INTEGER),
                 ),
                 new Response(
                     211,
@@ -164,12 +164,12 @@ return new Model\Specification(
                             'myArrayCollection' => [
                                 [1],
                             ],
-                        ]
-                    )
+                        ],
+                    ),
                 ),
             ],
             null,
-            true
+            true,
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_custom_error_responses',
@@ -181,8 +181,8 @@ return new Model\Specification(
                 Response::for400(
                     RFC7807ErrorOutput::create(
                         400,
-                        'something custom'
-                    )
+                        'something custom',
+                    ),
                 )
                     ->withDescription(['Custom message 400']),
                 Response::for401(),
@@ -198,10 +198,10 @@ return new Model\Specification(
                 new Response(
                     428,
                     ['Custom precondition'],
-                    Model\Path\Output\SimpleOutput::fromIOFields(Model\Path\IOField::stringField('precondition'))
+                    Model\Path\Output\SimpleOutput::fromIOFields(Model\Path\IOField::stringField('precondition')),
                 ),
             ],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_custom_polymorphic_responses',
@@ -215,7 +215,7 @@ return new Model\Specification(
                     Model\Path\Output\ScalarOutput::plainText(Type::INTEGER),
                     Model\Path\Output\ScalarOutput::json(Type::STRING),
                     Model\Path\Output\ScalarOutput::json(Type::INTEGER),
-                    RFC7807ErrorOutput::create(400, 'Test')
+                    RFC7807ErrorOutput::create(400, 'Test'),
                 ),
             ],
         ),
@@ -232,16 +232,16 @@ return new Model\Specification(
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class),
                         ObjectOutput::withSerializationGroups(
                             TestSchemaGeneration\Model\JMS\ComplexObject::class,
-                            ['Test']
+                            ['Test'],
                         ),
                         ObjectOutput::forClass(TestSchemaGeneration\Model\NotDescribedObject::class),
-                    )
+                    ),
                 ),
                 Response::for201(
                     new PaginatedOutput(
                         'one_type',
-                        Model\Path\Output\SimpleOutput::fromIOFields(Model\Path\IOField::objectField('someField'))
-                    )
+                        Model\Path\Output\SimpleOutput::fromIOFields(Model\Path\IOField::objectField('someField')),
+                    ),
                 ),
                 new Response(
                     202,
@@ -250,7 +250,7 @@ return new Model\Specification(
                         'children_with_discriminator',
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\DiscriminatorFirstChildObject::class),
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\DiscriminatorSecondChildObject::class),
-                    )
+                    ),
                 ),
                 new Response(
                     203,
@@ -258,11 +258,11 @@ return new Model\Specification(
                     new PaginatedOutput(
                         'parent_with_discriminator',
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\DiscriminatorParentObject::class),
-                    )
+                    ),
                 ),
                 Response::for204(),
             ],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_referenced_response',
@@ -275,23 +275,23 @@ return new Model\Specification(
                     Model\Path\Output\ReferencableOutput::forSchema(
                     // JMSObject is also used as not referenced.
                     // We want to make sure this is only referenced for this path.
-                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
-                    )
+                        ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class),
+                    ),
                 ),
                 Response::for201(
                     Model\Path\Output\ReferencableOutput::forSchema(
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ObjectDescribedOnlyAsReference::class),
-                        'JMSObjectDescribedOnlyAsReferenceCustomName'
+                        'JMSObjectDescribedOnlyAsReferenceCustomName',
                     ),
                 ),
                 Response::for400(
                 // We want to test that using the same name will not throw an error is the definition matches.
                     Model\Path\Output\ReferencableOutput::forSchema(
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ObjectDescribedOnlyAsReference::class),
-                        'JMSObjectDescribedOnlyAsReferenceCustomName'
+                        'JMSObjectDescribedOnlyAsReferenceCustomName',
                     ),
                 ),
-            ]
+            ],
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_multiple_methods',
@@ -300,7 +300,7 @@ return new Model\Specification(
             null,
             [],
             [],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_post_with_form',
@@ -313,7 +313,7 @@ return new Model\Specification(
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestType::class),
             ],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_post_with_form_with_constraints',
@@ -325,7 +325,7 @@ return new Model\Specification(
             ],
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestConstraintsType::class),
-            ]
+            ],
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_patch_with_form',
@@ -338,7 +338,7 @@ return new Model\Specification(
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestType::class),
             ],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_patch_with_form_with_constraints',
@@ -350,7 +350,7 @@ return new Model\Specification(
             ],
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestConstraintsType::class),
-            ]
+            ],
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_post_with_file_upload',
@@ -363,7 +363,7 @@ return new Model\Specification(
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestFileUpload::class),
             ],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_post_with_file_upload_optional',
@@ -376,7 +376,7 @@ return new Model\Specification(
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestFileUploadOptional::class),
             ],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_post_with_form_with_data_class',
@@ -389,7 +389,7 @@ return new Model\Specification(
             [
                 Response::for400WithForm(TestSchemaGeneration\Form\TestDataClassType::class),
             ],
-            Model\Security\Reference::fromString('ApiKey')
+            Model\Security\Reference::fromString('ApiKey'),
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_post_with_multiple_form_inputs',
@@ -436,8 +436,8 @@ return new Model\Specification(
                     [],
                     Model\Path\Output\CollectionOutput::forOutput(
                         ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
-                            ->withExample(TestSchemaGeneration\Model\JMS\ComplexObjectExampleBuilder::create())
-                    )
+                            ->withExample(TestSchemaGeneration\Model\JMS\ComplexObjectExampleBuilder::create()),
+                    ),
                 ),
             ],
         ),
@@ -476,12 +476,12 @@ return new Model\Specification(
                         ],
                         [
                             Response::for200(
-                                ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class)
+                                ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\ComplexObject::class),
                             ),
                         ],
                     ),
                 ),
-            ]
+            ],
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_post_simple_object_input_and_output',
@@ -497,7 +497,7 @@ return new Model\Specification(
                     ),
                     IOField::arrayField(
                         'simpleNullableArrayOfStrings',
-                        IOField::stringField('simpleString')
+                        IOField::stringField('simpleString'),
                     )->asNullable(),
                     IOField::arrayField(
                         'simpleArrayOfObjects',
@@ -511,8 +511,8 @@ return new Model\Specification(
                                 IOField::booleanField('simpleBoolean'),
                                 IOField::stringField('simpleString'),
                                 IOField::integerField('simpleInteger'),
-                            )
-                        )
+                            ),
+                        ),
                     ),
                     IOField::objectField(
                         'simpleObject',
@@ -532,8 +532,8 @@ return new Model\Specification(
                     ),
                     IOField::objectField(
                         'simpleNullableObjectWithChildren',
-                        IOField::booleanField('simpleBoolean')
-                    )->asNullable()
+                        IOField::booleanField('simpleBoolean'),
+                    )->asNullable(),
                 ),
             ],
             [
@@ -552,8 +552,8 @@ return new Model\Specification(
                                 IOField::booleanField('simpleBoolean'),
                                 IOField::stringField('simpleString'),
                                 IOField::integerField('simpleInteger'),
-                            )
-                        )
+                            ),
+                        ),
                     ),
                 ),
             ],
@@ -586,7 +586,7 @@ return new Model\Specification(
                 new Response(
                     200,
                     ['backed enums'],
-                    Model\Path\Output\ObjectOutput::forClass(TestSchemaGeneration\Model\Enum\BackedEnum::class)
+                    Model\Path\Output\ObjectOutput::forClass(TestSchemaGeneration\Model\Enum\BackedEnum::class),
                 ),
             ],
         ),
@@ -649,5 +649,5 @@ return new Model\Specification(
     ],
     [
         Response::for500(),
-    ]
+    ],
 );

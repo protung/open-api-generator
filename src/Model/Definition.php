@@ -15,12 +15,12 @@ final class Definition
     /** @var string[] */
     private array $serializationGroups;
 
-    private ?object $exampleObject;
+    private object|null $exampleObject;
 
     /**
      * @param string[] $serializationGroups
      */
-    public function __construct(string $className, array $serializationGroups, ?object $exampleObject = null)
+    public function __construct(string $className, array $serializationGroups, object|null $exampleObject = null)
     {
         $this->className           = $className;
         $this->serializationGroups = $serializationGroups;
@@ -34,7 +34,7 @@ final class Definition
         return new self(
             $objectOutput->className(),
             $objectOutput->serializationGroups(),
-            $objectOutput->example()
+            $objectOutput->example(),
         );
     }
 
@@ -51,7 +51,7 @@ final class Definition
         return $this->serializationGroups;
     }
 
-    public function exampleObject(): ?object
+    public function exampleObject(): object|null
     {
         return $this->exampleObject;
     }

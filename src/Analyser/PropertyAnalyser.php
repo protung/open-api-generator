@@ -58,8 +58,8 @@ final class PropertyAnalyser
                 Str\format(
                     'Property "%s" does not exist in class "%s".',
                     $propertyName,
-                    $class
-                )
+                    $class,
+                ),
             );
         }
 
@@ -88,7 +88,7 @@ final class PropertyAnalyser
                     }
 
                     return PropertyAnalysisSingleType::forSingleValue($type->getName(), $nullable, []);
-                }
+                },
             );
         }
 
@@ -158,7 +158,7 @@ final class PropertyAnalyser
                 PropertyAnalysisCollectionType::forCollection(
                     'array',
                     $nullable,
-                    null
+                    null,
                 ),
             ];
         }
@@ -178,7 +178,7 @@ final class PropertyAnalyser
                 PropertyAnalysisCollectionType::forCollection(
                     'array',
                     $nullable,
-                    PropertyAnalysisSingleType::forSingleValue($genericType->name, $nullable, [])
+                    PropertyAnalysisSingleType::forSingleValue($genericType->name, $nullable, []),
                 ),
             ];
         }
@@ -197,7 +197,7 @@ final class PropertyAnalyser
             PropertyAnalysisCollectionType::forCollection(
                 'array',
                 $nullable,
-                PropertyAnalysisSingleType::forSingleValue($identifierType->name, $nullable, [])
+                PropertyAnalysisSingleType::forSingleValue($identifierType->name, $nullable, []),
             ),
         ];
     }
@@ -220,7 +220,7 @@ final class PropertyAnalyser
                 }
 
                 return PropertyAnalysisSingleType::forSingleValue($type->name, $nullable, []);
-            }
+            },
         );
     }
 
@@ -228,9 +228,9 @@ final class PropertyAnalyser
     {
         return new PhpDocParser(
             new TypeParser(
-                new ConstExprParser()
+                new ConstExprParser(),
             ),
-            new ConstExprParser()
+            new ConstExprParser(),
         );
     }
 }

@@ -26,7 +26,7 @@ final class CallbackDescriber
         $callbackPathOperation = new PathOperation(
             $method,
             $callback->url(),
-            $this->operationDescriber->describe($method, $path)
+            $this->operationDescriber->describe($method, $path),
         );
 
         return $this->createCallbackFromPathOperation($callbackPathOperation);
@@ -43,10 +43,10 @@ final class CallbackDescriber
                 $pathOperation->path() => [
                     $pathOperation->operationMethod() => Json\decode(
                         Json\encode($pathOperation->operation()->getSerializableData()),
-                        true
+                        true,
                     ),
                 ],
-            ]
+            ],
         );
     }
 }

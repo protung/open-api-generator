@@ -10,7 +10,7 @@ final class ChildObject
 
     public string $stringPropertyWithCustomGroup = 'stringPropertyWithCustomGroup';
 
-    public ?InnerChildObject $innerChildProperty = null;
+    public InnerChildObject|null $innerChildProperty = null;
 
-    public ?ChildObject $recursiveProperty = null;
+    public ChildObject|null $recursiveProperty = null;
 }

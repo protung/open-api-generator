@@ -26,7 +26,7 @@ final class TestDataClassType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => NotDescribedObject::class,
-            ]
+            ],
         );
     }
 }

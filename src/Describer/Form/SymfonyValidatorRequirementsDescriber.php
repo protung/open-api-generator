@@ -64,7 +64,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         return Psl\Vec\concat(
             Psl\Type\vec(Psl\Type\instance_of(Constraint::class))->coerce($formConfig->getOption('constraints', [])),
             $this->getConstraintsForClass($formConfig),
-            $this->getConstraintsForClassProperty($form)
+            $this->getConstraintsForClassProperty($form),
         );
     }
 
@@ -143,7 +143,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                 return $this->{$this->getCompositeOption()};
             },
             $constraint,
-            $constraint
+            $constraint,
         )();
 
         $this->describeConstraints($constraints, $schema, $form);
@@ -233,21 +233,21 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                     // we need to remove the delimiters but ignoring the modifiers
                     $schema->pattern = Psl\Str\slice(
                         Psl\Type\non_empty_string()->coerce(Psl\Str\before_last_ci($constraint->pattern, $constraint->pattern[0])),
-                        1
+                        1,
                     );
                     break;
                 case $constraint instanceof File:
                     if ($constraint->mimeTypes !== null && $constraint->mimeTypes !== []) {
                         $schema->description = SpecificationDescriber::updateDescription(
                             $schema->description,
-                            Psl\Str\format('Allowed mime types: %s', implode(', ', (array) $constraint->mimeTypes))
+                            Psl\Str\format('Allowed mime types: %s', implode(', ', (array) $constraint->mimeTypes)),
                         );
                     }
 
                     if ($constraint->maxSize !== null) {
                         $schema->description = SpecificationDescriber::updateDescription(
                             $schema->description,
-                            Psl\Str\format('Allowed max file size: %s', $this->humanReadableFileSize($constraint->maxSize))
+                            Psl\Str\format('Allowed max file size: %s', $this->humanReadableFileSize($constraint->maxSize)),
                         );
                     }
 
@@ -255,28 +255,28 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                         if ($constraint->minWidth !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                Psl\Str\format('Allowed minimum width is %dpx', $constraint->minWidth)
+                                Psl\Str\format('Allowed minimum width is %dpx', $constraint->minWidth),
                             );
                         }
 
                         if ($constraint->minHeight !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                Psl\Str\format('Allowed minimum height is %dpx', $constraint->minHeight)
+                                Psl\Str\format('Allowed minimum height is %dpx', $constraint->minHeight),
                             );
                         }
 
                         if ($constraint->maxWidth !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                Psl\Str\format('Allowed maximum width is %dpx', $constraint->maxWidth)
+                                Psl\Str\format('Allowed maximum width is %dpx', $constraint->maxWidth),
                             );
                         }
 
                         if ($constraint->maxHeight !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                Psl\Str\format('Allowed maximum height is %dpx', $constraint->maxHeight)
+                                Psl\Str\format('Allowed maximum height is %dpx', $constraint->maxHeight),
                             );
                         }
                     }

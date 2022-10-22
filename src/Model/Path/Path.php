@@ -14,7 +14,7 @@ interface Path
 
     public function summary(): string;
 
-    public function description(): ?string;
+    public function description(): string|null;
 
     /**
      * @return Input[]

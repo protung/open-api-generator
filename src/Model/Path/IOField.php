@@ -20,13 +20,13 @@ final class IOField
 
     private string $type;
 
-    private ?string $pattern = null;
+    private string|null $pattern = null;
 
     /** @var mixed[]|null */
-    private ?array $possibleValues = null;
+    private array|null $possibleValues = null;
 
     /** @var list<IOField>|null */
-    private ?array $children = null;
+    private array|null $children = null;
 
     private bool $nullable = false;
 
@@ -93,8 +93,8 @@ final class IOField
         $self->withPossibleValues(
             Vec\map(
                 $backedEnumClass::cases(),
-                static fn (BackedEnum $value): int|string => $value->value
-            )
+                static fn (BackedEnum $value): int|string => $value->value,
+            ),
         );
 
         return $self;
@@ -141,7 +141,7 @@ final class IOField
     /**
      * @return list<IOField>|null
      */
-    public function children(): ?array
+    public function children(): array|null
     {
         return $this->children;
     }
@@ -184,7 +184,7 @@ final class IOField
         return $this;
     }
 
-    public function pattern(): ?string
+    public function pattern(): string|null
     {
         return $this->pattern;
     }
@@ -202,7 +202,7 @@ final class IOField
     /**
      * @return mixed[]|null
      */
-    public function possibleValues(): ?array
+    public function possibleValues(): array|null
     {
         return $this->possibleValues;
     }

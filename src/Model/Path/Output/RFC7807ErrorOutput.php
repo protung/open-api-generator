@@ -23,7 +23,7 @@ final class RFC7807ErrorOutput extends SimpleOutput
                 'title' => 'An error occurred',
                 'status' => $errorCode,
                 'detail' => $message,
-            ]
+            ],
         );
     }
 

@@ -30,7 +30,7 @@ final class InputDescriber
         }
 
         throw new InvalidArgumentException(
-            Psl\Str\format('Can not handle object to describe of type "%s"', $input::class)
+            Psl\Str\format('Can not handle object to describe of type "%s"', $input::class),
         );
     }
 }

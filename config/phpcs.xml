@@ -14,11 +14,15 @@
     <arg value="np"/>
 
     <!-- inherit rules from: -->
-    <rule ref="Doctrine"/>
+    <rule ref="Doctrine">
+        <exclude name="Generic.NamingConventions.ConstructorName"/>
+        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLineDocComment.MultiLineDocComment"/>
+        <exclude name="SlevomatCodingStandard.Classes.RequireConstructorPropertyPromotion.RequiredConstructorPropertyPromotion"/>
+    </rule>
+    <!-- Project rules -->
     <rule ref="Generic.Files.LineLength">
         <severity>0</severity>
     </rule>
-    <!-- Project rules -->
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
             <property name="rootNamespaces" type="array">

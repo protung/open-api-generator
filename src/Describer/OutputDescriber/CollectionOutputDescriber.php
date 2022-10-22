@@ -19,7 +19,7 @@ final class CollectionOutputDescriber implements OutputDescriber
 
     public function __construct(
         \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber,
-        ExampleDescriber $exampleDescriber
+        ExampleDescriber $exampleDescriber,
     ) {
         $this->outputDescriber  = $outputDescriber;
         $this->exampleDescriber = $exampleDescriber;

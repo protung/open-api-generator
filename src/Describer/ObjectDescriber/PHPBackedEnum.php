@@ -32,7 +32,7 @@ final class PHPBackedEnum implements Describer
         };
         $schema->enum = Vec\map(
             $class::cases(),
-            static fn (BackedEnum $value): int|string => $value->value
+            static fn (BackedEnum $value): int|string => $value->value,
         );
     }
 

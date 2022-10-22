@@ -21,7 +21,7 @@ final class ComplexObject
 
     public string $stringPropertyForOldVersion = 'stringPropertyForOldVersion';
 
-    public ?string $nullableStringProperty = null;
+    public string|null $nullableStringProperty = null;
 
     public int $intProperty = 1;
 
@@ -32,20 +32,20 @@ final class ComplexObject
     /** @var string[] */
     public array $arrayProperty = ['test'];
 
-    public ?ChildObject $childObjectProperty = null;
+    public ChildObject|null $childObjectProperty = null;
 
-    public ?InlineObject $inlineObjectProperty = null;
+    public InlineObject|null $inlineObjectProperty = null;
 
     /** @var ChildObject[] */
     public array $arrayOfChildObjectsProperty = [];
 
-    public ?DateTime $dateTimeProperty = null;
+    public DateTime|null $dateTimeProperty = null;
 
-    public ?DateTimeImmutable $dateTimeImmutableProperty = null;
+    public DateTimeImmutable|null $dateTimeImmutableProperty = null;
 
-    public ?DateTimeInterface $dateTimeInterfaceProperty = null;
+    public DateTimeInterface|null $dateTimeInterfaceProperty = null;
 
-    public ?DateTimeInterface $dateProperty = null;
+    public DateTimeInterface|null $dateProperty = null;
 
     /**
      * @todo add test with actual union type

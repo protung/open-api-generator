@@ -35,7 +35,7 @@ final class Specification
         array $securityDefinitions,
         array $paths,
         array $alwaysAddedInputs = [],
-        array $alwaysAddedResponses = []
+        array $alwaysAddedResponses = [],
     ) {
         $this->info                 = $info;
         $this->securityDefinitions  = $securityDefinitions;

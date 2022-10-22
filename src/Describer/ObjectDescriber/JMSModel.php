@@ -62,9 +62,9 @@ final class JMSModel implements Describer
                     $childSchema,
                     new Definition(
                         $childClass,
-                        $serializationGroups
+                        $serializationGroups,
                     ),
-                    $objectDescriber
+                    $objectDescriber,
                 );
                 $childSchemas[] = $childSchema;
             }
@@ -82,9 +82,9 @@ final class JMSModel implements Describer
                 // filter properties for not current version
                 return ! $this->versionExclusionStrategy->shouldSkipProperty(
                     $metadataProperty,
-                    SerializationContext::create()
+                    SerializationContext::create(),
                 );
-            }
+            },
         );
 
         $properties = [];
@@ -95,7 +95,7 @@ final class JMSModel implements Describer
                 if ($type !== null) {
                     if (count($metadataProperties) > 1) {
                         throw new RuntimeException(
-                            'Describing of inline array of objects together with other properties is not supported.'
+                            'Describing of inline array of objects together with other properties is not supported.',
                         );
                     }
 
@@ -110,9 +110,9 @@ final class JMSModel implements Describer
                     $inlineModel,
                     new Definition(
                         Psl\Type\shape(['name' => Psl\Type\string()])->coerce($metadataProperty->type)['name'],
-                        $serializationGroups
+                        $serializationGroups,
                     ),
-                    $objectDescriber
+                    $objectDescriber,
                 );
                 foreach ($inlineModel->properties as $name => $property) {
                     $properties[$name] = Psl\Type\instance_of(Schema::class)->coerce($property);
@@ -134,7 +134,7 @@ final class JMSModel implements Describer
                         $metadata,
                         $metadataProperty,
                         $objectDescriber,
-                        $serializationGroups
+                        $serializationGroups,
                     )
                 );
 
@@ -152,8 +152,8 @@ final class JMSModel implements Describer
         $schema->required   = Psl\Vec\keys(
             Psl\Dict\filter(
                 $properties,
-                fn (Schema $schema): bool => $this->serializeNull || $schema->nullable !== true // 'nullable' might be `null` as well (docs are wrong)
-            )
+                fn (Schema $schema): bool => $this->serializeNull || $schema->nullable !== true, // 'nullable' might be `null` as well (docs are wrong)
+            ),
         );
         $schema->type       = Type::OBJECT;
     }
@@ -166,7 +166,7 @@ final class JMSModel implements Describer
         ClassMetadata $metadata,
         PropertyMetadata $propertyMetadata,
         ObjectDescriber $objectDescriber,
-        array $serializationGroups
+        array $serializationGroups,
     ): Schema {
         $name = $propertyMetadata->serializedName;
 
@@ -212,7 +212,7 @@ final class JMSModel implements Describer
         return $property;
     }
 
-    private function getNestedTypeInArray(PropertyMetadata $item): ?string
+    private function getNestedTypeInArray(PropertyMetadata $item): string|null
     {
         if ($item->type === null) {
             return null;
@@ -264,7 +264,7 @@ final class JMSModel implements Describer
             $metadataProperties,
             static function (PropertyMetadata $item) use ($groupsExclusion, $context): bool {
                 return ! $groupsExclusion->shouldSkipProperty($item, $context);
-            }
+            },
         );
     }
 
@@ -277,7 +277,7 @@ final class JMSModel implements Describer
 
         if (! $metadata instanceof ClassMetadata) {
             throw new InvalidArgumentException(
-                Psl\Str\format('Expected "%s" class. Got "%s".', ClassMetadata::class, $metadata::class)
+                Psl\Str\format('Expected "%s" class. Got "%s".', ClassMetadata::class, $metadata::class),
             );
         }
 
@@ -293,7 +293,7 @@ final class JMSModel implements Describer
             PropertyAnalysisSingleType::forSingleValue(
                 'string',
                 false,
-                $propertyMetadata->type['params'] ?? []
+                $propertyMetadata->type['params'] ?? [],
             ),
         ];
 
@@ -306,7 +306,7 @@ final class JMSModel implements Describer
                 PropertyAnalysisSingleType::forSingleValue(
                     $propertyMetadata->type['name'],
                     false,
-                    $propertyMetadata->type['params'] ?? []
+                    $propertyMetadata->type['params'] ?? [],
                 ),
             ];
         }
@@ -319,7 +319,7 @@ final class JMSModel implements Describer
                 PropertyAnalysisSingleType::forSingleValue(
                     $propertyMetadata->type['name'],
                     $this->propertyAnalyser->canBeNull($propertyClass, $propertyMetadata->name),
-                    $propertyMetadata->type['params']
+                    $propertyMetadata->type['params'],
                 ),
             ];
         }
