@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Processor\Path\Symfony;
 
 use InvalidArgumentException;
+use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Describer\OperationDescriber;
 use Protung\OpenApiGenerator\Model\Path\Input;
 use Protung\OpenApiGenerator\Model\Path\IOField;
@@ -53,6 +54,7 @@ final class PathProcessor implements PathProcessorInterface
      */
     private function processRoute(SymfonyRoute $route, SymfonyRoutePath $path): array
     {
+        Assert::isNonEmptyList($route->getMethods());
         $operations = [];
         foreach ($route->getMethods() as $method) {
             $path->addInput($this->extractInputFromRoute($route));
