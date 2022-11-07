@@ -55,7 +55,7 @@ final class PathProcessor implements PathProcessorInterface
     {
         if ($route->getMethods() === []) {
             throw new InvalidArgumentException(
-                Psl\Str\format('The defined methods for the "%s" route do not exist in the API doc configuration.', $path->routeName()),
+                Psl\Str\format('No HTTP methods defined for route "%s".', $path->routeName()),
             );
         }
 
