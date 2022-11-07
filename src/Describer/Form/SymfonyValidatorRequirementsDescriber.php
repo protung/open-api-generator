@@ -69,7 +69,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     }
 
     /**
-     * @return list<Constraint>
+     * @return array<Constraint>
      */
     private function getConstraintsForClass(FormConfigInterface $formConfig): array
     {

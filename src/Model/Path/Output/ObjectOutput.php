@@ -17,14 +17,14 @@ final class ObjectOutput implements SerializationGroupAwareOutput
     /** @var class-string */
     private string $className;
 
-    /** @var string[] */
+    /** @var list<string> */
     private array $serializationGroups;
 
     private object|null $exampleObject = null;
 
     /**
      * @param class-string $className
-     * @param string[]     $serializationGroups
+     * @param list<string> $serializationGroups
      */
     private function __construct(string $className, array $serializationGroups)
     {
@@ -45,7 +45,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
 
     /**
      * @param class-string $className
-     * @param string[]     $groups
+     * @param list<string> $groups
      */
     public static function withSerializationGroups(string $className, array $groups): self
     {
@@ -56,7 +56,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
             ),
         );
 
-        return new self($className, $groups);
+        return new self($className, Psl\Vec\values($groups));
     }
 
     /**

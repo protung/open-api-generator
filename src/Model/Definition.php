@@ -12,13 +12,13 @@ final class Definition
 {
     private string $className;
 
-    /** @var string[] */
+    /** @var list<string> */
     private array $serializationGroups;
 
     private object|null $exampleObject;
 
     /**
-     * @param string[] $serializationGroups
+     * @param list<string> $serializationGroups
      */
     public function __construct(string $className, array $serializationGroups, object|null $exampleObject = null)
     {
@@ -44,7 +44,7 @@ final class Definition
     }
 
     /**
-     * @return string[]
+     * @return list<string>
      */
     public function serializationGroups(): array
     {

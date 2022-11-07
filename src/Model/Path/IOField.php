@@ -112,7 +112,7 @@ final class IOField
     {
         $self = new self($name, Type::OBJECT);
         if (count($children) > 0) {
-            $self->withChildren($children);
+            $self->withChildren(Vec\values($children));
         }
 
         return $self;
@@ -129,7 +129,7 @@ final class IOField
     }
 
     /**
-     * @param IOField[] $children
+     * @param list<IOField> $children
      */
     public function withChildren(array $children): self
     {

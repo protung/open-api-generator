@@ -25,7 +25,6 @@ use Protung\OpenApiGenerator\Model\Definition;
 use Psl;
 use RuntimeException;
 
-use function array_filter;
 use function array_key_exists;
 use function array_keys;
 use function count;
@@ -159,7 +158,7 @@ final class JMSModel implements Describer
     }
 
     /**
-     * @param string[] $serializationGroups
+     * @param list<string> $serializationGroups
      */
     public function describePropertyInSchema(
         PropertyAnalysisType $propertyType,
@@ -250,8 +249,8 @@ final class JMSModel implements Describer
     }
 
     /**
-     * @param PropertyMetadata[] $metadataProperties
-     * @param string[]           $serializationGroups
+     * @param list<PropertyMetadata> $metadataProperties
+     * @param array<string>          $serializationGroups
      *
      * @return list<PropertyMetadata>
      */
@@ -260,7 +259,7 @@ final class JMSModel implements Describer
         $groupsExclusion = new GroupsExclusionStrategy($serializationGroups);
         $context         = SerializationContext::create();
 
-        return array_filter(
+        return Psl\Vec\filter(
             $metadataProperties,
             static function (PropertyMetadata $item) use ($groupsExclusion, $context): bool {
                 return ! $groupsExclusion->shouldSkipProperty($item, $context);
