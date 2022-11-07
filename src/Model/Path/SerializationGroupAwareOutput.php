@@ -9,7 +9,7 @@ interface SerializationGroupAwareOutput extends Output
     public const DEFAULT_SERIALIZATION_GROUPS = ['Default'];
 
     /**
-     * @return string[]
+     * @return list<string>
      */
     public function serializationGroups(): array;
 }
