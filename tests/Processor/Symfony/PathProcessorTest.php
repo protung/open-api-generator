@@ -66,9 +66,6 @@ final class PathProcessorTest extends TestCase
         $pathProcessor->process($path);
     }
 
-    /**
-     * @group ttt
-     */
     public function testProcessRoute(): void
     {
         $inputDescriberMock = $this->createMock(InputDescriber\InputDescriber::class);
