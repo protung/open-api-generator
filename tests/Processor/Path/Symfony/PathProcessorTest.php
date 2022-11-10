@@ -78,7 +78,18 @@ final class PathProcessorTest extends TestCase
             ->willReturn(true);
         $inputDescriberMock
             ->expects(self::exactly(2))
-            ->method('describe');
+            ->method('describe')
+            ->withConsecutive(
+                [
+                    Input\BodyInput::withIOFields(IOField::stringField('simpleString')),
+                ],
+                [
+                    Input\PathInput::withIOFields(
+                        IOField::stringField('str'),
+                        IOField::stringField('enum')->withPossibleValues(['a', 'b']),
+                    ),
+                ],
+            );
 
         $operationDescriber = new OperationDescriber(
             new InputDescriber($inputDescriberMock),
@@ -93,129 +104,17 @@ final class PathProcessorTest extends TestCase
         );
 
         $path = new SymfonyRoutePath(
-            'api_test_post_simple_object_input_and_output',
+            'api_test_get',
             'Test',
             'Test post with simple object input and output',
             'Test post with simple object input and output',
             [
                 Input\BodyInput::withIOFields(
                     IOField::stringField('simpleString'),
-                    IOField::arrayField(
-                        'simpleArrayOfStrings',
-                        IOField::stringField('simpleString'),
-                    ),
-                    IOField::arrayField(
-                        'simpleNullableArrayOfStrings',
-                        IOField::stringField('simpleString'),
-                    )->asNullable(),
-                    IOField::arrayField(
-                        'simpleArrayOfObjects',
-                        IOField::objectField(
-                            'simpleObjectInArray',
-                            IOField::booleanField('simpleBoolean'),
-                            IOField::stringField('simpleString'),
-                            IOField::integerField('simpleInteger'),
-                            IOField::objectField(
-                                'simpleInnerObject',
-                                IOField::booleanField('simpleBoolean'),
-                                IOField::stringField('simpleString'),
-                                IOField::integerField('simpleInteger'),
-                            ),
-                        ),
-                    ),
-                    IOField::objectField(
-                        'simpleObject',
-                        IOField::booleanField('simpleBoolean'),
-                        IOField::booleanField('simpleNullableBoolean')->asNullable(),
-                        IOField::stringField('simpleString'),
-                        IOField::stringField('simpleNullableString')->asNullable(),
-                        IOField::integerField('simpleInteger'),
-                        IOField::integerField('simpleNullableInteger')->asNullable(),
-                        IOField::objectField(
-                            'simpleInnerObject',
-                            IOField::booleanField('simpleBoolean'),
-                            IOField::stringField('simpleString'),
-                            IOField::integerField('simpleInteger'),
-                        ),
-                        IOField::objectField('simpleNullableObjectWithoutChildren')->asNullable(),
-                    ),
-                    IOField::objectField(
-                        'simpleNullableObjectWithChildren',
-                        IOField::booleanField('simpleBoolean'),
-                    )->asNullable(),
                 ),
             ],
             [
                 Response::for200(Model\Path\Output\ScalarOutput::plainText(Type::STRING)),
-                Response::for201(Model\Path\Output\ScalarOutput::json(Type::INTEGER)),
-                Response::for202(),
-                new Response(203, [], Model\Path\Output\ScalarOutput::json(Type::NUMBER)),
-                new Response(204, [], Model\Path\Output\ScalarOutput::json(Type::BOOLEAN)->withExample(false)),
-                new Response(
-                    205,
-                    [],
-                    Model\Path\Output\SimpleOutput::fromIOFields(
-                        IOField::unknown('myUnknown'),
-                        IOField::anything('myAnything'),
-                        IOField::integerField('myInt')->withExample(42),
-                        IOField::stringField('myString')->withExample('ms'),
-                        IOField::booleanField('myBoolean')->withExample(false),
-                        IOField::numberField('myChoice')->withPossibleValues([1, 2, 3]),
-                        IOField::anything('optional')->asOptional(),
-                    ),
-                ),
-                new Response(
-                    206,
-                    [],
-                    Model\Path\Output\CollectionOutput::forOutput(Model\Path\Output\ScalarOutput::plainText(Type::STRING)),
-                ),
-                new Response(
-                    210,
-                    ['multiple outputs'],
-                    Model\Path\Output\FileOutput::forHtml(),
-                    Model\Path\Output\FileOutput::forJpeg(),
-                    Model\Path\Output\FileOutput::forPdf(),
-                    Model\Path\Output\FileOutput::forPlainText(),
-                    Model\Path\Output\FileOutput::forPng(),
-                    Model\Path\Output\FileOutput::forZip(),
-                    Model\Path\Output\ScalarOutput::json(Type::INTEGER),
-                ),
-                new Response(
-                    212,
-                    ['from example data'],
-                    Model\Path\Output\SimpleOutput::fromExampleData(
-                        [
-                            'myUnknown' => null,
-                            'myInt' => 42,
-                            'myFloat' => 3.1415,
-                            'myString' => 'ms',
-                            'myBoolean' => false,
-                            'myObject' => [
-                                'myUnknown' => null,
-                                'myInt' => -42,
-                                'myFloat' => -3.1415,
-                                'myString' => 'sm',
-                                'myBoolean' => true,
-                            ],
-                            'myIntegerCollection' => [1, 2, 3],
-                            'myFloatCollection' => [1.1, 2.2, 3.3],
-                            'myBooleanCollection' => [true, false],
-                            'myStringCollection' => ['a', 'b', 'c'],
-                            'myObjectCollection' => [
-                                [
-                                    'myUnknown' => null,
-                                    'myInt' => -42,
-                                    'myFloat' => -3.1415,
-                                    'myString' => 'sm',
-                                    'myBoolean' => true,
-                                ],
-                            ],
-                            'myArrayCollection' => [
-                                [1],
-                            ],
-                        ],
-                    ),
-                ),
             ],
         );
 
@@ -224,7 +123,13 @@ final class PathProcessorTest extends TestCase
             ->expects(self::once())
             ->method('get')
             ->with($path->routeName())
-            ->willReturn(new Route('/api/test', methods: ['GET']));
+            ->willReturn(
+                new Route(
+                    '/api/test/{str}/{enum}',
+                    requirements: ['enum' => 'a|b'],
+                    methods: ['GET'],
+                ),
+            );
 
         $pathProcessor = new PathProcessor($routeCollectionMock, $operationDescriber);
 
@@ -232,7 +137,7 @@ final class PathProcessorTest extends TestCase
 
         $expected = new PathOperation(
             'get',
-            '/api/test',
+            '/api/test/{str}/{enum}',
             new Operation(
                 [
                     'tags' => ['Test'],
@@ -251,353 +156,6 @@ final class PathProcessorTest extends TestCase
                                                     [
                                                         'type' => 'string',
                                                         'example' => 'string',
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                    ],
-                                ],
-                            ),
-                            '201' => new \cebe\openapi\spec\Response(
-                                [
-                                    'description' => 'Returned on success',
-                                    'content' => [
-                                        'application/json' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'integer',
-                                                        'example' => 123,
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                    ],
-                                ],
-                            ),
-                            '202' => new \cebe\openapi\spec\Response(
-                                ['description' => 'Returned when successfully accepted data'],
-                            ),
-                            '203' => new \cebe\openapi\spec\Response(
-                                [
-                                    'description' => '',
-                                    'content' => [
-                                        'application/json' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'number',
-                                                        'example' => 3.14,
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                    ],
-                                ],
-                            ),
-                            '204' => new \cebe\openapi\spec\Response(
-                                [
-                                    'description' => '',
-                                    'content' => [
-                                        'application/json' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'boolean',
-                                                        'example' => false,
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                    ],
-                                ],
-                            ),
-                            '205' => new \cebe\openapi\spec\Response(
-                                [
-                                    'description' => '',
-                                    'content' => [
-                                        'application/json' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'required' => [
-                                                            'myUnknown',
-                                                            'myAnything',
-                                                            'myInt',
-                                                            'myString',
-                                                            'myBoolean',
-                                                            'myChoice',
-
-                                                        ],
-                                                        'type' => 'object',
-                                                        'properties' => [
-                                                            'myUnknown' => new Schema([]),
-                                                            'myAnything' => new Schema(['type' => 'any']),
-                                                            'myInt' => new Schema([
-                                                                'type' => 'integer',
-                                                                'example' => 42,
-                                                            ]),
-                                                            'myString' => new Schema([
-                                                                'type' => 'string',
-                                                                'example' => 'ms',
-                                                            ]),
-                                                            'myBoolean' => new Schema([
-                                                                'type' => 'boolean',
-                                                                'example' => false,
-                                                            ]),
-                                                            'myChoice' => new Schema([
-                                                                'enum' => [1, 2, 3],
-                                                                'type' => 'number',
-                                                            ]),
-                                                            'optional' => new Schema(['type' => 'any']),
-                                                        ],
-                                                        'example' => [
-                                                            'myUnknown' => null,
-                                                            'myAnything' => null,
-                                                            'myInt' => 123,
-                                                            'myString' => 'string',
-                                                            'myBoolean' => true,
-                                                            'myChoice' => 1,
-                                                            'optional' => null,
-
-                                                        ],
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                    ],
-                                ],
-                            ),
-                            '206' => new \cebe\openapi\spec\Response(
-                                [
-                                    'description' => '',
-                                    'content' => [
-                                        'text/plain' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'array',
-                                                        'items' => new Schema([
-                                                            'type' => 'string',
-                                                            'example' => 'string',
-                                                        ]),
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                    ],
-                                ],
-                            ),
-                            '210' => new \cebe\openapi\spec\Response(
-                                [
-                                    'description' => 'multiple outputs',
-                                    'content' => [
-                                        'text/html' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'string',
-                                                        'format' => 'binary',
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                        'image/jpeg' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'string',
-                                                        'format' => 'binary',
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                        'application/pdf' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'string',
-                                                        'format' => 'binary',
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                        'text/plain' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'string',
-                                                        'format' => 'binary',
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                        'image/png' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'string',
-                                                        'format' => 'binary',
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                        'application/zip' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'string',
-                                                        'format' => 'binary',
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                        'application/json' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'type' => 'integer',
-                                                        'example' => '123',
-                                                    ],
-                                                ),
-                                            ],
-                                        ),
-                                    ],
-                                ],
-                            ),
-                            '212' => new \cebe\openapi\spec\Response(
-                                [
-                                    'description' => 'from example data',
-                                    'content' => [
-                                        'application/json' => new MediaType(
-                                            [
-                                                'schema' => new Schema(
-                                                    [
-                                                        'required' => [
-                                                            'myUnknown',
-                                                            'myInt',
-                                                            'myFloat',
-                                                            'myString',
-                                                            'myBoolean',
-                                                            'myObject',
-                                                            'myIntegerCollection',
-                                                            'myFloatCollection',
-                                                            'myBooleanCollection',
-                                                            'myStringCollection',
-                                                            'myObjectCollection',
-                                                            'myArrayCollection',
-
-                                                        ],
-                                                        'type' => 'object',
-                                                        'properties' => [
-                                                            'myUnknown' => new Schema(['nullable' => true]),
-                                                            'myInt' => new Schema(['type' => 'integer']),
-                                                            'myFloat' => new Schema(['type' => 'number']),
-                                                            'myString' => new Schema(['type' => 'string']),
-                                                            'myBoolean' => new Schema(['type' => 'boolean']),
-                                                            'myObject' => new Schema([
-                                                                'required' => [
-                                                                    'myUnknown',
-                                                                    'myInt',
-                                                                    'myFloat',
-                                                                    'myString',
-                                                                    'myBoolean',
-                                                                ],
-                                                                'type' => 'object',
-                                                                'properties' => [
-                                                                    'myUnknown' => new Schema(['nullable' => true]),
-                                                                    'myInt' => new Schema(['type' => 'integer']),
-                                                                    'myFloat' => new Schema(['type' => 'number']),
-                                                                    'myString' => new Schema(['type' => 'string']),
-                                                                    'myBoolean' => new Schema(['type' => 'boolean']),
-                                                                ],
-                                                            ]),
-                                                            'myIntegerCollection' => new Schema([
-                                                                'type' => 'array',
-                                                                'items' => new Schema(['type' => 'integer']),
-                                                            ]),
-                                                            'myFloatCollection' => new Schema([
-                                                                'type' => 'array',
-                                                                'items' => new Schema(['type' => 'number']),
-                                                            ]),
-                                                            'myBooleanCollection' => new Schema([
-                                                                'type' => 'array',
-                                                                'items' => new Schema(['type' => 'boolean']),
-                                                            ]),
-                                                            'myStringCollection' => new Schema([
-                                                                'type' => 'array',
-                                                                'items' => new Schema(['type' => 'string']),
-                                                            ]),
-                                                            'myObjectCollection' => new Schema([
-                                                                'type' => 'array',
-                                                                'items' => new Schema([
-                                                                    'required' => [
-                                                                        'myUnknown',
-                                                                        'myInt',
-                                                                        'myFloat',
-                                                                        'myString',
-                                                                        'myBoolean',
-                                                                    ],
-                                                                    'type' => 'object',
-                                                                    'properties' => [
-                                                                        'myUnknown' => new Schema(['nullable' => true]),
-                                                                        'myInt' => new Schema(['type' => 'integer']),
-                                                                        'myFloat' => new Schema(['type' => 'number']),
-                                                                        'myString' => new Schema(['type' => 'string']),
-                                                                        'myBoolean' => new Schema(['type' => 'boolean']),
-                                                                    ],
-                                                                ]),
-                                                            ]),
-                                                            'myArrayCollection' => new Schema([
-                                                                'type' => 'array',
-                                                                'items' => new Schema(['type' => 'array']),
-                                                            ]),
-                                                        ],
-                                                        'example' => [
-                                                            'myUnknown' => null,
-                                                            'myInt' => 42,
-                                                            'myFloat' => 3.1415,
-                                                            'myString' => 'ms',
-                                                            'myBoolean' => false,
-                                                            'myObject' => [
-                                                                'myUnknown' => null,
-                                                                'myInt' => -42,
-                                                                'myFloat' => -3.1415,
-                                                                'myString' => 'sm',
-                                                                'myBoolean' => true,
-                                                            ],
-                                                            'myIntegerCollection' => [
-                                                                1,
-                                                                2,
-                                                                3,
-                                                            ],
-                                                            'myFloatCollection' => [
-                                                                1.1,
-                                                                2.2,
-                                                                3.3,
-                                                            ],
-                                                            'myBooleanCollection' => [
-                                                                true,
-                                                                false,
-                                                            ],
-                                                            'myStringCollection' => [
-                                                                'a',
-                                                                'b',
-                                                                'c',
-                                                            ],
-                                                            'myObjectCollection' => [
-                                                                [
-                                                                    'myUnknown' => null,
-                                                                    'myInt' => -42,
-                                                                    'myFloat' => -3.1415,
-                                                                    'myString' => 'sm',
-                                                                    'myBoolean' => true,
-                                                                ],
-                                                            ],
-                                                            'myArrayCollection' => [
-                                                                [1],
-                                                            ],
-                                                        ],
                                                     ],
                                                 ),
                                             ],
