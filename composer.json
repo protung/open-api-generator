@@ -54,7 +54,7 @@
         "symfony/config": "^5.4 || ^6.2",
         "symfony/var-dumper": "^5.4 || ^6.2.2",
         "thecodingmachine/phpstan-strict-rules": "^1.0.0",
-        "vimeo/psalm": "^5.3.0"
+        "vimeo/psalm": "^5.4.0"
     },
     "conflict": {},
     "prefer-stable": true,
