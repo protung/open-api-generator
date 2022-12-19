@@ -317,13 +317,13 @@ final class JMSModel implements Describer
             return [
                 PropertyAnalysisSingleType::forSingleValue(
                     $propertyMetadata->type['name'],
-                    $this->propertyAnalyser->canBeNull($propertyClass, $propertyMetadata->name),
+                    $this->propertyAnalyser->canBeNull($propertyClass, Psl\Type\non_empty_string()->coerce($propertyMetadata->name)),
                     $propertyMetadata->type['params'],
                 ),
             ];
         }
 
-        $types = $this->propertyAnalyser->getTypes($propertyClass, $propertyMetadata->name);
+        $types = $this->propertyAnalyser->getTypes($propertyClass, Psl\Type\non_empty_string()->coerce($propertyMetadata->name));
         if (count($types) > 0) {
             return $types;
         }

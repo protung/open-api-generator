@@ -36,7 +36,7 @@ final class PropertyAnalyserTest extends TestCase
     }
 
     /**
-     * @return mixed[]
+     * @return non-empty-list<array{0: non-empty-string, 1: non-empty-list<PropertyAnalysisType>}>
      */
     public static function dataProviderTestGetPropertyType(): array
     {
@@ -168,7 +168,8 @@ final class PropertyAnalyserTest extends TestCase
     }
 
     /**
-     * @param PropertyAnalysisType[] $expected
+     * @param non-empty-string                     $propertyName
+     * @param non-empty-list<PropertyAnalysisType> $expected
      *
      * @dataProvider dataProviderTestGetPropertyType
      */
