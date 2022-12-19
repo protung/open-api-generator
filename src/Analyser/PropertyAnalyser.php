@@ -20,6 +20,7 @@ use Psl\Str;
 use Psl\Type;
 use Psl\Vec;
 use ReflectionClass;
+use ReflectionIntersectionType;
 use ReflectionNamedType;
 use ReflectionUnionType;
 
@@ -29,7 +30,8 @@ use function in_array;
 final class PropertyAnalyser
 {
     /**
-     * @param class-string $class
+     * @param class-string     $class
+     * @param non-empty-string $propertyName
      */
     public function canBeNull(string $class, string $propertyName): bool
     {
@@ -45,7 +47,8 @@ final class PropertyAnalyser
     }
 
     /**
-     * @param class-string $class
+     * @param class-string     $class
+     * @param non-empty-string $propertyName
      *
      * @return array<PropertyAnalysisType>
      */
@@ -77,8 +80,10 @@ final class PropertyAnalyser
         if ($property->getType() instanceof ReflectionUnionType) {
             $types = $property->getType()->getTypes();
 
-            $nullable   = Iter\any($types, static fn (ReflectionNamedType $type): bool => $type->getName() === 'null');
-            $unionTypes = Vec\filter($types, static fn (ReflectionNamedType $type): bool => $type->getName() !== 'null');
+            $nullable = Iter\any($types, static fn (ReflectionNamedType|ReflectionIntersectionType $type): bool => $type instanceof ReflectionNamedType && $type->getName() === 'null');
+            // @todo support intersection types
+            /** @var list<ReflectionNamedType> $unionTypes */
+            $unionTypes = Vec\filter($types, static fn (ReflectionNamedType|ReflectionIntersectionType $type): bool => ! ($type instanceof ReflectionIntersectionType) && $type->getName() !== 'null');
 
             return Vec\map(
                 $unionTypes,

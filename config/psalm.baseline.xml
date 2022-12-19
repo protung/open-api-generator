@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
+<files psalm-version="5.3.0@b6faa3e96b8eb50ec71384c53799b8a107236bb6">
+  <file src="../src/Analyser/PropertyAnalyser.php">
+    <RedundantConditionGivenDocblockType occurrences="2">
+      <code>$type instanceof ReflectionIntersectionType</code>
+      <code>$type instanceof ReflectionNamedType</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
   <file src="../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php">
     <PossiblyInvalidFunctionCall occurrences="1"/>
     <RedundantConditionGivenDocblockType occurrences="1">
