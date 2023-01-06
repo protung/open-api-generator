@@ -39,7 +39,7 @@
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^11.0.0",
+        "doctrine/coding-standard": "^11.1.0",
         "ergebnis/composer-normalize": "^2.29.0",
         "php-standard-library/psalm-plugin": "^2.2.1",
         "phpstan/phpstan": "^1.9.7",
