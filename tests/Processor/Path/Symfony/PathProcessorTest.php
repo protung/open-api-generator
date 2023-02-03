@@ -25,12 +25,15 @@ use Protung\OpenApiGenerator\Model\Response;
 use Protung\OpenApiGenerator\Model\Type;
 use Protung\OpenApiGenerator\Processor\Path\Symfony\PathProcessor;
 use Protung\OpenApiGenerator\Processor\Path\Symfony\SymfonyRoutePath;
+use Protung\OpenApiGenerator\Tests\PHPUnitHelper;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 final class PathProcessorTest extends TestCase
 {
+    use PHPUnitHelper;
+
     public function testProcessRouteExceptionThrownIfMethodsNotDefined(): void
     {
         $operationDescriber = new OperationDescriber(
@@ -79,16 +82,18 @@ final class PathProcessorTest extends TestCase
         $inputDescriberMock
             ->expects(self::exactly(2))
             ->method('describe')
-            ->withConsecutive(
-                [
-                    Input\BodyInput::withIOFields(IOField::stringField('simpleString')),
-                ],
-                [
-                    Input\PathInput::withIOFields(
-                        IOField::stringField('str'),
-                        IOField::stringField('enum')->withPossibleValues(['a', 'b']),
-                    ),
-                ],
+            ->with(
+                self::withConsecutive(
+                    [
+                        Input\BodyInput::withIOFields(IOField::stringField('simpleString')),
+                    ],
+                    [
+                        Input\PathInput::withIOFields(
+                            IOField::stringField('str'),
+                            IOField::stringField('enum')->withPossibleValues(['a', 'b']),
+                        ),
+                    ],
+                ),
             );
 
         $operationDescriber = new OperationDescriber(
