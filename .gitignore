@@ -8,7 +8,7 @@
 
 # build cache
 /config/.phpcs-cache
-/config/.phpunit.result.cache
+/config/.phpunit.cache
 
 # user specific
 composer.lock
