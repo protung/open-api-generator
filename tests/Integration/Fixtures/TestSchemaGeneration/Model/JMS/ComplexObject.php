@@ -7,6 +7,7 @@ namespace Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGenerati
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
+use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\Enum\BackedEnum;
 
 final class ComplexObject
 {
@@ -46,6 +47,8 @@ final class ComplexObject
     public DateTimeInterface|null $dateTimeInterfaceProperty = null;
 
     public DateTimeInterface|null $dateProperty = null;
+
+    public BackedEnum|null $backedEnum = null;
 
     /**
      * @todo add test with actual union type

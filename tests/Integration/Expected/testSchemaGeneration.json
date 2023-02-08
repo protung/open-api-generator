@@ -1434,6 +1434,32 @@
                                                             "format": "date",
                                                             "nullable": true
                                                         },
+                                                        "backedEnum": {
+                                                            "required": [
+                                                                "integer",
+                                                                "string"
+                                                            ],
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "integer": {
+                                                                    "enum": [
+                                                                        1,
+                                                                        2,
+                                                                        3
+                                                                    ],
+                                                                    "type": "integer"
+                                                                },
+                                                                "string": {
+                                                                    "enum": [
+                                                                        "A",
+                                                                        "B",
+                                                                        "C"
+                                                                    ],
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "nullable": true
+                                                        },
                                                         "scalarUnionProperty": {
                                                             "oneOf": [
                                                                 {
@@ -3514,6 +3540,32 @@
                                             "format": "date",
                                             "nullable": true
                                         },
+                                        "backedEnum": {
+                                            "properties": {
+                                                "integer": {
+                                                    "type": "integer",
+                                                    "enum": [
+                                                        1,
+                                                        2,
+                                                        3
+                                                    ]
+                                                },
+                                                "string": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "A",
+                                                        "B",
+                                                        "C"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "integer",
+                                                "string"
+                                            ],
+                                            "type": "object",
+                                            "nullable": true
+                                        },
                                         "scalarUnionProperty": {
                                             "oneOf": [
                                                 {
@@ -4412,6 +4464,32 @@
                                             "format": "date",
                                             "nullable": true
                                         },
+                                        "backedEnum": {
+                                            "properties": {
+                                                "integer": {
+                                                    "type": "integer",
+                                                    "enum": [
+                                                        1,
+                                                        2,
+                                                        3
+                                                    ]
+                                                },
+                                                "string": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "A",
+                                                        "B",
+                                                        "C"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "integer",
+                                                "string"
+                                            ],
+                                            "type": "object",
+                                            "nullable": true
+                                        },
                                         "scalarUnionProperty": {
                                             "oneOf": [
                                                 {
@@ -4469,6 +4547,7 @@
                                         "date_time_immutable_property": null,
                                         "date_time_interface_property": null,
                                         "date_property": null,
+                                        "backed_enum": null,
                                         "scalar_union_property": null
                                     }
                                 }
@@ -4632,6 +4711,32 @@
                                             "format": "date",
                                             "nullable": true
                                         },
+                                        "backedEnum": {
+                                            "properties": {
+                                                "integer": {
+                                                    "type": "integer",
+                                                    "enum": [
+                                                        1,
+                                                        2,
+                                                        3
+                                                    ]
+                                                },
+                                                "string": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "A",
+                                                        "B",
+                                                        "C"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "integer",
+                                                "string"
+                                            ],
+                                            "type": "object",
+                                            "nullable": true
+                                        },
                                         "scalarUnionProperty": {
                                             "oneOf": [
                                                 {
@@ -4693,6 +4798,7 @@
                                         "date_time_immutable_property": null,
                                         "date_time_interface_property": null,
                                         "date_property": null,
+                                        "backed_enum": null,
                                         "scalar_union_property": null
                                     }
                                 }
@@ -4843,6 +4949,32 @@
                                                 "format": "date",
                                                 "nullable": true
                                             },
+                                            "backedEnum": {
+                                                "properties": {
+                                                    "integer": {
+                                                        "type": "integer",
+                                                        "enum": [
+                                                            1,
+                                                            2,
+                                                            3
+                                                        ]
+                                                    },
+                                                    "string": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "A",
+                                                            "B",
+                                                            "C"
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "integer",
+                                                    "string"
+                                                ],
+                                                "type": "object",
+                                                "nullable": true
+                                            },
                                             "scalarUnionProperty": {
                                                 "oneOf": [
                                                     {
@@ -4900,6 +5032,7 @@
                                             "date_time_immutable_property": null,
                                             "date_time_interface_property": null,
                                             "date_property": null,
+                                            "backed_enum": null,
                                             "scalar_union_property": null
                                         }
                                     },
@@ -4935,6 +5068,7 @@
                                             "date_time_immutable_property": null,
                                             "date_time_interface_property": null,
                                             "date_property": null,
+                                            "backed_enum": null,
                                             "scalar_union_property": null
                                         }
                                     ]
@@ -5222,6 +5356,32 @@
                                                                         "format": "date",
                                                                         "nullable": true
                                                                     },
+                                                                    "backedEnum": {
+                                                                        "properties": {
+                                                                            "integer": {
+                                                                                "type": "integer",
+                                                                                "enum": [
+                                                                                    1,
+                                                                                    2,
+                                                                                    3
+                                                                                ]
+                                                                            },
+                                                                            "string": {
+                                                                                "type": "string",
+                                                                                "enum": [
+                                                                                    "A",
+                                                                                    "B",
+                                                                                    "C"
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "integer",
+                                                                            "string"
+                                                                        ],
+                                                                        "type": "object",
+                                                                        "nullable": true
+                                                                    },
                                                                     "scalarUnionProperty": {
                                                                         "oneOf": [
                                                                             {
@@ -5400,6 +5560,32 @@
                                                                     "dateProperty": {
                                                                         "type": "string",
                                                                         "format": "date",
+                                                                        "nullable": true
+                                                                    },
+                                                                    "backedEnum": {
+                                                                        "properties": {
+                                                                            "integer": {
+                                                                                "type": "integer",
+                                                                                "enum": [
+                                                                                    1,
+                                                                                    2,
+                                                                                    3
+                                                                                ]
+                                                                            },
+                                                                            "string": {
+                                                                                "type": "string",
+                                                                                "enum": [
+                                                                                    "A",
+                                                                                    "B",
+                                                                                    "C"
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "integer",
+                                                                            "string"
+                                                                        ],
+                                                                        "type": "object",
                                                                         "nullable": true
                                                                     },
                                                                     "scalarUnionProperty": {
@@ -6987,6 +7173,32 @@
                                             "format": "date",
                                             "nullable": true
                                         },
+                                        "backedEnum": {
+                                            "properties": {
+                                                "integer": {
+                                                    "type": "integer",
+                                                    "enum": [
+                                                        1,
+                                                        2,
+                                                        3
+                                                    ]
+                                                },
+                                                "string": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "A",
+                                                        "B",
+                                                        "C"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "integer",
+                                                "string"
+                                            ],
+                                            "type": "object",
+                                            "nullable": true
+                                        },
                                         "scalarUnionProperty": {
                                             "oneOf": [
                                                 {
@@ -7159,6 +7371,32 @@
                                             "dateProperty": {
                                                 "type": "string",
                                                 "format": "date",
+                                                "nullable": true
+                                            },
+                                            "backedEnum": {
+                                                "properties": {
+                                                    "integer": {
+                                                        "type": "integer",
+                                                        "enum": [
+                                                            1,
+                                                            2,
+                                                            3
+                                                        ]
+                                                    },
+                                                    "string": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "A",
+                                                            "B",
+                                                            "C"
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "integer",
+                                                    "string"
+                                                ],
+                                                "type": "object",
                                                 "nullable": true
                                             },
                                             "scalarUnionProperty": {
@@ -13378,6 +13616,32 @@
                     "dateProperty": {
                         "type": "string",
                         "format": "date",
+                        "nullable": true
+                    },
+                    "backedEnum": {
+                        "properties": {
+                            "integer": {
+                                "type": "integer",
+                                "enum": [
+                                    1,
+                                    2,
+                                    3
+                                ]
+                            },
+                            "string": {
+                                "type": "string",
+                                "enum": [
+                                    "A",
+                                    "B",
+                                    "C"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "integer",
+                            "string"
+                        ],
+                        "type": "object",
                         "nullable": true
                     },
                     "scalarUnionProperty": {

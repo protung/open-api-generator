@@ -23,6 +23,7 @@ Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\J
     dateTimeInterfaceProperty: ~
     dateProperty:
       type: DateTimeInterface<'Y-m-d'>
+    backedEnum: ~
     scalarUnionProperty: ~
     stringPropertyForOldVersion:
       until_version: 0.0.0.1

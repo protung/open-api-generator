@@ -41,9 +41,12 @@ final class GenerateSchemaTest extends TestCase
             'Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS' => __DIR__ . '/Fixtures/TestSchemaGeneration/config/serializer',
         ];
 
-        $jmsSerializer = SerializerBuilder::create()
-            ->addMetadataDirs($metadataDirs)
-            ->build();
+        // @todo use EnumPropertiesDriver as the driver to simulate JMSSerializerBundle (@see https://github.com/schmittjoh/JMSSerializerBundle/pull/919)
+        $jmsSerializerBuilder = SerializerBuilder::create();
+        $jmsSerializerBuilder->addMetadataDirs($metadataDirs);
+        $jmsSerializerBuilder->enableEnumSupport(true);
+
+        $jmsSerializer = $jmsSerializerBuilder->build();
 
         $describerFormFactory = new Describer\Form\FormFactory($formFactory);
 

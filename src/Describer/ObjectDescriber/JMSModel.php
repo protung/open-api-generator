@@ -200,6 +200,8 @@ final class JMSModel implements Describer
             } else {
                 $property->format = 'date-time';
             }
+        } elseif ($propertyType->type() === 'enum') {
+            $property = $objectDescriber->describe(new Definition(Psl\Type\non_empty_string()->coerce($propertyType->parameters()[0]), $serializationGroups));
         } else {
             $property = $objectDescriber->describe(new Definition($propertyType->type(), $serializationGroups));
         }
