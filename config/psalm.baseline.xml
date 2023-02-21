@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.3.0@b6faa3e96b8eb50ec71384c53799b8a107236bb6">
+<files psalm-version="5.7.5@5390c212bab06ee230c8720c2e9c54b823db00c8">
   <file src="../src/Analyser/PropertyAnalyser.php">
-    <RedundantConditionGivenDocblockType occurrences="2">
-      <code>$type instanceof ReflectionIntersectionType</code>
-      <code>$type instanceof ReflectionNamedType</code>
+    <RedundantConditionGivenDocblockType>
+      <code><![CDATA[$type instanceof ReflectionIntersectionType]]></code>
+      <code><![CDATA[$type instanceof ReflectionNamedType]]></code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php">
-    <PossiblyInvalidFunctionCall occurrences="1"/>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>$constraint-&gt;maxSize !== null</code>
+    <InternalMethod>
+      <code>getNestedConstraints</code>
+    </InternalMethod>
+    <RedundantConditionGivenDocblockType>
+      <code><![CDATA[$constraint->maxSize !== null]]></code>
     </RedundantConditionGivenDocblockType>
-    <UndefinedMethod occurrences="1">
-      <code>getCompositeOption</code>
-    </UndefinedMethod>
   </file>
   <file src="../src/Describer/InputDescriber/FormInputDescriber.php">
-    <DocblockTypeContradiction occurrences="1">
-      <code>$existingMediaTypeSchema-&gt;oneOf === null</code>
+    <DocblockTypeContradiction>
+      <code><![CDATA[$existingMediaTypeSchema->oneOf === null]]></code>
     </DocblockTypeContradiction>
   </file>
   <file src="../src/Describer/InputDescriber/FormInputDescriber/Body.php">
-    <DocblockTypeContradiction occurrences="2">
-      <code>$schema-&gt;properties === null</code>
-      <code>$schema-&gt;required === null</code>
+    <DocblockTypeContradiction>
+      <code><![CDATA[$schema->properties === null]]></code>
+      <code><![CDATA[$schema->required === null]]></code>
     </DocblockTypeContradiction>
-    <RedundantConditionGivenDocblockType occurrences="2">
-      <code>$schema-&gt;properties !== null</code>
-      <code>$schema-&gt;properties !== null</code>
+    <RedundantConditionGivenDocblockType>
+      <code><![CDATA[$schema->properties !== null]]></code>
+      <code><![CDATA[$schema->properties !== null]]></code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="../src/Describer/ObjectDescriber/JMSModel.php">
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>$metadata-&gt;discriminatorValue !== null</code>
+    <RedundantConditionGivenDocblockType>
+      <code><![CDATA[$metadata->discriminatorValue !== null]]></code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="../src/Describer/ObjectDescriber/PHPBackedEnum.php">
-    <UndefinedMethod occurrences="1">
+    <UndefinedMethod>
       <code>getName</code>
     </UndefinedMethod>
   </file>
   <file src="../src/Model/Path/IOField.php">
-    <UndefinedMethod occurrences="1">
+    <UndefinedMethod>
       <code>getName</code>
     </UndefinedMethod>
   </file>

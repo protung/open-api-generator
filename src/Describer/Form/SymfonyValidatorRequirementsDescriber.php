@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Describer\Form;
 
 use cebe\openapi\spec\Schema;
-use Closure;
 use Protung\OpenApiGenerator\Describer\SpecificationDescriber;
 use Psl;
 use Symfony\Component\Form\FormConfigInterface;
@@ -138,15 +137,11 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
 
     private function describeComposite(Composite $constraint, Schema $schema, FormInterface $form): void
     {
-        $constraints = Closure::bind(
-            function (): array {
-                return $this->{$this->getCompositeOption()};
-            },
-            $constraint,
-            $constraint,
-        )();
-
-        $this->describeConstraints($constraints, $schema, $form);
+        $this->describeConstraints(
+            $constraint->getNestedConstraints(),
+            $schema,
+            $form,
+        );
     }
 
     /**
