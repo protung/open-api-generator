@@ -25,7 +25,7 @@ final class PHPBackedEnum implements Describer
 
         $reflection = new ReflectionEnum($class);
 
-        $schema->type = match ($reflection->getProperty('value')->getType()?->getName()) {
+        $schema->type = match ($reflection->getBackingType()?->getName()) {
             'int' => 'integer',
             'string' => 'string',
             default => 'string',
