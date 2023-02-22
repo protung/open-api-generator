@@ -8,7 +8,6 @@ use InvalidArgumentException;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output;
-use Protung\OpenApiGenerator\Model\Type;
 use Psl;
 
 use function array_is_list;
@@ -137,7 +136,7 @@ class SimpleOutput implements Output
                 if ($exampleValue !== null) {
                     $example[$field->name()] = $exampleValue;
                 } else {
-                    $example[$field->name()] = Type::example($field->type());
+                    $example[$field->name()] = $field->type()->example();
                 }
             }
         }

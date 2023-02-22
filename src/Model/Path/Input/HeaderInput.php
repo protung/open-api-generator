@@ -17,7 +17,7 @@ final class HeaderInput extends SimpleInput
 
     public static function withIOField(IOField $field): self
     {
-        Assert::same($field->type(), Type::STRING, 'Header type must be a string.');
+        Assert::same($field->type(), Type::String, 'Header type must be a string.');
 
         return new self($field);
     }

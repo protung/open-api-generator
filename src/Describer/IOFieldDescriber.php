@@ -25,13 +25,13 @@ final class IOFieldDescriber
             $children  = $field->children();
             $fieldName = $field->name();
 
-            if ($field->type() === ModelType::ARRAY) {
+            if ($field->type() === ModelType::Array) {
                 $children               = Psl\Type\non_empty_vec(Psl\Type\instance_of(IOField::class))->coerce($children);
                 $properties[$fieldName] = new Schema(['type' => Type::ARRAY, 'items' => $this->describeField($children[0])]);
                 if ($field->isNullable()) {
                     $properties[$fieldName]->nullable = true;
                 }
-            } elseif ($field->type() === ModelType::OBJECT) {
+            } elseif ($field->type() === ModelType::Object) {
                 if ($children !== null) {
                     $properties[$fieldName]           = $this->describeFields($children);
                     $properties[$fieldName]->required = $this->extractRequiredFields(...$children);
@@ -54,7 +54,7 @@ final class IOFieldDescriber
 
     private function describeField(IOField $field): Schema
     {
-        if ($field->type() === ModelType::OBJECT) {
+        if ($field->type() === ModelType::Object) {
             $schema = $this->describeFields($field->children() ?? []);
 
             if ($field->isNullable()) {
@@ -65,7 +65,7 @@ final class IOFieldDescriber
         }
 
         $schema = [];
-        if ($field->type() !== ModelType::UNKNOWN) {
+        if ($field->type() !== ModelType::Unknown) {
             $schema['type'] = $field->type();
         }
 
