@@ -48,7 +48,7 @@ final class SimpleInputDescriber implements InputDescriber
             $parameters = [];
             // @todo make use of IOFieldDescriber
             foreach ($input->fields() as $field) {
-                $parameter           = new Parameter(['name' => $field->name(), 'in' => $input->location()]);
+                $parameter           = new Parameter(['name' => $field->name(), 'in' => $input->location()->value]);
                 $parameter->required = $input->isInPath();
 
                 $parameterSchema = new Schema(

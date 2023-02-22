@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Input;
 
+use Protung\OpenApiGenerator\Model\Path\InputLocation;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 
 /**
@@ -14,7 +15,7 @@ class SimpleInput extends BaseInput
     /** @var IOField[] */
     private array $fields;
 
-    public function __construct(string $location, IOField ...$fields)
+    public function __construct(InputLocation $location, IOField ...$fields)
     {
         $this->fields = $fields;
 

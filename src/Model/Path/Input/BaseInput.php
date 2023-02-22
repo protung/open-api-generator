@@ -4,42 +4,40 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Input;
 
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Input;
+use Protung\OpenApiGenerator\Model\Path\InputLocation;
 
 abstract class BaseInput implements Input
 {
-    private string $location;
+    private InputLocation $location;
 
-    final protected function setLocation(string $location): void
+    final protected function setLocation(InputLocation $location): void
     {
-        Assert::inArray($location, self::LOCATIONS);
-
         $this->location = $location;
     }
 
-    public function location(): string
+    public function location(): InputLocation
     {
         return $this->location;
     }
 
     public function isInHeaders(): bool
     {
-        return $this->location === Input::LOCATION_HEADERS;
+        return $this->location === InputLocation::Header;
     }
 
     public function isInPath(): bool
     {
-        return $this->location === Input::LOCATION_PATH;
+        return $this->location === InputLocation::Path;
     }
 
     public function isInQuery(): bool
     {
-        return $this->location === Input::LOCATION_QUERY;
+        return $this->location === InputLocation::Query;
     }
 
     public function isInBody(): bool
     {
-        return $this->location === Input::LOCATION_BODY;
+        return $this->location === InputLocation::Body;
     }
 }

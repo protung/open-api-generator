@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Model\Path\Input;
 
 use Protung\OpenApiGenerator\Assert\Assert;
+use Protung\OpenApiGenerator\Model\Path\InputLocation;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Type;
 
@@ -12,7 +13,7 @@ final class HeaderInput extends SimpleInput
 {
     private function __construct(IOField ...$fields)
     {
-        parent::__construct(self::LOCATION_HEADERS, ...$fields);
+        parent::__construct(InputLocation::Header, ...$fields);
     }
 
     public static function withIOField(IOField $field): self

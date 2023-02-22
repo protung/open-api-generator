@@ -6,19 +6,7 @@ namespace Protung\OpenApiGenerator\Model\Path;
 
 interface Input
 {
-    public const LOCATION_HEADERS = 'header';
-    public const LOCATION_PATH    = 'path';
-    public const LOCATION_QUERY   = 'query';
-    public const LOCATION_BODY    = 'body';
-
-    public const LOCATIONS = [
-        self::LOCATION_HEADERS,
-        self::LOCATION_PATH,
-        self::LOCATION_QUERY,
-        self::LOCATION_BODY,
-    ];
-
-    public function location(): string;
+    public function location(): InputLocation;
 
     public function isInHeaders(): bool;
 
