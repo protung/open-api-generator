@@ -15,7 +15,7 @@ final class FileOutputDescriber implements OutputDescriber
     {
         Psl\Type\instance_of(Output\FileOutput::class)->coerce($output);
 
-        return new Schema(['type' => Type::STRING, 'format' => 'binary']);
+        return new Schema(['type' => Type::String, 'format' => 'binary']);
     }
 
     public function supports(Output $output): bool

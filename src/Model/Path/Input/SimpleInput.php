@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Model\Path\Input;
 
 use Protung\OpenApiGenerator\Model\Path\IOField;
-use Protung\OpenApiGenerator\Model\Type;
 
 /**
  * @todo rename class, give it a better name
@@ -38,7 +37,7 @@ class SimpleInput extends BaseInput
         $example = [];
 
         foreach ($this->fields as $field) {
-            $example[$field->name()] = Type::example($field->type());
+            $example[$field->name()] = $field->type()->example();
         }
 
         return $example;

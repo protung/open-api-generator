@@ -11,32 +11,32 @@ use Psl;
 
 final class ScalarOutput implements Output
 {
-    private string $type;
+    private Type $type;
 
     private string $contentType;
 
     private bool|float|int|string|null $example;
 
-    private function __construct(string $type, string $contentType)
+    private function __construct(Type $type, string $contentType)
     {
-        Assert::inArray($type, Type::SCALAR_TYPES);
+        Assert::true($type->isScalar(), 'Only scalar types accepted');
 
         $this->type        = $type;
         $this->contentType = $contentType;
-        $this->example     = Psl\Type\nullable(Psl\Type\scalar())->coerce(Type::example($type));
+        $this->example     = Psl\Type\nullable(Psl\Type\scalar())->coerce($type->example());
     }
 
-    public static function json(string $type): self
+    public static function json(Type $type): self
     {
         return new self($type, Output::CONTENT_TYPE_APPLICATION_JSON);
     }
 
-    public static function plainText(string $type): self
+    public static function plainText(Type $type): self
     {
         return new self($type, Output::CONTENT_TYPE_TEXT_PLAIN);
     }
 
-    public function type(): string
+    public function type(): Type
     {
         return $this->type;
     }

@@ -6,7 +6,6 @@ namespace Protung\OpenApiGenerator\Model\Path;
 
 use BackedEnum;
 use InvalidArgumentException;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Type;
 use Psl\Vec;
 use ReflectionEnum;
@@ -18,7 +17,7 @@ final class IOField
 {
     private string $name;
 
-    private string $type;
+    private Type $type;
 
     private string|null $pattern = null;
 
@@ -34,42 +33,40 @@ final class IOField
 
     private bool $required = true;
 
-    private function __construct(string $name, string $type)
+    private function __construct(string $name, Type $type)
     {
-        Assert::inArray($type, Type::TYPES);
-
         $this->name = $name;
         $this->type = $type;
     }
 
     public static function unknown(string $name): self
     {
-        return new self($name, Type::UNKNOWN);
+        return new self($name, Type::Unknown);
     }
 
     public static function anything(string $name): self
     {
-        return new self($name, Type::ANY);
+        return new self($name, Type::Any);
     }
 
     public static function stringField(string $name): self
     {
-        return new self($name, Type::STRING);
+        return new self($name, Type::String);
     }
 
     public static function numberField(string $name): self
     {
-        return new self($name, Type::NUMBER);
+        return new self($name, Type::Number);
     }
 
     public static function integerField(string $name): self
     {
-        return new self($name, Type::INTEGER);
+        return new self($name, Type::Integer);
     }
 
     public static function booleanField(string $name): self
     {
-        return new self($name, Type::BOOLEAN);
+        return new self($name, Type::Boolean);
     }
 
     /**
@@ -84,9 +81,9 @@ final class IOField
         $reflection = new ReflectionEnum($backedEnumClass);
 
         $type = match ($reflection->getProperty('value')->getType()?->getName()) {
-            'int' => Type::INTEGER,
-            'string' => Type::STRING,
-            default => Type::STRING,
+            'int' => Type::Integer,
+            'string' => Type::String,
+            default => Type::String,
         };
 
         $self = new self($name, $type);
@@ -102,7 +99,7 @@ final class IOField
 
     public static function arrayField(string $name, IOField $element): self
     {
-        $self = new self($name, Type::ARRAY);
+        $self = new self($name, Type::Array);
         $self->withChildren([$element]);
 
         return $self;
@@ -110,7 +107,7 @@ final class IOField
 
     public static function objectField(string $name, IOField ...$children): self
     {
-        $self = new self($name, Type::OBJECT);
+        $self = new self($name, Type::Object);
         if (count($children) > 0) {
             $self->withChildren(Vec\values($children));
         }
@@ -123,7 +120,7 @@ final class IOField
         return $this->name;
     }
 
-    public function type(): string
+    public function type(): Type
     {
         return $this->type;
     }

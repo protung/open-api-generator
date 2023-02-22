@@ -119,7 +119,7 @@ final class PathProcessorTest extends TestCase
                 ),
             ],
             [
-                Response::for200(Model\Path\Output\ScalarOutput::plainText(Type::STRING)),
+                Response::for200(Model\Path\Output\ScalarOutput::plainText(Type::String)),
             ],
         );
 

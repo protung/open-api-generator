@@ -14,7 +14,7 @@ final class ScalarOutputDescriber implements OutputDescriber
     {
         $output = Psl\Type\instance_of(Output\ScalarOutput::class)->coerce($output);
 
-        return new Schema(['type' => $output->type(), 'example' => $output->example()]);
+        return new Schema(['type' => $output->type()->value, 'example' => $output->example()]);
     }
 
     public function supports(Output $output): bool

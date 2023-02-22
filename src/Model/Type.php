@@ -4,61 +4,46 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model;
 
-use Protung\OpenApiGenerator\Assert\Assert;
 use stdClass;
 
-final class Type
+enum Type: string
 {
-    public const UNKNOWN = 'unknown';
+    case Unknown = 'unknown';
 
-    public const ANY = 'any';
+    case Any = 'any';
 
-    public const INTEGER = 'integer';
+    case Integer = 'integer';
 
-    public const NUMBER = 'number';
+    case Number = 'number';
 
-    public const STRING = 'string';
+    case String = 'string';
 
-    public const BOOLEAN = 'boolean';
+    case Boolean = 'boolean';
 
-    public const OBJECT = 'object';
+    case Object = 'object';
 
-    public const ARRAY = 'array';
+    case Array = 'array';
 
-    public const TYPES = [
-        self::UNKNOWN,
-        self::ANY,
-        self::INTEGER,
-        self::NUMBER,
-        self::STRING,
-        self::BOOLEAN,
-        self::OBJECT,
-        self::ARRAY,
-    ];
-
-    public const SCALAR_TYPES = [
-        self::INTEGER,
-        self::NUMBER,
-        self::STRING,
-        self::BOOLEAN,
-    ];
+    public function isScalar(): bool
+    {
+        return match ($this) {
+            self::Integer, self::Number, self::String, self::Boolean => true,
+            default => false,
+        };
+    }
 
     /**
      * @return stdClass|string|list<string>|bool|int|float|null
-     *
-     * @psalm-pure
      */
-    public static function example(string $type): stdClass|string|array|bool|int|float|null
+    public function example(): stdClass|string|array|bool|int|float|null
     {
-        Assert::inArray($type, self::TYPES);
-
-        return match ($type) {
-            self::INTEGER => 123,
-            self::NUMBER => 3.14,
-            self::STRING => 'string',
-            self::BOOLEAN => true,
-            self::OBJECT => new stdClass(),
-            self::ARRAY => ['array'],
+        return match ($this) {
+            self::Integer => 123,
+            self::Number => 3.14,
+            self::String => 'string',
+            self::Boolean => true,
+            self::Object => new stdClass(),
+            self::Array => ['array'],
             default => null,
         };
     }
