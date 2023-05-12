@@ -124,6 +124,7 @@ return new Model\Specification(
                     Model\Path\Output\FileOutput::forPlainText(),
                     Model\Path\Output\FileOutput::forPng(),
                     Model\Path\Output\FileOutput::forZip(),
+                    Model\Path\Output\FileOutput::forCsvText(),
                     Model\Path\Output\ScalarOutput::json(Type::Integer),
                 ),
                 new Response(

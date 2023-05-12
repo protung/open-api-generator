@@ -7502,6 +7502,12 @@
                                     "format": "binary"
                                 }
                             },
+                            "text/csv": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            },
                             "application/json": {
                                 "schema": {
                                     "type": "integer",
