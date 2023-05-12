@@ -45,6 +45,11 @@ final class FileOutput implements Output
         return new self('application/zip');
     }
 
+    public static function forCsvText(): self
+    {
+        return new self('text/csv');
+    }
+
     /**
      * {@inheritDoc}
      */
