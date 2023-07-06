@@ -10,6 +10,7 @@ use cebe\openapi\spec\SecurityScheme;
 use Protung\OpenApiGenerator\Model\Specification;
 
 use function array_filter;
+use function count;
 
 final class SecurityDefinitions implements Processor
 {
@@ -33,6 +34,10 @@ final class SecurityDefinitions implements Processor
 
         if ($openApi->components === null) {
             $openApi->components = new Components([]);
+        }
+
+        if (count($definitions) === 0) {
+            return;
         }
 
         $openApi->components->securitySchemes = $definitions;
