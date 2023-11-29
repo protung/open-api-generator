@@ -52,7 +52,7 @@
         "psalm/plugin-phpunit": "^0.18.4",
         "roave/security-advisories": "dev-master",
         "symfony/config": "^5.4 || ^6.2.5",
-        "symfony/var-dumper": "^5.4 || ^6.2.5",
+        "symfony/var-dumper": "^5.4 || ^6.2.5 || ^7.0.0",
         "thecodingmachine/phpstan-strict-rules": "^1.0.0",
         "vimeo/psalm": "^5.16.0"
     },
