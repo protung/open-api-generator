@@ -185,14 +185,14 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
 
                     break;
                 case $constraint instanceof DivisibleBy:
-                    $schema->multipleOf = $constraint->value;
+                    $schema->multipleOf = Psl\Type\num()->coerce($constraint->value);
                     break;
                 case $constraint instanceof GreaterThan:
-                    $schema->minimum          = $constraint->value;
+                    $schema->minimum          = Psl\Type\num()->coerce($constraint->value);
                     $schema->exclusiveMinimum = true;
                     break;
                 case $constraint instanceof GreaterThanOrEqual:
-                    $schema->minimum = $constraint->value;
+                    $schema->minimum = Psl\Type\num()->coerce($constraint->value);
                     break;
                 case $constraint instanceof Length:
                     if ($constraint->min !== null) {
@@ -205,19 +205,19 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
 
                     break;
                 case $constraint instanceof LessThan:
-                    $schema->maximum          = $constraint->value;
+                    $schema->maximum          = Psl\Type\num()->coerce($constraint->value);
                     $schema->exclusiveMaximum = true;
                     break;
                 case $constraint instanceof LessThanOrEqual:
-                    $schema->maximum = $constraint->value;
+                    $schema->maximum = Psl\Type\num()->coerce($constraint->value);
                     break;
                 case $constraint instanceof Range:
                     if ($constraint->min !== null) {
-                        $schema->minimum = $constraint->min;
+                        $schema->minimum = Psl\Type\num()->coerce($constraint->min);
                     }
 
                     if ($constraint->max !== null) {
-                        $schema->maximum = $constraint->max;
+                        $schema->maximum = Psl\Type\num()->coerce($constraint->max);
                     }
 
                     break;
@@ -226,13 +226,16 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                     break;
                 case $constraint instanceof Regex:
                     // we need to remove the delimiters but ignoring the modifiers
-                    $schema->pattern = Psl\Str\slice(
-                        Psl\Type\non_empty_string()->coerce(Psl\Str\before_last_ci($constraint->pattern, $constraint->pattern[0])),
-                        1,
-                    );
+                    if ($constraint->pattern !== null) {
+                        $schema->pattern = Psl\Str\slice(
+                            Psl\Type\non_empty_string()->coerce(Psl\Str\before_last_ci($constraint->pattern, $constraint->pattern[0])),
+                            1,
+                        );
+                    }
+
                     break;
                 case $constraint instanceof File:
-                    if ($constraint->mimeTypes !== null && $constraint->mimeTypes !== []) {
+                    if ($constraint->mimeTypes !== '' && $constraint->mimeTypes !== []) {
                         $schema->description = SpecificationDescriber::updateDescription(
                             $schema->description,
                             Psl\Str\format('Allowed mime types: %s', implode(', ', (array) $constraint->mimeTypes)),

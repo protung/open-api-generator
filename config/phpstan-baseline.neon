@@ -19,4 +19,3 @@ parameters:
 			message: "#^Property Protung\\\\OpenApiGenerator\\\\Tests\\\\Integration\\\\Fixtures\\\\TestSchemaGeneration\\\\Model\\\\JMS\\\\ComplexObject\\:\\:\\$unknownProperty has no type specified\\.$#"
 			count: 1
 			path: ../tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php
-
