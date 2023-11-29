@@ -1,6 +1,6 @@
 {
     "name": "protung/open-api-generator",
-    "description": "Open Api specification generator.",
+    "description": "Open Api specification / schema generator.",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -26,16 +26,16 @@
         }
     ],
     "require": {
-        "php": "~8.1.0 || ~8.2.0",
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
         "ext-json": "*",
-        "azjezz/psl": "^2.0.1",
+        "azjezz/psl": "^2.5.0",
         "cebe/php-openapi": "^1.7.0",
         "jms/serializer": "^3.22.0",
         "myclabs/deep-copy": "^1.10",
         "phpstan/phpdoc-parser": "^1.5.1",
-        "symfony/form": "^5.4 || ^6.0",
-        "symfony/routing": "^5.4 || ^6.0",
-        "symfony/validator": "^5.4 || ^6.0",
+        "symfony/form": "^6.4 || ^7.0",
+        "symfony/routing": "^6.4 || ^7.0",
+        "symfony/validator": "^6.4 || ^7.0",
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
@@ -51,8 +51,8 @@
         "phpunit/phpunit": "^10.4.2",
         "psalm/plugin-phpunit": "^0.18.4",
         "roave/security-advisories": "dev-master",
-        "symfony/config": "^5.4 || ^6.2.5",
-        "symfony/var-dumper": "^5.4 || ^6.2.5",
+        "symfony/config": "^6.4 || ^7.0",
+        "symfony/var-dumper": "^6.4 || ^7.0",
         "thecodingmachine/phpstan-strict-rules": "^1.0.0",
         "vimeo/psalm": "^5.16.0"
     },
