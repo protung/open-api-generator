@@ -212,12 +212,12 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
                     $schema->maximum = Psl\Type\num()->coerce($constraint->value);
                     break;
                 case $constraint instanceof Range:
-                    if ($constraint->min !== null) {
-                        $schema->minimum = Psl\Type\num()->coerce($constraint->min);
+                    if ($constraint->min !== null && Psl\Type\num()->matches($constraint->min)) {
+                        $schema->minimum = $constraint->min;
                     }
 
-                    if ($constraint->max !== null) {
-                        $schema->maximum = Psl\Type\num()->coerce($constraint->max);
+                    if ($constraint->max !== null && Psl\Type\num()->matches($constraint->max)) {
+                        $schema->maximum = $constraint->max;
                     }
 
                     break;
