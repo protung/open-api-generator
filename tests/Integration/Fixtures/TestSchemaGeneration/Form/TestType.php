@@ -63,7 +63,7 @@ final class TestType extends AbstractType
             ->add(
                 'paramDateChoice',
                 DateType::class,
-                ['widget' => 'choice'],
+                ['widget' => 'choice', 'years' => range(2018, 2028)],
             )
             ->add('paramDateTimeSingleText', DateTimeType::class, ['widget' => 'single_text', 'years' => range(2015, 2025)])
             ->add('paramDateTimeChoice', DateTimeType::class, ['widget' => 'choice', 'years' => range(2015, 2025)])
