@@ -36,8 +36,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('composer.lock') }}
-          restore-keys: "php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
+          key: php-${{ matrix.php-versions }}-composer-${{ matrix.dependencies }}-${{ hashFiles('composer.lock') }}
+          restore-keys: "php-${{ matrix.php-versions }}-composer-${{ matrix.dependencies }}-"
 
       - name: Install lowest dependencies
         if: ${{ matrix.dependencies == 'lowest' }}
