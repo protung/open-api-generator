@@ -30,7 +30,8 @@
         "ext-json": "*",
         "azjezz/psl": "^2.5.0",
         "cebe/php-openapi": "^1.7.0",
-        "jms/serializer": "^3.22.0",
+        "jms/metadata": "^2.8.0",
+        "jms/serializer": "^3.30.0",
         "myclabs/deep-copy": "^1.10",
         "phpstan/phpdoc-parser": "^1.5.1",
         "symfony/form": "^6.4 || ^7.0",
@@ -52,6 +53,7 @@
         "psalm/plugin-phpunit": "^0.18.4",
         "roave/security-advisories": "dev-master",
         "symfony/config": "^6.4 || ^7.0",
+        "symfony/options-resolver": "^6.4 || ^7.0",
         "symfony/var-dumper": "^6.4 || ^7.0",
         "thecodingmachine/phpstan-strict-rules": "^1.0.0",
         "vimeo/psalm": "^5.22.2"
