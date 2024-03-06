@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Tests\Integration;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\Serializer\Builder\DefaultDriverFactory;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
@@ -91,7 +90,6 @@ final class GenerateSchemaTest extends TestCase
                                         new MetadataFactory(
                                             (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver(
                                                 $metadataDirs,
-                                                new AnnotationReader(),
                                             ),
                                         ),
                                         $apiVersion,
