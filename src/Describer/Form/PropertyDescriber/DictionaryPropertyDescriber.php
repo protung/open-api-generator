@@ -68,7 +68,7 @@ final class DictionaryPropertyDescriber implements PropertyDescriber
 
         return Psl\Iter\any(
             $this->supportedFormTypes,
-            static fn (string $supportedFormType): bool => $resolvedFormType->getInnerType() instanceof $supportedFormType
+            static fn (string $supportedFormType): bool => $resolvedFormType->getInnerType() instanceof $supportedFormType,
         );
     }
 

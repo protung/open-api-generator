@@ -110,7 +110,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         if ($parentMetadata->hasPropertyMetadata($propertyName)) {
             return Psl\Vec\flat_map(
                 $parentMetadata->getPropertyMetadata($propertyName),
-                static fn (PropertyMetadataInterface $propertyMetadata) => $propertyMetadata->getConstraints()
+                static fn (PropertyMetadataInterface $propertyMetadata) => $propertyMetadata->getConstraints(),
             );
         }
 

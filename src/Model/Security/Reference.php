@@ -37,7 +37,7 @@ final class Reference
         return new self(
             Vec\map(
                 $references,
-                static fn (string $value): array => [$value => []]
+                static fn (string $value): array => [$value => []],
             ),
         );
     }
