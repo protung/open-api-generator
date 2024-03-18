@@ -96,9 +96,9 @@ final class IOFieldDescriber
         return Psl\Vec\map(
             Psl\Vec\filter(
                 $fields,
-                static fn (IOField $child): bool => $child->isRequired()
+                static fn (IOField $child): bool => $child->isRequired(),
             ),
-            static fn (IOField $child): string => $child->name()
+            static fn (IOField $child): string => $child->name(),
         );
     }
 }

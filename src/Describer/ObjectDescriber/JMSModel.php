@@ -134,7 +134,7 @@ final class JMSModel implements Describer
                         $metadataProperty,
                         $objectDescriber,
                         $serializationGroups,
-                    )
+                    ),
                 );
 
                 if (count($propertiesSchemas) > 1) {
