@@ -28,6 +28,7 @@ final class SecurityDefinitions implements Processor
                         'scheme' => $securityDefinition->scheme(),
                         'bearerFormat' => $securityDefinition->bearerFormat(),
                     ],
+                    static fn (mixed $value): bool => $value !== null && $value !== '',
                 ),
             );
         }
