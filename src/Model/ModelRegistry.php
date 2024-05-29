@@ -98,9 +98,6 @@ final class ModelRegistry
         return $this->referencedModels;
     }
 
-    /**
-     * @psalm-pure
-     */
     private function definitionKey(Definition $definition): string
     {
         $exampleObject = $definition->exampleObject();
