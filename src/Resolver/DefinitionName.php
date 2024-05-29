@@ -37,8 +37,6 @@ final class DefinitionName
 
     /**
      * @param string[] $groups
-     *
-     * @psalm-pure
      */
     private static function getGroupsSuffix(array $groups): string
     {
