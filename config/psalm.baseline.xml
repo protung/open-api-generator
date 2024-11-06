@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.7.5@5390c212bab06ee230c8720c2e9c54b823db00c8">
+<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
   <file src="../src/Analyser/PropertyAnalyser.php">
     <RedundantConditionGivenDocblockType>
       <code><![CDATA[$type instanceof ReflectionIntersectionType]]></code>
@@ -8,16 +8,26 @@
   </file>
   <file src="../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php">
     <InternalMethod>
-      <code>getNestedConstraints</code>
+      <code><![CDATA[getNestedConstraints]]></code>
     </InternalMethod>
     <RedundantConditionGivenDocblockType>
       <code><![CDATA[$constraint->maxSize !== null]]></code>
     </RedundantConditionGivenDocblockType>
   </file>
+  <file src="../src/Describer/IOFieldDescriber.php">
+    <UndefinedMagicPropertyAssignment>
+      <code><![CDATA[$properties[$fieldName]->nullable]]></code>
+      <code><![CDATA[$properties[$fieldName]->nullable]]></code>
+      <code><![CDATA[$properties[$fieldName]->required]]></code>
+    </UndefinedMagicPropertyAssignment>
+  </file>
   <file src="../src/Describer/InputDescriber/FormInputDescriber.php">
     <DocblockTypeContradiction>
       <code><![CDATA[$existingMediaTypeSchema->oneOf === null]]></code>
     </DocblockTypeContradiction>
+    <UndefinedMagicPropertyAssignment>
+      <code><![CDATA[$requestBodyContent[$contentType]->schema]]></code>
+    </UndefinedMagicPropertyAssignment>
   </file>
   <file src="../src/Describer/InputDescriber/FormInputDescriber/Body.php">
     <DocblockTypeContradiction>
@@ -36,12 +46,12 @@
   </file>
   <file src="../src/Describer/ObjectDescriber/PHPBackedEnum.php">
     <UndefinedMethod>
-      <code>getName</code>
+      <code><![CDATA[getName]]></code>
     </UndefinedMethod>
   </file>
   <file src="../src/Model/Path/IOField.php">
     <UndefinedMethod>
-      <code>getName</code>
+      <code><![CDATA[getName]]></code>
     </UndefinedMethod>
   </file>
 </files>
