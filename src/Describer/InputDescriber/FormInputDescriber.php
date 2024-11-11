@@ -52,6 +52,7 @@ final class FormInputDescriber implements InputDescriber
         return $input instanceof Input\FormInput;
     }
 
+    /** @param FormInterface<mixed> $form */
     private function describeRequestBody(Operation $operation, FormInterface $form): void
     {
         $mediaTypes = $this->bodyDescriber->describe($form);

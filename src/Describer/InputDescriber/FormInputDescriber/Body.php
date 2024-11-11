@@ -35,7 +35,9 @@ final class Body
      * - else if no files at all then "application/json" and "application/x-www-form-urlencoded"
      * - otherwise "application/json", "application/x-www-form-urlencoded" for not file properties and "multipart/form-data" for all properties
      *
-     * @return array<string,MediaType>
+     * @param FormInterface<mixed> $form
+     *
+     * @return array<string, MediaType>
      */
     public function describe(FormInterface $form): array
     {

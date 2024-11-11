@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/** @template-extends AbstractType<mixed> */
 final class TestCustomCollectionType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver): void

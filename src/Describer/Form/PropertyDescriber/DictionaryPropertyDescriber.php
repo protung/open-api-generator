@@ -22,11 +22,11 @@ final class DictionaryPropertyDescriber implements PropertyDescriber
 {
     private FormFactory $formFactory;
 
-    /** @var list<class-string<FormTypeInterface>> */
+    /** @var list<class-string<FormTypeInterface<mixed>>> */
     private array $supportedFormTypes;
 
     /**
-     * @param class-string<FormTypeInterface> ...$supportedFormTypes
+     * @param class-string<FormTypeInterface<mixed>> ...$supportedFormTypes
      */
     public function __construct(FormFactory $formFactory, string ...$supportedFormTypes)
     {
@@ -34,6 +34,7 @@ final class DictionaryPropertyDescriber implements PropertyDescriber
         $this->supportedFormTypes = array_values($supportedFormTypes);
     }
 
+    /** @param FormInterface<mixed> $form */
     public function describe(Schema $schema, FormInterface $form, FormDescriber $formDescriber): void
     {
         $formConfig = $form->getConfig();
@@ -58,6 +59,7 @@ final class DictionaryPropertyDescriber implements PropertyDescriber
         $schema->additionalProperties = $formDescriber->addDeepSchema($subForm, new FormName());
     }
 
+    /** @param FormInterface<mixed> $form */
     public function supports(FormInterface $form): bool
     {
         $resolvedFormType = $form->getConfig()->getType();

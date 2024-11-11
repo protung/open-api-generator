@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Count;
 
+/** @template-extends AbstractType<mixed> */
 final class TestDictionaryType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver): void

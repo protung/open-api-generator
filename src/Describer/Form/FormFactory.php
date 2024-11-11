@@ -19,6 +19,7 @@ final class FormFactory
         $this->formFactory = $formFactory;
     }
 
+    /** @return FormInterface<mixed> */
     public function create(FormDefinition $formDefinition, string|null $httpMethod): FormInterface
     {
         return $this->formFactory->create(

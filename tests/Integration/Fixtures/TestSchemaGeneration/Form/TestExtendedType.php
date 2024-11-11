@@ -7,6 +7,7 @@ namespace Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGenerati
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
+/** @template-extends AbstractType<mixed> */
 final class TestExtendedType extends AbstractType
 {
     public function getParent(): string

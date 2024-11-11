@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThan;
 
+/** @template-extends AbstractType<mixed> */
 final class TestConstraintsType extends AbstractType
 {
     /**

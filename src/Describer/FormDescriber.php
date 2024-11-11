@@ -27,6 +27,7 @@ final class FormDescriber
         $this->requirementsDescriber = $requirementsDescriber;
     }
 
+    /** @param FormInterface<mixed> $form */
     public function addDeepSchema(FormInterface $form, NameResolver $nameResolver): Schema
     {
         $schema = $this->createSchema($form);
@@ -34,6 +35,7 @@ final class FormDescriber
         return $this->addParametersToDeepSchema($schema, $form, $nameResolver);
     }
 
+    /** @param FormInterface<mixed> $form */
     public function addParametersToDeepSchema(Schema $schema, FormInterface $form, NameResolver $nameResolver): Schema
     {
         if ($form->count() === 0) {
@@ -66,6 +68,7 @@ final class FormDescriber
         return $schema;
     }
 
+    /** @param FormInterface<mixed> $form */
     public function addFlattenSchema(FormInterface $form, FlatNameResolver $nameResolver): Schema
     {
         $schema = new Schema(['type' => Type::OBJECT]);
@@ -73,6 +76,7 @@ final class FormDescriber
         return $this->addParametersToFlattenSchema($schema, $form, $nameResolver);
     }
 
+    /** @param FormInterface<mixed> $form */
     private function addParametersToFlattenSchema(
         Schema $schema,
         FormInterface $form,
@@ -97,6 +101,7 @@ final class FormDescriber
         return $schema;
     }
 
+    /** @param FormInterface<mixed> $form */
     private function addParameterToSchema(
         Schema $schema,
         NameResolver $nameResolver,
@@ -113,6 +118,7 @@ final class FormDescriber
         $this->handleRequiredProperty($schema, $form, $nameResolver);
     }
 
+    /** @param FormInterface<mixed> $form */
     private function createSchema(FormInterface $form): Schema
     {
         $schema = new Schema([]);
@@ -122,12 +128,14 @@ final class FormDescriber
         return $schema;
     }
 
+    /** @param FormInterface<mixed> $form */
     private function describeProperty(Schema $schema, FormInterface $form): void
     {
         $this->propertyDescriber->describe($schema, $form, $this);
         $this->requirementsDescriber->describe($schema, $form);
     }
 
+    /** @param FormInterface<mixed> $form */
     private function handleRequiredForParent(Schema $schema, FormInterface $form, NameResolver $nameResolver): void
     {
         if (! $nameResolver instanceof FlatNameResolver) {
@@ -149,6 +157,7 @@ final class FormDescriber
         );
     }
 
+    /** @param FormInterface<mixed> $form */
     private function handleRequiredProperty(Schema $schema, FormInterface $form, NameResolver $nameResolver): void
     {
         if ($this->isFormPropertyRequired($form, $nameResolver) !== true) {
@@ -160,6 +169,7 @@ final class FormDescriber
         $schema->required = $schemaRequired;
     }
 
+    /** @param FormInterface<mixed> $form */
     private function isFormPropertyRequired(FormInterface $form, NameResolver $nameResolver): bool
     {
         $httpMethod = $form->getRoot()->getConfig()->getMethod();

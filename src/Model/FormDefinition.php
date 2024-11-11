@@ -11,15 +11,15 @@ use Symfony\Component\Form\FormTypeInterface;
  */
 final class FormDefinition
 {
-    /** @var class-string<FormTypeInterface> */
+    /** @var class-string<FormTypeInterface<mixed>> */
     private string $formClass;
 
     /** @var array<string, mixed> */
     private array $formOptions;
 
     /**
-     * @param class-string<FormTypeInterface> $formClass
-     * @param array<string, mixed>            $formOptions
+     * @param class-string<FormTypeInterface<mixed>> $formClass
+     * @param array<string, mixed>                   $formOptions
      */
     public function __construct(string $formClass, array $formOptions = [])
     {
@@ -28,7 +28,7 @@ final class FormDefinition
     }
 
     /**
-     * @return class-string<FormTypeInterface>
+     * @return class-string<FormTypeInterface<mixed>>
      */
     public function formClass(): string
     {

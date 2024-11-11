@@ -16,4 +16,3 @@ includes:
     - ../vendor/phpstan/phpstan-strict-rules/rules.neon
     - ../vendor/phpstan/phpstan-symfony/extension.neon
     - ../vendor/phpstan/phpstan-webmozart-assert/extension.neon
-    - ../vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon

@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGenerati
 
 use Symfony\Component\Form\AbstractType;
 
+/** @template-extends AbstractType<mixed> */
 final class TestExtendedExtendedType extends AbstractType
 {
     public function getParent(): string

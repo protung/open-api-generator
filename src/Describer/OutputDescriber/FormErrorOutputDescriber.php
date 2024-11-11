@@ -61,7 +61,9 @@ final class FormErrorOutputDescriber implements OutputDescriber
     }
 
     /**
-     * @return mixed[]
+     * @param FormInterface<mixed> $form
+     *
+     * @return array<string, mixed>
      */
     private function describeFormProperties(FormInterface $form): array
     {
@@ -89,6 +91,8 @@ final class FormErrorOutputDescriber implements OutputDescriber
     }
 
     /**
+     * @param FormInterface<mixed> $form
+     *
      * @return list<string>
      */
     private function extractChildrenNames(FormInterface $form): array
