@@ -27,12 +27,12 @@ class SimpleOutput implements Output
     /** @var IOField[] */
     private array $fields;
 
-    /** @var array<mixed> */
+    /** @var array<string, mixed> */
     private array $example;
 
     /**
-     * @param IOField[]    $fields
-     * @param array<mixed> $example
+     * @param IOField[]            $fields
+     * @param array<string, mixed> $example
      */
     protected function __construct(array $fields, array $example)
     {
@@ -48,7 +48,7 @@ class SimpleOutput implements Output
     }
 
     /**
-     * @param array<mixed> $data
+     * @param array<string, mixed> $data
      */
     public static function fromExampleData(array $data): self
     {
@@ -121,7 +121,7 @@ class SimpleOutput implements Output
     /**
      * @param IOField[] $fields
      *
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     private static function exampleFromFields(array $fields): array
     {

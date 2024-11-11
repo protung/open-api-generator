@@ -23,6 +23,8 @@ final class Query
     }
 
     /**
+     * @param FormInterface<mixed> $form
+     *
      * @return list<Parameter>
      */
     public function describe(FormInterface $form): array
@@ -37,6 +39,8 @@ final class Query
     }
 
     /**
+     * @param FormInterface<mixed> $form
+     *
      * @return list<Parameter>
      */
     private function processParametersFromForm(FormInterface $form, NameResolver $nameResolver): array
@@ -51,6 +55,7 @@ final class Query
         );
     }
 
+    /** @param FormInterface<mixed> $form */
     private function createParameter(FormInterface $form, NameResolver $nameResolver): Parameter
     {
         $formConfig = $form->getConfig();

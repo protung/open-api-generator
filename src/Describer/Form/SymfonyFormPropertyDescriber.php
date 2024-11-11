@@ -23,6 +23,7 @@ final class SymfonyFormPropertyDescriber
         $this->propertyDescribers = $propertyDescribers;
     }
 
+    /** @param FormInterface<mixed> $form */
     public function describe(Schema $schema, FormInterface $form, FormDescriber $formDescriber): void
     {
         foreach ($this->propertyDescribers as $propertyDescriber) {
@@ -37,6 +38,7 @@ final class SymfonyFormPropertyDescriber
         throw new RuntimeException('No property describer supports "' . $form->getConfig()->getType()->getBlockPrefix() . '".');
     }
 
+    /** @param FormInterface<mixed> $form */
     private function describeHelp(Schema $schema, FormInterface $form): void
     {
         $attr = $form->getConfig()->getOption('attr');

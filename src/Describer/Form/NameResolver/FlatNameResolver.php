@@ -14,6 +14,8 @@ use function array_reverse;
 trait FlatNameResolver
 {
     /**
+     * @param FormInterface<mixed> $form
+     *
      * @return string[]
      */
     private function namesFromForm(FormInterface $form): array
@@ -33,7 +35,8 @@ trait FlatNameResolver
     }
 
     /**
-     * @param string[] $names
+     * @param FormConfigInterface<mixed> $formConfig
+     * @param string[]                   $names
      */
     private function fromArray(string $name, array $names, FormConfigInterface $formConfig): string
     {

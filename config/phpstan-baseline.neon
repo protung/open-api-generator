@@ -6,16 +6,145 @@ parameters:
 			path: ../src/Describer/ObjectDescriber/PHPBackedEnum.php
 
 		-
-			message: "#^Call to an undefined method ReflectionType\\:\\:getName\\(\\)\\.$#"
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function Psl\\Str\\before_last_ci expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Parameter \#2 \$needle of function Psl\\Str\\before_last_ci expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$args of function Psl\\Str\\format expects float\|int\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Property cebe\\openapi\\spec\\Schema\:\:\$maxItems \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Property cebe\\openapi\\spec\\Schema\:\:\$maxLength \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Property cebe\\openapi\\spec\\Schema\:\:\$maxProperties \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Property cebe\\openapi\\spec\\Schema\:\:\$minItems \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Property cebe\\openapi\\spec\\Schema\:\:\$minLength \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Property cebe\\openapi\\spec\\Schema\:\:\$minProperties \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
+			message: '#^Parameter \#1 \$requestBodyContent of method Protung\\OpenApiGenerator\\Describer\\InputDescriber\\FormInputDescriber\:\:mergeRequestBodyContent\(\) expects array\<string, cebe\\openapi\\spec\\MediaType\>, array\<cebe\\openapi\\spec\\MediaType\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Describer/InputDescriber/FormInputDescriber.php
+
+		-
+			message: '#^Cannot access offset ''name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: ../src/Describer/ObjectDescriber/JMSModel.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ../src/Describer/ObjectDescriber/JMSModel.php
+
+		-
+			message: '#^Cannot access offset 1 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ../src/Describer/ObjectDescriber/JMSModel.php
+
+		-
+			message: '#^Method Protung\\OpenApiGenerator\\Describer\\ObjectDescriber\\JMSModel\:\:getNestedTypeInArray\(\) should return string\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 2
+			path: ../src/Describer/ObjectDescriber/JMSModel.php
+
+		-
+			message: '#^Parameter \#1 \$type of static method Protung\\OpenApiGenerator\\Analyser\\PropertyAnalysisSingleType\:\:forSingleValue\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: ../src/Describer/ObjectDescriber/JMSModel.php
+
+		-
+			message: '#^Parameter \#3 \$parameters of static method Protung\\OpenApiGenerator\\Analyser\\PropertyAnalysisSingleType\:\:forSingleValue\(\) expects array\<mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: ../src/Describer/ObjectDescriber/JMSModel.php
+
+		-
+			message: '#^Call to an undefined method ReflectionType\:\:getName\(\)\.$#'
+			identifier: method.notFound
 			count: 1
 			path: ../src/Model/Path/IOField.php
 
 		-
-			message: "#^Variable property access on cebe\\\\openapi\\\\spec\\\\PathItem\\.$#"
+			message: '#^Parameter \#1 \$key of method Symfony\\Component\\Routing\\Route\:\:getRequirement\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Processor/Path/Symfony/PathProcessor.php
+
+		-
+			message: '#^Parameter \#1 \$name of static method Protung\\OpenApiGenerator\\Model\\Path\\IOField\:\:stringField\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Processor/Path/Symfony/PathProcessor.php
+
+		-
+			message: '#^Variable property access on cebe\\openapi\\spec\\PathItem\.$#'
+			identifier: property.dynamicName
 			count: 1
 			path: ../src/Processor/PathsProcessor.php
 
 		-
-			message: "#^Property Protung\\\\OpenApiGenerator\\\\Tests\\\\Integration\\\\Fixtures\\\\TestSchemaGeneration\\\\Model\\\\JMS\\\\ComplexObject\\:\\:\\$unknownProperty has no type specified\\.$#"
+			message: '#^Property Protung\\OpenApiGenerator\\Tests\\Integration\\Fixtures\\TestSchemaGeneration\\Model\\JMS\\ComplexObject\:\:\$unknownProperty has no type specified\.$#'
+			identifier: missingType.property
 			count: 1
 			path: ../tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php
+
+		-
+			message: '#^Parameter \#1 \$specification of method Protung\\OpenApiGenerator\\Generator\:\:generate\(\) expects Protung\\OpenApiGenerator\\Model\\Specification, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../tests/Integration/GenerateSchemaTest.php
+
+		-
+			message: '#^Cannot use \+\+ on mixed\.$#'
+			identifier: postInc.type
+			count: 1
+			path: ../tests/Processor/Path/Symfony/PathProcessorTest.php

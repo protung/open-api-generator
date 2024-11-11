@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 
+/** @template-extends AbstractType<mixed> */
 final class TestNullabilityType extends AbstractType
 {
     /**

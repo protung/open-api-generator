@@ -21,6 +21,7 @@ use function is_callable;
 
 final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
 {
+    /** @param FormInterface<mixed> $form */
     public function describe(Schema $schema, FormInterface $form, FormDescriber $formDescriber): void
     {
         $formConfig = $form->getConfig();
@@ -32,6 +33,7 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
         $this->describeProperty($schema, $formConfig->getType(), $formConfig);
     }
 
+    /** @param FormConfigInterface<mixed> $formConfig */
     private function describeProperty(
         Schema $schema,
         ResolvedFormTypeInterface $formType,
@@ -137,6 +139,7 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
         }
     }
 
+    /** @param FormInterface<mixed> $form */
     public function supports(FormInterface $form): bool
     {
         // we support any type, as we will fallback on string.

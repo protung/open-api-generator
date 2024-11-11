@@ -44,6 +44,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         $this->validator = $validator;
     }
 
+    /** @param FormInterface<mixed> $form */
     public function describe(Schema $schema, FormInterface $form): void
     {
         $constraints = $this->getConstraints($form);
@@ -54,6 +55,8 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     }
 
     /**
+     * @param FormInterface<mixed> $form
+     *
      * @return list<Constraint>
      */
     private function getConstraints(FormInterface $form): array
@@ -68,6 +71,8 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     }
 
     /**
+     * @param FormConfigInterface<mixed> $formConfig
+     *
      * @return array<Constraint>
      */
     private function getConstraintsForClass(FormConfigInterface $formConfig): array
@@ -81,6 +86,8 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     }
 
     /**
+     * @param FormInterface<mixed> $form
+     *
      * @return list<Constraint>
      */
     private function getConstraintsForClassProperty(FormInterface $form): array
@@ -118,7 +125,8 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     }
 
     /**
-     * @param Constraint[] $constraints
+     * @param FormInterface<mixed> $form
+     * @param Constraint[]         $constraints
      */
     private function handleNullability(Schema $schema, FormInterface $form, array $constraints): void
     {
@@ -135,6 +143,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         $schema->nullable = true;
     }
 
+    /** @param FormInterface<mixed> $form */
     private function describeComposite(Composite $constraint, Schema $schema, FormInterface $form): void
     {
         $this->describeConstraints(
@@ -145,7 +154,8 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     }
 
     /**
-     * @param array<Constraint> $constraints
+     * @param FormInterface<mixed> $form
+     * @param array<Constraint>    $constraints
      */
     private function describeConstraints(array $constraints, Schema $schema, FormInterface $form): void
     {

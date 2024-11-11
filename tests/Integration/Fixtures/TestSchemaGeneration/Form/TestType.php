@@ -34,6 +34,7 @@ use Symfony\Component\Validator\Constraints\Unique;
 
 use function range;
 
+/** @template-extends AbstractType<mixed> */
 final class TestType extends AbstractType
 {
     /**

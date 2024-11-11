@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Image;
 
+/** @template-extends AbstractType<mixed> */
 final class TestFileUpload extends AbstractType
 {
     /**

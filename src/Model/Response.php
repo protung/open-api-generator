@@ -60,8 +60,8 @@ final class Response
     }
 
     /**
-     * @param class-string<FormTypeInterface> $formType
-     * @param array<mixed>                    $formOptions
+     * @param class-string<FormTypeInterface<mixed>> $formType
+     * @param array<string, mixed>                   $formOptions
      */
     public static function for400WithForm(string $formType, array $formOptions = []): self
     {
