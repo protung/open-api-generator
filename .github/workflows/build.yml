@@ -16,6 +16,7 @@ jobs:
         php-versions:
           - 8.2
           - 8.3
+#          - 8.4
     name: PHP ${{ matrix.php-versions }} checks with ${{ matrix.dependencies }} dependencies
     steps:
       - name: Checkout code
