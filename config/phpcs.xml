@@ -13,6 +13,8 @@
     <!-- Ignore warnings and show progress of the run -->
     <arg value="np"/>
 
+    <config name="php_version" value="80200"/>
+
     <!-- inherit rules from: -->
     <rule ref="Doctrine">
         <exclude name="Generic.NamingConventions.ConstructorName"/>
