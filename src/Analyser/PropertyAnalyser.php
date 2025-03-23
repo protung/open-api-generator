@@ -15,6 +15,7 @@ use PHPStan\PhpDocParser\Parser\ConstExprParser;
 use PHPStan\PhpDocParser\Parser\PhpDocParser;
 use PHPStan\PhpDocParser\Parser\TokenIterator;
 use PHPStan\PhpDocParser\Parser\TypeParser;
+use PHPStan\PhpDocParser\ParserConfig;
 use Psl\Iter;
 use Psl\Str;
 use Psl\Type;
@@ -119,7 +120,7 @@ final class PropertyAnalyser
     private function parseDocType(string $docComment): array
     {
         $parser    = $this->getParser();
-        $lexer     = new Lexer();
+        $lexer     = new Lexer(new ParserConfig([]));
         $comment   = $parser->parse(new TokenIterator($lexer->tokenize($docComment)));
         $varValues = $comment->getVarTagValues();
         if (count($varValues) > 1) {
@@ -231,11 +232,15 @@ final class PropertyAnalyser
 
     private function getParser(): PhpDocParser
     {
+        $parserConfig = new ParserConfig([]);
+
         return new PhpDocParser(
+            $parserConfig,
             new TypeParser(
-                new ConstExprParser(),
+                $parserConfig,
+                new ConstExprParser($parserConfig),
             ),
-            new ConstExprParser(),
+            new ConstExprParser($parserConfig),
         );
     }
 }
