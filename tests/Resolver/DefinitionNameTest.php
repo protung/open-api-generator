@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Tests\Resolver;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Protung\OpenApiGenerator\Model\Definition;
 use Protung\OpenApiGenerator\Resolver\DefinitionName;
@@ -25,9 +26,7 @@ final class DefinitionNameTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProviderTestGetName
-     */
+    #[DataProvider('dataProviderTestGetName')]
     public function testGetName(Definition $definition, string $expected): void
     {
         $actual = DefinitionName::getName($definition);

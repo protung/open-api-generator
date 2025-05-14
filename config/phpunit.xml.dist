@@ -4,6 +4,8 @@
          xsi:noNamespaceSchemaLocation="../vendor/phpunit/phpunit/phpunit.xsd"
          colors="true"
          cacheDirectory=".phpunit.cache"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnPhpunitDeprecations="true"
 >
     <php>
         <ini name="error_reporting" value="-1"/>

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Tests\Analyser;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Protung\OpenApiGenerator\Analyser\PropertyAnalyser;
 use Protung\OpenApiGenerator\Analyser\PropertyAnalysisCollectionType;
@@ -170,9 +171,8 @@ final class PropertyAnalyserTest extends TestCase
     /**
      * @param non-empty-string                     $propertyName
      * @param non-empty-list<PropertyAnalysisType> $expected
-     *
-     * @dataProvider dataProviderTestGetPropertyType
      */
+    #[DataProvider('dataProviderTestGetPropertyType')]
     public function testGetPropertyType(string $propertyName, array $expected): void
     {
         $propertyAnalyser = new PropertyAnalyser();
