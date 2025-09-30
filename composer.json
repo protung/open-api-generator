@@ -40,7 +40,7 @@
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^13.0.1",
+        "doctrine/coding-standard": "^14.0.0",
         "ergebnis/composer-normalize": "^2.47.0",
         "php-standard-library/phpstan-extension": "^2.0",
         "phpstan/phpstan": "^2.1.15",
