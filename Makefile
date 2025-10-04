@@ -19,7 +19,7 @@ coding-standard-fix:                                                            
 
 .PHONY: static-analysis
 static-analysis:                                                                ## Run static analysis checks
-	./vendor/bin/phpstan --configuration=config/phpstan.neon
+	./vendor/bin/phpstan --memory-limit=1G --configuration=config/phpstan.neon
 
 .PHONY: static-analysis-update
 static-analysis-update:                                                         ## Update static analysis baselines
