@@ -19,6 +19,7 @@ trait PHPUnitHelper
     {
         return new Callback(
             static function () use ($arguments): bool {
+                /** @var int $call */
                 static $call = 0;
 
                 $expected = $arguments[$call] ?? [];
