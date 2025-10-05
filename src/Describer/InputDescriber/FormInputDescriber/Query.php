@@ -51,7 +51,7 @@ final class Query
 
         return Psl\Vec\flat_map(
             $form->all(),
-            fn (FormInterface $child) => $this->processParametersFromForm($child, $nameResolver),
+            fn (FormInterface $child): array => $this->processParametersFromForm($child, $nameResolver),
         );
     }
 

@@ -147,7 +147,7 @@ final class FormDescriber
         }
 
         $parentForm = $form->getParent();
-        if ($parentForm === null || $parentForm->isRoot() || $parentForm->isRequired() !== false) {
+        if ($parentForm === null || $parentForm->isRoot() || $parentForm->isRequired()) {
             return;
         }
 
@@ -160,7 +160,7 @@ final class FormDescriber
     /** @param FormInterface<mixed> $form */
     private function handleRequiredProperty(Schema $schema, FormInterface $form, NameResolver $nameResolver): void
     {
-        if ($this->isFormPropertyRequired($form, $nameResolver) !== true) {
+        if (! $this->isFormPropertyRequired($form, $nameResolver)) {
             return;
         }
 
@@ -179,14 +179,14 @@ final class FormDescriber
             return false;
         }
 
-        if ($form->getConfig()->getRequired() === false) {
+        if (! $form->getConfig()->getRequired()) {
             return false;
         }
 
         if ($nameResolver instanceof FlatNameResolver) {
             $parentForm = $form->getParent();
 
-            return ! ($parentForm !== null && ! $parentForm->isRoot() && $parentForm->isRequired() === false);
+            return ! ($parentForm !== null && ! $parentForm->isRoot() && ! $parentForm->isRequired());
         }
 
         return true;
