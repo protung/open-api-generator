@@ -1,0 +1,34 @@
+[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+code = "mixed-property-type-coercion"
+start_line = 178
+end_line = 178
+
+[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+code = "mixed-property-type-coercion"
+start_line = 182
+end_line = 182
+
+[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+code = "mixed-property-type-coercion"
+start_line = 188
+end_line = 188
+
+[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+code = "mixed-property-type-coercion"
+start_line = 192
+end_line = 192
+
+[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+code = "mixed-property-type-coercion"
+start_line = 208
+end_line = 208
+
+[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+code = "mixed-property-type-coercion"
+start_line = 212
+end_line = 212
+
+[[entries."tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObjectExampleBuilder.php".issues]]
+code = "never-return"
+start_line = 23
+end_line = 23

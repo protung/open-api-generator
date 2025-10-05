@@ -88,7 +88,7 @@ final class PropertyAnalyser
 
             return Vec\map(
                 $unionTypes,
-                static function (ReflectionNamedType $type) use ($nullable) {
+                static function (ReflectionNamedType $type) use ($nullable): PropertyAnalysisType {
                     if ($type->getName() === 'array') {
                         return PropertyAnalysisCollectionType::forCollection('array', $nullable, null);
                     }
@@ -209,7 +209,7 @@ final class PropertyAnalyser
     }
 
     /**
-     * @return array<PropertyAnalysisType>
+     * @return list<PropertyAnalysisType>
      */
     private function parseUnionType(UnionTypeNode $type): array
     {
@@ -220,7 +220,7 @@ final class PropertyAnalyser
 
         return Vec\map(
             $unionTypes,
-            static function (IdentifierTypeNode $type) use ($nullable) {
+            static function (IdentifierTypeNode $type) use ($nullable): PropertyAnalysisType {
                 if ($type->name === 'array') {
                     return PropertyAnalysisCollectionType::forCollection('array', $nullable, null);
                 }
