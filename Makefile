@@ -19,11 +19,27 @@ coding-standard-fix:                                                            
 
 .PHONY: static-analysis
 static-analysis:                                                                ## Run static analysis checks
-	./vendor/bin/phpstan --configuration=config/phpstan.neon
+	./vendor/bin/phpstan --memory-limit=1G --configuration=config/phpstan.neon
 
 .PHONY: static-analysis-update
 static-analysis-update:                                                         ## Update static analysis baselines
 	./vendor/bin/phpstan --configuration=config/phpstan.neon --generate-baseline=config/phpstan-baseline.neon --allow-empty-baseline
+
+sa-mago-analyze: ## Run Mago analyzer
+	vendor/bin/mago --config config/mago.toml analyze --minimum-fail-level note --fail-on-out-of-sync-baseline
+
+sa-mago-analyze-update: ## Update Mago analyzer baseline
+	vendor/bin/mago --config tools/Mago/mago.toml analyze --generate-baseline --baseline tools/Mago/analyze-baseline.toml
+
+sa-mago-lint: ## Run Mago linter
+	vendor/bin/mago --config config/mago.toml lint --minimum-fail-level note --fail-on-out-of-sync-baseline
+
+#sa-mago-lint-update: ## Update Mago linter baseline
+#	vendor/bin/mago --config tools/Mago/mago.toml lint --generate-baseline --baseline tools/Mago/lint-baseline.toml
+
+sa-mago-lint-fix: ## Apply Mago linter auto fixes
+	vendor/bin/mago --config config/mago.toml lint --fix
+
 
 .PHONY: security-analysis
 security-analysis:                                                              ## Run static analysis security checks

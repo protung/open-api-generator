@@ -44,9 +44,7 @@ final class DefinitionName
             '',
             array_filter(
                 $groups,
-                static function ($group): bool {
-                    return $group !== GroupsExclusionStrategy::DEFAULT_GROUP;
-                },
+                static fn (string $group): bool => $group !== GroupsExclusionStrategy::DEFAULT_GROUP,
             ),
         );
 
