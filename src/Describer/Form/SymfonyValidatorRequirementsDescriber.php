@@ -117,7 +117,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         if ($parentMetadata->hasPropertyMetadata($propertyName)) {
             return Psl\Vec\flat_map(
                 $parentMetadata->getPropertyMetadata($propertyName),
-                static fn (PropertyMetadataInterface $propertyMetadata) => $propertyMetadata->getConstraints(),
+                static fn (PropertyMetadataInterface $propertyMetadata): array => $propertyMetadata->getConstraints(),
             );
         }
 
@@ -134,7 +134,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
             return;
         }
 
-        $constraintClasses = array_map(static fn ($constraint) => $constraint::class, $constraints);
+        $constraintClasses = array_map(static fn (Constraint $constraint): string => $constraint::class, $constraints);
 
         if (in_array(NotNull::class, $constraintClasses, true) || in_array(NotBlank::class, $constraintClasses, true)) {
             return;
@@ -163,7 +163,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
         foreach ($constraints as $constraint) {
             switch (true) {
                 case $constraint instanceof NotBlank:
-                    if ($constraint->allowNull === true) {
+                    if ($constraint->allowNull) {
                         $schema->nullable = true;
                     }
 

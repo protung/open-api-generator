@@ -70,9 +70,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
         $resourcesSchema = new Schema(['type' => Type::ARRAY]);
 
         $resources = array_map(
-            function (Output $resource) {
-                return $this->outputDescriber->describe($resource);
-            },
+            $this->outputDescriber->describe(...),
             $output->embedded(),
         );
 

@@ -1,0 +1,4 @@
+[[entries."src/Model/Security/Definition.php".issues]]
+code = "no-literal-password"
+start_line = 9
+end_line = 9

@@ -77,13 +77,11 @@ final class JMSModel implements Describer
 
         $metadataProperties = Psl\Vec\filter(
             $this->getPropertiesInSerializationGroups($propertyMetadata, $serializationGroups),
-            function (PropertyMetadata $metadataProperty): bool {
-                // filter properties for not current version
-                return ! $this->versionExclusionStrategy->shouldSkipProperty(
-                    $metadataProperty,
-                    SerializationContext::create(),
-                );
-            },
+            // filter properties for not current version
+            fn (PropertyMetadata $metadataProperty): bool => ! $this->versionExclusionStrategy->shouldSkipProperty(
+                $metadataProperty,
+                SerializationContext::create(),
+            ),
         );
 
         $properties = [];
@@ -128,7 +126,7 @@ final class JMSModel implements Describer
             } else {
                 $propertiesSchemas = Psl\Vec\map(
                     $this->getPropertyTypes($metadataProperty),
-                    fn (PropertyAnalysisType $type) => $this->describePropertyInSchema(
+                    fn (PropertyAnalysisType $type): Schema => $this->describePropertyInSchema(
                         $type,
                         $metadata,
                         $metadataProperty,
@@ -206,7 +204,7 @@ final class JMSModel implements Describer
             $property = $objectDescriber->describe(new Definition($propertyType->type(), $serializationGroups));
         }
 
-        if ($propertyType->nullable() === true) {
+        if ($propertyType->nullable()) {
             $property->nullable = true;
         }
 
@@ -263,9 +261,7 @@ final class JMSModel implements Describer
 
         return Psl\Vec\filter(
             $metadataProperties,
-            static function (PropertyMetadata $item) use ($groupsExclusion, $context): bool {
-                return ! $groupsExclusion->shouldSkipProperty($item, $context);
-            },
+            static fn (PropertyMetadata $item): bool => ! $groupsExclusion->shouldSkipProperty($item, $context),
         );
     }
 
