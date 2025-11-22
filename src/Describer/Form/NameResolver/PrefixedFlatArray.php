@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Describer\Form\NameResolver;
 
+use Override;
 use Protung\OpenApiGenerator\Describer\Form\FlatNameResolver;
 use Protung\OpenApiGenerator\Describer\Form\NameResolver\FlatNameResolver as FlatNameResolverTrait;
 use Symfony\Component\Form\FormInterface;
@@ -19,6 +20,7 @@ final class PrefixedFlatArray implements FlatNameResolver
         $this->prefix = $prefix;
     }
 
+    #[Override]
     public function getPropertyName(FormInterface $form): string
     {
         $names = $this->namesFromForm($form);

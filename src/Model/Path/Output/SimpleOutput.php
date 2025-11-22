@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
 use InvalidArgumentException;
+use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output;
@@ -113,6 +114,7 @@ class SimpleOutput implements Output
     /**
      * @return array<string,mixed>
      */
+    #[Override]
     public function example(): array
     {
         return $this->example;
@@ -147,6 +149,7 @@ class SimpleOutput implements Output
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function contentTypes(): array
     {
         return [Output::CONTENT_TYPE_APPLICATION_JSON];

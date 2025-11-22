@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Processor\Path\Symfony;
 
 use InvalidArgumentException;
+use Override;
 use Protung\OpenApiGenerator\Describer\OperationDescriber;
 use Protung\OpenApiGenerator\Model\Path\Input;
 use Protung\OpenApiGenerator\Model\Path\IOField;
@@ -33,6 +34,7 @@ final class PathProcessor implements PathProcessorInterface
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function process(Path $path): array
     {
         $path = Psl\Type\instance_of(SymfonyRoutePath::class)->coerce($path);
@@ -96,6 +98,7 @@ final class PathProcessor implements PathProcessorInterface
         return Input\PathInput::withIOFields(...$ioFields);
     }
 
+    #[Override]
     public function canProcess(Path $path): bool
     {
         return $path instanceof SymfonyRoutePath;

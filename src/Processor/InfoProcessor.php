@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Processor;
 
 use cebe\openapi\spec\Info as InfoSpec;
 use cebe\openapi\spec\OpenApi;
+use Override;
 use Protung\OpenApiGenerator\Model\Specification;
 
 final class InfoProcessor implements Processor
@@ -17,6 +18,7 @@ final class InfoProcessor implements Processor
         $this->apiVersion = $apiVersion;
     }
 
+    #[Override]
     public function process(OpenApi $openApi, Specification $specification): void
     {
         $openApi->info = new InfoSpec(

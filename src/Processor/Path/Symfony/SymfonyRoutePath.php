@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Processor\Path\Symfony;
 
+use Override;
 use Protung\OpenApiGenerator\Model\Callback;
 use Protung\OpenApiGenerator\Model\Path\Input;
 use Protung\OpenApiGenerator\Model\Path\Path;
@@ -65,16 +66,19 @@ final class SymfonyRoutePath implements Path
         return $this->routeName;
     }
 
+    #[Override]
     public function tag(): string
     {
         return $this->tag;
     }
 
+    #[Override]
     public function summary(): string
     {
         return $this->summary;
     }
 
+    #[Override]
     public function description(): string|null
     {
         return $this->description;
@@ -83,11 +87,13 @@ final class SymfonyRoutePath implements Path
     /**
      * @return Input[]
      */
+    #[Override]
     public function input(): array
     {
         return $this->input;
     }
 
+    #[Override]
     public function addInput(Input $input): void
     {
         $this->input[] = $input;
@@ -96,21 +102,25 @@ final class SymfonyRoutePath implements Path
     /**
      * @return Response[]
      */
+    #[Override]
     public function responses(): array
     {
         return $this->responses;
     }
 
+    #[Override]
     public function addResponse(Response $response): void
     {
         $this->responses[] = $response;
     }
 
+    #[Override]
     public function security(): Reference
     {
         return $this->security;
     }
 
+    #[Override]
     public function isDeprecated(): bool
     {
         return $this->deprecated;
@@ -119,6 +129,7 @@ final class SymfonyRoutePath implements Path
     /**
      * @return Callback[]
      */
+    #[Override]
     public function callbacks(): array
     {
         return $this->callbacks;

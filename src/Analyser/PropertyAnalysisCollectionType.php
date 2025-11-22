@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Analyser;
 
+use Override;
+
 final class PropertyAnalysisCollectionType implements PropertyAnalysisType
 {
     private string $type;
@@ -27,11 +29,13 @@ final class PropertyAnalysisCollectionType implements PropertyAnalysisType
         return new self($type, $nullable, $collectionElementsType);
     }
 
+    #[Override]
     public function type(): string
     {
         return $this->type;
     }
 
+    #[Override]
     public function nullable(): bool
     {
         return $this->nullable;
@@ -45,6 +49,7 @@ final class PropertyAnalysisCollectionType implements PropertyAnalysisType
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function parameters(): array
     {
         return [];

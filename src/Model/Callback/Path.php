@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Callback;
 
+use Override;
 use Protung\OpenApiGenerator\Model\Callback;
 use Protung\OpenApiGenerator\Model\Path\Input;
 use Protung\OpenApiGenerator\Model\Response;
@@ -49,16 +50,19 @@ final class Path implements \Protung\OpenApiGenerator\Model\Path\Path
         $this->deprecated  = $deprecated;
     }
 
+    #[Override]
     public function tag(): string
     {
         return $this->tag;
     }
 
+    #[Override]
     public function summary(): string
     {
         return $this->summary;
     }
 
+    #[Override]
     public function description(): string|null
     {
         return $this->description;
@@ -67,11 +71,13 @@ final class Path implements \Protung\OpenApiGenerator\Model\Path\Path
     /**
      * @return Input[]
      */
+    #[Override]
     public function input(): array
     {
         return $this->input;
     }
 
+    #[Override]
     public function addInput(Input $input): void
     {
         $this->input[] = $input;
@@ -80,21 +86,25 @@ final class Path implements \Protung\OpenApiGenerator\Model\Path\Path
     /**
      * @return Response[]
      */
+    #[Override]
     public function responses(): array
     {
         return $this->responses;
     }
 
+    #[Override]
     public function addResponse(Response $response): void
     {
         $this->responses[] = $response;
     }
 
+    #[Override]
     public function security(): Reference
     {
         return $this->security;
     }
 
+    #[Override]
     public function isDeprecated(): bool
     {
         return $this->deprecated;
@@ -103,6 +113,7 @@ final class Path implements \Protung\OpenApiGenerator\Model\Path\Path
     /**
      * @return Callback[]
      */
+    #[Override]
     public function callbacks(): array
     {
         return [];

@@ -81,5 +81,4 @@ ignore = [
     "redundant-logical-operation",
     "redundant-comparison",
     "impossible-null-type-comparison",
-    "missing-override-attribute",
 ]

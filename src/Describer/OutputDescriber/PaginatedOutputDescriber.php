@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
@@ -24,6 +25,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
         $this->outputDescriber = $outputDescriber;
     }
 
+    #[Override]
     public function describe(Output $output): Schema
     {
         $output = Psl\Type\instance_of(PaginatedOutput::class)->coerce($output);
@@ -91,6 +93,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
         );
     }
 
+    #[Override]
     public function supports(Output $output): bool
     {
         return $output instanceof PaginatedOutput;

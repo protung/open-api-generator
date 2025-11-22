@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use Override;
 use Protung\OpenApiGenerator\Model\Path\Output;
 
 final class CollectionOutput implements Output
@@ -36,6 +37,7 @@ final class CollectionOutput implements Output
     /**
      * @return array<mixed>
      */
+    #[Override]
     public function example(): array
     {
         return [$this->output->example()];
@@ -44,6 +46,7 @@ final class CollectionOutput implements Output
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function contentTypes(): array
     {
         return $this->output->contentTypes();

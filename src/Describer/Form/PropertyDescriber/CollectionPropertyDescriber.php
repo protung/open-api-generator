@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Describer\Form\PropertyDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Describer\Form\FormFactory;
 use Protung\OpenApiGenerator\Describer\Form\NameResolver\FormName;
@@ -25,6 +26,7 @@ final class CollectionPropertyDescriber implements PropertyDescriber
         $this->formFactory = $formFactory;
     }
 
+    #[Override]
     public function describe(Schema $schema, FormInterface $form, FormDescriber $formDescriber): void
     {
         $formConfig = $form->getConfig();
@@ -49,6 +51,7 @@ final class CollectionPropertyDescriber implements PropertyDescriber
         $schema->items = $formDescriber->addDeepSchema($subForm, new FormName());
     }
 
+    #[Override]
     public function supports(FormInterface $form): bool
     {
         return $this->isCollection($form->getConfig()->getType());

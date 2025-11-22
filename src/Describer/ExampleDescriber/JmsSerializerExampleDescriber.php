@@ -7,6 +7,7 @@ namespace Protung\OpenApiGenerator\Describer\ExampleDescriber;
 use cebe\openapi\spec\Schema;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Serializer;
+use Override;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Psl;
 
@@ -19,6 +20,7 @@ final class JmsSerializerExampleDescriber implements ExampleDescriber
         $this->jmsSerializer = $jmsSerializer;
     }
 
+    #[Override]
     public function describe(Schema $schema, Output $output): void
     {
         $output = Psl\Type\instance_of(Output\ObjectOutput::class)->coerce($output);
@@ -35,6 +37,7 @@ final class JmsSerializerExampleDescriber implements ExampleDescriber
         $schema->example = $this->jmsSerializer->toArray($exampleObject, $serializationContext);
     }
 
+    #[Override]
     public function supports(Output $output): bool
     {
         return $output instanceof Output\ObjectOutput;

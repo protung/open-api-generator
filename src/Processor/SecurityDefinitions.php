@@ -7,6 +7,7 @@ namespace Protung\OpenApiGenerator\Processor;
 use cebe\openapi\spec\Components;
 use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\SecurityScheme;
+use Override;
 use Protung\OpenApiGenerator\Model\Specification;
 
 use function array_filter;
@@ -14,6 +15,7 @@ use function count;
 
 final class SecurityDefinitions implements Processor
 {
+    #[Override]
     public function process(OpenApi $openApi, Specification $specification): void
     {
         $definitions = [];

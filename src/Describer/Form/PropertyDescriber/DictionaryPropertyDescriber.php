@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Describer\Form\PropertyDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Describer\Form\FormFactory;
 use Protung\OpenApiGenerator\Describer\Form\NameResolver\FormName;
@@ -35,6 +36,7 @@ final class DictionaryPropertyDescriber implements PropertyDescriber
     }
 
     /** @param FormInterface<mixed> $form */
+    #[Override]
     public function describe(Schema $schema, FormInterface $form, FormDescriber $formDescriber): void
     {
         $formConfig = $form->getConfig();
@@ -60,6 +62,7 @@ final class DictionaryPropertyDescriber implements PropertyDescriber
     }
 
     /** @param FormInterface<mixed> $form */
+    #[Override]
     public function supports(FormInterface $form): bool
     {
         $resolvedFormType = $form->getConfig()->getType();

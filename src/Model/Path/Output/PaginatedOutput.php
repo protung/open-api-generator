@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
 
@@ -35,6 +36,7 @@ final class PaginatedOutput implements Output
         return $this->embedded;
     }
 
+    #[Override]
     public function example(): mixed
     {
         // @todo implement
@@ -44,6 +46,7 @@ final class PaginatedOutput implements Output
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function contentTypes(): array
     {
         return [Output::CONTENT_TYPE_APPLICATION_JSON];

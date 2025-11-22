@@ -7,6 +7,7 @@ namespace Protung\OpenApiGenerator\Processor;
 use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\PathItem;
 use cebe\openapi\spec\Paths;
+use Override;
 use Protung\OpenApiGenerator\Model\Path\Path;
 use Protung\OpenApiGenerator\Model\Specification;
 use Protung\OpenApiGenerator\Processor\Path\PathProcessor;
@@ -22,6 +23,7 @@ final class PathsProcessor implements Processor
         $this->pathProcessor = $pathProcessor;
     }
 
+    #[Override]
     public function process(OpenApi $openApi, Specification $specification): void
     {
         $openApiPaths = [];

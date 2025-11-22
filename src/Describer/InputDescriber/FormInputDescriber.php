@@ -8,6 +8,7 @@ use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\RequestBody;
 use cebe\openapi\spec\Schema;
+use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Describer\Form\FormFactory;
 use Protung\OpenApiGenerator\Describer\FormDescriber;
@@ -34,6 +35,7 @@ final class FormInputDescriber implements InputDescriber
         $this->formFactory = $formFactory;
     }
 
+    #[Override]
     public function describe(Input $input, Operation $operation, string $httpMethod): void
     {
         $input = Psl\Type\instance_of(Input\FormInput::class)->coerce($input);
@@ -47,6 +49,7 @@ final class FormInputDescriber implements InputDescriber
         }
     }
 
+    #[Override]
     public function supports(Input $input): bool
     {
         return $input instanceof Input\FormInput;

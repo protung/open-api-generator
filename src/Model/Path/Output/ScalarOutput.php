@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Type;
@@ -48,6 +49,7 @@ final class ScalarOutput implements Output
         return $this;
     }
 
+    #[Override]
     public function example(): bool|float|int|string|null
     {
         return $this->example;
@@ -56,6 +58,7 @@ final class ScalarOutput implements Output
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function contentTypes(): array
     {
         return [$this->contentType];

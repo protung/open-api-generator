@@ -16,6 +16,7 @@ use JMS\Serializer\Metadata\StaticPropertyMetadata;
 use JMS\Serializer\Metadata\VirtualPropertyMetadata;
 use JMS\Serializer\SerializationContext;
 use Metadata\MetadataFactoryInterface;
+use Override;
 use Protung\OpenApiGenerator\Analyser\PropertyAnalyser;
 use Protung\OpenApiGenerator\Analyser\PropertyAnalysisSingleType;
 use Protung\OpenApiGenerator\Analyser\PropertyAnalysisType;
@@ -48,6 +49,7 @@ final class JMSModel implements Describer
         $this->serializeNull            = $serializeNull;
     }
 
+    #[Override]
     public function describeInSchema(Schema $schema, Definition $definition, ObjectDescriber $objectDescriber): void
     {
         $metadata            = $this->getClassMetadata($definition->className());
@@ -329,6 +331,7 @@ final class JMSModel implements Describer
         return $defaultTypes;
     }
 
+    #[Override]
     public function supports(Definition $definition): bool
     {
         return $this->metadataFactory->getMetadataForClass($definition->className()) !== null;

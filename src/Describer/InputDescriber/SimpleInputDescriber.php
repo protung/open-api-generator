@@ -9,6 +9,7 @@ use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\Parameter;
 use cebe\openapi\spec\RequestBody;
 use cebe\openapi\spec\Schema;
+use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Describer\IOFieldDescriber;
 use Protung\OpenApiGenerator\Model\Path\Input;
@@ -27,6 +28,7 @@ final class SimpleInputDescriber implements InputDescriber
         $this->ioFieldDescriber = new IOFieldDescriber();
     }
 
+    #[Override]
     public function describe(Input $input, Operation $operation, string $httpMethod): void
     {
         $input = Psl\Type\instance_of(Input\SimpleInput::class)->coerce($input);
@@ -76,6 +78,7 @@ final class SimpleInputDescriber implements InputDescriber
         }
     }
 
+    #[Override]
     public function supports(Input $input): bool
     {
         return $input instanceof Input\SimpleInput;

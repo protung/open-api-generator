@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
+use Override;
 use Protung\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
 use Protung\OpenApiGenerator\Describer\ObjectDescriber;
 use Protung\OpenApiGenerator\Model\Definition;
@@ -24,6 +25,7 @@ final class ObjectOutputDescriber implements OutputDescriber
         $this->exampleDescriber = $exampleDescriber;
     }
 
+    #[Override]
     public function describe(Output $output): Schema
     {
         $output = Psl\Type\instance_of(ObjectOutput::class)->coerce($output);
@@ -39,6 +41,7 @@ final class ObjectOutputDescriber implements OutputDescriber
         return $schema;
     }
 
+    #[Override]
     public function supports(Output $output): bool
     {
         return $output instanceof ObjectOutput;

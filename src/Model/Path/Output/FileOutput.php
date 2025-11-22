@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use Override;
 use Protung\OpenApiGenerator\Model\Path\Output;
 
 final class FileOutput implements Output
@@ -53,11 +54,13 @@ final class FileOutput implements Output
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function contentTypes(): array
     {
         return [$this->contentType];
     }
 
+    #[Override]
     public function example(): mixed
     {
         // @todo implement

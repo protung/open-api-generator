@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\SerializationGroupAwareOutput;
@@ -76,6 +77,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
         return $this;
     }
 
+    #[Override]
     public function example(): object|null
     {
         return $this->exampleObject;
@@ -84,6 +86,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function serializationGroups(): array
     {
         return $this->serializationGroups;
@@ -92,6 +95,7 @@ final class ObjectOutput implements SerializationGroupAwareOutput
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function contentTypes(): array
     {
         return [Output::CONTENT_TYPE_APPLICATION_JSON];

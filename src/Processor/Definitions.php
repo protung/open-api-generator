@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Processor;
 
 use cebe\openapi\spec\Components;
 use cebe\openapi\spec\OpenApi;
+use Override;
 use Protung\OpenApiGenerator\Model\ModelRegistry;
 use Protung\OpenApiGenerator\Model\Specification;
 
@@ -21,6 +22,7 @@ final class Definitions implements Processor
         $this->modelRegistry = $modelRegistry;
     }
 
+    #[Override]
     public function process(OpenApi $openApi, Specification $specification): void
     {
         $definitions = [];

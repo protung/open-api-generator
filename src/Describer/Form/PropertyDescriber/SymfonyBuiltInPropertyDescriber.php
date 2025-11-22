@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Describer\Form\PropertyDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Override;
 use Protung\OpenApiGenerator\Describer\FormDescriber;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
@@ -22,6 +23,7 @@ use function is_callable;
 final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
 {
     /** @param FormInterface<mixed> $form */
+    #[Override]
     public function describe(Schema $schema, FormInterface $form, FormDescriber $formDescriber): void
     {
         $formConfig = $form->getConfig();
@@ -140,6 +142,7 @@ final class SymfonyBuiltInPropertyDescriber implements PropertyDescriber
     }
 
     /** @param FormInterface<mixed> $form */
+    #[Override]
     public function supports(FormInterface $form): bool
     {
         // we support any type, as we will fallback on string.

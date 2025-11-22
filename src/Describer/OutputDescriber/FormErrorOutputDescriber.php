@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
+use Override;
 use Protung\OpenApiGenerator\Describer\Form\FormFactory;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
@@ -23,6 +24,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
         $this->formFactory = $formFactory;
     }
 
+    #[Override]
     public function describe(Output $output): Schema
     {
         $output = Psl\Type\instance_of(FormErrorOutput::class)->coerce($output);
@@ -100,6 +102,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
         return Psl\Vec\map($form, static fn (FormInterface $child): string => $child->getName());
     }
 
+    #[Override]
     public function supports(Output $output): bool
     {
         return $output instanceof FormErrorOutput;

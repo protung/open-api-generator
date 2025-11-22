@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use Override;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output;
 
@@ -90,6 +91,7 @@ final class RFC7807ErrorOutput extends SimpleOutput
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function contentTypes(): array
     {
         return [Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON];

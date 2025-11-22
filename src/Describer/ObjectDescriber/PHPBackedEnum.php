@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Describer\ObjectDescriber;
 
 use BackedEnum;
 use cebe\openapi\spec\Schema;
+use Override;
 use Protung\OpenApiGenerator\Describer\ObjectDescriber;
 use Protung\OpenApiGenerator\Model\Definition;
 use Psl\Vec;
@@ -15,6 +16,7 @@ use function is_subclass_of;
 
 final class PHPBackedEnum implements Describer
 {
+    #[Override]
     public function describeInSchema(Schema $schema, Definition $definition, ObjectDescriber $objectDescriber): void
     {
         $class = $definition->className();
@@ -36,6 +38,7 @@ final class PHPBackedEnum implements Describer
         );
     }
 
+    #[Override]
     public function supports(Definition $definition): bool
     {
         return is_subclass_of($definition->className(), BackedEnum::class);

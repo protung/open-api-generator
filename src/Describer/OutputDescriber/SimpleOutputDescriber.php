@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
+use Override;
 use Protung\OpenApiGenerator\Describer\IOFieldDescriber;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\Output\SimpleOutput;
@@ -19,6 +20,7 @@ final class SimpleOutputDescriber implements OutputDescriber
         $this->ioFieldDescriber = new IOFieldDescriber();
     }
 
+    #[Override]
     public function describe(Output $output): Schema
     {
         $output = Psl\Type\instance_of(SimpleOutput::class)->coerce($output);
@@ -29,6 +31,7 @@ final class SimpleOutputDescriber implements OutputDescriber
         return $schema;
     }
 
+    #[Override]
     public function supports(Output $output): bool
     {
         return $output instanceof SimpleOutput;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use Override;
 use Protung\OpenApiGenerator\Model\Definition;
 use Protung\OpenApiGenerator\Model\Path\ReferencableOutput as ReferencableOutputInterface;
 use Protung\OpenApiGenerator\Resolver\DefinitionName;
@@ -29,16 +30,19 @@ final class ReferencableOutput implements ReferencableOutputInterface
         return new self($output, self::REFERENCE_PREFIX_SCHEMA . $name);
     }
 
+    #[Override]
     public function referencePath(): string
     {
         return $this->referencePath;
     }
 
+    #[Override]
     public function output(): ObjectOutput
     {
         return $this->output;
     }
 
+    #[Override]
     public function example(): mixed
     {
         return $this->output->example();
@@ -47,6 +51,7 @@ final class ReferencableOutput implements ReferencableOutputInterface
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function contentTypes(): array
     {
         return $this->output->contentTypes();

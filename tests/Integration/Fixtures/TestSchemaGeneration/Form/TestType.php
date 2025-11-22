@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form;
 
+use Override;
 use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\Enum\IntegerBackedEnum;
 use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\Enum\StringBackedEnum;
 use Symfony\Component\Form\AbstractType;
@@ -40,6 +41,7 @@ final class TestType extends AbstractType
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Processor\Path;
 
+use Override;
 use Protung\OpenApiGenerator\Model\Path\Path;
 use RuntimeException;
 
@@ -20,6 +21,7 @@ final class CompoundPathProcessor implements PathProcessor
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function process(Path $path): array
     {
         foreach ($this->pathProcessors as $pathProcessor) {
@@ -31,6 +33,7 @@ final class CompoundPathProcessor implements PathProcessor
         throw new RuntimeException('Can not process path of type ' . $path::class);
     }
 
+    #[Override]
     public function canProcess(Path $path): bool
     {
         foreach ($this->pathProcessors as $pathProcessor) {

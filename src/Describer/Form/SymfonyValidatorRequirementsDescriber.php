@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Describer\Form;
 
 use cebe\openapi\spec\Schema;
+use Override;
 use Protung\OpenApiGenerator\Describer\SpecificationDescriber;
 use Psl;
 use Symfony\Component\Form\FormConfigInterface;
@@ -45,6 +46,7 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
     }
 
     /** @param FormInterface<mixed> $form */
+    #[Override]
     public function describe(Schema $schema, FormInterface $form): void
     {
         $constraints = $this->getConstraints($form);

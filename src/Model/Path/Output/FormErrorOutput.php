@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use Override;
 use Protung\OpenApiGenerator\Model\FormDefinition;
 use Protung\OpenApiGenerator\Model\Path\Output;
 
@@ -24,6 +25,7 @@ final class FormErrorOutput implements Output
         return $this->formDefinition;
     }
 
+    #[Override]
     public function example(): mixed
     {
         // @todo implement
@@ -33,6 +35,7 @@ final class FormErrorOutput implements Output
     /**
      * {@inheritDoc}
      */
+    #[Override]
     public function contentTypes(): array
     {
         return [Output::CONTENT_TYPE_APPLICATION_JSON];
