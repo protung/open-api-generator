@@ -138,6 +138,12 @@ parameters:
 			path: ../tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php
 
 		-
+			rawMessage: Property Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\ComplexObject::$arrayOfScalarUnknowns has unknown class Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\unknown as its type.
+			identifier: class.notFound
+			count: 1
+			path: ../tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php
+
+		-
 			message: '#^Parameter \#1 \$specification of method Protung\\OpenApiGenerator\\Generator\:\:generate\(\) expects Protung\\OpenApiGenerator\\Model\\Specification, mixed given\.$#'
 			identifier: argument.type
 			count: 1

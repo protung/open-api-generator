@@ -40,6 +40,21 @@ final class ComplexObject
     /** @var ChildObject[] */
     public array $arrayOfChildObjectsProperty = [];
 
+    /** @var string[] */
+    public array $arrayOfScalarStrings = [];
+
+    /** @var int[] */
+    public array $arrayOfScalarInts = [];
+
+    /** @var float[] */
+    public array $arrayOfScalarFloats = [];
+
+    /** @var bool[] */
+    public array $arrayOfScalarBools = [];
+
+    /** @var unknown[] */
+    public array $arrayOfScalarUnknowns = [];
+
     public DateTime|null $dateTimeProperty = null;
 
     public DateTimeImmutable|null $dateTimeImmutableProperty = null;

@@ -123,11 +123,11 @@
                                                     },
                                                     "paramInt": {
                                                         "maximum": 13,
-                                                        "exclusiveMaximum": true,
                                                         "minimum": 7,
-                                                        "exclusiveMinimum": true,
                                                         "type": "integer",
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "exclusiveMinimum": true,
+                                                        "exclusiveMaximum": true
                                                     },
                                                     "paramText": {
                                                         "maxLength": 6,
@@ -773,11 +773,11 @@
                                                     },
                                                     "paramInt": {
                                                         "maximum": 13,
-                                                        "exclusiveMaximum": true,
                                                         "minimum": 7,
-                                                        "exclusiveMinimum": true,
                                                         "type": "integer",
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "exclusiveMinimum": true,
+                                                        "exclusiveMaximum": true
                                                     },
                                                     "paramText": {
                                                         "maxLength": 6,
@@ -1294,6 +1294,11 @@
                                                         "inlineObjectStringProperty",
                                                         "inlineObjectIntProperty",
                                                         "arrayOfChildObjectsProperty",
+                                                        "arrayOfScalarStrings",
+                                                        "arrayOfScalarInts",
+                                                        "arrayOfScalarFloats",
+                                                        "arrayOfScalarBools",
+                                                        "arrayOfScalarUnknowns",
                                                         "scalarUnionProperty"
                                                     ],
                                                     "type": "object",
@@ -1412,6 +1417,36 @@
                                                                         "nullable": true
                                                                     }
                                                                 }
+                                                            }
+                                                        },
+                                                        "arrayOfScalarStrings": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "arrayOfScalarInts": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "arrayOfScalarFloats": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "number"
+                                                            }
+                                                        },
+                                                        "arrayOfScalarBools": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "arrayOfScalarUnknowns": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "any"
                                                             }
                                                         },
                                                         "dateTimeProperty": {
@@ -3520,6 +3555,36 @@
                                                 "type": "object"
                                             }
                                         },
+                                        "arrayOfScalarStrings": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "arrayOfScalarInts": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "arrayOfScalarFloats": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "arrayOfScalarBools": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "arrayOfScalarUnknowns": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "any"
+                                            }
+                                        },
                                         "dateTimeProperty": {
                                             "type": "string",
                                             "format": "date-time",
@@ -3589,6 +3654,11 @@
                                         "inlineObjectStringProperty",
                                         "inlineObjectIntProperty",
                                         "arrayOfChildObjectsProperty",
+                                        "arrayOfScalarStrings",
+                                        "arrayOfScalarInts",
+                                        "arrayOfScalarFloats",
+                                        "arrayOfScalarBools",
+                                        "arrayOfScalarUnknowns",
                                         "scalarUnionProperty"
                                     ],
                                     "type": "object"
@@ -4444,6 +4514,36 @@
                                                 "type": "object"
                                             }
                                         },
+                                        "arrayOfScalarStrings": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "arrayOfScalarInts": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "arrayOfScalarFloats": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "arrayOfScalarBools": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "arrayOfScalarUnknowns": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "any"
+                                            }
+                                        },
                                         "dateTimeProperty": {
                                             "type": "string",
                                             "format": "date-time",
@@ -4513,6 +4613,11 @@
                                         "inlineObjectStringProperty",
                                         "inlineObjectIntProperty",
                                         "arrayOfChildObjectsProperty",
+                                        "arrayOfScalarStrings",
+                                        "arrayOfScalarInts",
+                                        "arrayOfScalarFloats",
+                                        "arrayOfScalarBools",
+                                        "arrayOfScalarUnknowns",
                                         "scalarUnionProperty"
                                     ],
                                     "type": "object",
@@ -4543,6 +4648,11 @@
                                                 "inner_child_property": null
                                             }
                                         ],
+                                        "array_of_scalar_strings": [],
+                                        "array_of_scalar_ints": [],
+                                        "array_of_scalar_floats": [],
+                                        "array_of_scalar_bools": [],
+                                        "array_of_scalar_unknowns": [],
                                         "date_time_property": "2020-06-01T14:00:00+00:00",
                                         "date_time_immutable_property": null,
                                         "date_time_interface_property": null,
@@ -4691,6 +4801,36 @@
                                                 "type": "object"
                                             }
                                         },
+                                        "arrayOfScalarStrings": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "arrayOfScalarInts": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "arrayOfScalarFloats": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "arrayOfScalarBools": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "arrayOfScalarUnknowns": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "any"
+                                            }
+                                        },
                                         "dateTimeProperty": {
                                             "type": "string",
                                             "format": "date-time",
@@ -4761,6 +4901,11 @@
                                         "inlineObjectStringProperty",
                                         "inlineObjectIntProperty",
                                         "arrayOfChildObjectsProperty",
+                                        "arrayOfScalarStrings",
+                                        "arrayOfScalarInts",
+                                        "arrayOfScalarFloats",
+                                        "arrayOfScalarBools",
+                                        "arrayOfScalarUnknowns",
                                         "scalarUnionProperty"
                                     ],
                                     "type": "object",
@@ -4794,6 +4939,11 @@
                                                 "inner_child_property": null
                                             }
                                         ],
+                                        "array_of_scalar_strings": [],
+                                        "array_of_scalar_ints": [],
+                                        "array_of_scalar_floats": [],
+                                        "array_of_scalar_bools": [],
+                                        "array_of_scalar_unknowns": [],
                                         "date_time_property": "2020-06-01T14:00:00+00:00",
                                         "date_time_immutable_property": null,
                                         "date_time_interface_property": null,
@@ -4929,6 +5079,36 @@
                                                     "type": "object"
                                                 }
                                             },
+                                            "arrayOfScalarStrings": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "arrayOfScalarInts": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "arrayOfScalarFloats": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "arrayOfScalarBools": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "arrayOfScalarUnknowns": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "any"
+                                                }
+                                            },
                                             "dateTimeProperty": {
                                                 "type": "string",
                                                 "format": "date-time",
@@ -4998,6 +5178,11 @@
                                             "inlineObjectStringProperty",
                                             "inlineObjectIntProperty",
                                             "arrayOfChildObjectsProperty",
+                                            "arrayOfScalarStrings",
+                                            "arrayOfScalarInts",
+                                            "arrayOfScalarFloats",
+                                            "arrayOfScalarBools",
+                                            "arrayOfScalarUnknowns",
                                             "scalarUnionProperty"
                                         ],
                                         "type": "object",
@@ -5028,6 +5213,11 @@
                                                     "inner_child_property": null
                                                 }
                                             ],
+                                            "array_of_scalar_strings": [],
+                                            "array_of_scalar_ints": [],
+                                            "array_of_scalar_floats": [],
+                                            "array_of_scalar_bools": [],
+                                            "array_of_scalar_unknowns": [],
                                             "date_time_property": "2020-06-01T14:00:00+00:00",
                                             "date_time_immutable_property": null,
                                             "date_time_interface_property": null,
@@ -5064,6 +5254,11 @@
                                                     "inner_child_property": null
                                                 }
                                             ],
+                                            "array_of_scalar_strings": [],
+                                            "array_of_scalar_ints": [],
+                                            "array_of_scalar_floats": [],
+                                            "array_of_scalar_bools": [],
+                                            "array_of_scalar_unknowns": [],
                                             "date_time_property": "2020-06-01T14:00:00+00:00",
                                             "date_time_immutable_property": null,
                                             "date_time_interface_property": null,
@@ -5336,6 +5531,36 @@
                                                                             "type": "object"
                                                                         }
                                                                     },
+                                                                    "arrayOfScalarStrings": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "arrayOfScalarInts": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "integer"
+                                                                        }
+                                                                    },
+                                                                    "arrayOfScalarFloats": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "number"
+                                                                        }
+                                                                    },
+                                                                    "arrayOfScalarBools": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "boolean"
+                                                                        }
+                                                                    },
+                                                                    "arrayOfScalarUnknowns": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "any"
+                                                                        }
+                                                                    },
                                                                     "dateTimeProperty": {
                                                                         "type": "string",
                                                                         "format": "date-time",
@@ -5405,6 +5630,11 @@
                                                                     "inlineObjectStringProperty",
                                                                     "inlineObjectIntProperty",
                                                                     "arrayOfChildObjectsProperty",
+                                                                    "arrayOfScalarStrings",
+                                                                    "arrayOfScalarInts",
+                                                                    "arrayOfScalarFloats",
+                                                                    "arrayOfScalarBools",
+                                                                    "arrayOfScalarUnknowns",
                                                                     "scalarUnionProperty"
                                                                 ],
                                                                 "type": "object"
@@ -5542,6 +5772,36 @@
                                                                             "type": "object"
                                                                         }
                                                                     },
+                                                                    "arrayOfScalarStrings": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "arrayOfScalarInts": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "integer"
+                                                                        }
+                                                                    },
+                                                                    "arrayOfScalarFloats": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "number"
+                                                                        }
+                                                                    },
+                                                                    "arrayOfScalarBools": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "boolean"
+                                                                        }
+                                                                    },
+                                                                    "arrayOfScalarUnknowns": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "any"
+                                                                        }
+                                                                    },
                                                                     "dateTimeProperty": {
                                                                         "type": "string",
                                                                         "format": "date-time",
@@ -5612,6 +5872,11 @@
                                                                     "inlineObjectStringProperty",
                                                                     "inlineObjectIntProperty",
                                                                     "arrayOfChildObjectsProperty",
+                                                                    "arrayOfScalarStrings",
+                                                                    "arrayOfScalarInts",
+                                                                    "arrayOfScalarFloats",
+                                                                    "arrayOfScalarBools",
+                                                                    "arrayOfScalarUnknowns",
                                                                     "scalarUnionProperty"
                                                                 ],
                                                                 "type": "object"
@@ -7153,6 +7418,36 @@
                                                 "type": "object"
                                             }
                                         },
+                                        "arrayOfScalarStrings": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "arrayOfScalarInts": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "arrayOfScalarFloats": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "arrayOfScalarBools": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "arrayOfScalarUnknowns": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "any"
+                                            }
+                                        },
                                         "dateTimeProperty": {
                                             "type": "string",
                                             "format": "date-time",
@@ -7222,6 +7517,11 @@
                                         "inlineObjectStringProperty",
                                         "inlineObjectIntProperty",
                                         "arrayOfChildObjectsProperty",
+                                        "arrayOfScalarStrings",
+                                        "arrayOfScalarInts",
+                                        "arrayOfScalarFloats",
+                                        "arrayOfScalarBools",
+                                        "arrayOfScalarUnknowns",
                                         "scalarUnionProperty"
                                     ],
                                     "type": "object"
@@ -7353,6 +7653,36 @@
                                                     "type": "object"
                                                 }
                                             },
+                                            "arrayOfScalarStrings": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "arrayOfScalarInts": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "arrayOfScalarFloats": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "arrayOfScalarBools": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "arrayOfScalarUnknowns": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "any"
+                                                }
+                                            },
                                             "dateTimeProperty": {
                                                 "type": "string",
                                                 "format": "date-time",
@@ -7422,6 +7752,11 @@
                                             "inlineObjectStringProperty",
                                             "inlineObjectIntProperty",
                                             "arrayOfChildObjectsProperty",
+                                            "arrayOfScalarStrings",
+                                            "arrayOfScalarInts",
+                                            "arrayOfScalarFloats",
+                                            "arrayOfScalarBools",
+                                            "arrayOfScalarUnknowns",
                                             "scalarUnionProperty"
                                         ],
                                         "type": "object"
@@ -13604,6 +13939,36 @@
                             "type": "object"
                         }
                     },
+                    "arrayOfScalarStrings": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "arrayOfScalarInts": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "arrayOfScalarFloats": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "arrayOfScalarBools": {
+                        "type": "array",
+                        "items": {
+                            "type": "boolean"
+                        }
+                    },
+                    "arrayOfScalarUnknowns": {
+                        "type": "array",
+                        "items": {
+                            "type": "any"
+                        }
+                    },
                     "dateTimeProperty": {
                         "type": "string",
                         "format": "date-time",
@@ -13673,6 +14038,11 @@
                     "inlineObjectStringProperty",
                     "inlineObjectIntProperty",
                     "arrayOfChildObjectsProperty",
+                    "arrayOfScalarStrings",
+                    "arrayOfScalarInts",
+                    "arrayOfScalarFloats",
+                    "arrayOfScalarBools",
+                    "arrayOfScalarUnknowns",
                     "scalarUnionProperty"
                 ],
                 "type": "object"

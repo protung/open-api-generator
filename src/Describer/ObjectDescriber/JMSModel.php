@@ -28,6 +28,7 @@ use RuntimeException;
 
 use function array_key_exists;
 use function array_keys;
+use function class_exists;
 use function count;
 use function in_array;
 
@@ -122,9 +123,19 @@ final class JMSModel implements Describer
 
             $type = $this->getNestedTypeInArray($metadataProperty);
             if ($type !== null) {
-                $property        = new Schema([]);
-                $property->type  = Type::ARRAY;
-                $property->items = $objectDescriber->describe(new Definition($type, $serializationGroups));
+                $property       = new Schema([]);
+                $property->type = Type::ARRAY;
+                if (class_exists($type)) {
+                    $property->items = $objectDescriber->describe(new Definition($type, $serializationGroups));
+                } else {
+                    $property->items = match ($type) {
+                        'string' => new Schema(['type' => Type::STRING]),
+                        'int', 'integer' => new Schema(['type' => Type::INTEGER]),
+                        'bool', 'boolean' => new Schema(['type' => Type::BOOLEAN]),
+                        'float', 'double' => new Schema(['type' => Type::NUMBER]),
+                        default =>  new Schema(['type' => Type::ANY]),
+                    };
+                }
             } else {
                 $propertiesSchemas = Psl\Vec\map(
                     $this->getPropertyTypes($metadataProperty),

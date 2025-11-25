@@ -18,6 +18,16 @@ Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\J
       inline: true
     arrayOfChildObjectsProperty:
       type: array<Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\ChildObject>
+    arrayOfScalarStrings:
+      type: array<string>
+    arrayOfScalarInts:
+      type: array<int>
+    arrayOfScalarFloats:
+      type: array<float>
+    arrayOfScalarBools:
+      type: array<bool>
+    arrayOfScalarUnknowns:
+      type: array<unknown>
     dateTimeProperty: ~
     dateTimeImmutableProperty: ~
     dateTimeInterfaceProperty: ~
