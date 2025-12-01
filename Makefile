@@ -26,7 +26,7 @@ sa-phpstan-update:                                                         ## Up
 sa-mago: sa-mago-lint sa-mago-analyze
 
 sa-mago-lint: ## Run Mago linter
-	vendor/bin/mago --config config/mago.toml lint --minimum-fail-level note --baseline config/mago-lint-baseline.toml #--fail-on-out-of-sync-baseline
+	vendor/bin/mago --config config/mago.toml lint --minimum-fail-level note --baseline config/mago-lint-baseline.toml --fail-on-out-of-sync-baseline
 
 sa-mago-lint-update: ## Update Mago linter baseline
 	vendor/bin/mago --config config/mago.toml lint --minimum-fail-level note --generate-baseline --baseline config/mago-lint-baseline.toml

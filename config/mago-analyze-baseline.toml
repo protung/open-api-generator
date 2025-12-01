@@ -1,34 +1,43 @@
-[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
-code = "mixed-property-type-coercion"
-start_line = 180
-end_line = 180
+variant = "loose"
 
-[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+[[issues]]
+file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
 code = "mixed-property-type-coercion"
-start_line = 184
-end_line = 184
+message = "A value with a less specific type `nonnull` is being assigned to property `$$maxItems` (int)."
+count = 1
 
-[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+[[issues]]
+file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
 code = "mixed-property-type-coercion"
-start_line = 190
-end_line = 190
+message = "A value with a less specific type `nonnull` is being assigned to property `$$maxLength` (int)."
+count = 1
 
-[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+[[issues]]
+file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
 code = "mixed-property-type-coercion"
-start_line = 194
-end_line = 194
+message = "A value with a less specific type `nonnull` is being assigned to property `$$maxProperties` (int)."
+count = 1
 
-[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+[[issues]]
+file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
 code = "mixed-property-type-coercion"
-start_line = 210
-end_line = 210
+message = "A value with a less specific type `nonnull` is being assigned to property `$$minItems` (int)."
+count = 1
 
-[[entries."src/Describer/Form/SymfonyValidatorRequirementsDescriber.php".issues]]
+[[issues]]
+file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
 code = "mixed-property-type-coercion"
-start_line = 214
-end_line = 214
+message = "A value with a less specific type `nonnull` is being assigned to property `$$minLength` (int)."
+count = 1
 
-[[entries."tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObjectExampleBuilder.php".issues]]
+[[issues]]
+file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
+code = "mixed-property-type-coercion"
+message = "A value with a less specific type `nonnull` is being assigned to property `$$minProperties` (int)."
+count = 1
+
+[[issues]]
+file = "tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObjectExampleBuilder.php"
 code = "never-return"
-start_line = 23
-end_line = 23
+message = "Cannot return value with type 'never' from this function."
+count = 1

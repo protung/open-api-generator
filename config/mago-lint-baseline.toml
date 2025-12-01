@@ -1,4 +1,7 @@
-[[entries."src/Model/Security/Definition.php".issues]]
+variant = "loose"
+
+[[issues]]
+file = "src/Model/Security/Definition.php"
 code = "no-literal-password"
-start_line = 9
-end_line = 9
+message = "Literal passwords or sensitive data should not be stored in code."
+count = 1
