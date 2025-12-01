@@ -19,14 +19,14 @@ use Psl\Json;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactoryBuilder;
-use Symfony\Component\Routing\Loader\XmlFileLoader;
+use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Validator\ValidatorBuilder;
 
 final class GenerateSchemaTest extends TestCase
 {
     private static function createGenerator(string $apiVersion): Generator
     {
-        $routes = (new XmlFileLoader(new FileLocator(__DIR__ . '/Fixtures/TestSchemaGeneration/')))->load('routes.xml');
+        $routes = (new YamlFileLoader(new FileLocator(__DIR__ . '/Fixtures/TestSchemaGeneration/')))->load('routes.yaml');
 
         $validator = (new ValidatorBuilder())->getValidator();
 

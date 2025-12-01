@@ -49,7 +49,7 @@ final class TestType extends AbstractType
             ->add('paramBoolean', TestBooleanType::class)
             ->add('paramCheckbox', CheckboxType::class)
             ->add('paramInt', IntegerType::class, ['constraints' => [new GreaterThan(7), new LessThan(13)]])
-            ->add('paramText', TextType::class, ['constraints' => [new Length(['min' => 4, 'max' => 6])]])
+            ->add('paramText', TextType::class, ['constraints' => [new Length(min: 4, max: 6)]])
             ->add('paramHidden', HiddenType::class)
             ->add(
                 'paramNumber',
@@ -98,7 +98,7 @@ final class TestType extends AbstractType
                 CollectionType::class,
                 [
                     'entry_type' => TextType::class,
-                    'constraints' => [new Count(['min' => 3, 'max' => 44])],
+                    'constraints' => [new Count(min: 3, max: 44)],
                 ],
             )
             ->add('paramCustomCollection', TestCustomCollectionType::class)
@@ -108,7 +108,7 @@ final class TestType extends AbstractType
                 TestInnerType::class,
                 [
                     'constraints' => [
-                        new Count(['min' => 3, 'max' => 44]),
+                        new Count(min: 3, max: 44),
                     ],
                 ],
             )

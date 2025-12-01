@@ -23,7 +23,7 @@ final class TestNullabilityType extends AbstractType
         $builder
             ->add('paramNotNullable1', TextType::class, ['constraints' => [new NotNull()]])
             ->add('paramNotNullable2', TextType::class, ['constraints' => [new NotBlank()]])
-            ->add('paramNullable1', TextType::class, ['constraints' => [new NotBlank(['allowNull' => true])]])
+            ->add('paramNullable1', TextType::class, ['constraints' => [new NotBlank(allowNull: true)]])
             ->add('paramNullable2', TextType::class);
     }
 }
