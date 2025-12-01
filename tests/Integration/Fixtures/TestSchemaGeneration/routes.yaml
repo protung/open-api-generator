@@ -1,0 +1,119 @@
+api_test_headers:
+  path: /api/test/headers
+  methods: [GET]
+
+api_test_get_one_item:
+  path: /api/test/item/{id}
+  methods: [GET]
+
+api_test_custom_query_params:
+  path: /api/test/custom-query-params
+  methods: [GET]
+
+api_test_custom_path_params:
+  path: /api/test/custom-path-params/{enum}/{pattern}
+  methods: [GET]
+  requirements:
+    enum: 'de|en'
+    pattern: '^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$'
+
+api_test_custom_responses:
+  path: /api/test/responses
+  methods: [POST]
+
+api_test_custom_error_responses:
+  path: /api/test/error-responses
+  methods: [PUT]
+
+api_test_custom_polymorphic_responses:
+  path: /api/test/polymorphic-responses
+  methods: [POST]
+
+api_test_paginated_response:
+  path: /api/test/paginated-response
+  methods: [GET]
+
+api_test_referenced_response:
+  path: /api/test/referenced-response
+  methods: [GET]
+
+api_test_multiple_methods:
+  path: /api/test/multiple/methods
+  methods: [GET, POST]
+
+api_test_post_with_form:
+  path: /api/test/with-form
+  methods: [POST]
+
+api_test_post_with_form_with_constraints:
+  path: /api/test/with-form-with-constraints
+  methods: [POST]
+
+api_test_patch_with_form:
+  path: /api/test/with-form
+  methods: [PATCH]
+
+api_test_patch_with_form_with_constraints:
+  path: /api/test/with-form-with-constraints
+  methods: [PATCH]
+
+api_test_post_with_file_upload:
+  path: /api/test/with-file-upload
+  methods: [POST]
+
+api_test_post_with_file_upload_optional:
+  path: /api/test/with-file-upload-optional
+  methods: [POST]
+
+api_test_post_with_form_with_data_class:
+  path: /api/test/with-data-class-form
+  methods: [POST]
+
+api_test_post_with_multiple_form_inputs:
+  path: /api/test/with-multiple-form-inputs
+  methods: [POST]
+
+api_test_get_not_described_object:
+  path: /api/test/not-described-object
+  methods: [GET]
+
+api_test_get_output_object_example:
+  path: /api/test/output/object/example
+  methods: [GET]
+
+api_test_get_with_file_output:
+  path: /api/test/with-file-output
+  methods: [GET]
+
+api_test_callbacks:
+  path: /api/test/callbacks
+  methods: [GET]
+
+api_test_post_simple_object_input_and_output:
+  path: /api/test/simple-object-input-output
+  methods: [POST]
+
+api_test_post_enums_input_and_output:
+  path: /api/test/enums-input-output
+  methods: [POST]
+
+api_test_nullability:
+  path: /api/test/nullability
+  methods: [GET, POST, PATCH]
+
+api_test_required:
+  path: /api/test/required
+  methods: [GET, POST, PATCH]
+
+api_test_form_definition_options:
+  path: /api/test/form-definition-options
+  methods: [GET, POST]
+
+api_test_form_root_dictionary_type_body:
+  path: /api/test/root-dictionary-type
+  methods: [POST]
+
+api_test_form_root_dictionary_type_query:
+  path: /api/test/root-dictionary-type
+  methods: [GET]
+

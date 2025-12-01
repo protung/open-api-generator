@@ -28,13 +28,11 @@ final class TestFileUpload extends AbstractType
                 [
                     'constraints' => [
                         new Image(
-                            [
-                                'maxSize' => 1234,
-                                'minWidth' => 100,
-                                'maxWidth' => 200,
-                                'minHeight' => 300,
-                                'maxHeight' => 400,
-                            ],
+                            maxSize: 1234,
+                            minWidth: 100,
+                            maxWidth: 200,
+                            maxHeight: 400,
+                            minHeight: 300,
                         ),
                     ],
                 ],
@@ -46,13 +44,11 @@ final class TestFileUpload extends AbstractType
                     'required' => false,
                     'constraints' => [
                         new File(
-                            [
-                                'mimeTypes' => [
-                                    'application/pdf',
-                                    'image/png',
-                                    'image/jpeg',
-                                ],
-                                'maxSize' => '5Mi',
+                            maxSize: '5Mi',
+                            mimeTypes: [
+                                'application/pdf',
+                                'image/png',
+                                'image/jpeg',
                             ],
                         ),
                     ],

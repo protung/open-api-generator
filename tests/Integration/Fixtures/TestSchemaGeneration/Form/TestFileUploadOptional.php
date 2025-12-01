@@ -26,7 +26,7 @@ final class TestFileUploadOptional extends AbstractType
                 FileType::class,
                 [
                     'required' => false,
-                    'constraints' => new File(['maxSize' => 1023]),
+                    'constraints' => new File(maxSize: 1023),
                 ],
             )
             ->add('paramExtra', TextType::class);
