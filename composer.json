@@ -43,7 +43,7 @@
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
-        "carthage-software/mago": "^1.0.0-rc.9",
+        "carthage-software/mago": "^1.0.0-rc.13",
         "doctrine/coding-standard": "^14.0.0",
         "ergebnis/composer-normalize": "^2.48.2",
         "php-standard-library/phpstan-extension": "^2.0.2",
