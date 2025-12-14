@@ -80,7 +80,7 @@ final class TestType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => ['a', 'b'],
-                    'choice_value' => static fn (string|null $choice): string => 'choice_value_with_callable: ' . $choice,
+                    'choice_value' => static fn (string|null $choice): string => 'choice_value_with_callable: ' . ($choice ?? 'null'),
                 ],
             )
             ->add(
@@ -88,7 +88,7 @@ final class TestType extends AbstractType
                 ChoiceType::class,
                 [
                     'choice_loader' => new CallbackChoiceLoader(static fn (): array => [1, 2, 3]),
-                    'choice_value' => static fn (string|null $choice): string => 'choice_value_with_loader_and_callable: ' . $choice,
+                    'choice_value' => static fn (string|null $choice): string => 'choice_value_with_loader_and_callable: ' . ($choice ?? 'null'),
                 ],
             )
             ->add('paramChoiceWithMultiple', ChoiceType::class, ['choices' => ['a', 'b'], 'multiple' => true])
