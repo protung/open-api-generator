@@ -34,7 +34,7 @@
         "jms/serializer": "^3.30.0",
         "myclabs/deep-copy": "^1.10",
         "phpstan/phpdoc-parser": "^2.0.0",
-        "symfony/form": "^6.4 || ^7.2",
+        "symfony/form": "^6.4 || ^7.4 || ^8.0",
         "symfony/polyfill-php83": "^1.33",
         "symfony/polyfill-php84": "^1.33",
         "symfony/polyfill-php85": "^1.33",
@@ -43,22 +43,22 @@
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
-        "carthage-software/mago": "^1.0.0-rc.9",
+        "carthage-software/mago": "^1.0.0-rc.13",
         "doctrine/coding-standard": "^14.0.0",
         "ergebnis/composer-normalize": "^2.48.2",
         "php-standard-library/phpstan-extension": "^2.0.2",
-        "phpstan/phpstan": "^2.1.32",
+        "phpstan/phpstan": "^2.1.33",
         "phpstan/phpstan-deprecation-rules": "^2.0.3",
-        "phpstan/phpstan-phpunit": "^2.0.8",
+        "phpstan/phpstan-phpunit": "^2.0.10",
         "phpstan/phpstan-strict-rules": "^2.0.7",
         "phpstan/phpstan-symfony": "^2.0.9",
         "phpstan/phpstan-webmozart-assert": "^2.0.0",
-        "phpunit/phpunit": "^11.5.45",
+        "phpunit/phpunit": "^11.5.46",
         "roave/security-advisories": "dev-master",
-        "symfony/config": "^6.4 || ^7.4 || ^8.0",
+        "symfony/config": "^6.4 || ^7.4 || ^8.0.1",
         "symfony/options-resolver": "^6.4 || ^7.4 || ^8.0",
         "symfony/var-dumper": "^6.4 || ^7.4 || ^8.0",
-        "symfony/yaml": "^6.4 || ^7.4 || ^8.0"
+        "symfony/yaml": "^6.4 || ^7.4.1 || ^8.0"
     },
     "prefer-stable": true,
     "autoload": {

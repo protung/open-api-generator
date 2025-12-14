@@ -69,8 +69,10 @@ final class PropertyAnalyser
 
         $property = $reflection->getProperty($propertyName);
 
+        $propertyType = $property->getType();
+
         // Property has no native type
-        if ($property->getType() === null) {
+        if ($propertyType === null) {
             if ($property->getDocComment() !== false) {
                 return $this->parseDocType($property->getDocComment());
             }
@@ -78,8 +80,8 @@ final class PropertyAnalyser
             return [PropertyAnalysisSingleType::forSingleMixedValue()];
         }
 
-        if ($property->getType() instanceof ReflectionUnionType) {
-            $types = $property->getType()->getTypes();
+        if ($propertyType instanceof ReflectionUnionType) {
+            $types = $propertyType->getTypes();
 
             $nullable = Iter\any($types, static fn (ReflectionNamedType|ReflectionIntersectionType $type): bool => $type instanceof ReflectionNamedType && $type->getName() === 'null');
             // @todo support intersection types
@@ -98,7 +100,7 @@ final class PropertyAnalyser
             );
         }
 
-        $propertyType = Type\instance_of(ReflectionNamedType::class)->coerce($property->getType());
+        $propertyType = Type\instance_of(ReflectionNamedType::class)->coerce($propertyType);
 
         // Property has scalar native type
         if ($propertyType->getName() !== 'array') {

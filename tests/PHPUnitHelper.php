@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Tests;
 
 use PHPUnit\Framework\Constraint\Callback;
+use PHPUnit\Framework\TestCase;
 
 use function func_get_args;
 
+/** @require-extends TestCase */
 trait PHPUnitHelper
 {
     /**

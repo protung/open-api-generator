@@ -1,39 +1,9 @@
 variant = "loose"
 
 [[issues]]
-file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `nonnull` is being assigned to property `$$maxItems` (int)."
-count = 1
-
-[[issues]]
-file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `nonnull` is being assigned to property `$$maxLength` (int)."
-count = 1
-
-[[issues]]
-file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `nonnull` is being assigned to property `$$maxProperties` (int)."
-count = 1
-
-[[issues]]
-file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `nonnull` is being assigned to property `$$minItems` (int)."
-count = 1
-
-[[issues]]
-file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `nonnull` is being assigned to property `$$minLength` (int)."
-count = 1
-
-[[issues]]
-file = "src/Describer/Form/SymfonyValidatorRequirementsDescriber.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `nonnull` is being assigned to property `$$minProperties` (int)."
+file = "src/Processor/PathsProcessor.php"
+code = "string-member-selector"
+message = "This member selector uses a non-literal string type (`string`); its specific value cannot be statically determined."
 count = 1
 
 [[issues]]

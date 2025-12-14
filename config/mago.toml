@@ -29,7 +29,6 @@ excessive-parameter-list = { enabled = false }
 no-boolean-flag-parameter = { enabled = false }
 no-else-clause = { enabled = false }
 prefer-early-continue = { enabled = false }
-strict-assertions = { enabled = false }
 class-name = { enabled = false }
 interface-name = { enabled = false }
 trait-name = { enabled = false }
@@ -50,7 +49,6 @@ perform-heuristic-checks = true
 ignore = [
     "unhandled-thrown-type",
     "excess-template-parameter",
-    "string-member-selector",
     "mixed-argument",
     "invalid-argument",
     "invalid-property-access",
@@ -63,10 +61,10 @@ ignore = [
     "possibly-invalid-argument",
     "property-type-coercion",
     "redundant-condition",
-    "possibly-null-operand",
+    "mixed-property-type-coercion",
+    "redundant-type-comparison",
     "non-existent-method",
     "possibly-false-argument",
-    "possible-method-access-on-null",
     "invalid-type-cast",
     "possibly-static-access-on-interface",
     "possibly-null-argument",
