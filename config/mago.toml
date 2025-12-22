@@ -75,7 +75,6 @@ ignore = [
     "less-specific-nested-argument-type",
     "less-specific-return-statement",
     "less-specific-argument",
-    "invalid-operand",
     "redundant-logical-operation",
     "redundant-comparison",
     "impossible-null-type-comparison",

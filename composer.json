@@ -43,19 +43,19 @@
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
-        "carthage-software/mago": "^1.0.0-rc.13",
+        "carthage-software/mago": "^1.0.1",
         "doctrine/coding-standard": "^14.0.0",
         "ergebnis/composer-normalize": "^2.48.2",
         "php-standard-library/phpstan-extension": "^2.0.2",
         "phpstan/phpstan": "^2.1.33",
         "phpstan/phpstan-deprecation-rules": "^2.0.3",
-        "phpstan/phpstan-phpunit": "^2.0.10",
+        "phpstan/phpstan-phpunit": "^2.0.11",
         "phpstan/phpstan-strict-rules": "^2.0.7",
         "phpstan/phpstan-symfony": "^2.0.9",
         "phpstan/phpstan-webmozart-assert": "^2.0.0",
         "phpunit/phpunit": "^11.5.46",
         "roave/security-advisories": "dev-master",
-        "symfony/config": "^6.4 || ^7.4 || ^8.0.1",
+        "symfony/config": "^6.4 || ^7.4 || ^8.0",
         "symfony/options-resolver": "^6.4 || ^7.4 || ^8.0",
         "symfony/var-dumper": "^6.4 || ^7.4 || ^8.0",
         "symfony/yaml": "^6.4 || ^7.4.1 || ^8.0"

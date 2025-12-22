@@ -29,9 +29,7 @@ trait FlatNameResolver
 
         array_pop($names);
 
-        $names = array_reverse($names);
-
-        return $names;
+        return array_reverse($names);
     }
 
     /**
