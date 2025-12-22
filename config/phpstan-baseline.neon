@@ -72,9 +72,9 @@ parameters:
 			path: ../src/Describer/InputDescriber/FormInputDescriber.php
 
 		-
-			message: '#^Cannot access offset ''name'' on mixed\.$#'
+			rawMessage: Cannot access offset 'name' on mixed.
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 2
+			count: 3
 			path: ../src/Describer/ObjectDescriber/JMSModel.php
 
 		-
