@@ -6,15 +6,13 @@ namespace Protung\OpenApiGenerator\Describer\Form\NameResolver;
 
 use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
-use Protung\OpenApiGenerator\Describer\Form\FlatNameResolver;
-use Protung\OpenApiGenerator\Describer\Form\NameResolver\FlatNameResolver as FlatNameResolverTrait;
 use Symfony\Component\Form\FormInterface;
 
 use function array_shift;
 
-final class FlatArray implements FlatNameResolver
+final class FlatArray implements \Protung\OpenApiGenerator\Describer\Form\FlatNameResolver
 {
-    use FlatNameResolverTrait;
+    use FlatNameResolver;
 
     #[Override]
     public function getPropertyName(FormInterface $form): string

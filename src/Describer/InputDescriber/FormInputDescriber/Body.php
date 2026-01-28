@@ -148,7 +148,7 @@ final class Body
     }
 
     /**
-     * @return string[]
+     * @return list<string>
      */
     private function getFilePropertiesFromSchema(Schema $schema): array
     {
@@ -161,7 +161,7 @@ final class Body
                 }
 
                 if ($property->format === 'binary') {
-                    $fileProperties[] = $name;
+                    $fileProperties[] = (string) $name;
                 }
 
                 $childFileProperties[] = $this->getFilePropertiesFromSchema($property);

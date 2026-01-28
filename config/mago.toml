@@ -73,7 +73,6 @@ ignore = [
     "impossible-condition",
     "unknown-match-subject-type",
     "less-specific-nested-argument-type",
-    "less-specific-return-statement",
     "less-specific-argument",
     "redundant-logical-operation",
     "redundant-comparison",

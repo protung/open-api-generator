@@ -1,6 +1,12 @@
 variant = "loose"
 
 [[issues]]
+file = "src/Describer/InputDescriber/FormInputDescriber/Body.php"
+code = "invalid-return-statement"
+message = 'Invalid return type for function `protung\openapigenerator\describer\inputdescriber\forminputdescriber\body::getfilepropertiesfromschema`: expected `list<string>`, but found `array<non-negative-int, string>`.'
+count = 1
+
+[[issues]]
 file = "src/Processor/PathsProcessor.php"
 code = "string-member-selector"
 message = "This member selector uses a non-literal string type (`string`); its specific value cannot be statically determined."
@@ -10,4 +16,10 @@ count = 1
 file = "tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObjectExampleBuilder.php"
 code = "never-return"
 message = "Cannot return value with type 'never' from this function."
+count = 1
+
+[[issues]]
+file = "tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObjectExampleBuilder.php"
+code = "non-existent-class-like"
+message = 'Cannot find class, interface, enum, or type alias `Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\ComplexObject`.'
 count = 1
