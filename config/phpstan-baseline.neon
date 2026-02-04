@@ -154,3 +154,15 @@ parameters:
 			identifier: postInc.type
 			count: 1
 			path: ../tests/Processor/Path/Symfony/PathProcessorTest.php
+
+		-
+			rawMessage: 'Parameter #1 $value of static method Webmozart\Assert\Assert::implementsInterface() expects class-string<Symfony\Component\Form\FormTypeInterface>|Symfony\Component\Form\FormTypeInterface, string given.'
+			identifier: argument.type
+			count: 1
+			path: ../src/Describer/Form/PropertyDescriber/CollectionPropertyDescriber.php
+
+		-
+			rawMessage: 'Parameter #1 $value of static method Webmozart\Assert\Assert::implementsInterface() expects class-string<Symfony\Component\Form\FormTypeInterface>|Symfony\Component\Form\FormTypeInterface, string given.'
+			identifier: argument.type
+			count: 1
+			path: ../src/Describer/Form/PropertyDescriber/DictionaryPropertyDescriber.php

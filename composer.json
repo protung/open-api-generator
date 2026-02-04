@@ -40,14 +40,14 @@
         "symfony/polyfill-php85": "^1.33",
         "symfony/routing": "^6.4 || ^7.4 || ^8.0",
         "symfony/validator": "^6.4 || ^7.4 || ^8.0",
-        "webmozart/assert": "^1.10"
+        "webmozart/assert": "^1.10 || ^2.0"
     },
     "require-dev": {
-        "carthage-software/mago": "^1.2.2",
+        "carthage-software/mago": "^1.4.1",
         "doctrine/coding-standard": "^14.0.0",
         "ergebnis/composer-normalize": "^2.49.0",
         "php-standard-library/phpstan-extension": "^2.0.2",
-        "phpstan/phpstan": "^2.1.37",
+        "phpstan/phpstan": "^2.1.38",
         "phpstan/phpstan-deprecation-rules": "^2.0.3",
         "phpstan/phpstan-phpunit": "^2.0.12",
         "phpstan/phpstan-strict-rules": "^2.0.8",
