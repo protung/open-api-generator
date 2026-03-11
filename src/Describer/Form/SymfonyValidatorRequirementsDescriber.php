@@ -298,12 +298,12 @@ final class SymfonyValidatorRequirementsDescriber implements RequirementsDescrib
 
     private function humanReadableFileSize(int $size): string
     {
-        if ($size >= 1048576) {
-            return Psl\Str\format('%s MB', number_format($size / 1048576, $size % 1048576 === 0 ? 0 : 3));
+        if ($size >= 1_048_576) {
+            return Psl\Str\format('%s MB', number_format($size / 1_048_576, $size % 1_048_576 === 0 ? 0 : 3));
         }
 
-        if ($size >= 1024) {
-            return Psl\Str\format('%s KB', number_format($size / 1024, $size % 1024 === 0 ? 0 : 3));
+        if ($size >= 1_024) {
+            return Psl\Str\format('%s KB', number_format($size / 1_024, $size % 1_024 === 0 ? 0 : 3));
         }
 
         return Psl\Str\format('%d bytes', $size);
