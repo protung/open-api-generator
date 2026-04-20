@@ -6,6 +6,12 @@ parameters:
 			path: ../src/Describer/ObjectDescriber/PHPBackedEnum.php
 
 		-
+			message: '#^Parameter \#2 \$array of function implode expects array\<string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Describer/Form/SymfonyValidatorRequirementsDescriber.php
+
+		-
 			message: '#^Cannot access offset 0 on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1

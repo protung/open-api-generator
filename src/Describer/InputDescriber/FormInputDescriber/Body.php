@@ -12,7 +12,6 @@ use Psl;
 use Symfony\Component\Form\FormInterface;
 
 use function array_intersect;
-use function array_merge;
 
 final class Body
 {
@@ -167,7 +166,7 @@ final class Body
                 $childFileProperties[] = $this->getFilePropertiesFromSchema($property);
             }
 
-            $fileProperties = array_merge($fileProperties, ...$childFileProperties);
+            $fileProperties = Psl\Vec\concat($fileProperties, ...$childFileProperties);
         }
 
         return $fileProperties;

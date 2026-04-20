@@ -1,9 +1,9 @@
 variant = "loose"
 
 [[issues]]
-file = "src/Describer/InputDescriber/FormInputDescriber/Body.php"
-code = "invalid-return-statement"
-message = 'Invalid return type for function `protung\openapigenerator\describer\inputdescriber\forminputdescriber\body::getfilepropertiesfromschema`: expected `list<string>`, but found `array<non-negative-int, string>`.'
+file = "src/Describer/ObjectDescriber/JMSModel.php"
+code = "redundant-null-coalesce"
+message = "Redundant null coalesce: left-hand side can never be `null` or undefined."
 count = 1
 
 [[issues]]
