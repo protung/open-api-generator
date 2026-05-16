@@ -29,7 +29,6 @@ final class ObjectOutput implements SerializationGroupAwareOutput
      */
     private function __construct(string $className, array $serializationGroups)
     {
-        // @mago-expect analyzer:redundant-type-comparison
         Assert::classExists($className);
 
         $this->className           = $className;

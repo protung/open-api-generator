@@ -322,7 +322,6 @@ final class JMSModel implements Describer
         }
 
         $propertyClass = $propertyMetadata->class;
-        // @mago-expect analyzer:redundant-type-comparison
         Assert::classExists($propertyClass);
 
         if ($propertyMetadata->type !== null) {
