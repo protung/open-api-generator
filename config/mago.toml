@@ -5,10 +5,6 @@ php-version = "8.2.0"
 [source]
 paths = ["src/", "tests/"]
 includes = ["vendor"]
-excludes = [
-    "tests/Analyser/Fixtures/PropertyAnalyserClassWithProperties.php",
-    "tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php",
-]
 
 [formatter]
 print-width = 120
