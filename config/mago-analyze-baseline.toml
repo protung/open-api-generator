@@ -13,12 +13,6 @@ message = "This member selector uses a non-literal string type (`string`); its s
 count = 1
 
 [[issues]]
-file = "tests/Analyser/Fixtures/PropertyAnalyserClassWithProperties.php"
-code = "invalid-var-tag"
-message = "Could not resolve the type for the @var tag."
-count = 1
-
-[[issues]]
 file = "tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php"
 code = "non-existent-class-like"
 message = 'Cannot find class, interface, enum, or type alias `Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\unknown`.'

@@ -61,10 +61,10 @@ final class PathProcessor implements PathProcessorInterface
             );
         }
 
+        $path->addInput($this->extractInputFromRoute($route));
+
         $operations = [];
         foreach ($route->getMethods() as $method) {
-            $path->addInput($this->extractInputFromRoute($route));
-
             $operation = $this->operationDescriber->describe($method, $path);
 
             $operations[] = new PathOperation(

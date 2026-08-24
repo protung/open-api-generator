@@ -3746,7 +3746,7 @@
                 ]
             }
         },
-        "/api/test/multiple/methods": {
+        "/api/test/multiple/methods/{id}": {
             "get": {
                 "tags": [
                     "Test"
@@ -3757,6 +3757,14 @@
                         "name": "X-ALWAYS",
                         "in": "header",
                         "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -3816,6 +3824,14 @@
                         "name": "X-ALWAYS",
                         "in": "header",
                         "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
                         "schema": {
                             "type": "string"
                         }

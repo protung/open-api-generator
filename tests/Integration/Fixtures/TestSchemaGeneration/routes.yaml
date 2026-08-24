@@ -38,7 +38,7 @@ api_test_referenced_response:
   methods: [GET]
 
 api_test_multiple_methods:
-  path: /api/test/multiple/methods
+  path: /api/test/multiple/methods/{id}
   methods: [GET, POST]
 
 api_test_post_with_form:
