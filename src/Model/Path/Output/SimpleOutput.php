@@ -40,6 +40,17 @@ class SimpleOutput implements Output
      */
     protected function __construct(array $fields, array $example)
     {
+        $this->replaceFields($fields, $example);
+    }
+
+    /**
+     * Lets an output which derives its shape from something else rebuild itself once that changes.
+     *
+     * @param IOField[]            $fields
+     * @param array<string, mixed> $example
+     */
+    protected function replaceFields(array $fields, array $example): void
+    {
         Assert::minCount($fields, 1, 'At least one field should be defined.');
 
         $this->fields  = $fields;

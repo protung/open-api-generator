@@ -12,6 +12,7 @@ use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidatedPayloadErrorOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidationErrorOutput;
 use Protung\OpenApiGenerator\Model\Response;
 use Protung\OpenApiGenerator\Model\Type;
@@ -216,6 +217,34 @@ return new Model\Specification(
             ],
         ),
         new Path\Symfony\SymfonyRoutePath(
+            'api_test_mapped_request_payload_error_response',
+            'Test',
+            'Test the 422 response derived from the mapped request payload class',
+            null,
+            [],
+            [
+                Response::for422(
+                    SymfonyValidatedPayloadErrorOutput::forClass(
+                        TestSchemaGeneration\Model\Payload\PairRequest::class,
+                    ),
+                ),
+            ],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_mapped_request_payload_error_response_with_message_templates',
+            'Test',
+            'Test the 400 response derived from the mapped request payload class including message templates',
+            null,
+            [],
+            [
+                Response::for400(
+                    SymfonyValidatedPayloadErrorOutput::forClass(
+                        TestSchemaGeneration\Model\Payload\PairRequest::class,
+                    )->withMessageTemplates(),
+                ),
+            ],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
             'api_test_request_payload_validation_error_response',
             'Test',
             'Test the default 422 response for a mapped request payload',
@@ -243,7 +272,7 @@ return new Model\Specification(
             [],
             [
                 Response::for400(
-                    SymfonyValidationErrorOutput::create(400)->withContentTypes(
+                    SymfonyValidationErrorOutput::create()->withContentTypes(
                         Model\Path\Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON,
                         Model\Path\Output::CONTENT_TYPE_APPLICATION_JSON,
                     ),

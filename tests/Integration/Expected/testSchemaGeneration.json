@@ -3746,6 +3746,285 @@
                 ]
             }
         },
+        "/api/test/mapped-request-payload-error-response": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test the 422 response derived from the mapped request payload class",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Returned when the request payload failed validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail",
+                                        "violations"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
+                                            "type": "array",
+                                            "items": {
+                                                "required": [
+                                                    "propertyPath",
+                                                    "title",
+                                                    "template",
+                                                    "parameters"
+                                                ],
+                                                "type": "object",
+                                                "properties": {
+                                                    "propertyPath": {
+                                                        "enum": [
+                                                            "pairingCode",
+                                                            "device",
+                                                            "device.name",
+                                                            "device.firmwareVersion"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "template": {
+                                                        "type": "string"
+                                                    },
+                                                    "parameters": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://symfony.com/errors/validation",
+                                        "title": "Validation Failed",
+                                        "status": 422,
+                                        "detail": "pairingCode: This value is not valid.",
+                                        "violations": [
+                                            {
+                                                "propertyPath": "pairingCode",
+                                                "title": "This value is not valid.",
+                                                "template": "This value should be of type {{ type }}.",
+                                                "parameters": {
+                                                    "{{ type }}": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/test/mapped-request-payload-error-response-with-message-templates": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test the 400 response derived from the mapped request payload class including message templates",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
+                                            "type": "array",
+                                            "items": {
+                                                "required": [
+                                                    "propertyPath",
+                                                    "title",
+                                                    "template",
+                                                    "parameters"
+                                                ],
+                                                "type": "object",
+                                                "properties": {
+                                                    "propertyPath": {
+                                                        "enum": [
+                                                            "pairingCode",
+                                                            "device",
+                                                            "device.name",
+                                                            "device.firmwareVersion"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "template": {
+                                                        "enum": [
+                                                            "This value should be of type {{ type }}.",
+                                                            "This value should not be blank.",
+                                                            "This value is too long. It should have {{ limit }} character or less.|This value is too long. It should have {{ limit }} characters or less.",
+                                                            "This value is too short. It should have {{ limit }} character or more.|This value is too short. It should have {{ limit }} characters or more.",
+                                                            "This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.",
+                                                            "This value does not match the expected {{ charset }} charset."
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "parameters": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://symfony.com/errors/validation",
+                                        "title": "Validation Failed",
+                                        "status": 400,
+                                        "detail": "pairingCode: This value is not valid.",
+                                        "violations": [
+                                            {
+                                                "propertyPath": "pairingCode",
+                                                "title": "This value is not valid.",
+                                                "template": "This value should be of type {{ type }}.",
+                                                "parameters": {
+                                                    "{{ type }}": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
         "/api/test/multiple/methods/{id}": {
             "get": {
                 "tags": [

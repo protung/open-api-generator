@@ -14,6 +14,7 @@ use Protung\OpenApiGenerator\Model\Definition;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\ReferencableOutput;
 use Psl;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class OutputDescriber
 {
@@ -22,10 +23,15 @@ final class OutputDescriber
     /** @var array<OutputDescriber\OutputDescriber> */
     private array $outputDescribers;
 
+    /**
+     * @param ValidatorInterface|null $validator Enables describing a SymfonyValidatedPayloadErrorOutput, which
+     *                                           needs the validator metadata of the mapped payload class.
+     */
     public function __construct(
         ObjectDescriber $objectDescriber,
         FormFactory $formFactory,
         ExampleDescriber $exampleDescriber,
+        ValidatorInterface|null $validator = null,
     ) {
         $this->objectDescriber = $objectDescriber;
 
@@ -38,6 +44,12 @@ final class OutputDescriber
             new OutputDescriber\FormErrorOutputDescriber($formFactory),
             new OutputDescriber\ObjectOutputDescriber($this->objectDescriber, $exampleDescriber),
         ];
+
+        if ($validator === null) {
+            return;
+        }
+
+        $this->outputDescribers[] = new OutputDescriber\SymfonyValidatedPayloadErrorOutputDescriber($validator);
     }
 
     /**

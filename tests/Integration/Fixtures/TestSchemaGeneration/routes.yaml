@@ -132,3 +132,11 @@ api_test_request_payload_error_response_with_content_types:
 api_test_request_payload_validation_error_response:
   path: /api/test/request-payload-validation-error-response
   methods: [POST]
+
+api_test_mapped_request_payload_error_response:
+  path: /api/test/mapped-request-payload-error-response
+  methods: [POST]
+
+api_test_mapped_request_payload_error_response_with_message_templates:
+  path: /api/test/mapped-request-payload-error-response-with-message-templates
+  methods: [POST]

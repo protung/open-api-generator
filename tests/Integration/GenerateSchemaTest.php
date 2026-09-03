@@ -28,7 +28,7 @@ final class GenerateSchemaTest extends TestCase
     {
         $routes = (new YamlFileLoader(new FileLocator(__DIR__ . '/Fixtures/TestSchemaGeneration/')))->load('routes.yaml');
 
-        $validator = (new ValidatorBuilder())->getValidator();
+        $validator = (new ValidatorBuilder())->enableAttributeMapping()->getValidator();
 
         $formFactory = (new FormFactoryBuilder())
             ->addExtensions(
@@ -98,6 +98,7 @@ final class GenerateSchemaTest extends TestCase
                                 ),
                                 $describerFormFactory,
                                 $exampleDescriber,
+                                $validator,
                             ),
                         ),
                     ),

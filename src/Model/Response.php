@@ -8,6 +8,8 @@ use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidationErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\StatusCodeAwareOutput;
+use Psl;
 use Symfony\Component\Form\FormTypeInterface;
 
 use function implode;
@@ -32,7 +34,12 @@ final class Response
     {
         $this->statusCode  = $statusCode;
         $this->description = $description;
-        $this->outputs     = $outputs;
+        $this->outputs     = Psl\Vec\map(
+            $outputs,
+            static fn (Output $output): Output => $output instanceof StatusCodeAwareOutput
+                ? $output->withStatusCode($statusCode)
+                : $output,
+        );
     }
 
     public static function for200(Output ...$outputs): self
@@ -61,7 +68,7 @@ final class Response
             return new self(
                 400,
                 ['Returned when the request payload could not be parsed or when it failed validation'],
-                SymfonyValidationErrorOutput::create(400),
+                SymfonyValidationErrorOutput::create(),
             );
         }
 

@@ -4,15 +4,54 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use Override;
 use Protung\OpenApiGenerator\Model\Path\IOField;
+use Protung\OpenApiGenerator\Model\Path\StatusCodeAwareOutput;
 
 /**
  * Describes the problem details document Symfony returns for a bad request payload.
  * It is an RFC 7807 document extended with the "violations" member Symfony's ConstraintViolationListNormalizer produces.
  */
-final class SymfonyValidationErrorOutput extends SimpleOutput
+final class SymfonyValidationErrorOutput extends SimpleOutput implements StatusCodeAwareOutput
 {
+    private int $statusCode;
+
     private function __construct(int $statusCode)
+    {
+        $this->statusCode = $statusCode;
+
+        parent::__construct(self::fieldsFor($statusCode), self::exampleFor($statusCode));
+    }
+
+    /**
+     * The status code is taken from the response the output is attached to. The one set here is the
+     * #[MapRequestPayload] default and only applies while the output stands on its own.
+     */
+    public static function create(): self
+    {
+        return new self(422);
+    }
+
+    #[Override]
+    public function statusCode(): int
+    {
+        return $this->statusCode;
+    }
+
+    #[Override]
+    public function withStatusCode(int $statusCode): static
+    {
+        $clone             = clone $this;
+        $clone->statusCode = $statusCode;
+        $clone->replaceFields(self::fieldsFor($statusCode), self::exampleFor($statusCode));
+
+        return $clone;
+    }
+
+    /**
+     * @return IOField[]
+     */
+    private static function fieldsFor(int $statusCode): array
     {
         $violations = IOField::arrayField(
             'violations',
@@ -33,38 +72,33 @@ final class SymfonyValidationErrorOutput extends SimpleOutput
             $violations->asOptional();
         }
 
-        parent::__construct(
-            [
-                IOField::stringField('type'),
-                IOField::stringField('title'),
-                IOField::integerField('status'),
-                IOField::stringField('detail'),
-                $violations,
-            ],
-            [
-                'type' => 'https://symfony.com/errors/validation',
-                'title' => 'Validation Failed',
-                'status' => $statusCode,
-                'detail' => 'pairingCode: This value is not valid.',
-                'violations' => [
-                    [
-                        'propertyPath' => 'pairingCode',
-                        'title' => 'This value is not valid.',
-                        'template' => 'This value should be of type {{ type }}.',
-                        'parameters' => ['{{ type }}' => 'string'],
-                    ],
-                ],
-            ],
-        );
+        return [
+            IOField::stringField('type'),
+            IOField::stringField('title'),
+            IOField::integerField('status'),
+            IOField::stringField('detail'),
+            $violations,
+        ];
     }
 
     /**
-     * @param int $statusCode The status code Symfony answers a validation failure with. Defaults to the
-     *                        #[MapRequestPayload] default, override it when the endpoint declares another
-     *                        one through "validationFailedStatusCode".
+     * @return array<string, mixed>
      */
-    public static function create(int $statusCode = 422): self
+    private static function exampleFor(int $statusCode): array
     {
-        return new self($statusCode);
+        return [
+            'type' => 'https://symfony.com/errors/validation',
+            'title' => 'Validation Failed',
+            'status' => $statusCode,
+            'detail' => 'pairingCode: This value is not valid.',
+            'violations' => [
+                [
+                    'propertyPath' => 'pairingCode',
+                    'title' => 'This value is not valid.',
+                    'template' => 'This value should be of type {{ type }}.',
+                    'parameters' => ['{{ type }}' => 'string'],
+                ],
+            ],
+        ];
     }
 }
