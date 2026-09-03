@@ -31,6 +31,9 @@ class SimpleOutput implements Output
     /** @var array<string, mixed> */
     private array $example;
 
+    /** @var non-empty-list<string>|null */
+    private array|null $contentTypes = null;
+
     /**
      * @param IOField[]            $fields
      * @param array<string, mixed> $example
@@ -147,11 +150,24 @@ class SimpleOutput implements Output
     }
 
     /**
+     * Declares the content types the response is served with.
+     *
+     * Useful for error documents which Symfony renders in the format negotiated through the
+     * "Accept" header, for example both "application/problem+json" and "application/json".
+     */
+    public function withContentTypes(string $contentType, string ...$contentTypes): static
+    {
+        $this->contentTypes = [$contentType, ...Psl\Vec\values($contentTypes)];
+
+        return $this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     #[Override]
     public function contentTypes(): array
     {
-        return [Output::CONTENT_TYPE_APPLICATION_JSON];
+        return $this->contentTypes ?? [Output::CONTENT_TYPE_APPLICATION_JSON];
     }
 }

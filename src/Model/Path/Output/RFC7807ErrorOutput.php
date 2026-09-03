@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
-use Override;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output;
 
@@ -26,11 +25,18 @@ final class RFC7807ErrorOutput extends SimpleOutput
                 'detail' => $message,
             ],
         );
+
+        $this->withContentTypes(Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON);
     }
 
     public static function create(int $errorCode, string $message): self
     {
         return new self($errorCode, $message);
+    }
+
+    public static function for400(): self
+    {
+        return new self(400, 'Bad Request');
     }
 
     public static function for401(): self
@@ -86,14 +92,5 @@ final class RFC7807ErrorOutput extends SimpleOutput
     public static function for500(): self
     {
         return new self(500, 'Internal Server Error');
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    #[Override]
-    public function contentTypes(): array
-    {
-        return [Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON];
     }
 }

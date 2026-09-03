@@ -6364,6 +6364,99 @@
                 ]
             }
         },
+        "/api/test/plain-error-response-for-400": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test the plain RFC 7807 output can still be used for 400",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 400,
+                                        "detail": "Bad Request"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
         "/api/test/polymorphic-responses": {
             "post": {
                 "tags": [
@@ -6528,6 +6621,461 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/JMSObjectDescribedOnlyAsReferenceCustomName"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/test/request-payload-error-response": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test the default 400 response for a mapped request payload",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Returned when the request payload could not be parsed or when it failed validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
+                                            "type": "array",
+                                            "items": {
+                                                "required": [
+                                                    "propertyPath",
+                                                    "title",
+                                                    "template",
+                                                    "parameters"
+                                                ],
+                                                "type": "object",
+                                                "properties": {
+                                                    "propertyPath": {
+                                                        "type": "string"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "template": {
+                                                        "type": "string"
+                                                    },
+                                                    "parameters": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://symfony.com/errors/validation",
+                                        "title": "Validation Failed",
+                                        "status": 400,
+                                        "detail": "pairingCode: This value is not valid.",
+                                        "violations": [
+                                            {
+                                                "propertyPath": "pairingCode",
+                                                "title": "This value is not valid.",
+                                                "template": "This value should be of type {{ type }}.",
+                                                "parameters": {
+                                                    "{{ type }}": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/test/request-payload-error-response-with-content-types": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test the 400 response for a mapped request payload with custom content types",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Returned when there is a validation error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
+                                            "type": "array",
+                                            "items": {
+                                                "required": [
+                                                    "propertyPath",
+                                                    "title",
+                                                    "template",
+                                                    "parameters"
+                                                ],
+                                                "type": "object",
+                                                "properties": {
+                                                    "propertyPath": {
+                                                        "type": "string"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "template": {
+                                                        "type": "string"
+                                                    },
+                                                    "parameters": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://symfony.com/errors/validation",
+                                        "title": "Validation Failed",
+                                        "status": 400,
+                                        "detail": "pairingCode: This value is not valid.",
+                                        "violations": [
+                                            {
+                                                "propertyPath": "pairingCode",
+                                                "title": "This value is not valid.",
+                                                "template": "This value should be of type {{ type }}.",
+                                                "parameters": {
+                                                    "{{ type }}": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
+                                            "type": "array",
+                                            "items": {
+                                                "required": [
+                                                    "propertyPath",
+                                                    "title",
+                                                    "template",
+                                                    "parameters"
+                                                ],
+                                                "type": "object",
+                                                "properties": {
+                                                    "propertyPath": {
+                                                        "type": "string"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "template": {
+                                                        "type": "string"
+                                                    },
+                                                    "parameters": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://symfony.com/errors/validation",
+                                        "title": "Validation Failed",
+                                        "status": 400,
+                                        "detail": "pairingCode: This value is not valid.",
+                                        "violations": [
+                                            {
+                                                "propertyPath": "pairingCode",
+                                                "title": "This value is not valid.",
+                                                "template": "This value should be of type {{ type }}.",
+                                                "parameters": {
+                                                    "{{ type }}": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/test/request-payload-validation-error-response": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test the default 422 response for a mapped request payload",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Returned when the request payload failed validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail",
+                                        "violations"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "violations": {
+                                            "type": "array",
+                                            "items": {
+                                                "required": [
+                                                    "propertyPath",
+                                                    "title",
+                                                    "template",
+                                                    "parameters"
+                                                ],
+                                                "type": "object",
+                                                "properties": {
+                                                    "propertyPath": {
+                                                        "type": "string"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "template": {
+                                                        "type": "string"
+                                                    },
+                                                    "parameters": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://symfony.com/errors/validation",
+                                        "title": "Validation Failed",
+                                        "status": 422,
+                                        "detail": "pairingCode: This value is not valid.",
+                                        "violations": [
+                                            {
+                                                "propertyPath": "pairingCode",
+                                                "title": "This value is not valid.",
+                                                "template": "This value should be of type {{ type }}.",
+                                                "parameters": {
+                                                    "{{ type }}": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
                                 }
                             }
                         }

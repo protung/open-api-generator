@@ -12,6 +12,7 @@ use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidationErrorOutput;
 use Protung\OpenApiGenerator\Model\Response;
 use Protung\OpenApiGenerator\Model\Type;
 use Protung\OpenApiGenerator\Processor\Path;
@@ -203,6 +204,51 @@ return new Model\Specification(
                 ),
             ],
             Model\Security\Reference::fromString('ApiKey'),
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_request_payload_error_response',
+            'Test',
+            'Test the default 400 response for a mapped request payload',
+            null,
+            [],
+            [
+                Response::for400(),
+            ],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_request_payload_validation_error_response',
+            'Test',
+            'Test the default 422 response for a mapped request payload',
+            null,
+            [],
+            [
+                Response::for422(),
+            ],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_plain_error_response_for_400',
+            'Test',
+            'Test the plain RFC 7807 output can still be used for 400',
+            null,
+            [],
+            [
+                Response::for400(RFC7807ErrorOutput::for400()),
+            ],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_request_payload_error_response_with_content_types',
+            'Test',
+            'Test the 400 response for a mapped request payload with custom content types',
+            null,
+            [],
+            [
+                Response::for400(
+                    SymfonyValidationErrorOutput::create(400)->withContentTypes(
+                        Model\Path\Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON,
+                        Model\Path\Output::CONTENT_TYPE_APPLICATION_JSON,
+                    ),
+                ),
+            ],
         ),
         new Path\Symfony\SymfonyRoutePath(
             'api_test_custom_polymorphic_responses',

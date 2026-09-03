@@ -7,6 +7,7 @@ namespace Protung\OpenApiGenerator\Model;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidationErrorOutput;
 use Symfony\Component\Form\FormTypeInterface;
 
 use function implode;
@@ -56,6 +57,15 @@ final class Response
 
     public static function for400(Output ...$outputs): self
     {
+        if ($outputs === []) {
+            return new self(
+                400,
+                ['Returned when the request payload could not be parsed or when it failed validation'],
+                SymfonyValidationErrorOutput::create(400),
+            );
+        }
+
+        // When the caller describes the payload itself the library can not know which error shapes it covers, so the historical description is kept.
         return new self(400, ['Returned when there is a validation error'], ...$outputs);
     }
 
@@ -120,6 +130,15 @@ final class Response
             ['Returned when request payload format is not supported'],
             RFC7807ErrorOutput::for415(),
         );
+    }
+
+    public static function for422(Output ...$outputs): self
+    {
+        if ($outputs === []) {
+            $outputs = [SymfonyValidationErrorOutput::create()];
+        }
+
+        return new self(422, ['Returned when the request payload failed validation'], ...$outputs);
     }
 
     public static function for423(): self

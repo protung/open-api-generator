@@ -117,3 +117,18 @@ api_test_form_root_dictionary_type_query:
   path: /api/test/root-dictionary-type
   methods: [GET]
 
+api_test_request_payload_error_response:
+  path: /api/test/request-payload-error-response
+  methods: [POST]
+
+api_test_plain_error_response_for_400:
+  path: /api/test/plain-error-response-for-400
+  methods: [POST]
+
+api_test_request_payload_error_response_with_content_types:
+  path: /api/test/request-payload-error-response-with-content-types
+  methods: [POST]
+
+api_test_request_payload_validation_error_response:
+  path: /api/test/request-payload-validation-error-response
+  methods: [POST]
