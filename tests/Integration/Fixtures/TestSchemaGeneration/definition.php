@@ -8,6 +8,7 @@ use Protung\OpenApiGenerator\Model\FormDefinition;
 use Protung\OpenApiGenerator\Model\Info\Info;
 use Protung\OpenApiGenerator\Model\Path\Input;
 use Protung\OpenApiGenerator\Model\Path\Input\FormInput;
+use Protung\OpenApiGenerator\Model\Path\Input\SymfonyMappedPayloadInput;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
@@ -214,6 +215,25 @@ return new Model\Specification(
             [],
             [
                 Response::for400(),
+            ],
+        ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_mapped_request_payload_input',
+            'Test',
+            'Test the request body derived from the mapped request payload class',
+            null,
+            [
+                SymfonyMappedPayloadInput::forClass(
+                    TestSchemaGeneration\Model\Payload\SignInRequest::class,
+                ),
+            ],
+            [
+                Response::for200(),
+                Response::for422(
+                    SymfonyValidatedPayloadErrorOutput::forClass(
+                        TestSchemaGeneration\Model\Payload\SignInRequest::class,
+                    ),
+                ),
             ],
         ),
         new Path\Symfony\SymfonyRoutePath(

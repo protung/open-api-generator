@@ -140,3 +140,7 @@ api_test_mapped_request_payload_error_response:
 api_test_mapped_request_payload_error_response_with_message_templates:
   path: /api/test/mapped-request-payload-error-response-with-message-templates
   methods: [POST]
+
+api_test_mapped_request_payload_input:
+  path: /api/test/mapped-request-payload-input
+  methods: [POST]

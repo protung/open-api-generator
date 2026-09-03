@@ -76,6 +76,7 @@ final class GenerateSchemaTest extends TestCase
                         $routes,
                         new Describer\OperationDescriber(
                             new Describer\InputDescriber(
+                                new Describer\InputDescriber\SymfonyMappedPayloadInputDescriber($validator),
                                 new Describer\InputDescriber\SimpleInputDescriber(),
                                 new Describer\InputDescriber\FormInputDescriber(
                                     $formDescriber,
