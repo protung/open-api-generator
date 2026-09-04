@@ -13,14 +13,19 @@ use Protung\OpenApiGenerator\Model\Path\Path;
 use Protung\OpenApiGenerator\Model\Path\PathOperation;
 use Protung\OpenApiGenerator\Processor\Path\PathProcessor as PathProcessorInterface;
 use Psl;
+use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 use Symfony\Component\Routing\RouteCollection;
 
 use function explode;
+use function in_array;
 use function str_contains;
 
 final class PathProcessor implements PathProcessorInterface
 {
+    /** Route requirements matching whole numbers only, including the hand written spellings of the Symfony constants. */
+    private const NUMERIC_REQUIREMENTS = [Requirement::DIGITS, Requirement::POSITIVE_INT, '\\d+', '[1-9]\\d*'];
+
     private RouteCollection $routeCollection;
 
     private OperationDescriber $operationDescriber;
@@ -80,19 +85,19 @@ final class PathProcessor implements PathProcessorInterface
     private function extractInputFromRoute(SymfonyRoute $route): Input\PathInput
     {
         $ioFields = [];
-        foreach ($route->compile()->getPathVariables() as $pathVariable) {
-            $field = IOField::stringField($pathVariable);
+        foreach ($route->compile()->getPathVariables() as $routePathVariable) {
+            $pathVariable = Psl\Type\string()->coerce($routePathVariable);
 
             $requirement = $route->getRequirement($pathVariable);
-            if ($requirement !== null) {
-                if (str_contains($requirement, '|')) {
-                    $field->withPossibleValues(explode('|', $requirement));
-                } else {
-                    $field->withPattern($requirement);
-                }
+            if ($requirement === null) {
+                $ioFields[] = IOField::stringField($pathVariable);
+            } elseif (str_contains($requirement, '|')) {
+                $ioFields[] = IOField::stringField($pathVariable)->withPossibleValues(explode('|', $requirement));
+            } elseif (in_array($requirement, self::NUMERIC_REQUIREMENTS, true)) {
+                $ioFields[] = IOField::integerField($pathVariable);
+            } else {
+                $ioFields[] = IOField::stringField($pathVariable)->withPattern($requirement);
             }
-
-            $ioFields[] = $field;
         }
 
         return Input\PathInput::withIOFields(...$ioFields);

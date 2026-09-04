@@ -109,18 +109,6 @@ parameters:
 			path: ../src/Model/Path/IOField.php
 
 		-
-			rawMessage: 'Parameter #1 $key of method Symfony\Component\Routing\Route::getRequirement() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: ../src/Processor/Path/Symfony/PathProcessor.php
-
-		-
-			rawMessage: 'Parameter #1 $name of static method Protung\OpenApiGenerator\Model\Path\IOField::stringField() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: ../src/Processor/Path/Symfony/PathProcessor.php
-
-		-
 			rawMessage: Variable property access on cebe\openapi\spec\PathItem.
 			identifier: property.dynamicName
 			count: 1

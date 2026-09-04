@@ -4,6 +4,8 @@ api_test_headers:
 
 api_test_get_one_item:
   path: /api/test/item/{id}
+  requirements:
+    id: '[0-9]+'
   methods: [GET]
 
 api_test_custom_query_params:

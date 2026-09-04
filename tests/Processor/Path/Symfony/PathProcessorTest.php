@@ -27,6 +27,7 @@ use Protung\OpenApiGenerator\Processor\Path\Symfony\PathProcessor;
 use Protung\OpenApiGenerator\Processor\Path\Symfony\SymfonyRoutePath;
 use Protung\OpenApiGenerator\Tests\PHPUnitHelper;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
@@ -72,15 +73,96 @@ final class PathProcessorTest extends TestCase
         $pathProcessor->process($path);
     }
 
+    public function testProcessRouteWithNumericRequirementsDescribesIntegerPathParameters(): void
+    {
+        $inputDescriberMock = $this->createMock(InputDescriber\InputDescriber::class);
+        $inputDescriberMock
+            ->expects($this->once())
+            ->method('supports')
+            ->willReturn(true);
+        $inputDescriberMock
+            ->expects($this->once())
+            ->method('describe')
+            ->with(
+                Input\PathInput::withIOFields(
+                    IOField::integerField('positiveInt'),
+                    IOField::integerField('digits'),
+                    IOField::integerField('shorthandDigits'),
+                    IOField::integerField('shorthandPositiveInt'),
+                    IOField::stringField('uuid')->withPattern('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'),
+                ),
+            );
+
+        $operationDescriber = new OperationDescriber(
+            new InputDescriber($inputDescriberMock),
+            new OutputDescriber(
+                new ObjectDescriber(
+                    new ModelRegistry(),
+                    $this->createMock(ObjectDescriber\Describer::class),
+                ),
+                new FormFactory($this->createMock(FormFactoryInterface::class)),
+                $this->createMock(ExampleDescriber::class),
+            ),
+        );
+
+        $path = new SymfonyRoutePath(
+            'api_test_get',
+            'Test',
+            'Test get with numeric path parameters',
+            null,
+            [],
+            [],
+        );
+
+        $routeCollectionMock = $this->createMock(RouteCollection::class);
+        $routeCollectionMock
+            ->expects($this->once())
+            ->method('get')
+            ->with($path->routeName())
+            ->willReturn(
+                new Route(
+                    '/api/test/{positiveInt}/{digits}/{shorthandDigits}/{shorthandPositiveInt}/{uuid}',
+                    requirements: [
+                        'positiveInt' => Requirement::POSITIVE_INT,
+                        'digits' => Requirement::DIGITS,
+                        'shorthandDigits' => '\\d+',
+                        'shorthandPositiveInt' => '[1-9]\\d*',
+                        'uuid' => '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
+                    ],
+                    methods: ['GET'],
+                ),
+            );
+
+        $pathProcessor = new PathProcessor($routeCollectionMock, $operationDescriber);
+
+        $actual = $pathProcessor->process($path);
+
+        $expected = new PathOperation(
+            'get',
+            '/api/test/{positiveInt}/{digits}/{shorthandDigits}/{shorthandPositiveInt}/{uuid}',
+            new Operation(
+                [
+                    'tags' => ['Test'],
+                    'summary' => 'Test get with numeric path parameters',
+                    'parameters' => [],
+                    'responses' => new Responses([]),
+                    'security' => [],
+                ],
+            ),
+        );
+
+        self::assertEquals([$expected], $actual);
+    }
+
     public function testProcessRoute(): void
     {
         $inputDescriberMock = $this->createMock(InputDescriber\InputDescriber::class);
         $inputDescriberMock
-            ->expects(self::exactly(2))
+            ->expects($this->exactly(2))
             ->method('supports')
             ->willReturn(true);
         $inputDescriberMock
-            ->expects(self::exactly(2))
+            ->expects($this->exactly(2))
             ->method('describe')
             ->with(
                 self::withConsecutive(
@@ -125,7 +207,7 @@ final class PathProcessorTest extends TestCase
 
         $routeCollectionMock = $this->createMock(RouteCollection::class);
         $routeCollectionMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('get')
             ->with($path->routeName())
             ->willReturn(
