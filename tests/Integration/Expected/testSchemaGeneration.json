@@ -8281,9 +8281,9 @@
                                     "example": {
                                         "myUnknown": null,
                                         "myAnything": null,
-                                        "myInt": 123,
-                                        "myString": "string",
-                                        "myBoolean": true,
+                                        "myInt": 42,
+                                        "myString": "ms",
+                                        "myBoolean": false,
                                         "myChoice": 1,
                                         "optional": null
                                     }

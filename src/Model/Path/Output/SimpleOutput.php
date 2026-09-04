@@ -9,6 +9,7 @@ use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output;
+use Protung\OpenApiGenerator\Model\Type;
 use Psl;
 
 use function array_is_list;
@@ -144,20 +145,41 @@ class SimpleOutput implements Output
         $example = [];
 
         foreach ($fields as $field) {
-            if ($field->children() !== null) {
-                $example[$field->name()] = self::exampleFromFields($field->children());
-            } else {
-                $exampleValue = Psl\Iter\first($field->possibleValues() ?? []);
-
-                if ($exampleValue !== null) {
-                    $example[$field->name()] = $exampleValue;
-                } else {
-                    $example[$field->name()] = $field->type()->example();
-                }
-            }
+            $example[$field->name()] = self::exampleFromField($field);
         }
 
         return $example;
+    }
+
+    /**
+     * An example explicitly set on the field always wins over the one derived from its shape,
+     * the same way IOFieldDescriber prefers it when describing the schema.
+     */
+    private static function exampleFromField(IOField $field): mixed
+    {
+        if ($field->example() !== null) {
+            return $field->example();
+        }
+
+        $children = $field->children();
+        if ($children !== null) {
+            // An array field carries its element as its single child. The element has no name in JSON, so its example becomes the single entry of a list instead of a keyed value.
+            if ($field->type() === Type::Array) {
+                $element = Psl\Iter\first($children);
+
+                return $element !== null ? [self::exampleFromField($element)] : [];
+            }
+
+            return self::exampleFromFields($children);
+        }
+
+        $exampleValue = Psl\Iter\first($field->possibleValues() ?? []);
+
+        if ($exampleValue !== null) {
+            return $exampleValue;
+        }
+
+        return $field->type()->example();
     }
 
     /**
