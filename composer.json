@@ -43,9 +43,9 @@
         "webmozart/assert": "^1.10 || ^2.0"
     },
     "require-dev": {
-        "carthage-software/mago": "^1.47.5",
+        "carthage-software/mago": "^1.48.1",
         "doctrine/coding-standard": "^14.0.0",
-        "ergebnis/composer-normalize": "^2.52.0",
+        "ergebnis/composer-normalize": "^2.53.0",
         "php-standard-library/phpstan-extension": "^2.1.0",
         "phpstan/phpstan": "^2.2.13",
         "phpstan/phpstan-deprecation-rules": "^2.0.5",
