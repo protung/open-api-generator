@@ -80,7 +80,7 @@ final class IOField
 
         $reflection = new ReflectionEnum($backedEnumClass);
 
-        $type = match ($reflection->getProperty('value')->getType()?->getName()) {
+        $type = match ($reflection->getBackingType()?->getName()) {
             'int' => Type::Integer,
             'string' => Type::String,
             default => Type::String,
