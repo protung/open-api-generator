@@ -12,7 +12,7 @@ use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Mod
 final class ComplexObject
 {
     /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
-    public $unknownProperty;
+    public $unknownProperty; // @phpstan-ignore missingType.property (describing a property without any type is under test)
 
     public string $stringProperty = 'stringProperty';
 
@@ -52,8 +52,9 @@ final class ComplexObject
     /** @var bool[] */
     public array $arrayOfScalarBools = [];
 
+    // @mago-expect analysis:non-existent-class-like Describing a collection of an unknown type is under test.
     /** @var unknown[] */
-    public array $arrayOfScalarUnknowns = [];
+    public array $arrayOfScalarUnknowns = []; // @phpstan-ignore class.notFound (describing a collection of an unknown type is under test)
 
     public DateTime|null $dateTimeProperty = null;
 

@@ -1,7 +1,2 @@
 variant = "loose"
-
-[[issues]]
-file = "tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php"
-code = "non-existent-class-like"
-message = 'Cannot find class, interface, enum, or type alias `Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\unknown`.'
-count = 1
+issues = []
