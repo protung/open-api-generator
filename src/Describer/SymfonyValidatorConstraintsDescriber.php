@@ -57,21 +57,21 @@ final class SymfonyValidatorConstraintsDescriber
                     break;
                 case $constraint instanceof Count && $describesCollection:
                     if ($constraint->min !== null) {
-                        $schema->minItems = $constraint->min;
+                        $schema->minItems = Psl\Type\int()->coerce($constraint->min);
                     }
 
                     if ($constraint->max !== null) {
-                        $schema->maxItems = $constraint->max;
+                        $schema->maxItems = Psl\Type\int()->coerce($constraint->max);
                     }
 
                     break;
                 case $constraint instanceof Count && ! $describesCollection:
                     if ($constraint->min !== null) {
-                        $schema->minProperties = $constraint->min;
+                        $schema->minProperties = Psl\Type\int()->coerce($constraint->min);
                     }
 
                     if ($constraint->max !== null) {
-                        $schema->maxProperties = $constraint->max;
+                        $schema->maxProperties = Psl\Type\int()->coerce($constraint->max);
                     }
 
                     break;
@@ -87,11 +87,11 @@ final class SymfonyValidatorConstraintsDescriber
                     break;
                 case $constraint instanceof Length:
                     if ($constraint->min !== null) {
-                        $schema->minLength = $constraint->min;
+                        $schema->minLength = Psl\Type\int()->coerce($constraint->min);
                     }
 
                     if ($constraint->max !== null) {
-                        $schema->maxLength = $constraint->max;
+                        $schema->maxLength = Psl\Type\int()->coerce($constraint->max);
                     }
 
                     break;
@@ -118,8 +118,9 @@ final class SymfonyValidatorConstraintsDescriber
                 case $constraint instanceof Regex:
                     // we need to remove the delimiters but ignoring the modifiers
                     if ($constraint->pattern !== null) {
+                        $pattern         = Psl\Type\non_empty_string()->coerce($constraint->pattern);
                         $schema->pattern = Psl\Str\slice(
-                            Psl\Type\non_empty_string()->coerce(Psl\Str\before_last_ci($constraint->pattern, $constraint->pattern[0])),
+                            Psl\Type\non_empty_string()->coerce(Psl\Str\before_last_ci($pattern, $pattern[0])),
                             1,
                         );
                     }
@@ -147,28 +148,28 @@ final class SymfonyValidatorConstraintsDescriber
                         if ($constraint->minWidth !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                Psl\Str\format('Allowed minimum width is %dpx', $constraint->minWidth),
+                                Psl\Str\format('Allowed minimum width is %dpx', Psl\Type\int()->coerce($constraint->minWidth)),
                             );
                         }
 
                         if ($constraint->minHeight !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                Psl\Str\format('Allowed minimum height is %dpx', $constraint->minHeight),
+                                Psl\Str\format('Allowed minimum height is %dpx', Psl\Type\int()->coerce($constraint->minHeight)),
                             );
                         }
 
                         if ($constraint->maxWidth !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                Psl\Str\format('Allowed maximum width is %dpx', $constraint->maxWidth),
+                                Psl\Str\format('Allowed maximum width is %dpx', Psl\Type\int()->coerce($constraint->maxWidth)),
                             );
                         }
 
                         if ($constraint->maxHeight !== null) {
                             $schema->description = SpecificationDescriber::updateDescription(
                                 $schema->description,
-                                Psl\Str\format('Allowed maximum height is %dpx', $constraint->maxHeight),
+                                Psl\Str\format('Allowed maximum height is %dpx', Psl\Type\int()->coerce($constraint->maxHeight)),
                             );
                         }
                     }
