@@ -103,12 +103,6 @@ parameters:
 			path: ../src/Describer/SymfonyValidatorConstraintsDescriber.php
 
 		-
-			rawMessage: 'Call to an undefined method ReflectionType::getName().'
-			identifier: method.notFound
-			count: 1
-			path: ../src/Model/Path/IOField.php
-
-		-
 			rawMessage: Variable property access on cebe\openapi\spec\PathItem.
 			identifier: property.dynamicName
 			count: 1
