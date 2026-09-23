@@ -125,9 +125,3 @@ parameters:
 			identifier: missingType.property
 			count: 1
 			path: ../tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php
-
-		-
-			rawMessage: 'Parameter #1 $specification of method Protung\OpenApiGenerator\Generator::generate() expects Protung\OpenApiGenerator\Model\Specification, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: ../tests/Integration/GenerateSchemaTest.php

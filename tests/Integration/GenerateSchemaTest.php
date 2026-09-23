@@ -12,9 +12,11 @@ use PHPUnit\Framework\TestCase;
 use Protung\OpenApiGenerator\Describer;
 use Protung\OpenApiGenerator\Generator;
 use Protung\OpenApiGenerator\Model\ModelRegistry;
+use Protung\OpenApiGenerator\Model\Specification;
 use Protung\OpenApiGenerator\Processor;
 use Protung\OpenApiGenerator\Processor\Path;
 use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form\TestDictionaryType;
+use Psl;
 use Psl\Json;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
@@ -113,7 +115,9 @@ final class GenerateSchemaTest extends TestCase
     {
         $generator = self::createGenerator('0.0.1');
 
-        $config = require __DIR__ . '/Fixtures/TestSchemaGeneration/definition.php';
+        $config = Psl\Type\instance_of(Specification::class)->coerce(
+            require __DIR__ . '/Fixtures/TestSchemaGeneration/definition.php',
+        );
 
         $openApiSpec = $generator->generate($config);
 
