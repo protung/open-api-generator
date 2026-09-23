@@ -124,7 +124,7 @@ final class GenerateSchemaTest extends TestCase
 
         $openApiSpec = $generator->generate($config);
 
-        // Regenerate the expected output with `make update-snapshots`, then review the diff before committing it.
+        // Regenerate the expected output with `just update-snapshots`, then review the diff before committing it.
         if (getenv('UPDATE_SNAPSHOTS') === '1') {
             file_put_contents(
                 __DIR__ . '/Expected/testSchemaGeneration.json',
