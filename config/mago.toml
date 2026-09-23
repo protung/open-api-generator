@@ -43,34 +43,17 @@ perform-heuristic-checks = true
 
 # Ignore a specific error code across the whole project
 ignore = [
-    "unhandled-thrown-type",
-    "excess-template-parameter",
-    "mixed-argument",
-    "invalid-argument",
-    "invalid-property-access",
-    "mixed-assignment",
-    "impossible-assignment",
-    "non-existent-class",
-    "mixed-array-access",
-    "mixed-return-statement",
-    "missing-magic-method",
-    "possibly-invalid-argument",
-    "property-type-coercion",
-    "redundant-condition",
-    "mixed-property-type-coercion",
-    "redundant-type-comparison",
-    "non-existent-method",
-    "possibly-false-argument",
-    "invalid-type-cast",
-    "possibly-static-access-on-interface",
-    "possibly-null-argument",
-    "mixed-operand",
-    "possibly-null-array-index",
-    "impossible-condition",
-    "unknown-match-subject-type",
-    "less-specific-nested-argument-type",
-    "less-specific-argument",
-    "redundant-logical-operation",
-    "redundant-comparison",
-    "impossible-null-type-comparison",
+    "unhandled-thrown-type", # 210 errors
+    "excess-template-parameter", # 17 errors
+    "mixed-assignment", # 15 errors
+    "property-type-coercion", # 1 error
+    "redundant-condition", # 2 errors
+    "invalid-type-cast", # 2 errors
+    "possibly-static-access-on-interface", # 2 errors
+    "mixed-operand", # 1 error
+    "impossible-condition", # 1 error
+    "less-specific-argument", # 7 errors
+    "redundant-logical-operation", # 5 errors
+    "redundant-comparison", # 8 errors
+    "impossible-null-type-comparison", # 2 errors
 ]
