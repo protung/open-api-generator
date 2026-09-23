@@ -208,7 +208,7 @@ final class JMSModel implements Describer
             $property->format = $propertyType->type();
         } elseif (in_array($propertyType->type(), ['DateTime', 'DateTimeImmutable', 'DateTimeInterface'], true)) {
             $property->type = Type::STRING;
-            if (isset($propertyType->parameters()[0]) && $propertyType->parameters()[0] === 'Y-m-d') { // As defined by full-date - RFC3339
+            if (($propertyType->parameters()[0] ?? null) === 'Y-m-d') { // As defined by full-date - RFC3339
                 $property->format = 'date';
             } else {
                 $property->format = 'date-time';
