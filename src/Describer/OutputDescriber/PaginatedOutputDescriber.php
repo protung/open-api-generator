@@ -18,15 +18,8 @@ use function count;
 
 final class PaginatedOutputDescriber implements OutputDescriber
 {
-    private \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber;
-
-    public function __construct(\Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber)
-    {
-        $this->outputDescriber = $outputDescriber;
-    }
-
     #[Override]
-    public function describe(Output $output): Schema
+    public function describe(Output $output, \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber): Schema
     {
         $output = Psl\Type\instance_of(PaginatedOutput::class)->coerce($output);
 
@@ -38,7 +31,7 @@ final class PaginatedOutputDescriber implements OutputDescriber
                     'pages' => new Schema(['type' => Type::INTEGER]),
                     'total' => new Schema(['type' => Type::INTEGER]),
                     '_links' => $this->createLinksSchema(),
-                    '_embedded' => $this->createEmbeddedSchema($output),
+                    '_embedded' => $this->createEmbeddedSchema($output, $outputDescriber),
                 ],
                 'required' => ['page', 'limit', 'pages', 'total', '_links', '_embedded'],
             ],
@@ -67,12 +60,12 @@ final class PaginatedOutputDescriber implements OutputDescriber
         );
     }
 
-    private function createEmbeddedSchema(PaginatedOutput $output): Schema
+    private function createEmbeddedSchema(PaginatedOutput $output, \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber): Schema
     {
         $resourcesSchema = new Schema(['type' => Type::ARRAY]);
 
         $resources = array_map(
-            $this->outputDescriber->describe(...),
+            $outputDescriber->describe(...),
             $output->embedded(),
         );
 

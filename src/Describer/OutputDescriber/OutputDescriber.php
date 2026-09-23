@@ -9,7 +9,10 @@ use Protung\OpenApiGenerator\Model\Path\Output;
 
 interface OutputDescriber
 {
-    public function describe(Output $output): Schema;
+    /**
+     * @param \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber Describes outputs nested in this one.
+     */
+    public function describe(Output $output, \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber): Schema;
 
     public function supports(Output $output): bool;
 }

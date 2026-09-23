@@ -26,7 +26,7 @@ final class ObjectOutputDescriber implements OutputDescriber
     }
 
     #[Override]
-    public function describe(Output $output): Schema
+    public function describe(Output $output, \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber): Schema
     {
         $output = Psl\Type\instance_of(ObjectOutput::class)->coerce($output);
 

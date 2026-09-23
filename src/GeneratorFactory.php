@@ -55,6 +55,12 @@ final class GeneratorFactory
 
         $modelRegistry = new ModelRegistry();
 
+        $objectDescriber = new Describer\ObjectDescriber(
+            $modelRegistry,
+            new Describer\ObjectDescriber\PHPBackedEnum(),
+            new Describer\ObjectDescriber\JMSModel($metadataFactory, $apiVersion, $serializeNull),
+        );
+
         return new Generator(
             new Processor\InfoProcessor($apiVersion),
             new Processor\SecurityDefinitions(),
@@ -69,14 +75,15 @@ final class GeneratorFactory
                                 new Describer\InputDescriber\FormInputDescriber($formDescriber, $describerFormFactory),
                             ),
                             new Describer\OutputDescriber(
-                                new Describer\ObjectDescriber(
-                                    $modelRegistry,
-                                    new Describer\ObjectDescriber\PHPBackedEnum(),
-                                    new Describer\ObjectDescriber\JMSModel($metadataFactory, $apiVersion, $serializeNull),
-                                ),
-                                $describerFormFactory,
-                                $exampleDescriber,
-                                $validator,
+                                $objectDescriber,
+                                new Describer\OutputDescriber\ScalarOutputDescriber(),
+                                new Describer\OutputDescriber\SimpleOutputDescriber(),
+                                new Describer\OutputDescriber\FileOutputDescriber(),
+                                new Describer\OutputDescriber\CollectionOutputDescriber($exampleDescriber),
+                                new Describer\OutputDescriber\PaginatedOutputDescriber(),
+                                new Describer\OutputDescriber\FormErrorOutputDescriber($describerFormFactory),
+                                new Describer\OutputDescriber\ObjectOutputDescriber($objectDescriber, $exampleDescriber),
+                                new Describer\OutputDescriber\SymfonyValidatedPayloadErrorOutputDescriber($validator),
                             ),
                         ),
                     ),

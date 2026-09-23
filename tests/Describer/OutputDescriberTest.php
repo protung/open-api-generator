@@ -6,24 +6,17 @@ namespace Protung\OpenApiGenerator\Tests\Describer;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Protung\OpenApiGenerator\Describer\ExampleDescriber\CompoundExampleDescriber;
-use Protung\OpenApiGenerator\Describer\Form\FormFactory;
 use Protung\OpenApiGenerator\Describer\ObjectDescriber;
 use Protung\OpenApiGenerator\Describer\OutputDescriber;
 use Protung\OpenApiGenerator\Model\ModelRegistry;
 use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidatedPayloadErrorOutput;
 use Protung\OpenApiGenerator\Tests\Describer\OutputDescriber\Fixtures\PairRequest;
-use Symfony\Component\Form\FormFactoryBuilder;
 
 final class OutputDescriberTest extends TestCase
 {
-    public function testAValidatedPayloadErrorCanNotBeDescribedWithoutAValidator(): void
+    public function testAnOutputNoRegisteredDescriberSupportsIsRejected(): void
     {
-        $outputDescriber = new OutputDescriber(
-            new ObjectDescriber(new ModelRegistry()),
-            new FormFactory((new FormFactoryBuilder())->getFormFactory()),
-            new CompoundExampleDescriber(),
-        );
+        $outputDescriber = new OutputDescriber(new ObjectDescriber(new ModelRegistry()));
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(

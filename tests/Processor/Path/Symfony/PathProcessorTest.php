@@ -10,8 +10,6 @@ use cebe\openapi\spec\Responses;
 use cebe\openapi\spec\Schema;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Protung\OpenApiGenerator\Describer\ExampleDescriber\ExampleDescriber;
-use Protung\OpenApiGenerator\Describer\Form\FormFactory;
 use Protung\OpenApiGenerator\Describer\InputDescriber;
 use Protung\OpenApiGenerator\Describer\ObjectDescriber;
 use Protung\OpenApiGenerator\Describer\OperationDescriber;
@@ -26,7 +24,6 @@ use Protung\OpenApiGenerator\Model\Type;
 use Protung\OpenApiGenerator\Processor\Path\Symfony\PathProcessor;
 use Protung\OpenApiGenerator\Processor\Path\Symfony\SymfonyRoutePath;
 use Protung\OpenApiGenerator\Tests\PHPUnitHelper;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
@@ -46,8 +43,6 @@ final class PathProcessorTest extends TestCase
                     new ModelRegistry(),
                     $this->createMock(ObjectDescriber\Describer::class),
                 ),
-                new FormFactory($this->createMock(FormFactoryInterface::class)),
-                $this->createMock(ExampleDescriber::class),
             ),
         );
 
@@ -62,7 +57,7 @@ final class PathProcessorTest extends TestCase
 
         $routeCollectionMock = $this->createMock(RouteCollection::class);
         $routeCollectionMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('get')
             ->with($path->routeName())
             ->willReturn(new Route('/api/test'));
@@ -100,8 +95,6 @@ final class PathProcessorTest extends TestCase
                     new ModelRegistry(),
                     $this->createMock(ObjectDescriber\Describer::class),
                 ),
-                new FormFactory($this->createMock(FormFactoryInterface::class)),
-                $this->createMock(ExampleDescriber::class),
             ),
         );
 
@@ -185,8 +178,7 @@ final class PathProcessorTest extends TestCase
                     new ModelRegistry(),
                     $this->createMock(ObjectDescriber\Describer::class),
                 ),
-                new FormFactory($this->createMock(FormFactoryInterface::class)),
-                $this->createMock(ExampleDescriber::class),
+                new OutputDescriber\ScalarOutputDescriber(),
             ),
         );
 

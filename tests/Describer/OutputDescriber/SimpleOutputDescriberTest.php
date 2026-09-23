@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Tests\Describer\OutputDescriber;
 
 use PHPUnit\Framework\TestCase;
+use Protung\OpenApiGenerator\Describer\ObjectDescriber;
+use Protung\OpenApiGenerator\Describer\OutputDescriber;
 use Protung\OpenApiGenerator\Describer\OutputDescriber\SimpleOutputDescriber;
+use Protung\OpenApiGenerator\Model\ModelRegistry;
 use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidationErrorOutput;
 use Psl\Json;
 
@@ -13,7 +16,7 @@ final class SimpleOutputDescriberTest extends TestCase
 {
     public function testDescribeSymfonyValidationErrorOutput(): void
     {
-        $schema = (new SimpleOutputDescriber())->describe(SymfonyValidationErrorOutput::create()->withStatusCode(400));
+        $schema = (new SimpleOutputDescriber())->describe(SymfonyValidationErrorOutput::create()->withStatusCode(400), new OutputDescriber(new ObjectDescriber(new ModelRegistry())));
 
         // "violations" is only sent for a payload which parsed but failed validation,
         // a payload which could not be parsed at all gets the same document without it.
@@ -65,7 +68,7 @@ final class SimpleOutputDescriberTest extends TestCase
 
     public function testDescribeSymfonyValidationErrorOutputRequiresViolationsForAnyOtherStatusCode(): void
     {
-        $schema = (new SimpleOutputDescriber())->describe(SymfonyValidationErrorOutput::create());
+        $schema = (new SimpleOutputDescriber())->describe(SymfonyValidationErrorOutput::create(), new OutputDescriber(new ObjectDescriber(new ModelRegistry())));
 
         // 422 is only ever reached through a validation failure, so the violations are always sent.
         self::assertSame(['type', 'title', 'status', 'detail', 'violations'], $schema->required);

@@ -14,24 +14,19 @@ use Psl;
 
 final class CollectionOutputDescriber implements OutputDescriber
 {
-    private \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber;
-
     private ExampleDescriber $exampleDescriber;
 
-    public function __construct(
-        \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber,
-        ExampleDescriber $exampleDescriber,
-    ) {
-        $this->outputDescriber  = $outputDescriber;
+    public function __construct(ExampleDescriber $exampleDescriber)
+    {
         $this->exampleDescriber = $exampleDescriber;
     }
 
     #[Override]
-    public function describe(Output $output): Schema
+    public function describe(Output $output, \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber): Schema
     {
         $output = Psl\Type\instance_of(CollectionOutput::class)->coerce($output);
 
-        $schema = new Schema(['type' => Type::ARRAY, 'items' => $this->outputDescriber->describe($output->output())]);
+        $schema = new Schema(['type' => Type::ARRAY, 'items' => $outputDescriber->describe($output->output())]);
 
         if ($this->exampleDescriber->supports($output)) {
             $this->exampleDescriber->describe($schema, $output);

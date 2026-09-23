@@ -6,7 +6,10 @@ namespace Protung\OpenApiGenerator\Tests\Describer\OutputDescriber;
 
 use cebe\openapi\spec\Schema;
 use PHPUnit\Framework\TestCase;
+use Protung\OpenApiGenerator\Describer\ObjectDescriber;
+use Protung\OpenApiGenerator\Describer\OutputDescriber;
 use Protung\OpenApiGenerator\Describer\OutputDescriber\SymfonyValidatedPayloadErrorOutputDescriber;
+use Protung\OpenApiGenerator\Model\ModelRegistry;
 use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidatedPayloadErrorOutput;
 use Protung\OpenApiGenerator\Tests\Describer\OutputDescriber\Fixtures\CollectionPayload;
 use Protung\OpenApiGenerator\Tests\Describer\OutputDescriber\Fixtures\GroupedPayload;
@@ -157,7 +160,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriberTest extends TestCase
     {
         $validator = (new ValidatorBuilder())->enableAttributeMapping()->getValidator();
 
-        return (new SymfonyValidatedPayloadErrorOutputDescriber($validator))->describe($output);
+        return (new SymfonyValidatedPayloadErrorOutputDescriber($validator))->describe($output, new OutputDescriber(new ObjectDescriber(new ModelRegistry())));
     }
 
     /**

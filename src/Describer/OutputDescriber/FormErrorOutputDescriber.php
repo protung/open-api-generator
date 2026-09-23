@@ -25,7 +25,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
     }
 
     #[Override]
-    public function describe(Output $output): Schema
+    public function describe(Output $output, \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber): Schema
     {
         $output = Psl\Type\instance_of(FormErrorOutput::class)->coerce($output);
 
