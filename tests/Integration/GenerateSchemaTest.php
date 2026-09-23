@@ -24,6 +24,9 @@ use Symfony\Component\Form\FormFactoryBuilder;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Validator\ValidatorBuilder;
 
+use function file_put_contents;
+use function getenv;
+
 final class GenerateSchemaTest extends TestCase
 {
     private static function createGenerator(string $apiVersion): Generator
@@ -121,10 +124,13 @@ final class GenerateSchemaTest extends TestCase
 
         $openApiSpec = $generator->generate($config);
 
-//        file_put_contents(
-//            __DIR__ . '/Expected/testSchemaGeneration.json',
-//            Json\encode($openApiSpec->getSerializableData(), true)
-//        );
+        // Regenerate the expected output with `make update-snapshots`, then review the diff before committing it.
+        if (getenv('UPDATE_SNAPSHOTS') === '1') {
+            file_put_contents(
+                __DIR__ . '/Expected/testSchemaGeneration.json',
+                Json\encode($openApiSpec->getSerializableData(), true),
+            );
+        }
 
         self::assertTrue($openApiSpec->validate());
         // Compared as text, since a JSON comparison would ignore the order of the keys in the generated document.
