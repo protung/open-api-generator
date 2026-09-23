@@ -127,9 +127,10 @@ final class GenerateSchemaTest extends TestCase
 //        );
 
         self::assertTrue($openApiSpec->validate());
-        self::assertJsonStringEqualsJsonFile(
+        // Compared as text, since a JSON comparison would ignore the order of the keys in the generated document.
+        self::assertStringEqualsFile(
             __DIR__ . '/Expected/testSchemaGeneration.json',
-            Json\encode($openApiSpec->getSerializableData()),
+            Json\encode($openApiSpec->getSerializableData(), true),
         );
     }
 }
