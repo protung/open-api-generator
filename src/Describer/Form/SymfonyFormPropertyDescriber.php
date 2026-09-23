@@ -41,9 +41,10 @@ final class SymfonyFormPropertyDescriber
     /** @param FormInterface<mixed> $form */
     private function describeHelp(Schema $schema, FormInterface $form): void
     {
-        $attr = $form->getConfig()->getOption('attr');
-        if (is_array($attr) && isset($attr['placeholder'])) {
-            $schema->example = $attr['placeholder'];
+        $attr        = $form->getConfig()->getOption('attr');
+        $placeholder = is_array($attr) ? ($attr['placeholder'] ?? null) : null;
+        if ($placeholder !== null) {
+            $schema->example = $placeholder;
         }
 
         $description = $form->getConfig()->getOption('help');
