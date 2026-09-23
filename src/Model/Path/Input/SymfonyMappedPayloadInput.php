@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Input;
 
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\InputLocation;
 
 /**
@@ -27,8 +26,6 @@ final class SymfonyMappedPayloadInput extends BaseInput
      */
     private function __construct(string $className)
     {
-        Assert::classExists($className);
-
         $this->className = $className;
 
         $this->setLocation(InputLocation::Body);

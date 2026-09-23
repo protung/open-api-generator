@@ -6,7 +6,6 @@ namespace Protung\OpenApiGenerator\Model\Path\Output;
 
 use NoDiscard;
 use Override;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\SerializationGroupAwareOutput;
 use Psl;
@@ -30,8 +29,6 @@ final class ObjectOutput implements SerializationGroupAwareOutput
      */
     private function __construct(string $className, array $serializationGroups)
     {
-        Assert::classExists($className);
-
         $this->className           = $className;
         $this->serializationGroups = $serializationGroups;
     }

@@ -11,7 +11,6 @@ use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
 use InvalidArgumentException;
 use Override;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Describer\SymfonyValidatorConstraintsDescriber;
 use Protung\OpenApiGenerator\Model\Path\Input;
 use Protung\OpenApiGenerator\Model\Path\Input\SymfonyMappedPayloadInput;
@@ -49,7 +48,7 @@ final class SymfonyMappedPayloadInputDescriber implements InputDescriber
     {
         $input = Psl\Type\instance_of(SymfonyMappedPayloadInput::class)->coerce($input);
 
-        Assert::notSame($httpMethod, 'GET', 'Body input is not allowed in GET requests.');
+        Psl\invariant($httpMethod !== 'GET', 'Body input is not allowed in GET requests.');
 
         $operation->requestBody = new RequestBody(
             [

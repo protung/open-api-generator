@@ -7,7 +7,6 @@ namespace Protung\OpenApiGenerator\Describer\OutputDescriber;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
 use Override;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
 use Psl;
@@ -68,8 +67,6 @@ final class PaginatedOutputDescriber implements OutputDescriber
             $outputDescriber->describe(...),
             $output->embedded(),
         );
-
-        Assert::minCount($resources, 1);
 
         if (count($resources) > 1) {
             $resourcesSchema->items = new Schema(['oneOf' => $resources]);

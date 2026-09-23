@@ -7,7 +7,6 @@ namespace Protung\OpenApiGenerator\Describer\Form\PropertyDescriber;
 use cebe\openapi\spec\Schema;
 use cebe\openapi\spec\Type;
 use Override;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Describer\Form\FormFactory;
 use Protung\OpenApiGenerator\Describer\Form\NameResolver\FormName;
 use Protung\OpenApiGenerator\Describer\FormDescriber;
@@ -41,8 +40,7 @@ final class DictionaryPropertyDescriber implements PropertyDescriber
     {
         $formConfig = $form->getConfig();
 
-        $entryType = Psl\Type\string()->coerce($formConfig->getOption('entry_type'));
-        Assert::implementsInterface($entryType, FormTypeInterface::class);
+        $entryType = Psl\Type\class_string(FormTypeInterface::class)->coerce($formConfig->getOption('entry_type'));
 
         $subForm = $this->formFactory->create(
             new FormDefinition(

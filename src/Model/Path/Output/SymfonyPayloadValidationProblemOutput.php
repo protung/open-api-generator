@@ -6,7 +6,6 @@ namespace Protung\OpenApiGenerator\Model\Path\Output;
 
 use NoDiscard;
 use Override;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\StatusCodeAwareOutput;
 use Psl;
@@ -37,8 +36,6 @@ final class SymfonyPayloadValidationProblemOutput implements StatusCodeAwareOutp
      */
     private function __construct(string $className, int $statusCode)
     {
-        Assert::classExists($className);
-
         $this->className  = $className;
         $this->statusCode = $statusCode;
     }

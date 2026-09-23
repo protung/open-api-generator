@@ -18,6 +18,7 @@ use Protung\OpenApiGenerator\Tests\Describer\InputDescriber\Fixtures\PairRequest
 use Protung\OpenApiGenerator\Tests\Describer\InputDescriber\Fixtures\SaveCopyTextActivityRequest;
 use Protung\OpenApiGenerator\Tests\Describer\InputDescriber\Fixtures\SignInRequest;
 use Psl;
+use Psl\Exception\InvariantViolationException;
 use Psl\Json;
 use Symfony\Component\Validator\ValidatorBuilder;
 
@@ -108,7 +109,7 @@ final class SymfonyMappedPayloadInputDescriberTest extends TestCase
 
     public function testBodyInputIsNotAllowedInGetRequests(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvariantViolationException::class);
         $this->expectExceptionMessage('Body input is not allowed in GET requests.');
 
         self::describeOperation(PairRequest::class, 'GET');

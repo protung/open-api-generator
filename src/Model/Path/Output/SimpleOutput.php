@@ -7,13 +7,15 @@ namespace Protung\OpenApiGenerator\Model\Path\Output;
 use InvalidArgumentException;
 use NoDiscard;
 use Override;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Type;
 use Psl;
 
 use function array_is_list;
+use function array_keys;
+use function array_map;
+use function array_values;
 use function gettype;
 use function is_array;
 use function is_bool;
@@ -27,7 +29,7 @@ use function reset;
  */
 class SimpleOutput implements Output
 {
-    /** @var IOField[] */
+    /** @var non-empty-list<IOField> */
     private array $fields;
 
     /** @var array<string, mixed> */
@@ -37,8 +39,8 @@ class SimpleOutput implements Output
     private array|null $contentTypes = null;
 
     /**
-     * @param IOField[]            $fields
-     * @param array<string, mixed> $example
+     * @param non-empty-list<IOField> $fields
+     * @param array<string, mixed>    $example
      */
     protected function __construct(array $fields, array $example)
     {
@@ -48,24 +50,24 @@ class SimpleOutput implements Output
     /**
      * Lets an output which derives its shape from something else rebuild itself once that changes.
      *
-     * @param IOField[]            $fields
-     * @param array<string, mixed> $example
+     * @param non-empty-list<IOField> $fields
+     * @param array<string, mixed>    $example
      */
     protected function replaceFields(array $fields, array $example): void
     {
-        Assert::minCount($fields, 1, 'At least one field should be defined.');
-
         $this->fields  = $fields;
         $this->example = $example;
     }
 
-    public static function fromIOFields(IOField ...$fields): self
+    public static function fromIOFields(IOField $field, IOField ...$fields): self
     {
+        $fields = [$field, ...Psl\Vec\values($fields)];
+
         return new self($fields, self::exampleFromFields($fields));
     }
 
     /**
-     * @param array<string, mixed> $data
+     * @param non-empty-array<string, mixed> $data
      */
     public static function fromExampleData(array $data): self
     {
@@ -78,49 +80,60 @@ class SimpleOutput implements Output
     /**
      * @param array<mixed> $data
      *
-     * @return array<IOField>
+     * @return ($data is non-empty-array ? non-empty-list<IOField> : list<IOField>)
      */
     private static function createIOFields(array $data): array
     {
-        $fields = [];
-        foreach ($data as $fieldName => $fieldValue) {
-            if ($fieldValue === null) {
-                $fields[] = IOField::unknown($fieldName)->asNullable();
-            } elseif (is_string($fieldValue)) {
-                $fields[] = IOField::stringField($fieldName);
-            } elseif (is_int($fieldValue)) {
-                $fields[] = IOField::integerField($fieldName);
-            } elseif (is_float($fieldValue)) {
-                $fields[] = IOField::numberField($fieldName);
-            } elseif (is_bool($fieldValue)) {
-                $fields[] = IOField::booleanField($fieldName);
-            } elseif (is_array($fieldValue)) {
-                if (array_is_list($fieldValue)) {
-                    $fields[] = IOField::arrayField(
-                        $fieldName,
-                        self::createIOFields([$fieldName => reset($fieldValue)])[0],
-                    );
-                } else {
-                    $fields[] = IOField::objectField(
-                        $fieldName,
-                        ...self::createIOFields($fieldValue),
-                    );
-                }
-            } else {
-                throw new InvalidArgumentException(
-                    Psl\Str\format(
-                        'Only scalars or arrays can be used as example value for building SimpleOutput, "%s" given.',
-                        gettype($fieldValue),
-                    ),
-                );
-            }
+        return array_values(
+            array_map(
+                // Property names are strings, even where PHP turned a numeric one into an integer array key.
+                static fn (int|string $fieldName, mixed $fieldValue): IOField => self::createIOField((string) $fieldName, $fieldValue),
+                array_keys($data),
+                $data,
+            ),
+        );
+    }
+
+    private static function createIOField(string $fieldName, mixed $fieldValue): IOField
+    {
+        if ($fieldValue === null) {
+            return IOField::unknown($fieldName)->asNullable();
         }
 
-        return $fields;
+        if (is_string($fieldValue)) {
+            return IOField::stringField($fieldName);
+        }
+
+        if (is_int($fieldValue)) {
+            return IOField::integerField($fieldName);
+        }
+
+        if (is_float($fieldValue)) {
+            return IOField::numberField($fieldName);
+        }
+
+        if (is_bool($fieldValue)) {
+            return IOField::booleanField($fieldName);
+        }
+
+        if (is_array($fieldValue)) {
+            if (array_is_list($fieldValue)) {
+                return IOField::arrayField($fieldName, self::createIOField($fieldName, reset($fieldValue)));
+            }
+
+            return IOField::objectField($fieldName, ...self::createIOFields($fieldValue));
+        }
+
+        throw new InvalidArgumentException(
+            Psl\Str\format(
+                'Only scalars or arrays can be used as example value for building SimpleOutput, "%s" given.',
+                gettype($fieldValue),
+            ),
+        );
     }
 
     /**
-     * @return IOField[]
+     * @return non-empty-list<IOField>
      */
     public function fields(): array
     {

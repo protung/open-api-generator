@@ -6,10 +6,10 @@ namespace Protung\OpenApiGenerator\Describer\InputDescriber;
 
 use cebe\openapi\spec\MediaType;
 use cebe\openapi\spec\Operation;
+use cebe\openapi\spec\Reference;
 use cebe\openapi\spec\RequestBody;
 use cebe\openapi\spec\Schema;
 use Override;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Describer\Form\FormFactory;
 use Protung\OpenApiGenerator\Describer\FormDescriber;
 use Protung\OpenApiGenerator\Model\Path\Input;
@@ -102,9 +102,10 @@ final class FormInputDescriber implements InputDescriber
                     $newMediaType->schema,
                 ];
             } else {
-                Assert::minCount($existingMediaTypeSchema->oneOf, 1);
                 $mediaTypes = array_merge(
-                    $existingMediaTypeSchema->oneOf,
+                    Psl\Type\non_empty_vec(
+                        Psl\Type\union(Psl\Type\instance_of(Schema::class), Psl\Type\instance_of(Reference::class)),
+                    )->coerce($existingMediaTypeSchema->oneOf),
                     [$newMediaType->schema],
                 );
             }

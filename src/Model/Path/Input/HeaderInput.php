@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Input;
 
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\InputLocation;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Type;
+use Psl;
 
 final class HeaderInput extends SimpleInput
 {
@@ -18,7 +18,7 @@ final class HeaderInput extends SimpleInput
 
     public static function withIOField(IOField $field): self
     {
-        Assert::same($field->type(), Type::String, 'Header type must be a string.');
+        Psl\invariant($field->type() === Type::String, 'Header type must be a string.');
 
         return new self($field);
     }

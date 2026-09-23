@@ -51,7 +51,7 @@ final class SymfonyValidationProblemOutput extends SimpleOutput implements Statu
     }
 
     /**
-     * @return IOField[]
+     * @return non-empty-list<IOField>
      */
     private static function fieldsFor(int $statusCode): array
     {

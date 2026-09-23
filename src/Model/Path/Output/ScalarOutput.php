@@ -6,7 +6,6 @@ namespace Protung\OpenApiGenerator\Model\Path\Output;
 
 use NoDiscard;
 use Override;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Type;
 use Psl;
@@ -21,7 +20,7 @@ final class ScalarOutput implements Output
 
     private function __construct(Type $type, string $contentType)
     {
-        Assert::true($type->isScalar(), 'Only scalar types accepted');
+        Psl\invariant($type->isScalar(), 'Only scalar types accepted');
 
         $this->type        = $type;
         $this->contentType = $contentType;

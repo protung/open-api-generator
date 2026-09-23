@@ -20,7 +20,6 @@ use Override;
 use Protung\OpenApiGenerator\Analyser\PropertyAnalyser;
 use Protung\OpenApiGenerator\Analyser\PropertyAnalysisSingleType;
 use Protung\OpenApiGenerator\Analyser\PropertyAnalysisType;
-use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Describer\ObjectDescriber;
 use Protung\OpenApiGenerator\Model\Definition;
 use Psl;
@@ -344,7 +343,7 @@ final class JMSModel implements Describer
         }
 
         $propertyClass = $propertyMetadata->class;
-        Assert::classExists($propertyClass);
+        Psl\invariant(class_exists($propertyClass), 'Class "%s" declaring property "%s" does not exist.', $propertyClass, $propertyMetadata->name);
 
         if ($type !== null) {
             return [
