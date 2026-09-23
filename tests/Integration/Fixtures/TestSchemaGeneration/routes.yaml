@@ -146,3 +146,7 @@ api_test_mapped_request_payload_error_response_with_message_templates:
 api_test_mapped_request_payload_input:
   path: /api/test/mapped-request-payload-input
   methods: [POST]
+
+api_test_recursive_object:
+  path: /api/test/recursive-object
+  methods: [GET]

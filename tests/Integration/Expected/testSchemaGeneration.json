@@ -7023,6 +7023,100 @@
                 "security": []
             }
         },
+        "/api/test/recursive-object": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test an object reaching itself through its properties",
+                "parameters": [
+                    {
+                        "name": "X-ALWAYS",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned on success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "parent": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/RecursiveObject"
+                                                }
+                                            ],
+                                            "nullable": true
+                                        },
+                                        "children": {
+                                            "type": "array",
+                                            "items": {
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/RecursiveObject"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "name",
+                                        "children"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returned on server error",
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "detail"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "type": "https://tools.ietf.org/html/rfc2616#section-10",
+                                        "title": "An error occurred",
+                                        "status": 500,
+                                        "detail": "Internal Server Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
         "/api/test/referenced-response": {
             "get": {
                 "tags": [
@@ -15064,6 +15158,36 @@
                 },
                 "required": [
                     "intProperty"
+                ],
+                "type": "object"
+            },
+            "RecursiveObject": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "parent": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/RecursiveObject"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/components/schemas/RecursiveObject"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "name",
+                    "children"
                 ],
                 "type": "object"
             }

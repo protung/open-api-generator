@@ -67,8 +67,6 @@ final class ModelRegistry
 
     public function createReference(Definition $definition, string $referencePath): Reference
     {
-        $hash = $this->definitionKey($definition);
-
         foreach ($this->referencedModels as $referencedModel) {
             if ($referencedModel->referencePath() === $referencePath && ! $referencedModel->definition()->equals($definition)) {
                 throw new RuntimeException(
@@ -82,7 +80,9 @@ final class ModelRegistry
             }
         }
 
-        $this->referencedModels[$hash] = new ReferenceModel(
+        // Keyed by path, since a model can be referenced under more than one name: once where it references
+        // itself and once where the specification references it under a name of its own.
+        $this->referencedModels[$referencePath] = new ReferenceModel(
             $this->getModelWithDefinition($definition),
             $referencePath,
         );

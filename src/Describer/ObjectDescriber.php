@@ -9,9 +9,11 @@ use cebe\openapi\spec\Schema;
 use Protung\OpenApiGenerator\Describer\ObjectDescriber\Describer;
 use Protung\OpenApiGenerator\Model\Definition;
 use Protung\OpenApiGenerator\Model\ModelRegistry;
+use Protung\OpenApiGenerator\Resolver\DefinitionName;
 use Psl;
 use RuntimeException;
 
+use function array_pop;
 use function DeepCopy\deep_copy;
 
 final class ObjectDescriber
@@ -21,6 +23,9 @@ final class ObjectDescriber
     /** @var array<Describer> */
     private array $describers;
 
+    /** @var list<Definition> */
+    private array $definitionsBeingDescribed = [];
+
     public function __construct(ModelRegistry $modelRegistry, Describer ...$describers)
     {
         $this->modelRegistry = $modelRegistry;
@@ -29,11 +34,22 @@ final class ObjectDescriber
 
     public function describe(Definition $definition): Schema
     {
-        if (! $this->modelRegistry->schemaExistsForDefinition($definition)) {
-            $this->modelRegistry->addSchema(
-                $definition,
-                $this->createSchema($definition),
+        // A model reaching itself through its properties can not be inlined, the schema would never end.
+        if ($this->isBeingDescribed($definition)) {
+            return new Schema(
+                [
+                    'allOf' => [
+                        $this->modelRegistry->createReference(
+                            $definition,
+                            '#/components/schemas/' . DefinitionName::getName($definition),
+                        ),
+                    ],
+                ],
             );
+        }
+
+        if (! $this->modelRegistry->schemaExistsForDefinition($definition)) {
+            $this->createSchema($definition);
         }
 
         return Psl\Type\instance_of(Schema::class)->coerce(deep_copy($this->modelRegistry->getSchema($definition)));
@@ -46,14 +62,24 @@ final class ObjectDescriber
         return $this->modelRegistry->createReference($definition, $referencePath);
     }
 
-    private function createSchema(Definition $definition): Schema
+    /**
+     * The schema is registered before it is described, so a model reaching itself can reference it.
+     */
+    private function createSchema(Definition $definition): void
     {
         foreach ($this->describers as $describer) {
             if ($describer->supports($definition)) {
                 $schema = new Schema([]);
-                $describer->describeInSchema($schema, $definition, $this);
+                $this->modelRegistry->addSchema($definition, $schema);
 
-                return $schema;
+                $this->definitionsBeingDescribed[] = $definition;
+                try {
+                    $describer->describeInSchema($schema, $definition, $this);
+                } finally {
+                    array_pop($this->definitionsBeingDescribed);
+                }
+
+                return;
             }
         }
 
@@ -63,6 +89,17 @@ final class ObjectDescriber
                 $definition->className(),
                 Psl\Str\join($definition->serializationGroups(), ', '),
             ),
+        );
+    }
+
+    /**
+     * Matches definitions the way the model registry tells models apart.
+     */
+    private function isBeingDescribed(Definition $definition): bool
+    {
+        return Psl\Iter\any(
+            $this->definitionsBeingDescribed,
+            static fn (Definition $beingDescribed): bool => $beingDescribed->equals($definition) && $beingDescribed->exampleObject() === $definition->exampleObject(),
         );
     }
 }

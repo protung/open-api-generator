@@ -1,0 +1,7 @@
+Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\RecursiveObject:
+  exclusion_policy: ALL
+  properties:
+    name: ~
+    parent: ~
+    children:
+      type: array<Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\RecursiveObject>

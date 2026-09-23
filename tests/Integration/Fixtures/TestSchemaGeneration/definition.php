@@ -739,6 +739,18 @@ return new Model\Specification(
             ],
             [],
         ),
+        new Path\Symfony\SymfonyRoutePath(
+            'api_test_recursive_object',
+            'Test',
+            'Test an object reaching itself through its properties',
+            null,
+            [],
+            [
+                Response::for200(
+                    ObjectOutput::forClass(TestSchemaGeneration\Model\JMS\RecursiveObject::class),
+                ),
+            ],
+        ),
     ],
     [
         Input\HeaderInput::withName('X-ALWAYS'),
