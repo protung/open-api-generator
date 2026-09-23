@@ -34,7 +34,8 @@ final class PathsProcessor implements Processor
                 $path                  = $pathOperation->path();
                 $openApiPaths[$path] ??= new PathItem([]);
 
-                $openApiPaths[$path]->{$pathOperation->operationMethod()} = $pathOperation->operation();
+                // Set through cebe's magic setter, which keeps the operations in the order the routes declare them.
+                $openApiPaths[$path]->__set($pathOperation->operationMethod(), $pathOperation->operation());
             }
         }
 
