@@ -31,6 +31,8 @@ use function array_keys;
 use function class_exists;
 use function count;
 use function in_array;
+use function is_array;
+use function is_string;
 
 final class JMSModel implements Describer
 {
@@ -212,7 +214,7 @@ final class JMSModel implements Describer
                 $property->format = 'date-time';
             }
         } elseif ($propertyType->type() === 'enum') {
-            $property = $objectDescriber->describe(new Definition(Psl\Type\non_empty_string()->coerce($propertyType->parameters()[0]['name']), $serializationGroups));
+            $property = $objectDescriber->describe(new Definition(Psl\Type\non_empty_string()->coerce(self::nameOfTypeParameter($propertyType->parameters()[0] ?? null)), $serializationGroups));
         } else {
             $property = $objectDescriber->describe(new Definition($propertyType->type(), $serializationGroups));
         }
@@ -226,25 +228,43 @@ final class JMSModel implements Describer
 
     private function getNestedTypeInArray(PropertyMetadata $item): string|null
     {
-        if ($item->type === null) {
+        $type = self::typeOf($item);
+        if ($type === null) {
             return null;
         }
 
-        if ($item->type['name'] !== 'array' && $item->type['name'] !== 'ArrayCollection') {
+        if ($type['name'] !== 'array' && $type['name'] !== 'ArrayCollection') {
             return null;
         }
 
-        // array<string, MyNamespaceMyObject>
-        if (isset($item->type['params'][1]['name'])) {
-            return $item->type['params'][1]['name'];
+        // array<string, MyNamespaceMyObject> or else array<MyNamespaceMyObject>
+        return self::nameOfTypeParameter($type['params'][1] ?? null) ?? self::nameOfTypeParameter($type['params'][0] ?? null);
+    }
+
+    private static function nameOfTypeParameter(mixed $parameter): string|null
+    {
+        $name = is_array($parameter) ? ($parameter['name'] ?? null) : null;
+
+        return is_string($name) ? $name : null;
+    }
+
+    /**
+     * JMS describes the type as an array, whose shape older versions of the library do not declare.
+     *
+     * @return array{name: string, params: array<mixed>}|null
+     */
+    private static function typeOf(PropertyMetadata $propertyMetadata): array|null
+    {
+        if ($propertyMetadata->type === null) {
+            return null;
         }
 
-        // array<MyNamespaceMyObject>
-        if (isset($item->type['params'][0]['name'])) {
-            return $item->type['params'][0]['name'];
-        }
+        $type = Psl\Type\dict(Psl\Type\string(), Psl\Type\mixed())->coerce($propertyMetadata->type);
 
-        return null;
+        return [
+            'name' => Psl\Type\string()->coerce($type['name'] ?? null),
+            'params' => Psl\Type\dict(Psl\Type\array_key(), Psl\Type\mixed())->coerce($type['params'] ?? []),
+        ];
     }
 
     private function isDiscriminatorBaseClass(ClassMetadata $metadata): bool
@@ -299,24 +319,26 @@ final class JMSModel implements Describer
      */
     private function getPropertyTypes(PropertyMetadata $propertyMetadata): array
     {
+        $type = self::typeOf($propertyMetadata);
+
         $defaultTypes = [
             PropertyAnalysisSingleType::forSingleValue(
                 'string',
                 false,
-                $propertyMetadata->type['params'] ?? [],
+                $type['params'] ?? [],
             ),
         ];
 
         if ($propertyMetadata instanceof VirtualPropertyMetadata || $propertyMetadata instanceof StaticPropertyMetadata || $propertyMetadata instanceof ExpressionPropertyMetadata) {
-            if ($propertyMetadata->type === null) {
+            if ($type === null) {
                 return $defaultTypes;
             }
 
             return [
                 PropertyAnalysisSingleType::forSingleValue(
-                    $propertyMetadata->type['name'],
+                    $type['name'],
                     false,
-                    $propertyMetadata->type['params'] ?? [],
+                    $type['params'],
                 ),
             ];
         }
@@ -324,12 +346,12 @@ final class JMSModel implements Describer
         $propertyClass = $propertyMetadata->class;
         Assert::classExists($propertyClass);
 
-        if ($propertyMetadata->type !== null) {
+        if ($type !== null) {
             return [
                 PropertyAnalysisSingleType::forSingleValue(
-                    $propertyMetadata->type['name'],
+                    $type['name'],
                     $this->propertyAnalyser->canBeNull($propertyClass, Psl\Type\non_empty_string()->coerce($propertyMetadata->name)),
-                    $propertyMetadata->type['params'],
+                    $type['params'],
                 ),
             ];
         }

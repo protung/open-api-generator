@@ -1,12 +1,6 @@
 variant = "loose"
 
 [[issues]]
-file = "src/Describer/ObjectDescriber/JMSModel.php"
-code = "redundant-null-coalesce"
-message = "Redundant null coalesce: left-hand side can never be `null` or undefined."
-count = 1
-
-[[issues]]
 file = "tests/Integration/Fixtures/TestSchemaGeneration/Model/JMS/ComplexObject.php"
 code = "non-existent-class-like"
 message = 'Cannot find class, interface, enum, or type alias `Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Model\JMS\unknown`.'
