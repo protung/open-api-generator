@@ -35,7 +35,7 @@ sa-mago-lint-fix: ## Apply Mago linter auto fixes
 	vendor/bin/mago --config config/mago.toml lint --fix
 
 sa-mago-analyze: ## Run Mago analyzer
-	vendor/bin/mago --config config/mago.toml analyze --minimum-fail-level note --baseline config/mago-analyze-baseline.toml #--fail-on-out-of-sync-baseline
+	vendor/bin/mago --config config/mago.toml analyze --minimum-fail-level note --baseline config/mago-analyze-baseline.toml --fail-on-out-of-sync-baseline
 
 sa-mago-analyze-update: ## Update Mago analyzer baseline
 	vendor/bin/mago --config config/mago.toml analyze --minimum-fail-level note --generate-baseline --baseline config/mago-analyze-baseline.toml
