@@ -54,5 +54,9 @@ security-analysis:                                                              
 unit-tests:                                                                     ## Run unit test suite
 	./vendor/bin/phpunit -c config/phpunit.xml.dist
 
+.PHONY: update-snapshots
+update-snapshots:                                                               ## Regenerate the expected integration test output (review the diff!)
+	UPDATE_SNAPSHOTS=1 ./vendor/bin/phpunit -c config/phpunit.xml.dist --filter testSchemaGeneration
+
 .PHONY: check
 check: coding-standard-check static-analysis security-analysis unit-tests       ## Run all checks for local development iterations
