@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use NoDiscard;
 use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
@@ -67,13 +68,15 @@ final class ObjectOutput implements SerializationGroupAwareOutput
         return $this->className;
     }
 
+    #[NoDiscard]
     public function withExample(object $exampleObject): self
     {
         $exampleObject = Psl\Type\instance_of($this->className)->coerce($exampleObject);
 
-        $this->exampleObject = $exampleObject;
+        $clone                = clone $this;
+        $clone->exampleObject = $exampleObject;
 
-        return $this;
+        return $clone;
     }
 
     #[Override]

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
 use InvalidArgumentException;
+use NoDiscard;
 use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\IOField;
@@ -188,11 +189,21 @@ class SimpleOutput implements Output
      * Useful for error documents which Symfony renders in the format negotiated through the
      * "Accept" header, for example both "application/problem+json" and "application/json".
      */
+    #[NoDiscard]
     public function withContentTypes(string $contentType, string ...$contentTypes): static
     {
-        $this->contentTypes = [$contentType, ...Psl\Vec\values($contentTypes)];
+        $clone = clone $this;
+        $clone->replaceContentTypes($contentType, ...$contentTypes);
 
-        return $this;
+        return $clone;
+    }
+
+    /**
+     * Lets an output set its content types while it is being constructed.
+     */
+    protected function replaceContentTypes(string $contentType, string ...$contentTypes): void
+    {
+        $this->contentTypes = [$contentType, ...Psl\Vec\values($contentTypes)];
     }
 
     /**

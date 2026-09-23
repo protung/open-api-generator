@@ -26,7 +26,7 @@ final class RFC7807ErrorOutput extends SimpleOutput
             ],
         );
 
-        $this->withContentTypes(Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON);
+        $this->replaceContentTypes(Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON);
     }
 
     public static function create(int $errorCode, string $message): self

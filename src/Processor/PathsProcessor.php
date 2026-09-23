@@ -8,7 +8,6 @@ use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\PathItem;
 use cebe\openapi\spec\Paths;
 use Override;
-use Protung\OpenApiGenerator\Model\Path\Path;
 use Protung\OpenApiGenerator\Model\Specification;
 use Protung\OpenApiGenerator\Processor\Path\PathProcessor;
 
@@ -28,7 +27,15 @@ final class PathsProcessor implements Processor
     {
         $openApiPaths = [];
         foreach ($specification->paths() as $pathDefinition) {
-            $this->addAlwaysAdded($pathDefinition, $specification);
+            $alwaysAddedInputs = $specification->alwaysAddedInputs();
+            if ($alwaysAddedInputs !== []) {
+                $pathDefinition = $pathDefinition->withAddedInputs(...$alwaysAddedInputs);
+            }
+
+            $alwaysAddedResponses = $specification->alwaysAddedResponses();
+            if ($alwaysAddedResponses !== []) {
+                $pathDefinition = $pathDefinition->withAddedResponses(...$alwaysAddedResponses);
+            }
 
             foreach ($this->pathProcessor->process($pathDefinition) as $pathOperation) {
                 $path                  = $pathOperation->path();
@@ -42,16 +49,5 @@ final class PathsProcessor implements Processor
         ksort($openApiPaths);
 
         $openApi->paths = new Paths($openApiPaths);
-    }
-
-    private function addAlwaysAdded(Path $pathDefinition, Specification $specification): void
-    {
-        foreach ($specification->alwaysAddedInputs() as $alwaysAddedInput) {
-            $pathDefinition->addInput($alwaysAddedInput);
-        }
-
-        foreach ($specification->alwaysAddedResponses() as $alwaysAddedResponse) {
-            $pathDefinition->addResponse($alwaysAddedResponse);
-        }
     }
 }

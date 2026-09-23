@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use NoDiscard;
 use Override;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\StatusCodeAwareOutput;
@@ -39,6 +40,7 @@ final class SymfonyValidationErrorOutput extends SimpleOutput implements StatusC
     }
 
     #[Override]
+    #[NoDiscard]
     public function withStatusCode(int $statusCode): static
     {
         $clone             = clone $this;
@@ -69,7 +71,7 @@ final class SymfonyValidationErrorOutput extends SimpleOutput implements StatusC
         // 400 carrying no violations, so only there can the member be missing. Any other status code this
         // document is returned with is reachable through a validation failure alone.
         if ($statusCode === 400) {
-            $violations->asOptional();
+            $violations = $violations->asOptional();
         }
 
         return [

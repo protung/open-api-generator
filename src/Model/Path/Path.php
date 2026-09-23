@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path;
 
+use NoDiscard;
 use Protung\OpenApiGenerator\Model\Callback;
 use Protung\OpenApiGenerator\Model\Response;
 use Protung\OpenApiGenerator\Model\Security\Reference;
@@ -21,14 +22,22 @@ interface Path
      */
     public function input(): array;
 
-    public function addInput(Input $input): void;
+    /**
+     * Returns a copy of the path with the given inputs appended to its own.
+     */
+    #[NoDiscard]
+    public function withAddedInputs(Input $input, Input ...$inputs): static;
 
     /**
      * @return Response[]
      */
     public function responses(): array;
 
-    public function addResponse(Response $response): void;
+    /**
+     * Returns a copy of the path with the given responses appended to its own.
+     */
+    #[NoDiscard]
+    public function withAddedResponses(Response $response, Response ...$responses): static;
 
     public function security(): Reference;
 

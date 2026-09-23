@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use NoDiscard;
 use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
@@ -53,6 +54,7 @@ final class SymfonyValidatedPayloadErrorOutput implements StatusCodeAwareOutput
     }
 
     #[Override]
+    #[NoDiscard]
     public function withStatusCode(int $statusCode): static
     {
         $clone             = clone $this;
@@ -65,11 +67,13 @@ final class SymfonyValidatedPayloadErrorOutput implements StatusCodeAwareOutput
      * Restricts the described message templates to the given validation groups, matching the "validationGroups"
      * the endpoint declares. Has no effect on the described property paths, see propertyPaths() on the describer.
      */
+    #[NoDiscard]
     public function withValidationGroups(string ...$validationGroups): self
     {
-        $this->validationGroups = Psl\Vec\values($validationGroups);
+        $clone                   = clone $this;
+        $clone->validationGroups = Psl\Vec\values($validationGroups);
 
-        return $this;
+        return $clone;
     }
 
     /**
@@ -79,18 +83,22 @@ final class SymfonyValidatedPayloadErrorOutput implements StatusCodeAwareOutput
      * Validation performed anywhere else, a custom constraint holding its message somewhere unusual or an
      * Assert\Callback picking a message at runtime all produce templates which can not be read up front.
      */
+    #[NoDiscard]
     public function withMessageTemplates(): self
     {
-        $this->describesMessageTemplates = true;
+        $clone                            = clone $this;
+        $clone->describesMessageTemplates = true;
 
-        return $this;
+        return $clone;
     }
 
+    #[NoDiscard]
     public function withContentTypes(string $contentType, string ...$contentTypes): self
     {
-        $this->contentTypes = [$contentType, ...Psl\Vec\values($contentTypes)];
+        $clone               = clone $this;
+        $clone->contentTypes = [$contentType, ...Psl\Vec\values($contentTypes)];
 
-        return $this;
+        return $clone;
     }
 
     /**

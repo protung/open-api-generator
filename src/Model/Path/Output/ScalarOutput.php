@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path\Output;
 
+use NoDiscard;
 use Override;
 use Protung\OpenApiGenerator\Assert\Assert;
 use Protung\OpenApiGenerator\Model\Path\Output;
@@ -42,11 +43,13 @@ final class ScalarOutput implements Output
         return $this->type;
     }
 
+    #[NoDiscard]
     public function withExample(bool|float|int|string|null $example): self
     {
-        $this->example = $example;
+        $clone          = clone $this;
+        $clone->example = $example;
 
-        return $this;
+        return $clone;
     }
 
     #[Override]

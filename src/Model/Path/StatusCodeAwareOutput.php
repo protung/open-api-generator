@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Path;
 
+use NoDiscard;
+
 /**
  * An output whose shape depends on the status code it is returned with.
  *
@@ -18,5 +20,6 @@ interface StatusCodeAwareOutput extends Output
      * Returns a copy rather than mutating, so the same output can be attached to more than one response
      * without the last one deciding the status code of all of them.
      */
+    #[NoDiscard]
     public function withStatusCode(int $statusCode): static;
 }

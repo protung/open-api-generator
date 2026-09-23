@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model;
 
+use NoDiscard;
 use Protung\OpenApiGenerator\Model\Path\Output;
 use Protung\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
@@ -169,11 +170,13 @@ final class Response
     /**
      * @param string[]|string $description
      */
+    #[NoDiscard]
     public function withDescription(array|string $description): self
     {
-        $this->description = (array) $description;
+        $clone              = clone $this;
+        $clone->description = (array) $description;
 
-        return $this;
+        return $clone;
     }
 
     public function statusCode(): int

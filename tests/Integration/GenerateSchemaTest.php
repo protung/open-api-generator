@@ -85,4 +85,18 @@ final class GenerateSchemaTest extends TestCase
             Json\encode($openApiSpec->getSerializableData(), true),
         );
     }
+
+    public function testGeneratingTwiceFromTheSameSpecificationProducesTheSameDocument(): void
+    {
+        $generator = self::createGenerator('0.0.1');
+
+        $config = Psl\Type\instance_of(Specification::class)->coerce(
+            require __DIR__ . '/Fixtures/TestSchemaGeneration/definition.php',
+        );
+
+        $first  = Json\encode($generator->generate($config)->getSerializableData(), true);
+        $second = Json\encode($generator->generate($config)->getSerializableData(), true);
+
+        self::assertSame($first, $second);
+    }
 }

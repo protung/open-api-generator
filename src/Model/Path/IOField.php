@@ -6,6 +6,7 @@ namespace Protung\OpenApiGenerator\Model\Path;
 
 use BackedEnum;
 use InvalidArgumentException;
+use NoDiscard;
 use Protung\OpenApiGenerator\Model\Type;
 use Psl\Vec;
 use ReflectionEnum;
@@ -86,30 +87,24 @@ final class IOField
             default => Type::String,
         };
 
-        $self = new self($name, $type);
-        $self->withPossibleValues(
+        return (new self($name, $type))->withPossibleValues(
             Vec\map(
                 $backedEnumClass::cases(),
                 static fn (BackedEnum $value): int|string => $value->value,
             ),
         );
-
-        return $self;
     }
 
     public static function arrayField(string $name, IOField $element): self
     {
-        $self = new self($name, Type::Array);
-        $self->withChildren([$element]);
-
-        return $self;
+        return (new self($name, Type::Array))->withChildren([$element]);
     }
 
     public static function objectField(string $name, IOField ...$children): self
     {
         $self = new self($name, Type::Object);
         if (count($children) > 0) {
-            $self->withChildren(Vec\values($children));
+            return $self->withChildren(Vec\values($children));
         }
 
         return $self;
@@ -128,11 +123,13 @@ final class IOField
     /**
      * @param list<IOField> $children
      */
+    #[NoDiscard]
     public function withChildren(array $children): self
     {
-        $this->children = $children;
+        $clone           = clone $this;
+        $clone->children = $children;
 
-        return $this;
+        return $clone;
     }
 
     /**
@@ -143,11 +140,13 @@ final class IOField
         return $this->children;
     }
 
+    #[NoDiscard]
     public function asNullable(): self
     {
-        $this->nullable = true;
+        $clone           = clone $this;
+        $clone->nullable = true;
 
-        return $this;
+        return $clone;
     }
 
     public function isNullable(): bool
@@ -155,18 +154,22 @@ final class IOField
         return $this->nullable;
     }
 
+    #[NoDiscard]
     public function asRequired(): self
     {
-        $this->required = true;
+        $clone           = clone $this;
+        $clone->required = true;
 
-        return $this;
+        return $clone;
     }
 
+    #[NoDiscard]
     public function asOptional(): self
     {
-        $this->required = false;
+        $clone           = clone $this;
+        $clone->required = false;
 
-        return $this;
+        return $clone;
     }
 
     public function isRequired(): bool
@@ -174,11 +177,13 @@ final class IOField
         return $this->required;
     }
 
+    #[NoDiscard]
     public function withPattern(string $pattern): self
     {
-        $this->pattern = $pattern;
+        $clone          = clone $this;
+        $clone->pattern = $pattern;
 
-        return $this;
+        return $clone;
     }
 
     public function pattern(): string|null
@@ -189,11 +194,13 @@ final class IOField
     /**
      * @param mixed[] $possibleValues
      */
+    #[NoDiscard]
     public function withPossibleValues(array $possibleValues): self
     {
-        $this->possibleValues = $possibleValues;
+        $clone                 = clone $this;
+        $clone->possibleValues = $possibleValues;
 
-        return $this;
+        return $clone;
     }
 
     /**
@@ -204,11 +211,13 @@ final class IOField
         return $this->possibleValues;
     }
 
+    #[NoDiscard]
     public function withExample(mixed $example): self
     {
-        $this->example = $example;
+        $clone          = clone $this;
+        $clone->example = $example;
 
-        return $this;
+        return $clone;
     }
 
     public function example(): mixed

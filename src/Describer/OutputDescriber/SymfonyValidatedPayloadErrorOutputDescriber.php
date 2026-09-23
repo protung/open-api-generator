@@ -57,14 +57,14 @@ final class SymfonyValidatedPayloadErrorOutputDescriber implements OutputDescrib
         // the same way as one whose paths can not be enumerated: as a plain string.
         $propertyPathField = IOField::stringField('propertyPath');
         if ($propertyPaths !== null && $propertyPaths !== []) {
-            $propertyPathField->withPossibleValues($propertyPaths);
+            $propertyPathField = $propertyPathField->withPossibleValues($propertyPaths);
         }
 
         $templateField = IOField::stringField('template');
         if ($output->describesMessageTemplates()) {
             $messageTemplates = $this->collectMessageTemplates($output->className(), $output->validationGroups(), []);
             if ($messageTemplates !== []) {
-                $templateField->withPossibleValues($messageTemplates);
+                $templateField = $templateField->withPossibleValues($messageTemplates);
             }
         }
 
@@ -84,7 +84,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriber implements OutputDescrib
         // 400 carrying no violations, so only there can the member be missing. Any other status code this
         // document is returned with is reachable through a validation failure alone.
         if ($output->statusCode() === 400) {
-            $violations->asOptional();
+            $violations = $violations->asOptional();
         }
 
         $schema = $this->ioFieldDescriber->describeFields(

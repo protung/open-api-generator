@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Model\Callback;
 
+use NoDiscard;
 use Override;
 use Protung\OpenApiGenerator\Model\Callback;
 use Protung\OpenApiGenerator\Model\Path\Input;
@@ -78,9 +79,13 @@ final class Path implements \Protung\OpenApiGenerator\Model\Path\Path
     }
 
     #[Override]
-    public function addInput(Input $input): void
+    #[NoDiscard]
+    public function withAddedInputs(Input $input, Input ...$inputs): static
     {
-        $this->input[] = $input;
+        $clone        = clone $this;
+        $clone->input = [...$this->input, $input, ...$inputs];
+
+        return $clone;
     }
 
     /**
@@ -93,9 +98,13 @@ final class Path implements \Protung\OpenApiGenerator\Model\Path\Path
     }
 
     #[Override]
-    public function addResponse(Response $response): void
+    #[NoDiscard]
+    public function withAddedResponses(Response $response, Response ...$responses): static
     {
-        $this->responses[] = $response;
+        $clone            = clone $this;
+        $clone->responses = [...$this->responses, $response, ...$responses];
+
+        return $clone;
     }
 
     #[Override]
