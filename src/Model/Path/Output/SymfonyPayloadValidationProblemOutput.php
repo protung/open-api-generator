@@ -17,7 +17,7 @@ use Psl;
  *
  * Requires a ValidatorInterface to be passed to the OutputDescriber, otherwise there is no metadata to read.
  */
-final class SymfonyValidatedPayloadErrorOutput implements StatusCodeAwareOutput
+final class SymfonyPayloadValidationProblemOutput implements StatusCodeAwareOutput
 {
     /** @var class-string */
     private string $className;

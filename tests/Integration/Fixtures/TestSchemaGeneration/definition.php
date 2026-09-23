@@ -13,8 +13,8 @@ use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output\ObjectOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\PaginatedOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
-use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidatedPayloadErrorOutput;
-use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidationErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyPayloadValidationProblemOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidationProblemOutput;
 use Protung\OpenApiGenerator\Model\Response;
 use Protung\OpenApiGenerator\Model\Type;
 use Protung\OpenApiGenerator\Processor\Path;
@@ -230,7 +230,7 @@ return new Model\Specification(
             [
                 Response::for200(),
                 Response::for422(
-                    SymfonyValidatedPayloadErrorOutput::forClass(
+                    SymfonyPayloadValidationProblemOutput::forClass(
                         TestSchemaGeneration\Model\Payload\SignInRequest::class,
                     ),
                 ),
@@ -244,7 +244,7 @@ return new Model\Specification(
             [],
             [
                 Response::for422(
-                    SymfonyValidatedPayloadErrorOutput::forClass(
+                    SymfonyPayloadValidationProblemOutput::forClass(
                         TestSchemaGeneration\Model\Payload\PairRequest::class,
                     ),
                 ),
@@ -258,7 +258,7 @@ return new Model\Specification(
             [],
             [
                 Response::for400(
-                    SymfonyValidatedPayloadErrorOutput::forClass(
+                    SymfonyPayloadValidationProblemOutput::forClass(
                         TestSchemaGeneration\Model\Payload\PairRequest::class,
                     )->withMessageTemplates(),
                 ),
@@ -292,7 +292,7 @@ return new Model\Specification(
             [],
             [
                 Response::for400(
-                    SymfonyValidationErrorOutput::create()->withContentTypes(
+                    SymfonyValidationProblemOutput::create()->withContentTypes(
                         Model\Path\Output::CONTENT_TYPE_APPLICATION_PROBLEM_JSON,
                         Model\Path\Output::CONTENT_TYPE_APPLICATION_JSON,
                     ),

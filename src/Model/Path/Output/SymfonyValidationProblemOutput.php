@@ -13,7 +13,7 @@ use Protung\OpenApiGenerator\Model\Path\StatusCodeAwareOutput;
  * Describes the problem details document Symfony returns for a bad request payload.
  * It is an RFC 7807 document extended with the "violations" member Symfony's ConstraintViolationListNormalizer produces.
  */
-final class SymfonyValidationErrorOutput extends SimpleOutput implements StatusCodeAwareOutput
+final class SymfonyValidationProblemOutput extends SimpleOutput implements StatusCodeAwareOutput
 {
     private int $statusCode;
 

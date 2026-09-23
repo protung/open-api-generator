@@ -8,9 +8,9 @@ use cebe\openapi\spec\Schema;
 use PHPUnit\Framework\TestCase;
 use Protung\OpenApiGenerator\Describer\ObjectDescriber;
 use Protung\OpenApiGenerator\Describer\OutputDescriber;
-use Protung\OpenApiGenerator\Describer\OutputDescriber\SymfonyValidatedPayloadErrorOutputDescriber;
+use Protung\OpenApiGenerator\Describer\OutputDescriber\SymfonyPayloadValidationProblemOutputDescriber;
 use Protung\OpenApiGenerator\Model\ModelRegistry;
-use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidatedPayloadErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyPayloadValidationProblemOutput;
 use Protung\OpenApiGenerator\Tests\Describer\OutputDescriber\Fixtures\CollectionPayload;
 use Protung\OpenApiGenerator\Tests\Describer\OutputDescriber\Fixtures\GroupedPayload;
 use Protung\OpenApiGenerator\Tests\Describer\OutputDescriber\Fixtures\NestedPayload;
@@ -20,27 +20,27 @@ use Psl;
 use Psl\Json;
 use Symfony\Component\Validator\ValidatorBuilder;
 
-final class SymfonyValidatedPayloadErrorOutputDescriberTest extends TestCase
+final class SymfonyPayloadValidationProblemOutputDescriberTest extends TestCase
 {
     public function testPropertyPathsAreNotDescribedWhenThePayloadCascadesIntoACollection(): void
     {
         // Violations of a collection carry an indexed path such as "pairs[0].pairingCode", so the reachable
         // paths can not be listed and describing any of them would claim a closed set which is not closed.
-        $schema = $this->describe(SymfonyValidatedPayloadErrorOutput::forClass(CollectionPayload::class));
+        $schema = $this->describe(SymfonyPayloadValidationProblemOutput::forClass(CollectionPayload::class));
 
         self::assertNull($this->propertyPathEnum($schema));
     }
 
     public function testPropertyPathsAreNotDescribedWhenThePayloadCascadesIntoItself(): void
     {
-        $schema = $this->describe(SymfonyValidatedPayloadErrorOutput::forClass(RecursivePayload::class));
+        $schema = $this->describe(SymfonyPayloadValidationProblemOutput::forClass(RecursivePayload::class));
 
         self::assertNull($this->propertyPathEnum($schema));
     }
 
     public function testPropertyPathsAreDescribedForTheMappedPayload(): void
     {
-        $schema = $this->describe(SymfonyValidatedPayloadErrorOutput::forClass(PairRequest::class));
+        $schema = $this->describe(SymfonyPayloadValidationProblemOutput::forClass(PairRequest::class));
 
         // "retryCount" carries no constraint but the denormalizer can still report a type violation for it.
         self::assertSame(['pairingCode', 'retryCount'], $this->propertyPathEnum($schema));
@@ -48,7 +48,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriberTest extends TestCase
 
     public function testCascadedPropertyPathsAreDescribedWithTheirPrefix(): void
     {
-        $schema = $this->describe(SymfonyValidatedPayloadErrorOutput::forClass(NestedPayload::class));
+        $schema = $this->describe(SymfonyPayloadValidationProblemOutput::forClass(NestedPayload::class));
 
         self::assertSame(
             ['name', 'pair', 'pair.pairingCode', 'pair.retryCount'],
@@ -58,7 +58,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriberTest extends TestCase
 
     public function testMessageTemplatesAreOnlyDescribedWhenAskedTo(): void
     {
-        $schema = $this->describe(SymfonyValidatedPayloadErrorOutput::forClass(PairRequest::class));
+        $schema = $this->describe(SymfonyPayloadValidationProblemOutput::forClass(PairRequest::class));
 
         self::assertNull($this->violationEnum($schema, 'template'));
     }
@@ -66,7 +66,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriberTest extends TestCase
     public function testMessageTemplatesAreReadFromTheDeclaredConstraints(): void
     {
         $schema = $this->describe(
-            SymfonyValidatedPayloadErrorOutput::forClass(PairRequest::class)->withMessageTemplates(),
+            SymfonyPayloadValidationProblemOutput::forClass(PairRequest::class)->withMessageTemplates(),
         );
 
         self::assertSame(
@@ -86,7 +86,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriberTest extends TestCase
     public function testMessageTemplatesAreRestrictedToTheGivenValidationGroups(): void
     {
         $schema = $this->describe(
-            SymfonyValidatedPayloadErrorOutput::forClass(GroupedPayload::class)
+            SymfonyPayloadValidationProblemOutput::forClass(GroupedPayload::class)
                 ->withMessageTemplates()
                 ->withValidationGroups('strict'),
         );
@@ -103,7 +103,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriberTest extends TestCase
     public function testMessageTemplatesOfEveryGroupAreDescribedWhenNoGroupIsGiven(): void
     {
         $schema = $this->describe(
-            SymfonyValidatedPayloadErrorOutput::forClass(GroupedPayload::class)->withMessageTemplates(),
+            SymfonyPayloadValidationProblemOutput::forClass(GroupedPayload::class)->withMessageTemplates(),
         );
 
         self::assertSame(
@@ -120,20 +120,20 @@ final class SymfonyValidatedPayloadErrorOutputDescriberTest extends TestCase
     {
         self::assertSame(
             ['type', 'title', 'status', 'detail', 'violations'],
-            $this->describe(SymfonyValidatedPayloadErrorOutput::forClass(PairRequest::class))->required,
+            $this->describe(SymfonyPayloadValidationProblemOutput::forClass(PairRequest::class))->required,
         );
 
         self::assertSame(
             ['type', 'title', 'status', 'detail'],
             $this->describe(
-                SymfonyValidatedPayloadErrorOutput::forClass(PairRequest::class)->withStatusCode(400),
+                SymfonyPayloadValidationProblemOutput::forClass(PairRequest::class)->withStatusCode(400),
             )->required,
         );
     }
 
     public function testExampleUsesAPropertyOfTheMappedPayload(): void
     {
-        $schema = $this->describe(SymfonyValidatedPayloadErrorOutput::forClass(PairRequest::class));
+        $schema = $this->describe(SymfonyPayloadValidationProblemOutput::forClass(PairRequest::class));
 
         self::assertJsonStringEqualsJsonString(
             <<<'JSON'
@@ -156,11 +156,11 @@ final class SymfonyValidatedPayloadErrorOutputDescriberTest extends TestCase
         );
     }
 
-    private function describe(SymfonyValidatedPayloadErrorOutput $output): Schema
+    private function describe(SymfonyPayloadValidationProblemOutput $output): Schema
     {
         $validator = (new ValidatorBuilder())->enableAttributeMapping()->getValidator();
 
-        return (new SymfonyValidatedPayloadErrorOutputDescriber($validator))->describe($output, new OutputDescriber(new ObjectDescriber(new ModelRegistry())));
+        return (new SymfonyPayloadValidationProblemOutputDescriber($validator))->describe($output, new OutputDescriber(new ObjectDescriber(new ModelRegistry())));
     }
 
     /**

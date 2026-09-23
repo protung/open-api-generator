@@ -6,9 +6,9 @@ namespace Protung\OpenApiGenerator\Model;
 
 use NoDiscard;
 use Protung\OpenApiGenerator\Model\Path\Output;
-use Protung\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
 use Protung\OpenApiGenerator\Model\Path\Output\RFC7807ErrorOutput;
-use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidationErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyFormValidationProblemOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidationProblemOutput;
 use Protung\OpenApiGenerator\Model\Path\StatusCodeAwareOutput;
 use Psl;
 use Symfony\Component\Form\FormTypeInterface;
@@ -69,7 +69,7 @@ final class Response
             return new self(
                 400,
                 ['Returned when the request payload could not be parsed or when it failed validation'],
-                SymfonyValidationErrorOutput::create(),
+                SymfonyValidationProblemOutput::create(),
             );
         }
 
@@ -84,7 +84,7 @@ final class Response
     public static function for400WithForm(string $formType, array $formOptions = []): self
     {
         return self::for400(
-            new FormErrorOutput(new FormDefinition($formType, $formOptions)),
+            new SymfonyFormValidationProblemOutput(new FormDefinition($formType, $formOptions)),
         );
     }
 
@@ -143,7 +143,7 @@ final class Response
     public static function for422(Output ...$outputs): self
     {
         if ($outputs === []) {
-            $outputs = [SymfonyValidationErrorOutput::create()];
+            $outputs = [SymfonyValidationProblemOutput::create()];
         }
 
         return new self(422, ['Returned when the request payload failed validation'], ...$outputs);

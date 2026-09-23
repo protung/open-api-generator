@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Protung\OpenApiGenerator\Describer\ObjectDescriber;
 use Protung\OpenApiGenerator\Describer\OutputDescriber;
 use Protung\OpenApiGenerator\Model\ModelRegistry;
-use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidatedPayloadErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyPayloadValidationProblemOutput;
 use Protung\OpenApiGenerator\Tests\Describer\OutputDescriber\Fixtures\PairRequest;
 
 final class OutputDescriberTest extends TestCase
@@ -21,9 +21,9 @@ final class OutputDescriberTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
             'Can not handle object to describe of type'
-            . ' "Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidatedPayloadErrorOutput"',
+            . ' "Protung\OpenApiGenerator\Model\Path\Output\SymfonyPayloadValidationProblemOutput"',
         );
 
-        $outputDescriber->describe(SymfonyValidatedPayloadErrorOutput::forClass(PairRequest::class));
+        $outputDescriber->describe(SymfonyPayloadValidationProblemOutput::forClass(PairRequest::class));
     }
 }

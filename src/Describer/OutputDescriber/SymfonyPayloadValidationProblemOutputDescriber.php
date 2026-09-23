@@ -9,7 +9,7 @@ use Override;
 use Protung\OpenApiGenerator\Describer\IOFieldDescriber;
 use Protung\OpenApiGenerator\Model\Path\IOField;
 use Protung\OpenApiGenerator\Model\Path\Output;
-use Protung\OpenApiGenerator\Model\Path\Output\SymfonyValidatedPayloadErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyPayloadValidationProblemOutput;
 use Psl;
 use ReflectionClass;
 use ReflectionNamedType;
@@ -28,7 +28,7 @@ use function in_array;
 use function is_a;
 use function is_string;
 
-final class SymfonyValidatedPayloadErrorOutputDescriber implements OutputDescriber
+final class SymfonyPayloadValidationProblemOutputDescriber implements OutputDescriber
 {
     /**
      * The template Symfony's request payload resolver reports a value it could not denormalize with.
@@ -49,7 +49,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriber implements OutputDescrib
     #[Override]
     public function describe(Output $output, \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber): Schema
     {
-        $output = Psl\Type\instance_of(SymfonyValidatedPayloadErrorOutput::class)->coerce($output);
+        $output = Psl\Type\instance_of(SymfonyPayloadValidationProblemOutput::class)->coerce($output);
 
         $propertyPaths = $this->collectPropertyPaths($output->className(), '', []);
 
@@ -105,7 +105,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriber implements OutputDescrib
     #[Override]
     public function supports(Output $output): bool
     {
-        return $output instanceof SymfonyValidatedPayloadErrorOutput;
+        return $output instanceof SymfonyPayloadValidationProblemOutput;
     }
 
     /**
@@ -345,7 +345,7 @@ final class SymfonyValidatedPayloadErrorOutputDescriber implements OutputDescrib
      *
      * @return array<string, mixed>
      */
-    private function describeExample(SymfonyValidatedPayloadErrorOutput $output, array|null $propertyPaths): array
+    private function describeExample(SymfonyPayloadValidationProblemOutput $output, array|null $propertyPaths): array
     {
         $propertyPath = $propertyPaths[0] ?? 'propertyName';
 

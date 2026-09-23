@@ -9,13 +9,13 @@ use cebe\openapi\spec\Type;
 use Override;
 use Protung\OpenApiGenerator\Describer\Form\FormFactory;
 use Protung\OpenApiGenerator\Model\Path\Output;
-use Protung\OpenApiGenerator\Model\Path\Output\FormErrorOutput;
+use Protung\OpenApiGenerator\Model\Path\Output\SymfonyFormValidationProblemOutput;
 use Psl;
 use Symfony\Component\Form\FormInterface;
 
 use function count;
 
-final class FormErrorOutputDescriber implements OutputDescriber
+final class SymfonyFormValidationProblemOutputDescriber implements OutputDescriber
 {
     private FormFactory $formFactory;
 
@@ -27,7 +27,7 @@ final class FormErrorOutputDescriber implements OutputDescriber
     #[Override]
     public function describe(Output $output, \Protung\OpenApiGenerator\Describer\OutputDescriber $outputDescriber): Schema
     {
-        $output = Psl\Type\instance_of(FormErrorOutput::class)->coerce($output);
+        $output = Psl\Type\instance_of(SymfonyFormValidationProblemOutput::class)->coerce($output);
 
         $form = $this->formFactory->create($output->formDefinition(), null);
 
@@ -105,6 +105,6 @@ final class FormErrorOutputDescriber implements OutputDescriber
     #[Override]
     public function supports(Output $output): bool
     {
-        return $output instanceof FormErrorOutput;
+        return $output instanceof SymfonyFormValidationProblemOutput;
     }
 }

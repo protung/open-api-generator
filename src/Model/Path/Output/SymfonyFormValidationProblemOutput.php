@@ -11,7 +11,7 @@ use Protung\OpenApiGenerator\Model\Path\Output;
 /**
  * @psalm-immutable
  */
-final class FormErrorOutput implements Output
+final class SymfonyFormValidationProblemOutput implements Output
 {
     private FormDefinition $formDefinition;
 
