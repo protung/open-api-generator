@@ -9,12 +9,9 @@ use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 use Metadata\MetadataFactory;
 use PHPUnit\Framework\TestCase;
-use Protung\OpenApiGenerator\Describer;
 use Protung\OpenApiGenerator\Generator;
-use Protung\OpenApiGenerator\Model\ModelRegistry;
+use Protung\OpenApiGenerator\GeneratorFactory;
 use Protung\OpenApiGenerator\Model\Specification;
-use Protung\OpenApiGenerator\Processor;
-use Protung\OpenApiGenerator\Processor\Path;
 use Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGeneration\Form\TestDictionaryType;
 use Psl;
 use Psl\Json;
@@ -22,6 +19,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactoryBuilder;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
+use Symfony\Component\Routing\Router;
 use Symfony\Component\Validator\ValidatorBuilder;
 
 use function file_put_contents;
@@ -31,8 +29,6 @@ final class GenerateSchemaTest extends TestCase
 {
     private static function createGenerator(string $apiVersion): Generator
     {
-        $routes = (new YamlFileLoader(new FileLocator(__DIR__ . '/Fixtures/TestSchemaGeneration/')))->load('routes.yaml');
-
         $validator = (new ValidatorBuilder())->enableAttributeMapping()->getValidator();
 
         $formFactory = (new FormFactoryBuilder())
@@ -50,67 +46,17 @@ final class GenerateSchemaTest extends TestCase
         $jmsSerializerBuilder->addMetadataDirs($metadataDirs);
         $jmsSerializerBuilder->enableEnumSupport(true);
 
-        $jmsSerializer = $jmsSerializerBuilder->build();
-
-        $describerFormFactory = new Describer\Form\FormFactory($formFactory);
-
-        $exampleDescriberJms        = new Describer\ExampleDescriber\JmsSerializerExampleDescriber($jmsSerializer);
-        $exampleDescriberCollection = new Describer\ExampleDescriber\CollectionExampleDescriber($exampleDescriberJms);
-        $exampleDescriber           = new Describer\ExampleDescriber\CompoundExampleDescriber(
-            $exampleDescriberJms,
-            $exampleDescriberCollection,
-        );
-
-        $formDescriber = new Describer\FormDescriber(
-            new Describer\Form\SymfonyFormPropertyDescriber(
-                new Describer\Form\PropertyDescriber\DictionaryPropertyDescriber($describerFormFactory, TestDictionaryType::class),
-                new Describer\Form\PropertyDescriber\CollectionPropertyDescriber($describerFormFactory),
-                new Describer\Form\PropertyDescriber\SymfonyBuiltInPropertyDescriber(),
+        return GeneratorFactory::create(
+            $apiVersion,
+            new Router(new YamlFileLoader(new FileLocator(__DIR__ . '/Fixtures/TestSchemaGeneration/')), 'routes.yaml'),
+            $formFactory,
+            new MetadataFactory(
+                (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver($metadataDirs),
             ),
-            new Describer\Form\SymfonyValidatorRequirementsDescriber($validator),
-        );
-
-        $modelRegistry = new ModelRegistry();
-
-        return new Generator(
-            new Processor\InfoProcessor($apiVersion),
-            new Processor\SecurityDefinitions(),
-            new Processor\PathsProcessor(
-                new Processor\Path\CompoundPathProcessor(
-                    new Path\Symfony\PathProcessor(
-                        $routes,
-                        new Describer\OperationDescriber(
-                            new Describer\InputDescriber(
-                                new Describer\InputDescriber\SymfonyMappedPayloadInputDescriber($validator),
-                                new Describer\InputDescriber\SimpleInputDescriber(),
-                                new Describer\InputDescriber\FormInputDescriber(
-                                    $formDescriber,
-                                    $describerFormFactory,
-                                ),
-                            ),
-                            new Describer\OutputDescriber(
-                                new Describer\ObjectDescriber(
-                                    $modelRegistry,
-                                    new Describer\ObjectDescriber\PHPBackedEnum(),
-                                    new Describer\ObjectDescriber\JMSModel(
-                                        new MetadataFactory(
-                                            (new DefaultDriverFactory(new IdenticalPropertyNamingStrategy()))->createDriver(
-                                                $metadataDirs,
-                                            ),
-                                        ),
-                                        $apiVersion,
-                                        false,
-                                    ),
-                                ),
-                                $describerFormFactory,
-                                $exampleDescriber,
-                                $validator,
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            new Processor\Definitions($modelRegistry),
+            $validator,
+            $jmsSerializerBuilder->build(),
+            serializeNull: false,
+            dictionaryFormTypes: [TestDictionaryType::class],
         );
     }
 
