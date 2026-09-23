@@ -6,7 +6,9 @@ namespace Protung\OpenApiGenerator\Model\Security;
 
 final class Definition
 {
-    private const TYPE_HTTP    = 'http';
+    private const TYPE_HTTP = 'http';
+
+    // @mago-expect lint:no-literal-password The OpenAPI security scheme type, not a credential.
     private const TYPE_API_KEY = 'apiKey';
 
     public const IN_HEADER = 'header';
