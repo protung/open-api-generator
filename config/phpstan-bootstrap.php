@@ -9,6 +9,9 @@
  *
  * Wrapping every registered autoloader stops the second include: a name which is already a defined
  * function can not be a class waiting to be autoloaded, so there is nothing left to look for.
+ *
+ * Only PSL 3.x, the sole major PHP 8.2 can install, still triggers it. Remove this file together with
+ * support for PSL 3 / PHP 8.2.
  */
 
 declare(strict_types=1);
