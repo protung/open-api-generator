@@ -54,9 +54,5 @@ security-analysis:                                                              
 unit-tests:                                                                     ## Run unit test suite
 	./vendor/bin/phpunit -c config/phpunit.xml.dist
 
-.PHONY: composer-validate                                                       ## Validate composer file
-composer-validate:
-	./vendor/bin/composer validate
-
 .PHONY: check
 check: coding-standard-check static-analysis security-analysis unit-tests       ## Run all checks for local development iterations
