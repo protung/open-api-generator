@@ -1,12 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			rawMessage: 'Parameter #1 $requestBodyContent of method Protung\OpenApiGenerator\Describer\InputDescriber\FormInputDescriber::mergeRequestBodyContent() expects array<string, cebe\openapi\spec\MediaType>, array<cebe\openapi\spec\MediaType> given.'
-			identifier: argument.type
-			count: 1
-			path: ../src/Describer/InputDescriber/FormInputDescriber.php
-
-		-
 			rawMessage: Cannot access offset 'name' on mixed.
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 3

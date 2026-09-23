@@ -74,7 +74,7 @@ final class FormInputDescriber implements InputDescriber
         $requestBody = Psl\Type\instance_of(RequestBody::class)->coerce($operation->requestBody);
 
         $requestBody->content = $this->mergeRequestBodyContent(
-            $requestBody->content,
+            Psl\Type\dict(Psl\Type\string(), Psl\Type\instance_of(MediaType::class))->coerce($requestBody->content),
             $mediaTypes,
         );
     }
