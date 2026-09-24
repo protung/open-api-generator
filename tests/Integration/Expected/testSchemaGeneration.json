@@ -2430,8 +2430,87 @@
                         "in": "query",
                         "schema": {
                             "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[greaterThanDate]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[lessThanPropertyPath]",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[regexBracketDelimiters]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
                             "nullable": true,
-                            "pattern": "^[0-9]{1,5}$"
+                            "pattern": "^[a-z]{2,}$"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[regexUnicode]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "pattern": "^[a-z]+$"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[regexNotMatching]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[all][]",
+                        "in": "query",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "maxLength": 5
+                            },
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[atLeastOneOf]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "constraintsForm[email]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "format": "email"
                         },
                         "required": true
                     },
@@ -14193,7 +14272,15 @@
                                                         "length",
                                                         "divisibleBy",
                                                         "range",
-                                                        "regex"
+                                                        "regex",
+                                                        "greaterThanDate",
+                                                        "lessThanPropertyPath",
+                                                        "regexBracketDelimiters",
+                                                        "regexUnicode",
+                                                        "regexNotMatching",
+                                                        "all",
+                                                        "atLeastOneOf",
+                                                        "email"
                                                     ],
                                                     "type": "object",
                                                     "properties": {
@@ -14253,6 +14340,94 @@
                                                             }
                                                         },
                                                         "regex": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "greaterThanDate": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "lessThanPropertyPath": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "regexBracketDelimiters": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "regexUnicode": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "regexNotMatching": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "all": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "atLeastOneOf": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "email": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -14347,8 +14522,47 @@
                                     },
                                     "regex": {
                                         "type": "string",
+                                        "nullable": true
+                                    },
+                                    "greaterThanDate": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": true
+                                    },
+                                    "lessThanPropertyPath": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "regexBracketDelimiters": {
+                                        "type": "string",
                                         "nullable": true,
-                                        "pattern": "^[0-9]{1,5}$"
+                                        "pattern": "^[a-z]{2,}$"
+                                    },
+                                    "regexUnicode": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "pattern": "^[a-z]+$"
+                                    },
+                                    "regexNotMatching": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "all": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "maxLength": 5
+                                        },
+                                        "nullable": true
+                                    },
+                                    "atLeastOneOf": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "format": "email"
                                     }
                                 },
                                 "required": [
@@ -14357,7 +14571,15 @@
                                     "length",
                                     "divisibleBy",
                                     "range",
-                                    "regex"
+                                    "regex",
+                                    "greaterThanDate",
+                                    "lessThanPropertyPath",
+                                    "regexBracketDelimiters",
+                                    "regexUnicode",
+                                    "regexNotMatching",
+                                    "all",
+                                    "atLeastOneOf",
+                                    "email"
                                 ]
                             }
                         },
@@ -14396,8 +14618,47 @@
                                     },
                                     "regex": {
                                         "type": "string",
+                                        "nullable": true
+                                    },
+                                    "greaterThanDate": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": true
+                                    },
+                                    "lessThanPropertyPath": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "regexBracketDelimiters": {
+                                        "type": "string",
                                         "nullable": true,
-                                        "pattern": "^[0-9]{1,5}$"
+                                        "pattern": "^[a-z]{2,}$"
+                                    },
+                                    "regexUnicode": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "pattern": "^[a-z]+$"
+                                    },
+                                    "regexNotMatching": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "all[]": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "maxLength": 5
+                                        },
+                                        "nullable": true
+                                    },
+                                    "atLeastOneOf": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "format": "email"
                                     }
                                 },
                                 "required": [
@@ -14406,7 +14667,15 @@
                                     "length",
                                     "divisibleBy",
                                     "range",
-                                    "regex"
+                                    "regex",
+                                    "greaterThanDate",
+                                    "lessThanPropertyPath",
+                                    "regexBracketDelimiters",
+                                    "regexUnicode",
+                                    "regexNotMatching",
+                                    "all[]",
+                                    "atLeastOneOf",
+                                    "email"
                                 ]
                             }
                         }
@@ -14472,7 +14741,15 @@
                                                         "length",
                                                         "divisibleBy",
                                                         "range",
-                                                        "regex"
+                                                        "regex",
+                                                        "greaterThanDate",
+                                                        "lessThanPropertyPath",
+                                                        "regexBracketDelimiters",
+                                                        "regexUnicode",
+                                                        "regexNotMatching",
+                                                        "all",
+                                                        "atLeastOneOf",
+                                                        "email"
                                                     ],
                                                     "type": "object",
                                                     "properties": {
@@ -14532,6 +14809,94 @@
                                                             }
                                                         },
                                                         "regex": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "greaterThanDate": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "lessThanPropertyPath": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "regexBracketDelimiters": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "regexUnicode": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "regexNotMatching": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "all": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "atLeastOneOf": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "errors": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "email": {
                                                             "type": "object",
                                                             "properties": {
                                                                 "errors": {
@@ -14626,8 +14991,47 @@
                                     },
                                     "regex": {
                                         "type": "string",
+                                        "nullable": true
+                                    },
+                                    "greaterThanDate": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": true
+                                    },
+                                    "lessThanPropertyPath": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "regexBracketDelimiters": {
+                                        "type": "string",
                                         "nullable": true,
-                                        "pattern": "^[0-9]{1,5}$"
+                                        "pattern": "^[a-z]{2,}$"
+                                    },
+                                    "regexUnicode": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "pattern": "^[a-z]+$"
+                                    },
+                                    "regexNotMatching": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "all": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "maxLength": 5
+                                        },
+                                        "nullable": true
+                                    },
+                                    "atLeastOneOf": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "format": "email"
                                     }
                                 }
                             }
@@ -14667,8 +15071,47 @@
                                     },
                                     "regex": {
                                         "type": "string",
+                                        "nullable": true
+                                    },
+                                    "greaterThanDate": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "nullable": true
+                                    },
+                                    "lessThanPropertyPath": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "regexBracketDelimiters": {
+                                        "type": "string",
                                         "nullable": true,
-                                        "pattern": "^[0-9]{1,5}$"
+                                        "pattern": "^[a-z]{2,}$"
+                                    },
+                                    "regexUnicode": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "pattern": "^[a-z]+$"
+                                    },
+                                    "regexNotMatching": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "all[]": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "maxLength": 5
+                                        },
+                                        "nullable": true
+                                    },
+                                    "atLeastOneOf": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "format": "email"
                                     }
                                 }
                             }

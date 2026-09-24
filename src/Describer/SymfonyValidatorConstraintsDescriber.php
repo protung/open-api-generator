@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace Protung\OpenApiGenerator\Describer;
 
 use cebe\openapi\spec\Schema;
+use cebe\openapi\spec\Type;
 use Psl;
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\Constraints\Composite;
+use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Validator\Constraints\Compound;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\DivisibleBy;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
@@ -21,6 +24,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Sequentially;
 use Symfony\Component\Validator\Constraints\Unique;
 
 use function implode;
@@ -34,6 +38,8 @@ use function number_format;
  */
 final class SymfonyValidatorConstraintsDescriber
 {
+    private const CLOSING_DELIMITERS = ['(' => ')', '[' => ']', '{' => '}', '<' => '>'];
+
     /**
      * @param array<Constraint> $constraints
      * @param bool              $describesCollection Whether the schema describes a collection, which decides
@@ -52,7 +58,17 @@ final class SymfonyValidatorConstraintsDescriber
                 case $constraint instanceof NotNull:
                     // Nullability is decided by the caller, which knows more about the value than the constraint.
                     break;
-                case $constraint instanceof Composite:
+                case $constraint instanceof All:
+                    // All validates each item, not the collection holding them.
+                    $items = $schema->items;
+                    if ($items instanceof Schema) {
+                        $this->describe($constraint->getNestedConstraints(), $items, $items->type === Type::ARRAY);
+                    }
+
+                    break;
+                case $constraint instanceof Sequentially || $constraint instanceof Compound:
+                    // The only composites whose nested constraints all apply to the value itself. Those of AtLeastOneOf
+                    // (any one of them), Collection (one per key) and When (only under a condition) are left out.
                     $this->describe($constraint->getNestedConstraints(), $schema, $describesCollection);
                     break;
                 case $constraint instanceof Count && $describesCollection:
@@ -76,14 +92,26 @@ final class SymfonyValidatorConstraintsDescriber
 
                     break;
                 case $constraint instanceof DivisibleBy:
-                    $schema->multipleOf = Psl\Type\num()->coerce($constraint->value);
+                    if ($constraint->value !== null && Psl\Type\num()->matches($constraint->value)) {
+                        $schema->multipleOf = $constraint->value;
+                    }
+
+                    break;
+                case $constraint instanceof Email:
+                    $schema->format = 'email';
                     break;
                 case $constraint instanceof GreaterThan:
-                    $schema->minimum          = Psl\Type\num()->coerce($constraint->value);
-                    $schema->exclusiveMinimum = true;
+                    if ($constraint->value !== null && Psl\Type\num()->matches($constraint->value)) {
+                        $schema->minimum          = $constraint->value;
+                        $schema->exclusiveMinimum = true;
+                    }
+
                     break;
                 case $constraint instanceof GreaterThanOrEqual:
-                    $schema->minimum = Psl\Type\num()->coerce($constraint->value);
+                    if ($constraint->value !== null && Psl\Type\num()->matches($constraint->value)) {
+                        $schema->minimum = $constraint->value;
+                    }
+
                     break;
                 case $constraint instanceof Length:
                     if ($constraint->min !== null) {
@@ -96,11 +124,17 @@ final class SymfonyValidatorConstraintsDescriber
 
                     break;
                 case $constraint instanceof LessThan:
-                    $schema->maximum          = Psl\Type\num()->coerce($constraint->value);
-                    $schema->exclusiveMaximum = true;
+                    if ($constraint->value !== null && Psl\Type\num()->matches($constraint->value)) {
+                        $schema->maximum          = $constraint->value;
+                        $schema->exclusiveMaximum = true;
+                    }
+
                     break;
                 case $constraint instanceof LessThanOrEqual:
-                    $schema->maximum = Psl\Type\num()->coerce($constraint->value);
+                    if ($constraint->value !== null && Psl\Type\num()->matches($constraint->value)) {
+                        $schema->maximum = $constraint->value;
+                    }
+
                     break;
                 case $constraint instanceof Range:
                     if ($constraint->min !== null && Psl\Type\num()->matches($constraint->min)) {
@@ -116,13 +150,9 @@ final class SymfonyValidatorConstraintsDescriber
                     $schema->uniqueItems = true;
                     break;
                 case $constraint instanceof Regex:
-                    // we need to remove the delimiters but ignoring the modifiers
-                    if ($constraint->pattern !== null) {
-                        $pattern         = Psl\Type\non_empty_string()->coerce($constraint->pattern);
-                        $schema->pattern = Psl\Str\slice(
-                            Psl\Type\non_empty_string()->coerce(Psl\Str\before_last_ci($pattern, $pattern[0])),
-                            1,
-                        );
+                    $pattern = self::patternOf($constraint);
+                    if ($pattern !== null) {
+                        $schema->pattern = $pattern;
                     }
 
                     break;
@@ -177,6 +207,32 @@ final class SymfonyValidatorConstraintsDescriber
                     break;
             }
         }
+    }
+
+    /**
+     * The pattern of a Regex constraint without its delimiters, as a schema expects it.
+     *
+     * There is none when the constraint rejects what matches, or when a modifier other than "u" and "D" changes
+     * what the pattern matches ("i", "m", "s", "x", ...), because a documented pattern stricter than the
+     * validation would have clients reject values the API accepts.
+     */
+    private static function patternOf(Regex $constraint): string|null
+    {
+        $pattern = Psl\Type\nullable(Psl\Type\string())->coerce($constraint->pattern);
+        if ($pattern === null || $pattern === '' || $constraint->match !== true) {
+            return null;
+        }
+
+        $end = Psl\Str\search_last($pattern, self::CLOSING_DELIMITERS[$pattern[0]] ?? $pattern[0]);
+        if ($end === null || $end === 0) {
+            return null;
+        }
+
+        if (! Psl\Regex\matches(Psl\Str\slice($pattern, $end + 1), '/^[uD]*$/')) {
+            return null;
+        }
+
+        return Psl\Str\slice($pattern, 1, $end - 1);
     }
 
     private function humanReadableFileSize(int $size): string

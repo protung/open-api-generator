@@ -6,6 +6,8 @@ namespace Protung\OpenApiGenerator\Tests\Integration\Fixtures\TestSchemaGenerati
 
 use Override;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
@@ -31,6 +33,22 @@ final class TestConstraintsType extends AbstractType
             ->add('length', TextType::class, ['constraints' => [new Length(min: 4, max: 6)]])
             ->add('divisibleBy', NumberType::class, ['constraints' => [new Constraints\DivisibleBy(0.5)]])
             ->add('range', RangeType::class, ['constraints' => [new Constraints\Range(min: -20, max: -4)]])
-            ->add('regex', TextType::class, ['constraints' => [new Constraints\Regex('/^[0-9]{1,5}$/i')]]);
+            ->add('regex', TextType::class, ['constraints' => [new Constraints\Regex('/^[0-9]{1,5}$/i')]])
+            ->add('greaterThanDate', DateType::class, ['widget' => 'single_text', 'constraints' => [new GreaterThan('today')]])
+            ->add('lessThanPropertyPath', IntegerType::class, ['constraints' => [new LessThan(propertyPath: 'greaterThan')]])
+            ->add('regexBracketDelimiters', TextType::class, ['constraints' => [new Constraints\Regex('{^[a-z]{2,}$}')]])
+            ->add('regexUnicode', TextType::class, ['constraints' => [new Constraints\Regex('/^[a-z]+$/u')]])
+            ->add('regexNotMatching', TextType::class, ['constraints' => [new Constraints\Regex(pattern: '/^admin/', match: false)]])
+            ->add(
+                'all',
+                CollectionType::class,
+                ['entry_type' => TextType::class, 'constraints' => [new Constraints\All([new Length(max: 5)])]],
+            )
+            ->add(
+                'atLeastOneOf',
+                TextType::class,
+                ['constraints' => [new Constraints\AtLeastOneOf([new Length(exactly: 2), new Length(exactly: 10)])]],
+            )
+            ->add('email', TextType::class, ['constraints' => [new Constraints\Email()]]);
     }
 }

@@ -23,7 +23,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
@@ -31,6 +30,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Sequentially;
 use Symfony\Component\Validator\Constraints\Unique;
 
 use function range;
@@ -55,7 +55,7 @@ final class TestType extends AbstractType
                 'paramNumber',
                 NumberType::class,
                 [
-                    'constraints' => [new All([new GreaterThanOrEqual(3.14), new LessThanOrEqual(9.9)])],
+                    'constraints' => [new Sequentially([new GreaterThanOrEqual(3.14), new LessThanOrEqual(9.9)])],
                 ],
             )
             ->add(
