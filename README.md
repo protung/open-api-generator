@@ -34,8 +34,8 @@ $generator = GeneratorFactory::create(
     apiVersion: '1.0.0',
     router: $router,                   // the "router" service
     formFactory: $formFactory,         // the "form.factory" service
-    metadataFactory: $metadataFactory, // the "jms_serializer.metadata_factory" service
     validator: $validator,             // the "validator" service
+    metadataFactory: $metadataFactory, // the "jms_serializer.metadata_factory" service
     jmsSerializer: $serializer,        // the "jms_serializer" service
 );
 
@@ -74,6 +74,9 @@ $openApi = $generator->generate($specification);
 
 echo json_encode($openApi->getSerializableData(), JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
 ```
+
+JMS Serializer is optional. Without it, leave out `metadataFactory` and `jmsSerializer`: objects are then documented
+as plain objects, without their properties.
 
 ## License
 

@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Protung\OpenApiGenerator\Resolver;
 
-use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
 use Protung\OpenApiGenerator\Model\Definition;
+use Protung\OpenApiGenerator\Model\Path\SerializationGroupAwareOutput;
 use Psl;
 
 use function array_filter;
 use function array_map;
 use function explode;
 use function implode;
+use function in_array;
 
 final class DefinitionName
 {
@@ -44,7 +45,7 @@ final class DefinitionName
             '',
             array_filter(
                 $groups,
-                static fn (string $group): bool => $group !== GroupsExclusionStrategy::DEFAULT_GROUP,
+                static fn (string $group): bool => ! in_array($group, SerializationGroupAwareOutput::DEFAULT_SERIALIZATION_GROUPS, true),
             ),
         );
 

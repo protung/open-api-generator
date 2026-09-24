@@ -56,3 +56,8 @@ jobs:
 
       - name: Run checks
         run: just check
+
+      - name: Run the tests that need no JMS Serializer without it installed
+        run: |
+          composer remove --dev --no-interaction --no-progress jms/serializer jms/metadata
+          vendor/bin/phpunit -c config/phpunit.xml.dist tests/Integration/GenerateSchemaWithoutJmsTest.php
