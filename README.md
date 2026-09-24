@@ -1,7 +1,7 @@
 Open Api Generator
 ==================
 
-[![Build](https://github.com/protung/open-api-generator/workflows/Build/badge.svg)](https://github.com/protung/open-api-generator/actions?query=workflow%3ABuild+branch%3Amain)
+[![Build](https://github.com/protung/open-api-generator/workflows/Build/badge.svg)](https://github.com/protung/open-api-generator/actions?query=workflow%3ABuild+branch%3A1.x)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 
 ## Installation
