@@ -1,19 +1,19 @@
 {
     "name": "protung/open-api-generator",
-    "description": "Open Api specification / schema generator.",
+    "description": "Generate OpenAPI specifications from Symfony routes, forms, mapped request payloads, validation constraints and JMS Serializer metadata.",
     "license": "MIT",
     "type": "library",
     "keywords": [
-        "open api schema",
-        "open api schema generator",
-        "swagger schema generator",
-        "swagger schema",
         "openapi",
         "open api",
-        "schema",
+        "openapi generator",
+        "open api schema generator",
         "swagger",
-        "json",
-        "generator"
+        "swagger schema generator",
+        "schema",
+        "specification",
+        "symfony",
+        "jms serializer"
     ],
     "authors": [
         {
@@ -44,9 +44,9 @@
     "require-dev": {
         "carthage-software/mago": "^1.50.0",
         "doctrine/coding-standard": "^14.0.0",
-        "ergebnis/composer-normalize": "^2.53.0",
+        "ergebnis/composer-normalize": "^2.54.0",
         "php-standard-library/phpstan-extension": "^2.1.0",
-        "phpstan/phpstan": "^2.2.14",
+        "phpstan/phpstan": "^2.2.15",
         "phpstan/phpstan-deprecation-rules": "^2.0.5",
         "phpstan/phpstan-phpunit": "^2.0.18",
         "phpstan/phpstan-strict-rules": "^2.0.12",
