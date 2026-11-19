@@ -179,9 +179,10 @@ final class PropertyAnalyser
      */
     private function parseGenericTypeNode(GenericTypeNode $type, bool $nullable): array
     {
+        $baseType    = Type\instance_of(IdentifierTypeNode::class)->coerce($type->type);
         $genericType = Type\instance_of(IdentifierTypeNode::class)->coerce($type->genericTypes[0]);
 
-        if (in_array($type->type->name, ['array', 'Generator', 'iterable'], true)) {
+        if (in_array($baseType->name, ['array', 'Generator', 'iterable'], true)) {
             return [
                 PropertyAnalysisCollectionType::forCollection(
                     'array',

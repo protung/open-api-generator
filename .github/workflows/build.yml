@@ -21,6 +21,7 @@ jobs:
           - 8.3
           - 8.4
           - 8.5
+          - 8.6
     name: PHP ${{ matrix.php-versions }} checks with ${{ matrix.dependencies }} dependencies
     steps:
       - name: Checkout code
@@ -31,6 +32,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           coverage: none
+          extensions: bcmath
 
       - name: Get composer cache directory
         id: composer-cache

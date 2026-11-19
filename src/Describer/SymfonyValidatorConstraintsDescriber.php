@@ -50,7 +50,7 @@ final class SymfonyValidatorConstraintsDescriber
         foreach ($constraints as $constraint) {
             switch (true) {
                 case $constraint instanceof NotBlank:
-                    if ($constraint->allowNull) {
+                    if (Psl\Type\bool()->coerce($constraint->allowNull)) {
                         $schema->nullable = true;
                     }
 

@@ -12,7 +12,7 @@ use RuntimeException;
 use function array_key_exists;
 use function implode;
 use function md5;
-use function spl_object_hash;
+use function spl_object_id;
 
 final class ModelRegistry
 {
@@ -101,12 +101,12 @@ final class ModelRegistry
     private function definitionKey(Definition $definition): string
     {
         $exampleObject = $definition->exampleObject();
-        $objectHash    = $exampleObject !== null ? spl_object_hash($exampleObject) : '';
+        $objectId      = $exampleObject !== null ? Psl\Str\format('%016x', spl_object_id($exampleObject)) : '';
 
         return md5(
             Psl\Str\concat(
                 $definition->className(),
-                $objectHash,
+                $objectId,
                 ...$definition->serializationGroups(),
             ),
         );
